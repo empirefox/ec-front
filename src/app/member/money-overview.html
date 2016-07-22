@@ -1,0 +1,27 @@
+<dl class="mt5 money">
+  <dt>
+    <a (click)="onGotoWallet()">
+      <h3><i class="mc-02"></i>我的钱包</h3>
+      <h5>查看全部财产<i class="arrow-r"></i></h5>
+    </a>
+  </dt>
+  <dd>
+    <ul>
+      <li>
+        <a (click)="onViewBalance()">{{wallet.Deposit}}
+          <p>余额</p>
+        </a>
+      </li>
+      <li>
+        <div>0
+          <p>优惠券</p>
+        </div>
+      </li>
+      <li>
+        <a (click)="onViewPoints()">{{wallet.Points}}
+          <p>积分</p>
+        </a>
+      </li>
+    </ul>
+  </dd>
+</dl>

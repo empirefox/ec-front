@@ -1,0 +1,27 @@
+<header-bar>
+  <div class="header-inp">
+    <a (click)="onGotoSearch()"> <i class="icon"></i> <span class="search-input">请输入关键字</span></a>
+  </div>
+</header-bar>
+<div class="main-layout">
+  <div class="categroy-cnt">
+    <ul class="categroy-list">
+      <li *ngFor="let item of tree" class="category-item selected">
+        <a (click)="root=item" class="category-item-a">{{item.Name}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="categroy-rgt">
+    <category-col *ngFor="let item of root"></category-col>
+    <!-- <dl class="brands-recommend">
+      <dd *ngFor="let product of products$|async">
+        <a (click)="onGotoProduct(product)">
+          <img [src]="product.Img">
+          <p>{{product.Name}}</p>
+        </a>
+      </dd>
+    </dl> -->
+  </div>
+
+</div>

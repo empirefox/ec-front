@@ -1,0 +1,29 @@
+<div class="order-item">
+  <div class="order-item-head">
+    <a class="store"><i class="icon"></i>车友会</a>
+    <span class="state">
+        <span class="ot-nofinish">{{order.State|orderState}}</span>
+    </span>
+  </div>
+  <div class="order-item-con">
+    <div class="goods-block">
+      <a (click)="gotoDetail()">
+        <div class="goods-pic">
+          <img [src]="order.Items[0].Img">
+        </div>
+        <dl class="goods-info">
+          <dt class="goods-name">{{order.Items[0].Name}}</dt>
+          <dd class="goods-type"></dd>
+        </dl>
+      </a>
+    </div>
+    <div class="goods-subtotal">
+      共{{order.Items.length}}件商品　实付款：<span class="goods-price">￥<em>{{order.PaymentAmount|money}}</em></span>
+    </div>
+  </div>
+  <div class="order-item-footer">
+    <div class="handle">
+      <order-actions [order]="order" (stateChange)="onStateChanged()"></order-actions>
+    </div>
+  </div>
+</div>

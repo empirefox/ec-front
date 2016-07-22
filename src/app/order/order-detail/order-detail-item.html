@@ -1,0 +1,17 @@
+<div class="order-item-con">
+  <div class="goods-block detail">
+    <a (click)="onGotoProduct()">
+      <div class="goods-pic">
+        <img [src]="item.Img">
+      </div>
+      <dl class="goods-info">
+        <dt class="goods-name">{{item.Name}}</dt>
+        <dd class="goods-type"></dd>
+      </dl>
+      <div class="goods-subtotal">
+        <span class="goods-price">￥<em>{{item.Price}}</em></span>
+        <span class="goods-num">x{{item.Quantity}}</span>
+      </div>
+    </a>
+  </div>
+</div>

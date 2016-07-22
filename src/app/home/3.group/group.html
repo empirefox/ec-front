@@ -1,0 +1,25 @@
+<div class="seckill-list">
+  <div class="title-wrap">
+    <h2 class="seckill-title">活动区</h2>
+    <a class="seckill-more-link" (click)="onGotoGroupBuy()">
+      <span class="seckill-more">更多
+        <i class="arrow-r"></i>
+      </span>
+    </a>
+  </div>
+  <div class="seckill-new-container">
+    <ul class="seckill-new-list">
+      <li class="seckill-new-item" *ngFor="let item of items">
+        <div class="seckill-item-img">
+          <a (click)="onGotoProduct(item)">
+            <img width="100%" [src]="img(item)">
+          </a>
+        </div>
+        <div class="seckill-item-price">
+          <span class="seckill-new-price">¥{{item.Price|money}}</span>
+          <span class="seckill-original-price">¥{{item.Sku.SalePrice|money}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

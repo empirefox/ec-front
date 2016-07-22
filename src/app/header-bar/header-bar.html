@@ -1,0 +1,10 @@
+<header class="fixed">
+  <div class="header-wrap">
+    <div class="header-l">
+      <a (click)="onGoBack()"> <i class="back"></i> </a>
+    </div>
+    <ng-content></ng-content>
+    <div class="header-r"><a (click)="showMenu=!showMenu"><i class="more"></i></a></div>
+  </div>
+  <nav-menu [show]="showMenu"></nav-menu>
+</header>

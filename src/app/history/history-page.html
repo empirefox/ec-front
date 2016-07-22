@@ -1,0 +1,33 @@
+<header1>浏览记录</header1>
+<div class="main-layout">
+
+  <div class="list" *ngIf="!items">
+    <div class="norecord views">
+      <div class="norecord-ico"><i></i></div>
+      <dl>
+        <dt>暂无您的浏览记录</dt>
+        <dd>可以去看看哪些想要买的</dd>
+      </dl>
+      <a (click)="onGotoProducts()" class="btn">随便逛逛</a>
+    </div>
+  </div>
+
+  <div class="list" *ngIf="items">
+    <ul class="goods-secrch-list">
+      <li class="goods-item" *ngFor="let item of items" (click)="onGotoProduct(item)">
+        <span class="goods-pic">
+          <img [src]="item.Img">
+        </span>
+        <dl class="goods-info">
+          <dt class="goods-name">
+            <h4>{{item.Name}}</h4>
+          </dt>
+          <dd class="goods-sale">
+            <span class="goods-price">￥<em>{{item.Price|money}}</em></span>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+</div>

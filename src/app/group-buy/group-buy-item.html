@@ -1,0 +1,20 @@
+<span class="goods-pic">
+  <a (click)="onGotoProduct()"><img src="img"></a>
+</span>
+<dl class="goods-info">
+  <dt class="goods-name">
+    <a (click)="onGotoProduct()">
+      <h4>{{item.Title}}</h4>
+      <h6>{{item.Reason}}</h6>
+    </a>
+  </dt>
+  <dd class="seckill-goods-assist">
+    <div class="seckill-item-price">
+      <span class="seckill-new-price">¥{{item.Price|money}}</span>
+      <span class="seckill-original-price">¥{{item.Sku.SalePrice|money}}</span>
+    </div>
+    <div class="seckill-goods-store">
+      <a (click)="onGroupBuy()" class="btn key">马上抢购<i></i></a>
+    </div>
+  </dd>
+</dl>

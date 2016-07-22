@@ -1,0 +1,11 @@
+<div class="category-div">
+  <h4>{{category.name}}</h4>
+  <dl class="brands-recommend">
+    <dd *ngFor="let item of category.children">
+      <a (click="onGotoProducts(item)">
+        <img [src]="item.img">
+        <p>{{item.name}}</p>
+      </a>
+    </dd>
+  </dl>
+</div>

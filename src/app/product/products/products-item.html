@@ -1,0 +1,14 @@
+<span class="goods-pic">
+  <img [src]="img">
+</span>
+<dl class="goods-info">
+  <dt class="goods-name">
+    <h4>{{product.Name}}</h4>
+  </dt>
+  <dd class="goods-sale">
+    <span class="goods-price">￥<em>{{product.Skus[0].SalePrice|money}}</em></span>
+  </dd>
+  <dd class="goods-assist">
+    <!-- <span class="goods-sold">603条评价　好评92%</span> -->
+  </dd>
+</dl>

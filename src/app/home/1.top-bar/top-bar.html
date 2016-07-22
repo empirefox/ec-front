@@ -1,0 +1,20 @@
+<div class="home-top fixed-width">
+  <header class="transparent">
+    <div class="logo"></div>
+    <div class="header-wrap">
+      <a (click)="onGotoSearch()" class="header-inp">
+        <i class="icon"></i>
+        <span class="search-input">请输入关键词</span>
+      </a>
+    </div>
+  </header>
+  <div class="adv_list">
+    <ks-swiper-container [options]="swipeOptions">
+      <ks-swiper-slide *ngFor="let s of items">
+        <a [href]="s.Link">
+          <img [src]="s.Img">
+        </a>
+      </ks-swiper-slide>
+    </ks-swiper-container>
+  </div>
+</div>

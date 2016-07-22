@@ -1,0 +1,7 @@
+<template [ngSwitch]="state">
+
+  <div *ngSwitchCase="STATE.Init">正在登录中...</div>
+  <div *ngSwitchCase="STATE.Ok">已登录成功...</div>
+  <div *ngSwitchCase="STATE.Failed">登录失败</div>
+
+</template>

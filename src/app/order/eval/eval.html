@@ -1,0 +1,42 @@
+<header1>我要评价</header1>
+<div class="main-layout">
+  <div>
+    <div class="order-item-con">
+      <div class="goods-block">
+        <a href="order_detail.html">
+          <div class="goods-pic">
+            <img src="../../images/t1.png">
+          </div>
+          <dl class="goods-info">
+            <dt class="goods-name">秋冬季时尚单鞋 糖果色亮面浅口细跟职业女鞋 漆皮镜面尖头高跟鞋 草绿色 34</dt>
+            <dd class="goods-type"></dd>
+          </dl>
+        </a>
+      </div>
+    </div>
+    <form>
+      <div class="oc-text">
+        <span class="c-f-textarea"><textarea maxlength="500" placeholder="请输入评论内容"></textarea></span>
+      </div>
+      <section class="oc-star">
+        <div class="oc-star-f">
+          <div class="oc-star-fc">
+            <label> 描述相符： </label>
+            <rating [(ngModel)]="starsCount"></rating>
+          </div>
+          <div class="oc-star-fc">
+            <label> 服务态度： </label>
+            <rating [(ngModel)]="starsCount"></rating>
+          </div>
+          <div class="oc-star-fc">
+            <label> 物流服务： </label>
+            <rating [(ngModel)]="starsCount"></rating>
+          </div>
+        </div>
+        <div class="oc-star-b">
+          <button type="submit" class="btn btn-red">发表评价</button>
+        </div>
+      </section>
+    </form>
+  </div>
+</div>

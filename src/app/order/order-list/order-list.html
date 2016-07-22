@@ -1,0 +1,21 @@
+<header1>订单列表</header1>
+<div class="main-layout">
+  <div class="order-search">
+    <input [(ngModel)]="filter" type="text" placeholder="输入商品标题或订单号进行搜索">
+  </div>
+  <div class="single-nav">
+    <ul class="w33h">
+      <li [class.selected]="orders==all"><a (click)="setCurrent(all)">全部</a></li>
+      <li [class.selected]="orders==checkout"><a (click)="setCurrent(checkout)">待付款</a></li>
+      <li [class.selected]="orders==receipted"><a (click)="setCurrent(receipted)">待评价</a></li>
+      <li [class.selected]="orders==returned"><a (click)="setCurrent(returned)">退款/退货</a></li>
+    </ul>
+  </div>
+  <div class="order-list">
+    <ul>
+      <li *ngFor="let order of orders" class="green-order-skin">
+        <order-list-item [order]="order"></order-list-item>
+      </li>
+    </ul>
+  </div>
+</div>

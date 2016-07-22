@@ -1,0 +1,25 @@
+<!doctype html>
+
+<head>
+  <title>Cross Storage Hub</title>
+</head>
+
+<body>
+  <script>
+    ((function() {
+      var module = {
+        exports: {}
+      };
+      <%= htmlWebpackPlugin.options.inline %>
+      module.exports.CrossStorageHub.init([{
+        origin: /:\/\/<%= htmlWebpackPlugin.options.apiDomain %>$/,
+        allow: ['get', 'set', 'del']
+      }, {
+        origin: /:\/\/<%= htmlWebpackPlugin.options.publicDomain %>$/,
+        allow: ['get', 'set', 'del']
+      }]);
+    })());
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<template [ngSwitch]="order.State">
+
+  <template [ngSwitchWhen]="'checkout'">
+    <a (click)="showOrderPay=true" class="btn">去付款</a>
+    <a (click)="onCancel()" class="btn key">取消订单</a>
+    <order-pay [orderId]="order.ID" [amount]="order.PaymentAmount" [(show)]="showOrderPay"></order-pay>
+  </template>
+
+  <template [ngSwitchWhen]="'paid'">
+    <a (click)="onCancel()" class="btn key">取消订单</a>
+  </template>
+
+  <template [ngSwitchWhen]="'delivered'">
+    <a (click)="gotoDelivery()" class="btn">查看物流</a>
+    <a (click)="showEnsureDialog=true" class="btn key">确认收货</a>
+    <div class="simple-dialog-wrapper" [class.hide]="!showEnsureDialog">
+      <div class="s-dialog-mask" style="height:736px;"></div>
+      <div style="left: 50%; top: 368px; margin-left: -126px;" class="s-dialog-wrapper s-dialog-skin-block">
+        <div class="s-dialog-content">确定收到了货物吗？</div>
+        <div class="s-dialog-btn-wapper">
+          <a (click)="onEnsure()" class="s-dialog-btn-ok">确定</a>
+          <a (click)="showEnsureDialog=false" class="s-dialog-btn-cancel">取消</a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template [ngSwitchWhen]="'reciepted'">
+    <a (click)="gotoDelivery()" class="btn">查看物流</a>
+    <a (click)="gotoEval()" class="btn key">去评价</a>
+  </template>
+
+  <template [ngSwitchWhen]="'returned'">
+    <a (click)="gotoDelivery()" class="btn">查看物流</a>
+    <a (click)="gotoEval()" class="btn key">去评价</a>
+  </template>
+
+</template>

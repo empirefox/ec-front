@@ -1,0 +1,11 @@
+npm i list-to-tree-lite lodash ng2-cache jwt-simple angular2-jwt cross-storage angular2-swiper
+typings install lodash
+
+--global registry:dt/cross-storage
+
+//  promised-xhr angular2-moment ng2-bootstrap crypto-js
+// registry:dt/crypto-js
+
+// no tsconfig.json see https://github.com/TypeStrong/atom-typescript/issues/833
+
+// bower install localStorageDB

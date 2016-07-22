@@ -1,0 +1,21 @@
+<div class="goods-check">
+  <input type="checkbox" [ngModel]="checked" (ngModelChange)="onSelectChanged($event)" [disabled]="item.invalid">
+</div>
+<div class="goods-pic">
+  <a (click)="onViewProduct()">
+    <img [src]="item.Img">
+  </a>
+</div>
+<dl class="goods-info">
+  <dt class="goods-name">
+    <a (click)="onViewProduct()">{{item.Name}}</a>
+  </dt>
+  <dd class="goods-type">{{item.Type}}</dd>
+</dl>
+<div class="goods-del">
+  <a (click)="onDelete()"></a>
+</div>
+<div class="goods-subtotal">
+  <span class="goods-price">￥<em>{{item.Price|money}}</em></span>
+  <quantity-input [ngModel]="item.Quantity" (ngModelChange)="onSetQuantity($event)"></quantity-input>
+</div>

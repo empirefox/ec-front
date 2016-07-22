@@ -1,0 +1,36 @@
+<header1>购物车</header1>
+<div class="main-layout">
+  <div *ngIf="showEmpty">
+    <div class="norecord cart">
+      <div class="norecord-ico"><i></i></div>
+      <dl>
+        <dt>您的购物车还是空的</dt>
+        <dd>去挑一些中意的商品吧</dd>
+      </dl>
+      <a (click)="viewProducts()" class="btn">随便逛逛</a>
+    </div>
+  </div>
+  <div *ngIf="!showEmpty">
+    <div class="cart-container">
+      <ul class="cart-item">
+        <li class="cart-litemw-cnt" *ngFor="let item of items">
+          <cart-item [checked]="item.checked" (checkedChange)="onItemCheckedChange(item, $event)" (deleted)="onDeleted(item)"></cart-item>
+        </li>
+      </ul>
+    </div>
+    <div class="cart-bottom">
+      <div class="all-check">
+        <input class="all_checkbox" type="checkbox" [(ngModel)]="isAllSelected"> 全选</div>
+      <div class="total">
+        <dl class="total-money">
+          <dt>合计：</dt>
+          <dd>￥<em>{{total}}</em></dd>
+        </dl>
+      </div>
+      <div class="check-out ok">
+        <a (click)="onGotoCheckout()">去结算({{selected}})</a>
+      </div>
+    </div>
+
+  </div>
+</div>

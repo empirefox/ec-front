@@ -1,0 +1,28 @@
+<div class="main-layout">
+  <div class="sel-box">
+    <h4 class="tit">是否开据发票</h4>
+    <div class="sel-con">
+      <a (click)="need=false" [class.sel]="!need">不需要发票</a>
+      <a (click)="need=true" [class.sel]="need">需要并填写发票信息</a>
+    </div>
+  </div>
+  <div class="inp-con" *ngIf="need">
+    <ul class="form-box">
+      <li class="form-item">
+        <h4>发票类型</h4>
+        <div class="input-box btn-style">
+          <label (click)="invoice.IsCom=false" [class.checked]="!invoice.IsCom">个人</label>
+          <label (click)="invoice.IsCom=true" [class.checked]="invoice.IsCom">单位</label>
+        </div>
+      </li>
+      <li class="form-item">
+        <h4>发票抬头</h4>
+        <div class="input-box">
+          <input #to type="text" class="inp" required placeholder="输入个人或企业名称" [(ngModel)]="invoice.To">
+          <span class="input-del"></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <button (click)="onOk()" class="btn-l mt10" [disabled]="need&&!to.valid">确定</button>
+</div>

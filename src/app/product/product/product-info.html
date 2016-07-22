@@ -1,0 +1,87 @@
+<div style="position: relative; z-index: 1;">
+  <div class="goods-detail-top">
+    <div class="goods-detail-pic">
+      <ul>
+        <li><img src="../images/xpic1.jpg"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="goods-detail-cnt">
+    <div class="goods-detail-name">
+      <dl>
+        <dt>{{product.Name}}</dt>
+        <dd>{{product.Intro}}</dd>
+      </dl>
+    </div>
+    <div class="goods-detail-price">
+      <dl>
+        <dt>￥<em>{{salePrice|money}}</em></dt>
+      </dl>
+      <span class="sold">销量：{{product.Saled}}件</span>
+    </div>
+    <div class="goods-detail-item" (click)="onOpenSkus()">
+      <div class="itme-name">套餐</div>
+      <div class="item-con">
+        <dl class="goods-detail-sel">
+          <dt>
+            <span *ngFor="let attr of sku?.attrs">{{attr.Group.Name}}<em>{{attr.Value}}</em></span>
+          </dt>
+        </dl>
+      </div>
+      <div class="item-more"></div>
+    </div>
+    <div class="goods-detail-item">
+      <div class="itme-name">送至</div>
+      <div class="item-con">
+        <a (click)="gotoAddressSelector()">
+          <dl class="goods-detail-freight">
+            <dt>
+              <address-short *ngIf="addr" [address]="addr"></address-short>
+              <template [ngIf]="sku">
+                <br>
+                <strong>{{sku.Stock?'现货':'缺货'}}</strong>
+              </template>
+            </dt>
+          </dl>
+        </a>
+      </div>
+      <div class="item-more location"></div>
+      <div class="clear"></div>
+      <div class="itme-name">运费</div>
+      <div class="item-con">
+        <dl class="goods-detail-freight">
+          <dt>店铺单笔订单不满199，收运费15元</dt>
+        </dl>
+      </div>
+    </div>
+
+    <div class="goods-detail-comment">
+      <div class="title">
+        <a href="javascript:void(0);">
+          评价(172)<span class="rate">
+          好评度<em>97%</em></span>
+          <div class="item-more"></div>
+        </a>
+      </div>
+      <div class="comment-info">
+        <ul>
+          <li>
+            <div class="eval-user">
+              <div class="goods-raty"><i class="star5"></i></div>
+              <time>苏**</time>
+            </div>
+            <dl class="eval-con">
+              <dt>不错，不愧是索尼电视，很爱很爱很爱！谢谢京东！</dt>
+              <dd class="goods_geval">
+                <a href="javascript:void(0);"><img src="../images/pjpic1.jpg"></a>
+              </dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="goods-detail-bottom">
+      <a (click)="gotoProductDetail()">点击查看商品详情</a>
+    </div>
+  </div>
+</div>

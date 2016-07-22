@@ -1,0 +1,32 @@
+<div class="home-block">
+  <div class="zhuti">
+    <div class="title-wrap">
+      <h2 class="seckill-title">爱生活</h2>
+    </div>
+    <ul class="item-pic-l2-r1">
+      <li *ngFor="let item of first; let i=index">
+        <a (click)="onGotoProduct(item)">
+          <div class="wz">
+            <h2 [ngClass]="colors[i]">{{item.Name}}</h2>
+            <h3>低至{{prices[item.ID]|money}}元</h3>
+          </div>
+          <div class="pic">
+            <img [src]="getImg(item)">
+          </div>
+        </a>
+      </li>
+    </ul>
+    <ul class="item-pic-12">
+      <li *ngFor="let item of items; let i=index">
+        <a (click)="onGotoProduct(item)">
+          <div class="wz">
+            <h2 class="text-blue">{{item.Name}}</h2>
+            <h3>低至{{prices[item.ID]|money}}元</h3>
+          </div>
+          <div class="pic">
+            <img [src]="getImg(item)">
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>

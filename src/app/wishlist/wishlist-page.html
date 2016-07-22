@@ -1,0 +1,20 @@
+<header1>关注的商品</header1>
+<div class="main-layout">
+  <div class="grid">
+    <ul class="goods-secrch-list fav-list">
+
+      <li class="goods-item" *ngFor="let item of items">
+        <a (click)="onGotoProduct(item)">
+          <span class="goods-pic"><img [src]="item.Img"></span>
+          <dl class="goods-info"><dt class="goods-name"><h4>{{item.Name}}</h4></dt>
+          </dl>
+          <dd class="goods-sale">
+            <span class="goods-price">￥<em>{{item.Price|money}}</em></span>
+          </dd>
+        </a>
+        <a (click)="onDel(item)" class="fav-del"></a>
+      </li>
+
+    </ul>
+  </div>
+</div>

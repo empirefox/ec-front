@@ -1,0 +1,47 @@
+<header>
+  <div class="header-wrap">
+    <div class="header-l">
+      <a (click)="onGoBack()"> <i class="back"></i> </a>
+    </div>
+    <div class="header-inp">
+      <i class="icon"></i>
+      <input type="text" class="search-input" [(ngModel)]="keyword" placeholder="请输入搜索关键词">
+      <span class="input-del"></span>
+    </div>
+    <div class="header-r">
+      <a (click)="onSearch()" class="search-btn">搜索</a>
+    </div>
+  </div>
+</header>
+<!-- 全文搜索提示 begin -->
+<div class="store-wrapper">
+  <div class="search-layout">
+    <!-- <dl class="hot-keyword">
+      <dt>热门搜索</dt>
+      <dd class="hot_list_container">
+        <ul>
+
+          <li>
+            <a href="product_list.html">笔记本</a>
+          </li>
+
+          <li>
+            <a href="product_list.html">手机</a>
+          </li>
+
+        </ul>
+      </dd>
+    </dl> -->
+    <dl>
+      <dt>历史纪录</dt>
+      <dd class="search_his_list_container">
+        <ul>
+          <li *ngFor="let item of history">
+            <a (click)="onSearch(item)">{{item}}</a>
+          </li>
+        </ul>
+        <a (click)="onClearHistory()" class="clear-history" onclick="">清空历史</a>
+      </dd>
+    </dl>
+  </div>
+</div>

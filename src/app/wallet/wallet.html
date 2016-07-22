@@ -1,0 +1,25 @@
+<header1>我的钱包</header1>
+<div class="main-layout">
+  <div class="asset-top w33h">
+    <ul>
+      <li>
+        <a (click)="onViewBalance()">
+          <span>{{wallet.Deposit}}</span>
+          <p>账户余额</p>
+        </a>
+      </li>
+      <li>
+        <div>
+          <span>0</span>
+          <p>优惠券</p>
+        </div>
+      </li>
+      <li>
+        <a (click)="onViewPoints()">
+          <span>{{wallet.Points}}</span>
+          <p>积分</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

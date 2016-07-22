@@ -1,0 +1,56 @@
+<header1>我的商城</header1>
+<div class="scroller-body">
+  <div class="scroller-box">
+    <div class="member-top">
+      <div class="member-info">
+        <div class="user-avatar">
+          <img [src]="user.HeadImageURL">
+        </div>
+        <div class="user-name">
+          <span>{{user.Nickname||user.Phone}}
+            <sup>V0</sup>
+          </span>
+        </div>
+      </div>
+      <div class="member-collect">
+        <span>
+          <a (click)="onGotoWishlist()"><em>{{wishlistLen}}</em>
+            <p>关注的商品</p>
+          </a>
+        </span>
+        <span>
+          <a (click)="onGotoHistory()">
+            <i class="goods-browse"></i>
+            <p>浏览记录</p>
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="member-center" style="margin-bottom:50px;">
+      <order-list-menu></order-list-menu>
+      <money-overview [wallet]="wallet"></money-overview>
+      <dl class="mt5">
+        <dt>
+          <a (click)="onGotoAddressManage()">
+            <h3>
+              <i class="mc-03"></i>收货地址管理</h3>
+            <h5>
+              <i class="arrow-r"></i>
+            </h5>
+          </a>
+        </dt>
+      </dl>
+      <dl style="border-top: solid 0.05rem #EEE;">
+        <dt>
+          <a (click)="onGotoAccount()">
+            <h3>
+              <i class="mc-04"></i>用户设置</h3>
+            <h5>
+              <i class="arrow-r"></i>
+            </h5>
+          </a>
+        </dt>
+      </dl>
+    </div>
+  </div>
+</div>

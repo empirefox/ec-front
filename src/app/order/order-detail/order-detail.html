@@ -1,0 +1,59 @@
+<div class="main-layout mb20">
+  <div class="order-list">
+    <div class="oredr-detail-block h3">
+      <h3>订单号：{{order.TrackingNumber}}</h3>
+      <div class="order-state">{{order.State|orderState}}</div>
+    </div>
+    <div class="oredr-detail-block mt5">
+      <div class="oredr-detail-add">
+        <dl>
+          <dt><span>{{order.Contact}}</span><span>{{order.Phone}}</span></dt>
+          <dd style="padding-left:1rem;"><i class="icon-add"></i>{{order.DeliverAddress}}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="order-item mt5">
+      <div class="order-item-head">
+        <a class="store"><i class="icon"></i>车友会</a>
+      </div>
+      <order-detail-item [item]="item" *ngFor="let item of order.Items"></order-detail-item>
+      <div class="order-item-bottom">
+        <span><a (click)="onGotoChat()"><i class="im"></i>联系客服</a></span>
+        <span><a [href]="phone"><i class="tel"></i>拨打电话</a></span>
+      </div>
+    </div>
+    <div class="oredr-detail-block" *ngIf="order.Remark">
+      <h3>买家留言</h3>
+      <div class="psinfo">{{order.Remark}}</div>
+    </div>
+    <div class="oredr-detail-block">
+      <h3>付款方式</h3>
+      <div class="info">{{payMethod}}</div>
+    </div>
+    <div class="oredr-detail-block" *ngIf="order.Invoice">
+      <h3>发票信息</h3>
+      <div class="psinfo">发票抬头：{{order.Invoice.To}}</div>
+    </div>
+    <div class="order-item-con">
+
+      <div class="goods-subtotle">
+        <dl>
+          <dt>运费</dt>
+          <dd>￥<em>{{order.DeliverFee|money}}</em></dd>
+        </dl>
+        <dl class="t">
+          <dt>实付款（含运费）</dt>
+          <dd>￥<em>{{order.PaymentAmount|money}}</em></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="oredr-detail-block mt5">
+      <ul class="order-log">
+        <li>创建时间：{{order.CreatedAt|date:'yyyy.MM.dd HH:mm:ss'}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="order-bottom">
+  <order-actions [order]="order" (stateChange)="onStateChanged()"></order-actions>
+</div>

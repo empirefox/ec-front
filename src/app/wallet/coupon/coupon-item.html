@@ -1,0 +1,23 @@
+<div class="pepper-w">
+  <div class="pepper-b" [class.pepper-blue]="coupon.Blue">
+    <div class="pb-con"></div>
+    <div class="pb-border"></div>
+  </div>
+  <div class="pepper" [class.pepper-blue]="coupon.Blue">
+    <div class="pepper">
+      <p class="pepper-num">
+        <i>¥</i><span>{{coupon.Money|yuan}}</span><i>{{coupon.Money|cent}}</i><em class="pepper-con">{{coupon.Store}}</em>
+      </p>
+    </div>
+    <div class="pepper-l">满{{coupon.Cond}}可使用</div>
+    <div class="pepper-r">
+      <div>
+        {{coupon.Begin|date:'yyyy.MM.dd'}}-{{coupon.End|date:'yyyy.MM.dd'}}
+      </div>
+      <i class="right-arrow"></i>
+    </div>
+  </div>
+  <div class="p-address">
+
+  </div>
+</div>

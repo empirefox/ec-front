@@ -1,0 +1,29 @@
+<header class="product-header fixed">
+  <div class="header-wrap">
+    <div class="header-l">
+      <a (click)="onGoBack()"> <i class="back"></i> </a>
+    </div>
+    <div class="header-inp">
+      <i class="icon"></i>
+      <input type="text" class="search-input" [(ngModel)]="filter" placeholder="请输入关键词过滤">
+      <span class="input-del"></span>
+    </div>
+    <div class="header-r" (click)="grid=!grid"><span [ngClass]="togglerClass"></span> </div>
+  </div>
+</header>
+<!-- <div class="goods-search-list-nav">
+  <ul>
+    <li><a (click)="" class="current">综合<i></i></a></li>
+    <li><a (click)="" class="">销量</a></li>
+    <li><a (click)="">价格<i></i></a></li>
+  </ul>
+</div> -->
+<div class="main-layout mt40 mb20">
+  <div [ngClass]="containerClass">
+    <ul class="goods-secrch-list">
+      <li class="goods-item" *ngFor="let item of filtered" (click)="onGotoProduct(item)">
+        <products-item [product]="item"></products-item>
+      </li>
+    </ul>
+  </div>
+</div>

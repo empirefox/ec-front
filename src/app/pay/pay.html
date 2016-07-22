@@ -1,0 +1,36 @@
+<div class="bottom-mask" [class.up]="show">
+  <div class="bottom-mask-bg"></div>
+  <div class="bottom-mask-block">
+    <div class="bottom-mask-top">
+      <p *ngIf="error">付款失败，请稍后再试</p>
+      <p class="cart-num">本次交易需在线支付<em>{{amount|money}}</em>元</p>
+      <a (click)="onDismiss()" class="bottom-mask-close"><i></i></a>
+    </div>
+    <div class="inp-con inp-cart" *ngIf="wallet">
+      <ul class="form-box">
+        <li class="form-item">
+          <div class="input-box pl5">
+            <label [class.checked]="useDeposit">
+              <input type="checkbox" class="checkbox" autocomplete="off"> 使用余额支付
+              <span (click)="useDeposit=!useDeposit" class="power"><i></i></span>
+            </label>
+            <p>可用预存款余额 ￥<em>{{wallet.Deposit|money}}</em></p>
+          </div>
+        </li>
+        <li class="form-item" *ngIf="useDeposit">
+          <div class="input-box"> <span class="txt">输入支付密码</span>
+            <input [formControl]="keyControl" [(ngModel)]="key" type="password" class="inp" autocomplete="off" [disabled]="!wallet.HasPayKey">
+            <span class="input-del"></span>
+          </div>
+          <button [disabled]="!keyControl.valid" (click)="onSetPayKey()" class="input-box-help" *ngIf="!wallet.HasPayKey"><i>i</i>尚未设置</button>
+        </li>
+      </ul>
+      <div class="pay-btn" *ngIf="useDeposit"> <a (click)="onPay()" class="btn-l">确认支付</a> </div>
+      <div class="pay" *ngIf="!useDeposit">
+        <label>
+          <span (click)="onWxPay()" class="wxpay">微信</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

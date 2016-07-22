@@ -1,0 +1,43 @@
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, EventEmitter, Output, Input } from '@angular/core';
+import { Location } from '@angular/common';
+import { NavMenuComponent } from './nav-menu.component';
+
+@Component({
+  selector: 'header-bar-inner',
+  template: require('./header-bar.html'),
+  directives: [NavMenuComponent],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class HeaderBarInnerComponent {
+
+  @Output() back = new EventEmitter<any>();
+
+  showMenu: boolean;
+
+  onGoBack() { this.back.next(0); }
+
+}
+
+@Component({
+  selector: 'header-bar',
+  template: require('./header-bar.html'),
+  directives: [NavMenuComponent],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class HeaderBarComponent extends HeaderBarInnerComponent {
+
+  @Input() inner: boolean;
+
+  constructor(private _location: Location) { super(); }
+
+  onGoBack() {
+    if (this.inner) {
+      this.back.next(0);
+    } else {
+      this._location.back();
+    }
+  }
+
+}

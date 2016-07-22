@@ -1,0 +1,7 @@
+<p class="logis-detail-date">{{day.date}}</p>
+<div class="logis-detail-d" [class.logis-detail-first]="f" *ngFor="let item of day.items; let f=first">
+  <div class="logis-detail-content">
+    <p class="logis-detail-content-time">{{item.second}}</p>
+    <p class="logis-detail-content-detail">{{item.context}}</p>
+  </div>
+</div>

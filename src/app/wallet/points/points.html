@@ -1,0 +1,19 @@
+<header1>积分明细</header1>
+<div class="main-layout">
+  <div class="asset-info">
+    <div class="container point">
+      <i class="icon"></i>
+      <dl>
+        <dt>我的积分</dt>
+        <dd><em>{{wallet.Points}}</em></dd>
+      </dl>
+    </div>
+  </div>
+  <ul class="log-list">
+    <li *ngFor="let item of wallet.PointsList">
+      <dl><dt>{{item.Reason}}</dt></dl>
+      <div class="money add">{{item.Amount}}</div>
+      <time class="date">{{item.CreatedAt|date:'yyyy.MM.dd'}}</time>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,80 @@
+<header1>确认订单</header1>
+<div class="main-layout mb20">
+  <div class="cart-block">
+    <!--正在使用的默认地址Begin-->
+    <div class="cart-add-default">
+      <a (click)="onShowSelecteAddress()">
+        <i class="icon-add"></i>
+        <address-item [address]="address"></address-item>
+        <i class="icon-arrow"></i>
+      </a>
+    </div>
+    <!--正在使用的默认地址End-->
+  </div>
+  <!--商品列表Begin-->
+  <div class="mt5">
+    <div>
+      <div class="cart-container">
+
+        <ul class="cart-item">
+          <li class="buy-item" *ngFor="let item of checkout.Items">
+            <checkout-item [item]="item"></checkout-item>
+          </li>
+        </ul>
+        <div *ngIf="!checkout.Items.length">无结算项目</div>
+
+        <div class="cart-subtotal">
+
+          <dl>
+            <dt>物流配送</dt>
+            <dd>运费<em>{{checkout.DeliverFee|money}}</em>元</dd>
+          </dl>
+          <div class="message">
+            <input type="text" placeholder="店铺订单留言：">
+          </div>
+          <div class="store-total">
+            合计<span><em>{{total|money}}</em></span>元
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--商品列表End-->
+  <!--付款方式Begin-->
+  <div class="cart-block mt5">
+    <a (click)="onChangePayMethod()" class="posr">
+      <h3><i class="pay"></i>支付方式：</h3>
+      <div class="current-con">{{payMethod}}</div>
+      <i class="icon-arrow"></i> </a>
+  </div>
+  <!--付款方式End-->
+
+  <!--发票信息Begin-->
+  <div class="cart-block mt5">
+    <a (click)="onViewInvoice()" class="posr">
+      <h3><i class="invoice"></i>发票信息：</h3>
+      <div class="current-con"> {{invoice}} </div>
+      <i class="icon-arrow"></i> </a>
+  </div>
+  <!--发票信息End-->
+
+  <!--优惠券使用Begin-->
+  <!-- <div class="cart-block mt5">
+    <a (click)="onViewCoupon()" class="posr">
+      <h3><i class="paytype"></i>优惠券(0张可用)</h3>
+      <div class="current-con">未使用</div>
+      <i class="icon-arrow"></i> </a>
+  </div> -->
+  <!--优惠券使用End-->
+
+  <!--底部总金额固定层Begin-->
+  <div class="cart-bottom">
+    <div class="total">
+      <dl class="total-money">
+        <dt>实付款：</dt>
+        <dd>￥<em>{{checkout.Total|money}}</em></dd>
+      </dl>
+    </div>
+    <div class="check-out ok"><a (click)="onCheckout()">提交订单</a></div>
+  </div>
+</div>

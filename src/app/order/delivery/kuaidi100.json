@@ -1,0 +1,1385 @@
+{
+	"aae": {
+		"name": "AAE全球专递"
+	},
+	"abf": {
+		"name": "ABF"
+	},
+	"adp": {
+		"name": "ADP国际快递"
+	},
+	"advancing": {
+		"name": "安达信官网通道"
+	},
+	"afghan": {
+		"name": "Afghan Post"
+	},
+	"airpak": {
+		"name": "airpak expresss"
+	},
+	"albania": {
+		"name": "阿尔巴尼亚"
+	},
+	"anjiekuaidi": {
+		"name": "青岛安捷快递"
+	},
+	"anlexpress": {
+		"name": "新干线快递"
+	},
+	"annengwuliu": {
+		"name": "安能物流"
+	},
+	"anposten": {
+		"name": "An Post"
+	},
+	"anxindakuaixi": {
+		"name": "安信达"
+	},
+	"anxl": {
+		"name": "安迅物流"
+	},
+	"aramex": {
+		"name": "Aramex"
+	},
+	"aruba": {
+		"name": "阿鲁巴[荷兰]"
+	},
+	"asendiausa": {
+		"name": "Asendia USA"
+	},
+	"auspost": {
+		"name": "Australia Post"
+	},
+	"austria": {
+		"name": "奥地利"
+	},
+	"azerbaijan": {
+		"name": "阿塞拜疆"
+	},
+	"bahrain": {
+		"name": "巴林"
+	},
+	"baifudongfang": {
+		"name": "百福东方"
+	},
+	"baishiwuliu": {
+		"name": "百世物流"
+	},
+	"balunzhi": {
+		"name": "巴伦支"
+	},
+	"bangladesh": {
+		"name": "Bangladesh Post"
+	},
+	"bangsongwuliu": {
+		"name": "邦送物流"
+	},
+	"belgiumpost": {
+		"name": "Belgium Post"
+	},
+	"belize": {
+		"name": "伯利兹"
+	},
+	"belpost": {
+		"name": "Belpochta EMS"
+	},
+	"bht": {
+		"name": "BHT快递"
+	},
+	"biaojikuaidi": {
+		"name": "彪记快递"
+	},
+	"bjemstckj": {
+		"name": "北京EMS"
+	},
+	"bjxsrd": {
+		"name": "鑫锐达"
+	},
+	"bohei": {
+		"name": "波黑"
+	},
+	"bolivia": {
+		"name": "玻利维亚"
+	},
+	"bpost": {
+		"name": "bpost"
+	},
+	"bpostinter": {
+		"name": "bpostint"
+	},
+	"bqcwl": {
+		"name": "百千诚物流"
+	},
+	"brazilposten": {
+		"name": "Brazil Post"
+	},
+	"brunei": {
+		"name": "文莱"
+	},
+	"bulgarian": {
+		"name": "Bulgarian Posts"
+	},
+	"byht": {
+		"name": "博源恒通"
+	},
+	"caledonia": {
+		"name": "新喀里多尼亚[法国]"
+	},
+	"cambodia": {
+		"name": "柬埔寨"
+	},
+	"cameroon": {
+		"name": "喀麦隆"
+	},
+	"canpost": {
+		"name": "Canada Post"
+	},
+	"canpostfr": {
+		"name": "Canada Post"
+	},
+	"cces": {
+		"name": "CCES/国通快递"
+	},
+	"ceskaposta": {
+		"name": "?eská po?ta"
+	},
+	"changyuwuliu": {
+		"name": "长宇物流"
+	},
+	"chengjisudi": {
+		"name": "城际速递"
+	},
+	"chile": {
+		"name": "Correos Chile"
+	},
+	"chinatzx": {
+		"name": "同舟行物流"
+	},
+	"chronopostfra": {
+		"name": "Chronopost France"
+	},
+	"chronopostfren": {
+		"name": "Chronopost France"
+	},
+	"chronopostport": {
+		"name": "Chronopost Portugal"
+	},
+	"chuangyi": {
+		"name": "创一快递"
+	},
+	"chuanxiwuliu": {
+		"name": "传喜物流"
+	},
+	"chukou1": {
+		"name": "出口易"
+	},
+	"city100": {
+		"name": "城市100"
+	},
+	"citylink": {
+		"name": "City-Link "
+	},
+	"ckeex": {
+		"name": "城晓国际快递"
+	},
+	"cnpex": {
+		"name": "CNPEX中邮快递"
+	},
+	"coe": {
+		"name": "COE"
+	},
+	"correoargentino": {
+		"name": "阿根廷"
+	},
+	"correos": {
+		"name": "哥斯达黎加"
+	},
+	"correosdees": {
+		"name": "Correos de Espa?a"
+	},
+	"cqxingcheng": {
+		"name": "重庆星程快递"
+	},
+	"csuivi": {
+		"name": "法国(小包)"
+	},
+	"cypruspost": {
+		"name": "塞浦路斯"
+	},
+	"czwlyn": {
+		"name": "云南中诚"
+	},
+	"datianwuliu": {
+		"name": "大田物流"
+	},
+	"dayangwuliu": {
+		"name": "大洋物流"
+	},
+	"debangwuliu": {
+		"name": "德邦"
+	},
+	"dechuangwuliu": {
+		"name": "德创物流"
+	},
+	"deltec": {
+		"name": "Deltec Courier"
+	},
+	"dfpost": {
+		"name": "达方物流"
+	},
+	"dhl": {
+		"name": "DHL(中国)"
+	},
+	"dhlbenelux": {
+		"name": "DHL Benelux"
+	},
+	"dhlde": {
+		"name": "DHL(德国)"
+	},
+	"dhlen": {
+		"name": "DHL-全球件"
+	},
+	"dhlnetherlands": {
+		"name": "DHL Netherlands"
+	},
+	"dhlpoland": {
+		"name": "DHL Poland"
+	},
+	"diantongkuaidi": {
+		"name": "店通快递"
+	},
+	"dianyi": {
+		"name": "云南滇驿物流"
+	},
+	"didasuyun": {
+		"name": "递达速运"
+	},
+	"dingdong": {
+		"name": "叮咚快递"
+	},
+	"directlink": {
+		"name": "Direct Link"
+	},
+	"disifang": {
+		"name": "递四方"
+	},
+	"donghanwl": {
+		"name": "东瀚物流"
+	},
+	"donghong": {
+		"name": "东红合作通道"
+	},
+	"dpd": {
+		"name": "DPD"
+	},
+	"dpdgermany": {
+		"name": "DPD Germany"
+	},
+	"dpdpoland": {
+		"name": "DPD Poland"
+	},
+	"dpduk": {
+		"name": "DPD UK"
+	},
+	"dpex": {
+		"name": "DPEX"
+	},
+	"dpexen": {
+		"name": "dpex国际"
+	},
+	"dsukuaidi": {
+		"name": "D速物流"
+	},
+	"dtdcindia": {
+		"name": "DTDC India"
+	},
+	"ecfirstclass": {
+		"name": "EC-Firstclass"
+	},
+	"ecmscn": {
+		"name": "易客满"
+	},
+	"ecmsglobal": {
+		"name": "ecmsglobal"
+	},
+	"ecuador": {
+		"name": "厄瓜多尔"
+	},
+	"efs": {
+		"name": "efs"
+	},
+	"egypt": {
+		"name": "埃及"
+	},
+	"eltahell": {
+		"name": "ELTA Hellenic Post"
+	},
+	"emirates": {
+		"name": "阿联酋邮政"
+	},
+	"emonitoring": {
+		"name": "波兰"
+	},
+	"ems": {
+		"name": "EMS"
+	},
+	"emsen": {
+		"name": "EMS-英文"
+	},
+	"emsguoji": {
+		"name": "EMS国际件"
+	},
+	"emsinten": {
+		"name": "EMS国际（英文）"
+	},
+	"emsukraine": {
+		"name": "EMS Ukraine"
+	},
+	"emsukrainecn": {
+		"name": "乌克兰EMS"
+	},
+	"england": {
+		"name": "英国(大包,EMS)"
+	},
+	"eshunda": {
+		"name": "俄顺达"
+	},
+	"estafeta": {
+		"name": "Estafeta"
+	},
+	"estes": {
+		"name": "Estes"
+	},
+	"ethiopia": {
+		"name": "埃塞俄比亚"
+	},
+	"fandaguoji": {
+		"name": "颿达国际快递(英文)"
+	},
+	"fanyukuaidi": {
+		"name": "凡宇快递"
+	},
+	"fardarww": {
+		"name": "颿达国际快递"
+	},
+	"fastgo": {
+		"name": "FastGo"
+	},
+	"fastway": {
+		"name": "Fastway Ireland"
+	},
+	"fedex": {
+		"name": "FedEx"
+	},
+	"fedexcn": {
+		"name": "FedEx(中国)"
+	},
+	"fedexuk": {
+		"name": "FedEx UK"
+	},
+	"fedexukcn": {
+		"name": "FedEx-英国件"
+	},
+	"fedexus": {
+		"name": "FedEx(美国)"
+	},
+	"feibaokuaidi": {
+		"name": "飞豹快递"
+	},
+	"feihukuaidi": {
+		"name": "飞狐快递"
+	},
+	"feikangda": {
+		"name": "飞康达"
+	},
+	"feikuaida": {
+		"name": "飞快达"
+	},
+	"feiyuanvipshop": {
+		"name": "飞远配送"
+	},
+	"fenghuangkuaidi": {
+		"name": "凤凰快递"
+	},
+	"fengxingtianxia": {
+		"name": "风行天下"
+	},
+	"finland": {
+		"name": "芬兰"
+	},
+	"ganzhongnengda": {
+		"name": "能达速递"
+	},
+	"gaticn": {
+		"name": "gati官网中文通道"
+	},
+	"gatien": {
+		"name": "gati官网英文通道"
+	},
+	"gatikwe": {
+		"name": "Gati-KWE"
+	},
+	"gda": {
+		"name": "冠达快递"
+	},
+	"gdkd": {
+		"name": "港快速递"
+	},
+	"gdxp": {
+		"name": "新鹏快递"
+	},
+	"gibraltar": {
+		"name": "直布罗陀[英国]"
+	},
+	"gls": {
+		"name": "GLS"
+	},
+	"gml": {
+		"name": "英脉物流"
+	},
+	"gongsuda": {
+		"name": "共速达"
+	},
+	"gotoubi": {
+		"name": "UBI Australia"
+	},
+	"greenland": {
+		"name": "格陵兰[丹麦]"
+	},
+	"gsm": {
+		"name": "GSM"
+	},
+	"gtongsudi": {
+		"name": "广通速递"
+	},
+	"guangdongtonglu": {
+		"name": "广东通路"
+	},
+	"guangdongyouzhengwuliu": {
+		"name": "广东邮政"
+	},
+	"guotongkuaidi": {
+		"name": "国通快递"
+	},
+	"gzxingcheng": {
+		"name": "贵州星程快递"
+	},
+	"haihongmmb": {
+		"name": "海红for买卖宝"
+	},
+	"haihongwangsong": {
+		"name": "海红网送"
+	},
+	"haimengsudi": {
+		"name": "海盟速递"
+	},
+	"haiwaihuanqiu": {
+		"name": "海外环球"
+	},
+	"hanrun": {
+		"name": "韩润物流"
+	},
+	"haoshengwuliu": {
+		"name": "昊盛物流"
+	},
+	"haypost": {
+		"name": "亚美尼亚"
+	},
+	"hebeijianhua": {
+		"name": "河北建华"
+	},
+	"hengluwuliu": {
+		"name": "恒路物流"
+	},
+	"hkpost": {
+		"name": "HongKong Post"
+	},
+	"hlyex": {
+		"name": "好运来"
+	},
+	"hnfy": {
+		"name": "飞鹰物流"
+	},
+	"hongpinwuliu": {
+		"name": "宏品物流"
+	},
+	"hre": {
+		"name": "高铁速递"
+	},
+	"hrvatska": {
+		"name": "Hrvatska Po?ta"
+	},
+	"htongexpress": {
+		"name": "华通快运"
+	},
+	"huangmajia": {
+		"name": "陕西黄马甲"
+	},
+	"huaqikuaiyun": {
+		"name": "华企快运"
+	},
+	"huaxialongwuliu": {
+		"name": "华夏龙"
+	},
+	"huiqiangkuaidi": {
+		"name": "汇强快递"
+	},
+	"huitongkuaidi": {
+		"name": "百世汇通"
+	},
+	"huiwen": {
+		"name": "汇文官网通道"
+	},
+	"hungary": {
+		"name": "匈牙利"
+	},
+	"huoban": {
+		"name": "伙伴物流"
+	},
+	"hutongwuliu": {
+		"name": "户通物流"
+	},
+	"hyk": {
+		"name": "上海昊宏国际货物"
+	},
+	"hzpl": {
+		"name": "华航快递"
+	},
+	"iceland": {
+		"name": "冰岛"
+	},
+	"idada": {
+		"name": "百成大达物流"
+	},
+	"india": {
+		"name": "印度"
+	},
+	"indonesia": {
+		"name": "印度尼西亚"
+	},
+	"interlink": {
+		"name": "Interlink Express"
+	},
+	"iparcel": {
+		"name": "UPS i-paclel"
+	},
+	"ireland": {
+		"name": "爱尔兰"
+	},
+	"israelpost": {
+		"name": "Israel Post"
+	},
+	"italiane": {
+		"name": "Poste Italiane Paccocelere"
+	},
+	"italysad": {
+		"name": "Italy SDA"
+	},
+	"japanposten": {
+		"name": "日本郵便"
+	},
+	"jcex": {
+		"name": "jcex官网通道"
+	},
+	"jd": {
+		"name": "京东快递"
+	},
+	"jiajikuaidi": {
+		"name": "佳吉快递"
+	},
+	"jiajiwuliu": {
+		"name": "佳吉快运"
+	},
+	"jialidatong": {
+		"name": "嘉里物流"
+	},
+	"jiayiwuliu": {
+		"name": "佳怡物流"
+	},
+	"jiayunmeiwuliu": {
+		"name": "加运美速递"
+	},
+	"jietekuaidi": {
+		"name": "捷特快递"
+	},
+	"jindawuliu": {
+		"name": "金大物流"
+	},
+	"jinguangsudikuaijian": {
+		"name": "京广速递"
+	},
+	"jinyuekuaidi": {
+		"name": "晋越快递"
+	},
+	"jiuyicn": {
+		"name": "久易快递"
+	},
+	"jixianda": {
+		"name": "急先达物流"
+	},
+	"jordan": {
+		"name": "约旦"
+	},
+	"kangliwuliu": {
+		"name": "康力物流"
+	},
+	"kazpost": {
+		"name": "哈萨克斯坦"
+	},
+	"kcs": {
+		"name": "KCS"
+	},
+	"kenya": {
+		"name": "肯尼亚"
+	},
+	"koreapost": {
+		"name": "Korea Post"
+	},
+	"kuaidawuliu": {
+		"name": "快达物流"
+	},
+	"kuaijiesudi": {
+		"name": "快捷速递"
+	},
+	"kuaitao": {
+		"name": "快淘快递"
+	},
+	"kuaiyouda": {
+		"name": "四川快优达"
+	},
+	"kuayue": {
+		"name": "跨越速递"
+	},
+	"kxda": {
+		"name": "凯信达官网通道"
+	},
+	"kyrgyzpost": {
+		"name": "kyrgyzpost"
+	},
+	"lanbiaokuaidi": {
+		"name": "蓝镖快递"
+	},
+	"lanhukuaidi": {
+		"name": "蓝弧快递"
+	},
+	"lasership": {
+		"name": "LaserShip"
+	},
+	"latvia": {
+		"name": "拉脱维亚"
+	},
+	"lbbk": {
+		"name": "立白宝凯物流"
+	},
+	"ldxpres": {
+		"name": "林道国际快递(英文)"
+	},
+	"lejiedi": {
+		"name": "乐捷递"
+	},
+	"leopard": {
+		"name": "云豹国际货运"
+	},
+	"lesotho": {
+		"name": "莱索托"
+	},
+	"letseml": {
+		"name": "美联快递"
+	},
+	"lianbangkuaidi": {
+		"name": "联邦快递"
+	},
+	"lianbangkuaidien": {
+		"name": "联邦"
+	},
+	"lianhaowuliu": {
+		"name": "联昊通速递"
+	},
+	"libanpost": {
+		"name": "黎巴嫩"
+	},
+	"lijisong": {
+		"name": "立即送"
+	},
+	"lithuania": {
+		"name": "立陶宛"
+	},
+	"longbanwuliu": {
+		"name": "龙邦速递"
+	},
+	"longlangkuaidi": {
+		"name": "隆浪快递"
+	},
+	"ltexp": {
+		"name": "乐天速递"
+	},
+	"luxembourg": {
+		"name": "卢森堡"
+	},
+	"macao": {
+		"name": "澳门"
+	},
+	"macedonia": {
+		"name": "马其顿"
+	},
+	"mailikuaidi": {
+		"name": "麦力快递"
+	},
+	"malaysiaems": {
+		"name": "Malaysia Post (parcel,EMS)"
+	},
+	"malaysiapost": {
+		"name": "Malaysia Post(Registered)"
+	},
+	"maldives": {
+		"name": "马尔代夫"
+	},
+	"malta": {
+		"name": "马耳他"
+	},
+	"mauritius": {
+		"name": "毛里求斯"
+	},
+	"meiguokuaidi": {
+		"name": "美国快递"
+	},
+	"menduimen": {
+		"name": "门对门"
+	},
+	"mexico": {
+		"name": "Correos de Mexico"
+	},
+	"mexicodenda": {
+		"name": "Mexico Senda Express"
+	},
+	"minbangsudi": {
+		"name": "民邦速递"
+	},
+	"minghangkuaidi": {
+		"name": "民航快递"
+	},
+	"mingliangwuliu": {
+		"name": "明亮物流"
+	},
+	"minshengkuaidi": {
+		"name": "闽盛快递"
+	},
+	"moldova": {
+		"name": "摩尔多瓦"
+	},
+	"montenegro": {
+		"name": "黑山"
+	},
+	"mrw": {
+		"name": "MRW"
+	},
+	"multipack": {
+		"name": "Mexico Multipack"
+	},
+	"myhermes": {
+		"name": "MyHermes"
+	},
+	"namibia": {
+		"name": "纳米比亚"
+	},
+	"nanjing": {
+		"name": "南京100"
+	},
+	"nanjingshengbang": {
+		"name": "南京晟邦物流"
+	},
+	"ndwl": {
+		"name": "南方传媒物流"
+	},
+	"nedahm": {
+		"name": "红马速递"
+	},
+	"neweggozzo": {
+		"name": "新蛋奥硕"
+	},
+	"newzealand": {
+		"name": "New Zealand Post"
+	},
+	"nigerianpost": {
+		"name": "Nigerian Postal"
+	},
+	"nntengda": {
+		"name": "腾达速递"
+	},
+	"novaposhta": {
+		"name": "Nova Poshta"
+	},
+	"nsf": {
+		"name": "新顺丰（NSF）"
+	},
+	"nuoyaao": {
+		"name": "偌亚奥国际快递"
+	},
+	"ocaargen": {
+		"name": "OCA Argentina"
+	},
+	"ocs": {
+		"name": "OCS"
+	},
+	"oman": {
+		"name": "阿曼"
+	},
+	"omniva": {
+		"name": "爱沙尼亚"
+	},
+	"ontrac": {
+		"name": "OnTrac"
+	},
+	"opek": {
+		"name": "OPEK"
+	},
+	"pakistan": {
+		"name": "巴基斯坦邮政"
+	},
+	"paraguay": {
+		"name": "巴拉圭"
+	},
+	"parcelforce": {
+		"name": "Parcel Force"
+	},
+	"parcelforcecn": {
+		"name": "英国邮政大包EMS"
+	},
+	"peex": {
+		"name": "派尔快递官网通道"
+	},
+	"peisihuoyunkuaidi": {
+		"name": "配思货运"
+	},
+	"peixingwuliu": {
+		"name": "陪行物流"
+	},
+	"peru": {
+		"name": "秘鲁"
+	},
+	"pfcexpress": {
+		"name": "皇家物流"
+	},
+	"phlpost": {
+		"name": "菲律宾"
+	},
+	"pingandatengfei": {
+		"name": "平安达腾飞"
+	},
+	"pinsuxinda": {
+		"name": "品速心达快递"
+	},
+	"portugalctt": {
+		"name": "Portugal CTT"
+	},
+	"portugalseur": {
+		"name": "Portugal Seur"
+	},
+	"postdanmarken": {
+		"name": "Post Danmark"
+	},
+	"postenab": {
+		"name": "Posten AB"
+	},
+	"postennorge": {
+		"name": "Posten Norge"
+	},
+	"postnl": {
+		"name": "PostNL"
+	},
+	"postnlchina": {
+		"name": "荷兰邮政-中国件"
+	},
+	"postnlcn": {
+		"name": "PostNL"
+	},
+	"postnlpacle": {
+		"name": "荷兰包裹(PostNL International Parcels)"
+	},
+	"postserv": {
+		"name": "台湾"
+	},
+	"purolator": {
+		"name": "Purolator"
+	},
+	"qbexpress": {
+		"name": "秦邦快运"
+	},
+	"quanchenkuaidi": {
+		"name": "全晨快递"
+	},
+	"quanfengkuaidi": {
+		"name": "全峰快递"
+	},
+	"quanjitong": {
+		"name": "全际通"
+	},
+	"quanritongkuaidi": {
+		"name": "全日通"
+	},
+	"quantium": {
+		"name": "Quantium"
+	},
+	"quantwl": {
+		"name": "全通快运"
+	},
+	"quanyikuaidi": {
+		"name": "全一快递"
+	},
+	"redexpress": {
+		"name": "Red Express"
+	},
+	"republic": {
+		"name": "叙利亚"
+	},
+	"rfsd": {
+		"name": "瑞丰速递"
+	},
+	"riyuwuliu": {
+		"name": "日昱物流"
+	},
+	"romanian": {
+		"name": "Po?ta Roman?"
+	},
+	"royalmail": {
+		"name": "Royal Mail"
+	},
+	"royalmailcn": {
+		"name": "英国邮政小包"
+	},
+	"rpx": {
+		"name": "rpx"
+	},
+	"rrs": {
+		"name": "日日顺物流"
+	},
+	"rufengda": {
+		"name": "如风达"
+	},
+	"ruidianyouzheng": {
+		"name": "瑞典邮政"
+	},
+	"rwanda": {
+		"name": "卢旺达"
+	},
+	"safexpress": {
+		"name": "Safexpress"
+	},
+	"saiaodi": {
+		"name": "赛澳递"
+	},
+	"saiaodimmb": {
+		"name": "赛澳递for买卖宝"
+	},
+	"santaisudi": {
+		"name": "三态速递"
+	},
+	"saudipost": {
+		"name": "Saudi Post"
+	},
+	"scxingcheng": {
+		"name": "四川星程快递"
+	},
+	"selektvracht": {
+		"name": "Selektvracht"
+	},
+	"serbia": {
+		"name": "塞尔维亚"
+	},
+	"seur": {
+		"name": "International Seur"
+	},
+	"sevendays": {
+		"name": "七天连锁"
+	},
+	"sfift": {
+		"name": "十方通物流"
+	},
+	"shangcheng": {
+		"name": "尚橙物流"
+	},
+	"shangda": {
+		"name": "上大物流"
+	},
+	"shanghaikuaitong": {
+		"name": "上海快通"
+	},
+	"shanghaiwujiangmmb": {
+		"name": "上海无疆for买卖宝"
+	},
+	"shenganwuliu": {
+		"name": "圣安物流"
+	},
+	"shengfengwuliu": {
+		"name": "盛丰物流"
+	},
+	"shenghuiwuliu": {
+		"name": "盛辉物流"
+	},
+	"shentong": {
+		"name": "申通快递"
+	},
+	"shipgce": {
+		"name": "飞洋快递"
+	},
+	"shiyunkuaidi": {
+		"name": "世运快递"
+	},
+	"shlindao": {
+		"name": "林道国际快递"
+	},
+	"shunfeng": {
+		"name": "顺丰速运"
+	},
+	"shunfengen": {
+		"name": "顺丰-美国件"
+	},
+	"singpost": {
+		"name": "新加坡邮政"
+	},
+	"sinoairinex": {
+		"name": "中外运空运"
+	},
+	"sinoex": {
+		"name": "中外运速递(中文)"
+	},
+	"siodemka": {
+		"name": "Siodemka"
+	},
+	"skynet": {
+		"name": "skynet"
+	},
+	"skynetmalaysia": {
+		"name": "SkyNet Malaysia"
+	},
+	"slovak": {
+		"name": "斯洛伐克"
+	},
+	"southafrican": {
+		"name": "South African Post Office"
+	},
+	"speedpost": {
+		"name": "Singapore Speedpost"
+	},
+	"sucheng": {
+		"name": "速呈宅配"
+	},
+	"suer": {
+		"name": "速尔快递"
+	},
+	"suijiawuliu": {
+		"name": "穗佳物流"
+	},
+	"sujievip": {
+		"name": "郑州速捷"
+	},
+	"suteng": {
+		"name": "广东速腾物流"
+	},
+	"sutongwuliu": {
+		"name": "速通物流"
+	},
+	"swisspost": {
+		"name": "瑞士邮政"
+	},
+	"swisspostcn": {
+		"name": "瑞士邮政"
+	},
+	"sxhongmajia": {
+		"name": "山西红马甲"
+	},
+	"syjiahuier": {
+		"name": "佳惠尔"
+	},
+	"szdpex": {
+		"name": "深圳DPEX"
+	},
+	"szems": {
+		"name": "深圳EMS"
+	},
+	"tanzania": {
+		"name": "坦桑尼亚"
+	},
+	"tcixps": {
+		"name": "TCI XPS"
+	},
+	"thailand": {
+		"name": "Thailand Thai Post"
+	},
+	"tiandihuayu": {
+		"name": "天地华宇"
+	},
+	"tiantian": {
+		"name": "天天快递"
+	},
+	"tianzong": {
+		"name": "天纵物流"
+	},
+	"tnt": {
+		"name": "TNT"
+	},
+	"tntau": {
+		"name": "TNT Australia"
+	},
+	"tnten": {
+		"name": "TNT-全球件"
+	},
+	"tntitaly": {
+		"name": "TNT Italy"
+	},
+	"tntpostcn": {
+		"name": "tntpostcn"
+	},
+	"tntuk": {
+		"name": "TNT UK"
+	},
+	"toll": {
+		"name": "Toll"
+	},
+	"tollpriority": {
+		"name": "Toll Priority"
+	},
+	"tonghetianxia": {
+		"name": "通和天下"
+	},
+	"tunisia": {
+		"name": "突尼斯(EMS)"
+	},
+	"ucs": {
+		"name": "UCS合众速递"
+	},
+	"uganda": {
+		"name": "乌干达"
+	},
+	"ukraine": {
+		"name": "乌克兰(小包,大包)"
+	},
+	"ukrpost": {
+		"name": "UkrPost"
+	},
+	"ukrpostcn": {
+		"name": "乌克兰邮政包裹"
+	},
+	"ups": {
+		"name": "UPS"
+	},
+	"upsen": {
+		"name": "UPS-全球件"
+	},
+	"upsfreight": {
+		"name": "UPS Freight"
+	},
+	"upsmailinno": {
+		"name": "UPS Mail Innovations"
+	},
+	"usps": {
+		"name": "USPS"
+	},
+	"uzbekistan": {
+		"name": "乌兹别克斯坦"
+	},
+	"vancl": {
+		"name": "凡客订单"
+	},
+	"vietnam": {
+		"name": "越南"
+	},
+	"vnpost": {
+		"name": "越南EMS"
+	},
+	"wanboex": {
+		"name": "万博快递"
+	},
+	"wanjiawuliu": {
+		"name": "万家物流"
+	},
+	"wanxiangwuliu": {
+		"name": "万象物流"
+	},
+	"weitepai": {
+		"name": "微特派"
+	},
+	"wenjiesudi": {
+		"name": "文捷航空"
+	},
+	"wuyuansudi": {
+		"name": "伍圆速递"
+	},
+	"xianchengliansudi": {
+		"name": "西安城联速递"
+	},
+	"xianglongyuntong": {
+		"name": "祥龙运通物流"
+	},
+	"xiaohongmao": {
+		"name": "北青小红帽"
+	},
+	"xiaoxiangchenbao": {
+		"name": "潇湘晨报"
+	},
+	"xilaikd": {
+		"name": "西安喜来快递"
+	},
+	"xinbangwuliu": {
+		"name": "新邦物流"
+	},
+	"xinfengwuliu": {
+		"name": "信丰物流"
+	},
+	"xingchengjibian": {
+		"name": "星晨急便"
+	},
+	"xinhongyukuaidi": {
+		"name": "鑫飞鸿"
+	},
+	"xiyoutekuaidi": {
+		"name": "希优特"
+	},
+	"xlobo": {
+		"name": "贝海国际速递"
+	},
+	"xsrd": {
+		"name": "鑫世锐达"
+	},
+	"xtb": {
+		"name": "鑫通宝物流"
+	},
+	"yafengsudi": {
+		"name": "亚风速递"
+	},
+	"yamato": {
+		"name": "黑猫雅玛多"
+	},
+	"yemen": {
+		"name": "也门"
+	},
+	"yibangwuliu": {
+		"name": "一邦速递"
+	},
+	"yilingsuyun": {
+		"name": "亿领速运"
+	},
+	"yinjiesudi": {
+		"name": "顺捷丰达"
+	},
+	"yinsu": {
+		"name": "音素快运"
+	},
+	"yiqiguojiwuliu": {
+		"name": "一柒国际物流"
+	},
+	"yishunhang": {
+		"name": "亿顺航"
+	},
+	"yitongda": {
+		"name": "易通达"
+	},
+	"yitongfeihong": {
+		"name": "一统飞鸿"
+	},
+	"yodel": {
+		"name": "YODEL"
+	},
+	"youbijia": {
+		"name": "邮必佳"
+	},
+	"youshuwuliu": {
+		"name": "优速快递"
+	},
+	"youzhengguoji": {
+		"name": "邮政国际邮件"
+	},
+	"youzhengguonei": {
+		"name": "邮政国内小包"
+	},
+	"ytkd": {
+		"name": "运通中港速运"
+	},
+	"yuananda": {
+		"name": "源安达"
+	},
+	"yuanchengwuliu": {
+		"name": "远成物流"
+	},
+	"yuanfeihangwuliu": {
+		"name": "原飞航"
+	},
+	"yuantong": {
+		"name": "圆通速递"
+	},
+	"yuanweifeng": {
+		"name": "源伟丰"
+	},
+	"yuanzhijiecheng": {
+		"name": "元智捷诚"
+	},
+	"yuefengwuliu": {
+		"name": "越丰物流"
+	},
+	"yujiawuliu": {
+		"name": "煜嘉物流"
+	},
+	"yunda": {
+		"name": "韵达快递"
+	},
+	"yundaexus": {
+		"name": "美国韵达"
+	},
+	"yuntongkuaidi": {
+		"name": "运通中港"
+	},
+	"yuxinwuliu": {
+		"name": "宇鑫物流"
+	},
+	"yxexpress": {
+		"name": "亿翔官网通道"
+	},
+	"zengyisudi": {
+		"name": "增益速递"
+	},
+	"zhaijibian": {
+		"name": "宅急便"
+	},
+	"zhaijisong": {
+		"name": "宅急送"
+	},
+	"zhengzhoujianhua": {
+		"name": "郑州建华"
+	},
+	"zhimakaimen": {
+		"name": "芝麻开门"
+	},
+	"zhongruisudi": {
+		"name": "中睿速递"
+	},
+	"zhongsukuaidi": {
+		"name": "中速快递"
+	},
+	"zhongtianwanyun": {
+		"name": "中天万运"
+	},
+	"zhongtiewuliu": {
+		"name": "中铁快运"
+	},
+	"zhongtong": {
+		"name": "中通速递"
+	},
+	"zhongtongphone": {
+		"name": "中通（带电话）"
+	},
+	"zhongwaiyun": {
+		"name": "中外运速递"
+	},
+	"zhongxinda": {
+		"name": "忠信达"
+	},
+	"zhongyouwuliu": {
+		"name": "中邮物流"
+	},
+	"ztky": {
+		"name": "中铁物流"
+	},
+	"ztong": {
+		"name": "智通物流"
+	}
+}

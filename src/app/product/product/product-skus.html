@@ -1,0 +1,25 @@
+<div class="bottom-mask-bg"></div>
+<div class="bottom-mask-block">
+  <div class="bottom-mask-top goods-options-info">
+    <div class="goods-pic">
+      <img [src]="img">
+    </div>
+    <dl>
+      <dt>{{product.Name}}</dt>
+      <dd class="goods-price">
+        ￥<em>{{price|money}}</em>
+        <span class="goods-storage">库存：{{stock}}件</span>
+      </dd>
+    </dl>
+    <a (click)="onDismiss()" class="bottom-mask-close"><i></i></a>
+  </div>
+  <div class="bottom-mask-rolling">
+    <div class="goods-options-stock" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+      <product-attr-group *ngFor="let group of product.Groups" [group]="group" [current]="current[group.ID]"
+          (attr)="onAttrSelected($event)"></product-attr-group>
+    </div>
+  </div>
+  <div class="goods-option-value">购买数量
+    <quantity-input [(ngModel)]="quantity" [max]="stock"></quantity-input>
+  </div>
+</div>

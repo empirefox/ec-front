@@ -1,0 +1,18 @@
+<header1>地址管理</header1>
+<div class="main-layout mb20">
+  <div class="address-list">
+    <ul>
+      <li *ngFor="let item of items">
+        <address-item [address]="item"></address-item>
+        <div class="handle">
+          <span>
+					  <a (click)="onGotoEdit(item)"><i class="edit"></i>编辑</a>
+            <a (click)="onDel(item)" class="deladdress"><i class="del"></i>删除</a>
+				  </span>
+        </div>
+      </li>
+  </div>
+</div>
+<div class="add-address-footer">
+  <a class="btn-l mt5" (click)="onCreateAddr()">添加新地址</a>
+</div>
