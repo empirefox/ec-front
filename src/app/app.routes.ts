@@ -16,6 +16,7 @@ import {
 } from './product';
 import { SearchPageComponent } from './search';
 import { HistoryComponent } from './history';
+import { PATHS } from './core';
 
 export const routes: RouterConfig = [
   {
@@ -242,7 +243,7 @@ export const routes: RouterConfig = [
     ]
   },
 
-  { path: 'weixin-oauth', component: 'WeixinOauthPageComponent' },
+  { path: PATHS.WX_OAUTH2_LOCAL_PATH, component: 'WeixinOauthPageComponent' },
   { path: 'wishlist', component: 'WishlistPageComponent' },
   { path: '**', component: NoContent },
 ];
