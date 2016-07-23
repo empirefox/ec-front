@@ -1,4 +1,4 @@
-import {isPrimitive} from "angular2/src/facade/lang";
+import { isPrimitive } from 'angular2/src/facade/lang';
 import { groupBy, keyBy, chain } from 'lodash';
 
 interface Poser {
@@ -15,8 +15,8 @@ export function objectToParams(object) {
 
 // http://stackoverflow.com/questions/10726909/random-alpha-numeric-string-in-javascript
 export function nonce(length) {
-  let text = "";
-  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let text = '';
+  let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let i;
   for (i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -26,10 +26,10 @@ export function nonce(length) {
 
 // int SCHEMA = 2, DOMAIN = 3, PORT = 5, PATH = 6, FILE = 8, QUERYSTRING = 9, HASH = 12
 // see http://stackoverflow.com/a/309360/2778814
-export const UrlParser = /^((http[s]?):\/)?\/?([^:\/\s]+)(:([^\/]*))?((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(\?([^#]*))?(#(.*))?$/;
+export const urlParser = /^((http[s]?):\/)?\/?([^:\/\s]+)(:([^\/]*))?((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(\?([^#]*))?(#(.*))?$/;
 
 export function parseUrlPath(u: string) {
-  return u ? u.match(UrlParser)[6] : '';
+  return u ? u.match(urlParser)[6] : '';
 }
 
 export function toQuery(param: any) {

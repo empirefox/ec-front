@@ -8,7 +8,7 @@ import { IPayArgs, MoneyService, ITradeState } from '../money';
 import { ISku } from '../product';
 import { IOrder, IOrderItem, ICheckoutPayload, IOrderPayClaims } from './order';
 import { ICheckout, ICheckoutItem, toPayload } from './checkout';
-import { LocalOrderService, LocalOrdersService } from './local.service'
+import { LocalOrderService, LocalOrdersService } from './local.service';
 
 @Injectable()
 export class OrderService {
@@ -29,12 +29,12 @@ export class OrderService {
   }
 
   changeState(orderId: number, state: string): Observable<IOrder> {
-    return this.http.post(URLS.ORDER_CANCEL, JSON.stringify({ OrderID: orderId, State: state })).map(res => <IOrder>res.json());
+    return this.http.post(URLS.Order(orderId), JSON.stringify({ OrderID: orderId, State: state })).map(res => <IOrder>res.json());
   }
 
   getLocalOrRequest(id: number, itemService?: LocalOrderService, itemsService?: LocalOrdersService) {
     return itemsService ? itemsService.src$.flatMap(items => {
-      let order = items.find(item => item.ID == id);
+      let order = items.find(item => item.ID === id);
       return order ? Observable.of(order) : (itemService ? itemService.src$ : this.getOrder(id));
     }) : (itemService ? itemService.src$ : this.getOrder(id));
   }
@@ -48,7 +48,7 @@ export class OrderService {
   }
 
   pay(orderId: number, amount: number, key: string): Observable<IOrder> {
-    let iat = Date.now();
+    let iat = Math.floor(Date.now() / 1000);
     let n = nonce(32);
     let pay: IOrderPayClaims = {
       UserID: 0, // TODO use fact user id
@@ -56,7 +56,7 @@ export class OrderService {
       OrderID: orderId,
       Nonce: n,
       iat: iat,
-      exp: iat + 300000, // 5 min
+      exp: iat + 300, // 5 min
     };
     return this.http.post(URLS.ORDER_PAY, encode(pay, key, 'HS256')).map(res => <IOrder>res.json());
   }

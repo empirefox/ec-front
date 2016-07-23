@@ -26,7 +26,7 @@ export class OrderActionsComponent {
 
   ngOnInit() {
     let showPay = this.router.routerState.snapshot.queryParams['pay'] === 'show';
-    let showCurrentPay = (+this.route.snapshot.params['id']) == this.order.ID;
+    let showCurrentPay = (+this.route.snapshot.params['id']) === this.order.ID;
     this.showOrderPay = showPay && showCurrentPay;
   }
 

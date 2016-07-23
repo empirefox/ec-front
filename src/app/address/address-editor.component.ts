@@ -54,7 +54,7 @@ export class AddressEditorComponent {
   get district() { return this._district; }
 
   set province(province: RegionPair) {
-    if (this._province != province) {
+    if (this._province !== province) {
       this._province = province;
       this.addr.Province = province ? province[1] : null;
       this._city = null;
@@ -65,7 +65,7 @@ export class AddressEditorComponent {
   }
 
   set city(city: RegionPair) {
-    if (this._city != city) {
+    if (this._city !== city) {
       this._city = city;
       this.addr.City = city ? city[1] : null;
       this._district = null;
@@ -74,7 +74,7 @@ export class AddressEditorComponent {
   }
 
   set district(district: RegionPair) {
-    if (this._district != district) {
+    if (this._district !== district) {
       this._district = district;
       this.addr.District = district ? district[1] : null;
     }
@@ -83,7 +83,7 @@ export class AddressEditorComponent {
   onSubmit() {
     this.addressService.save(this.addr).subscribe(
       addr => this.saved.next(addr),
-      _ => {
+      e => {
         this.failed = true;
         setTimeout(_ => this.failed = false, 1000);
       }

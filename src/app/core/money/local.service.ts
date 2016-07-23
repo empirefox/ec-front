@@ -4,4 +4,4 @@ import { LocalPublishService } from '../local-publish';
 import { IWallet } from './money';
 
 @Injectable()
-export class LocalWalletService extends LocalPublishService<IWallet>{ }
+export class LocalWalletService extends LocalPublishService<IWallet> { }

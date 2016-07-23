@@ -35,7 +35,7 @@ export class UserService {
   }
 
   exchange(query: WxCodeResult): Observable<string> {
-    return query.code && query.state && query.state == this.jwt.getOauth2State() ?
+    return query.code && query.state && query.state === this.jwt.getOauth2State() ?
       this.http.get(WxExchangeCode(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }

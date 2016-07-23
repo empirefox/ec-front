@@ -4,12 +4,12 @@ import { IProduct, ISku } from './Product';
 import { Subject }    from 'rxjs/Subject';
 
 @Injectable()
-export class LocalProductService extends LocalPublishService<IProduct>{ }
+export class LocalProductService extends LocalPublishService<IProduct> { }
 @Injectable()
-export class LocalProductsService extends LocalPublishService<IProduct[]>{ }
+export class LocalProductsService extends LocalPublishService<IProduct[]> { }
 
 @Injectable()
-export class LocalSkuService extends LocalPublishService<ISku>{
+export class LocalSkuService extends LocalPublishService<ISku> {
   // Observable string sources
   private _openSkus = new Subject<any>();
   // Observable string streams

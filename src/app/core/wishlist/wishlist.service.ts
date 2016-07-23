@@ -37,8 +37,8 @@ export class WishlistService {
     // DELETE /wishlist/:id
     return this.http.delete(URLS.WishItem(id)).flatMap(res => {
       return this._items ? this._items.map(items => {
-        let i = items.findIndex(item => item.ID == id);
-        (~i) && items.splice(i, 1);
+        let i = items.findIndex(item => item.ID === id);
+        if (~i) { items.splice(i, 1); }
         this._items = Observable.of([...items]);
       }) : Observable.of<void>(null);
     });
@@ -53,7 +53,7 @@ export class WishlistService {
 
     // TODO add sku price/img
 
-    return item
+    return item;
   }
 
 }

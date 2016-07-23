@@ -64,13 +64,13 @@ export class ProductPageComponent implements OnInit {
       this.product = product;
       this.proccessSkus();
       this.refreshWishlist();
-    })
+    });
     this.setCartLen();
   }
 
   get sku() { return this._sku; }
   set sku(sku: ISku) {
-    if (this._sku != sku) {
+    if (this._sku !== sku) {
       this._sku = sku;
       this.localSkuService.publish(sku);
     }
@@ -117,7 +117,7 @@ export class ProductPageComponent implements OnInit {
   onCloseSkus() { this.showSkus = false; }
 
   private refreshWishlist() {
-    this.wishlistService.getItems().subscribe(items => this.inWishlist = items.some(item => item.ProductID == this.product.ID));
+    this.wishlistService.getItems().subscribe(items => this.inWishlist = items.some(item => item.ProductID === this.product.ID));
   }
 
   private proccessSkus() {
@@ -128,7 +128,7 @@ export class ProductPageComponent implements OnInit {
       let skuId = +this.router.routerState.snapshot.queryParams['SkuID'];
       this.groupBuyService.getItem(skuId).subscribe(item => {
         this.groupBuyItem = item;
-        this.sku = this.skus.find(sku => sku.ID == item.Sku.ID);
+        this.sku = this.skus.find(sku => sku.ID === item.Sku.ID);
         this.onOpenSkus(1);
       });
     });

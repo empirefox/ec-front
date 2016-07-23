@@ -27,7 +27,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   @Input() get checked(): boolean { return this._checked; };
   set checked(checked: boolean) {
-    if (this._checked != checked) {
+    if (this._checked !== checked) {
       this._checked = checked;
     }
   }

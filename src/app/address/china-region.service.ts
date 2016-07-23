@@ -6,9 +6,9 @@ export interface RegionPair {
   1: string;
 }
 let pairs: Dict<RegionPair[]>;
-Object.keys(region).forEach(k => {
-  let v = region[k];
-  pairs[+k] = Object.keys(v).map(k => <RegionPair>[+k, v[k]]);
+Object.keys(region).forEach(r => {
+  let v = region[r];
+  pairs[+r] = Object.keys(v).map(k => <RegionPair>[+k, v[k]]);
 });
 
 @Injectable()

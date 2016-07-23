@@ -75,12 +75,12 @@ export class OrderPayComponent {
     }
     if (this.localOrdersService) {
       this.localOrdersService.src$.take(1).subscribe(items => {
-        let index = items.findIndex(item => item.ID == order.ID);
+        let index = items.findIndex(item => item.ID === order.ID);
         if (~index) {
           items[index] = order;
         }
         this.localOrdersService.publish([...items]);
-      })
+      });
     }
     this.router.navigate(['/order/detail', this.orderId]);
   }

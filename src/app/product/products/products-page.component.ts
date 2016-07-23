@@ -45,7 +45,7 @@ export class ProductsPageComponent {
 
   get filter() { return this._filter; }
   set filter(filter: string) {
-    if (this._filter != filter) {
+    if (this._filter !== filter) {
       this._filter = filter;
       this.filtered = filter ?
         this.products.filter(product => SEARCH_COLS.some(col => !!(<string>product[col]).match(filter))) :

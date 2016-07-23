@@ -8,6 +8,7 @@ export interface IWishItem {
   Img: string;
   Price: string;
   ProductID: number;
+  Product?: IProduct;
 
   invalid?: boolean;
 }

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { ProductAttrGroup, ProductAttr } from '../core';
+import { ProductAttrGroup, ProductAttr } from '../../core';
 
 @Component({
   selector: 'product-attr-group',
@@ -14,7 +14,7 @@ export class ProductAttrGroupComponent {
   @Output() attr = new EventEmitter<ProductAttr>();
 
   onSelect(attr: ProductAttr) {
-    if (attr != this.current) {
+    if (attr !== this.current) {
       this.current = attr;
       this.attr.next(attr);
     }

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 import { Header1Component } from '../../header-bar';
 import { IDelivery, IDeliveryDay, DeliveryService, OrderService, LocalOrderService, LocalOrdersService, IOrder } from '../../core';
-import { Kuaidi100Map } from './kuaidi100';
+import { kuaidi100map } from './kuaidi100';
 
 @Component({
   template: require('./delivery-page.html'),
@@ -30,7 +30,7 @@ export class DeliveryPageComponent {
     this.sub = this.orderService.getLocalOrRequest(id, this.localOrderService, this.localOrdersService).
       subscribe(order => {
         this.order = order;
-        this.company = Kuaidi100Map[this.order.DeliverCom].name;
+        this.company = kuaidi100map[this.order.DeliverCom].name;
         this.deliveryService.query(this.order.ID).subscribe(delivery => this.delivery = delivery);
       });
   }

@@ -6,7 +6,7 @@ export interface IOrderItem {
   ID: number;
   OrderID: number;
   Quantity: number;
-  DiscountRate: number;
+  DiscountRate?: number;
   Name: string;
   ProductID: number;
   Img: string;
@@ -29,8 +29,8 @@ export interface IOrderAddress {
 export interface IOrder extends IOrderAddress {
   ID: number;
   PaymentAmount: number;
-  DiscountValue: number;
-  AbandonedReason: string;
+  DiscountValue?: number;
+  AbandonedReason?: string;
   TrackingNumber: string;
   Items: IOrderItem[];
   DeliverFee: number;
@@ -38,14 +38,14 @@ export interface IOrder extends IOrderAddress {
   DeliverNo: string;
   State: string;
   CreatedAt: number;
-  CancelledAt: number;
-  PaiedAt: number;
-  DeliveredAt: number;
-  ReceiptedAt: number;
-  ReturnedAt: number;
+  CancelledAt?: number;
+  PaiedAt?: number;
+  DeliveredAt?: number;
+  ReceiptedAt?: number;
+  ReturnedAt?: number;
   Remark?: string;
   IsDeliverPay: boolean;
-  Invoice: IInvoice;
+  Invoice?: IInvoice;
 }
 
 export interface ICheckoutPayloadItem {

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'quantity-input',
@@ -20,7 +20,7 @@ export class QuantityInputComponent implements ControlValueAccessor, OnInit {
   get value() { return this._value; }
 
   @Input() set value(value: number) {
-    if (value != this._value) {
+    if (value !== this._value) {
       value = (value && value > 1) ? (value > this.max ? this.max : value) : 1;
       this._value = value;
       this.onChange(value);

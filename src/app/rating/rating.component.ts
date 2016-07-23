@@ -1,25 +1,25 @@
-import {Component, OnInit, Input, Output, EventEmitter, HostListener, forwardRef, Provider} from "@angular/core";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl} from "@angular/forms";
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, forwardRef, Provider } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 
 @Component({
-  selector: "rating",
+  selector: 'rating',
   template: `
-<span (mouseleave)="resetHovered()"
-      class="rating"
-      [class.disabled]="disabled"
-      [class.readonly]="readonly"
-      tabindex="0"
-      role="slider"
-      aria-valuemin="0"
-      [attr.aria-valuemax]="ratingRange.length"
-      [attr.aria-valuenow]="model">
-    <span *ngFor="let item of ratingRange; let index = index">
-        <i (mouseenter)="setHovered(item)"
-           (mousemove)="changeHovered($event)"
-           (click)="rate(item)"
-           [attr.data-icon]="fullIcon"
-           class="{{ iconClass }} half{{ calculateWidth(item) }}"
-           [title]="titles[index] || item">{{ emptyIcon }}</i>
+<span (mouseleave)='resetHovered()'
+      class='rating'
+      [class.disabled]='disabled'
+      [class.readonly]='readonly'
+      tabindex='0'
+      role='slider'
+      aria-valuemin='0'
+      [attr.aria-valuemax]='ratingRange.length'
+      [attr.aria-valuenow]='model'>
+    <span *ngFor='let item of ratingRange; let index = index'>
+        <i (mouseenter)='setHovered(item)'
+           (mousemove)='changeHovered($event)'
+           (click)='rate(item)'
+           [attr.data-icon]='fullIcon'
+           class='{{ iconClass }} half{{ calculateWidth(item) }}'
+           [title]='titles[index] || item'>{{ emptyIcon }}</i>
     </span>
 </span>
 `,
@@ -42,13 +42,13 @@ export class RatingComponent implements OnInit, ControlValueAccessor, Validator 
   // -------------------------------------------------------------------------
 
   @Input()
-  iconClass = "star-icon";
+  iconClass = 'star-icon';
 
   @Input()
-  fullIcon = "★";
+  fullIcon = '★';
 
   @Input()
-  emptyIcon = "☆";
+  emptyIcon = '☆';
 
   @Input()
   readonly: boolean;
@@ -152,7 +152,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor, Validator 
   // Host Bindings
   // -------------------------------------------------------------------------
 
-  @HostListener("keydown", ["$event"])
+  @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1 || this.hovered)
       return;

@@ -25,7 +25,7 @@ export class AddressService {
   }
 
   getItem(id: number): Observable<IAddress> {
-    return this.getItems().map(items => items.find(item => item.ID == id));
+    return this.getItems().map(items => items.find(item => item.ID === id));
   }
 
   getDefault(): Observable<IAddress> {
@@ -39,7 +39,7 @@ export class AddressService {
         if (!copy.ID) {
           items = [item, ...items];
         } else {
-          let i = items.findIndex(i => i.ID == item.ID);
+          let i = items.findIndex(i => i.ID === item.ID);
           if (~i) {
             items[i] = item;
           }
@@ -54,8 +54,8 @@ export class AddressService {
   delete(id: number): Observable<void> {
     return this.http.delete(URLS.Addr(id)).flatMap(res => {
       return this._items ? this._items.map(items => {
-        let i = items.findIndex(item => item.ID == id);
-        (~i) && items.splice(i, 1);
+        let i = items.findIndex(item => item.ID === id);
+        if (~i) { items.splice(i, 1); }
         this._items = Observable.of([...items]);
       }) : Observable.of<void>(null);
     });

@@ -46,14 +46,14 @@ export class OrderListComponent implements OnInit {
 
   get filter() { return this._filter; }
   set filter(filter: string) {
-    if (this._filter != filter) {
+    if (this._filter !== filter) {
       this._filter = filter;
       this.doFilter(filter);
     }
   }
 
   setCurrent(orders: IOrder[]) {
-    if (this.orders != orders) {
+    if (this.orders !== orders) {
       this.orders = orders;
       this.doFilter(this.filter);
     }
@@ -61,15 +61,15 @@ export class OrderListComponent implements OnInit {
 
   private setOrders(orders: IOrder[]) {
     this.all = orders;
-    this.checkout = orders.filter(order => order.State == 'checkout');
-    this.receipted = orders.filter(order => order.State == 'receipted');
-    this.returned = orders.filter(order => order.State == 'returned');
+    this.checkout = orders.filter(order => order.State === 'checkout');
+    this.receipted = orders.filter(order => order.State === 'receipted');
+    this.returned = orders.filter(order => order.State === 'returned');
   }
 
   private doFilter(filter: string) {
-    filter ? this.orders.filter(order => {
+    this.filtered = !filter ? this.orders : this.orders.filter(order => {
       return (filter.length > 5 && !!order.TrackingNumber.match(filter)) || order.Items.some(item => !!item.Name.match(filter));
-    }) : this.orders;
+    });
   }
 
 }

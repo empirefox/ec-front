@@ -4,7 +4,8 @@ import { URLS } from '../profile';
 import { ICategory } from './category';
 import { Observable } from 'rxjs/Observable';
 
-let listToTree = require('list-to-tree-lite');
+const listToTree = require('list-to-tree-lite');
+const listToTreeOpts = { idKey: 'ID', parentKey: 'ParentID' };
 
 @Injectable()
 export class CategoryService {
@@ -27,7 +28,7 @@ export class CategoryService {
 
   // TODO only used with tree data
   listToTree(list: ICategory[]): ICategory[] {
-    let tree = listToTree(list) as ICategory[];
+    let tree = listToTree(list, listToTreeOpts) as ICategory[];
     this.sortTreeDESC(tree);
     return tree;
   }

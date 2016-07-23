@@ -4,9 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import { groupBy, keyBy, isEqual, uniq } from 'lodash';
 import { URLS } from '../profile';
 import { one2manyRelate, descSortor, objectToParams } from '../util';
-import { IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
+import {
+  IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
   ISku, ProductAttrGroup, IProduct, IProductResponse, IProductsResponse,
-  IProductQuery } from './Product';
+  IProductQuery
+} from './product';
 import { LocalProductService, LocalProductsService } from './local.service.ts';
 
 const O2M_PRODUCT_SKUS_OPTION = { oneInMany: 'Product', manyInOne: 'Skus', oneIdInMany: 'ProductID' };
@@ -21,7 +23,7 @@ export class ProductService {
 
   getLocalOrRequest(id: number, itemService?: LocalProductService, itemsService?: LocalProductsService) {
     return itemsService ? itemsService.src$.flatMap(items => {
-      let order = items.find(item => item.ID == id);
+      let order = items.find(item => item.ID === id);
       return order ? Observable.of(order) : (itemService ? itemService.src$ : this.getProduct(id));
     }) : (itemService ? itemService.src$ : this.getProduct(id));
   }

@@ -41,7 +41,7 @@ export class ProductSkusComponent implements OnInit {
   }
 
   get price() {
-    return this.gbItem && this.gbItem.Sku.ID == this.sku.ID ? this.gbItem.Price : (this.sku ? this.sku.SalePrice : 0);
+    return this.gbItem && this.gbItem.Sku.ID === this.sku.ID ? this.gbItem.Price : (this.sku ? this.sku.SalePrice : 0);
   }
 
   get stock() {
@@ -64,7 +64,7 @@ export class ProductSkusComponent implements OnInit {
   onAttrSelected(attr: ProductAttr) {
     this.current[attr.Group.ID] = attr;
     let sku = this.findSku();
-    if (sku != this.sku) {
+    if (sku !== this.sku) {
       this.sku = sku;
       this.findGroupBuyItem();
       this.skuChange.next(sku);
