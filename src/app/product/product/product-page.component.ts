@@ -16,7 +16,7 @@ import {
   LocalProductsService,
   LocalSkuService
 } from '../../core';
-import { HeaderBarComponent } from '../header-bar';
+import { HeaderBarComponent } from '../../header-bar';
 import { ProductSkusComponent } from './product-skus.component';
 
 @Component({

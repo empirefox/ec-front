@@ -1,4 +1,4 @@
-import { CarouselService } from '/carousel.service';
+import { CarouselService } from './carousel.service';
 
 export * from './carousel';
 export * from './carousel.service';

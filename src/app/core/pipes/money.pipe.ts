@@ -1,23 +1,26 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
 @Pipe({ name: 'money' })
-export class MoneyPipe extends DecimalPipe {
+export class MoneyPipe implements PipeTransform {
+  base = new DecimalPipe();
   transform(value: number) {
-    return super.transform((value ? value : 0) / 100, '1.2-2');
+    return this.base.transform((value ? value : 0) / 100, '1.2-2');
   }
 }
 
 @Pipe({ name: 'yuan' })
-export class YuanPipe extends DecimalPipe {
+export class YuanPipe implements PipeTransform {
+  base = new DecimalPipe();
   transform(value: number) {
-    return super.transform((value ? value : 0) / 100, '1.2-2').slice(0, -3);
+    return this.base.transform((value ? value : 0) / 100, '1.2-2').slice(0, -3);
   }
 }
 
 @Pipe({ name: 'cent' })
-export class CentPipe extends DecimalPipe {
+export class CentPipe implements PipeTransform {
+  base = new DecimalPipe();
   transform(value: number) {
-    return super.transform((value ? value : 0) / 100, '1.2-2').slice(-3);
+    return this.base.transform((value ? value : 0) / 100, '1.2-2').slice(-3);
   }
 }

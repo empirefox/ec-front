@@ -16,6 +16,8 @@
       "core-js",
       "hammerjs",
       "jasmine",
+      "jwt-simple",
+      "lodash",
       "node",
       "protractor",
       "selenium-webdriver",

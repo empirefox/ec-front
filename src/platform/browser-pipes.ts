@@ -3,10 +3,11 @@
  */
 
 import { PLATFORM_PIPES } from '@angular/core';
+import { APP_CORE_PIPES } from '../app/core';
 
 // application_pipes: pipes that are global through out the application
 export const APPLICATION_PIPES = [
-
+  ...APP_CORE_PIPES,
 ];
 
 export const PIPES = [

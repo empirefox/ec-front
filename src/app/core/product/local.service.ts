@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalPublishService } from '../local-publish';
-import { IProduct, ISku } from './Product';
-import { Subject }    from 'rxjs/Subject';
+import { IProduct, ISku } from './product';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class LocalProductService extends LocalPublishService<IProduct> { }

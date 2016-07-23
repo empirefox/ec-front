@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { IProduct, ProductService } from '../../core';
+import { Router } from '@angular/router';
+import { IProduct, ProductService, LocalProductService } from '../../core';
 import { HomeSectionBaseComponent } from '../section-base.component';
 
 @Component({
@@ -12,6 +13,13 @@ export class HomeFeaturedComponent extends HomeSectionBaseComponent {
   first: IProduct[]; // first item
   items: IProduct[];
   prices: Dict<number> = {};
+
+  constructor(
+    router: Router,
+    productService: ProductService,
+    localProductService: LocalProductService) {
+    super(router, productService, localProductService);
+  }
 
   ngOnInit() {
     this.productService.query({ sp: 'Featured' }).subscribe(items => {

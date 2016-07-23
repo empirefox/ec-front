@@ -19,7 +19,6 @@ import { USER_PROVIDERS } from './user';
 import { UTIL_PROVIDERS } from './util';
 import { WISHLIST_PROVIDERS } from './wishlist';
 // import { XSTORAGE_PROVIDERS } from './xstorage';
-import { APP_CORE_PIPES } from './pipes';
 
 export * from './address';
 export * from './captcha';
@@ -42,6 +41,7 @@ export * from './user';
 export * from './util';
 export * from './wishlist';
 // export * from './xstorage';
+export { APP_CORE_PIPES } from './pipes';
 
 export const APP_CORE_PROVIDERS = [
   ...ADDR_PROVIDERS,
@@ -65,5 +65,4 @@ export const APP_CORE_PROVIDERS = [
   ...UTIL_PROVIDERS,
   ...WISHLIST_PROVIDERS,
   //  ...XSTORAGE_PROVIDERS,
-  ...APP_CORE_PIPES,
 ];

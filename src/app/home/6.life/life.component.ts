@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { IProduct, ProductService } from '../../core';
+import { Router } from '@angular/router';
+import { IProduct, ProductService, LocalProductService } from '../../core';
 import { HomeSectionBaseComponent } from '../section-base.component';
 
 const COLORS = ['text-fd', 'text-b6', 'text-yellow'];
@@ -15,6 +16,13 @@ export class HomeLifeComponent extends HomeSectionBaseComponent {
   items: IProduct[];
   prices: Dict<number> = {};
   colors = COLORS;
+
+  constructor(
+    router: Router,
+    productService: ProductService,
+    localProductService: LocalProductService) {
+    super(router, productService, localProductService);
+  }
 
   ngOnInit() {
     this.productService.query({ sp: 'Life' }).subscribe(items => {

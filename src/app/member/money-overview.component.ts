@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { MoneyWalletComponent } from '../money';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MoneyService, LocalWalletService } from '../core';
+import { WalletComponent } from '../wallet';
 
 @Component({
   selector: 'money-overview',
@@ -8,7 +9,15 @@ import { MoneyWalletComponent } from '../money';
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['wallet'],
 })
-export class MoneyOverviewComponent extends MoneyWalletComponent {
+export class MoneyOverviewComponent extends WalletComponent {
+
+  constructor(
+    route: ActivatedRoute,
+    router: Router,
+    moneyService: MoneyService,
+    localWalletService: LocalWalletService) {
+    super(route, router, moneyService, localWalletService);
+  }
 
   onGotoWallet() { this.router.navigate(['/wallet']); }
 

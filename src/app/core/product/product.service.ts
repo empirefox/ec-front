@@ -11,8 +11,8 @@ import {
 } from './product';
 import { LocalProductService, LocalProductsService } from './local.service.ts';
 
-const O2M_PRODUCT_SKUS_OPTION = { oneInMany: 'Product', manyInOne: 'Skus', oneIdInMany: 'ProductID' };
-const O2M_GROUP_ATTRS_OPTION = { oneInMany: 'Group', manyInOne: 'Attrs', oneIdInMany: 'GroupID' };
+const O2M_PRODUCT_SKUS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Product', manyInOne: 'Skus', oneIdInMany: 'ProductID' };
+const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Group', manyInOne: 'Attrs', oneIdInMany: 'GroupID' };
 
 @Injectable()
 export class ProductService {
@@ -22,10 +22,19 @@ export class ProductService {
   constructor(private http: Http) { }
 
   getLocalOrRequest(id: number, itemService?: LocalProductService, itemsService?: LocalProductsService) {
-    return itemsService ? itemsService.src$.flatMap(items => {
-      let order = items.find(item => item.ID === id);
-      return order ? Observable.of(order) : (itemService ? itemService.src$ : this.getProduct(id));
-    }) : (itemService ? itemService.src$ : this.getProduct(id));
+    return itemsService && itemsService.published ? itemsService.src$.flatMap(items => {
+      let item = items.find(item => item.ID === id);
+      return item ? Observable.of(item) : this._getLocalOrRequest(id, itemService);
+    }) : this._getLocalOrRequest(id, itemService);
+  }
+
+  _getLocalOrRequest(id: number, itemService?: LocalProductService) {
+    if (itemService && itemService.published) {
+      return itemService.src$.flatMap(item => {
+        return item ? Observable.of(item) : this.getProduct(id).map(item => itemService.publish(item));
+      });
+    }
+    return this.getProduct(id).map(item => itemService ? itemService.publish(item) : item);
   }
 
   clearAttrsCache() { this._attrs = null; }

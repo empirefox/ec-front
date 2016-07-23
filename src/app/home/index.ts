@@ -1,3 +1,3 @@
-export { HomePageComponent } from './home-page.componnet';
+export { HomePageComponent } from './home-page.component';
 
 export * from './routes';

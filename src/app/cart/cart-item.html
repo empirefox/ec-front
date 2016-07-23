@@ -17,5 +17,5 @@
 </div>
 <div class="goods-subtotal">
   <span class="goods-price">￥<em>{{item.Price|money}}</em></span>
-  <quantity-input [ngModel]="item.Quantity" (ngModelChange)="onSetQuantity($event)"></quantity-input>
+  <quantity-input [value]="item.Quantity" (valueChange)="onSetQuantity($event)"></quantity-input>
 </div>

@@ -5,7 +5,7 @@ export interface RegionPair {
   0: number;
   1: string;
 }
-let pairs: Dict<RegionPair[]>;
+let pairs: Dict<RegionPair[]> = {};
 Object.keys(region).forEach(r => {
   let v = region[r];
   pairs[+r] = Object.keys(v).map(k => <RegionPair>[+k, v[k]]);

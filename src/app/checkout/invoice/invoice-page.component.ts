@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IInvoice, ICheckout } from '../../core';
+import { IInvoice, ICheckout, LocalCheckoutService } from '../../core';
 
 import { Header1Component } from '../../header-bar';
 import { InvoiceComponent } from './invoice.component';

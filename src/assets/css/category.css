@@ -1,0 +1,23 @@
+/*商品分类*/
+.categroy-cnt { width: 3.8rem; height: 100%; display: block; float: left; position: absolute; z-index: 1; top: 2rem; bottom: 0; left: 0; overflow: hidden;}
+/*分类一级导航*/
+.categroy-list {position: absolute; }
+.category-item { width: 3.75rem; height: 2.8rem; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; line-height: 2.8rem;  background: #f3f4f6 ; text-align: center;}
+.category-item-a { display: block;width: 100%;text-decoration: none;font-size: 0.56rem;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; color: #999; }
+.category-item.selected {    border-right: 1px solid #fff; background: #fff;}
+.category-item.selected a { color:red;}
+
+/* 分类子级内容 */
+.categroy-rgt { background-color: #FCFCFC;  position: absolute; z-index: 1; left: 3.8rem; top: 2rem; bottom: 0; right: 0; overflow: hidden;}
+.category-pic{margin:0.5rem 0.5rem 0;}
+.category-pic img{width:100%; height: auto;}
+.category-div{margin: 0 0.5rem;}
+.category-div h4{font-size:0.55rem;margin: 0;padding: 10px 0 0 0; line-height: 1em; color: #888;}
+/* 品牌推荐 */
+
+.brands-recommend { font-size: 0; background-color: #FFF; height: 4.2rem; margin: 0.3rem 0;  }
+.brands-recommend dd { vertical-align: top; display: inline-block; width: 3.3rem; margin: 0.3rem 0 0 0.3rem; }
+.brands-recommend dd a { display: block;}
+.brands-recommend dd img { width: 100%; margin: 0.5rem 0 0; height: 2.3rem}
+.brands-recommend dd a { color: #333; }
+.brands-recommend dd p { font-size: 0.5rem; line-height: 1rem; height: 1rem; white-space: nowrap; text-overflow: ellipsis; text-align: center; overflow: hidden;}

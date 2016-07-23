@@ -9,7 +9,7 @@ import {
   AddressCreatorPageComponent
 } from '../product';
 import { SearchPageComponent } from '../search';
-import { HomePageComponent } from './home-page.componnet';
+import { HomePageComponent } from './home-page.component';
 
 // must sync with product
 export const routes = {

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Optional } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, ISku, LocalProductService, LocalSkuService, IAddress, AddressService } from '../../core';
+import { IProduct, ISku, ProductService, LocalProductService, LocalProductsService, LocalSkuService, IAddress, AddressService } from '../../core';
 
 @Component({
   selector: 'product-info',
@@ -21,23 +21,31 @@ export class ProductInfoComponent {
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
-    private localProductService: LocalProductService,
-    private localSkuService: LocalSkuService) { }
+    private productService: ProductService,
+    @Optional() private localProductService: LocalProductService,
+    @Optional() private localProductsService: LocalProductsService,
+    @Optional() private localSkuService: LocalSkuService) { }
 
   get salePrice() {
     return this.sku ? this.sku.SalePrice : this.product.Skus[0].SalePrice;
   }
 
+  get img() { return this.product.Img || this.product.Skus[0].Img; }
+
   ngOnInit() {
+    let id = +this.route.snapshot.params['id'];
+    this.subProduct = this.productService.getLocalOrRequest(id, this.localProductService, this.localProductsService).
+      subscribe(product => this.product = product);
     this.subAddr = this.addressService.getDefault().subscribe(addr => this.addr = addr);
-    this.subProduct = this.localProductService.src$.subscribe(product => this.product = product);
-    this.subSku = this.localSkuService.src$.subscribe(sku => this.sku = sku);
+    if (this.localSkuService) {
+      this.subSku = this.localSkuService.src$.subscribe(sku => this.sku = sku);
+    }
   }
 
   ngOnDestroy() {
-    this.subAddr.unsubscribe();
-    this.subProduct.unsubscribe();
-    this.subSku.unsubscribe();
+    if (this.subAddr) { this.subAddr.unsubscribe(); }
+    if (this.subProduct) { this.subProduct.unsubscribe(); }
+    if (this.subSku) { this.subSku.unsubscribe(); }
   }
 
   onOpenSkus() { this.localSkuService.openSkus(); }

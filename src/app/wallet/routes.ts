@@ -1,6 +1,6 @@
 import { RouterConfig } from '@angular/router';
 import { WalletRouteComponent } from './wallet-route.component';
-import { WalletComponent } from 'wallet.component';
+import { WalletComponent } from './wallet.component';
 import {
   BalanceComponent,
   BalanceDepositComponent,

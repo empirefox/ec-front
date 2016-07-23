@@ -1,6 +1,6 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { KSSwiperContainer, KSSwiperSlide } from 'angular2-swiper';
+import { KSSwiperContainer, KSSwiperSlide } from '../../swiper';
 import { ICarouselItem, CarouselService } from '../../core';
 
 @Component({

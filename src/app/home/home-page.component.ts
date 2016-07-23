@@ -25,7 +25,7 @@ import { HomeAdSlideComponent } from './ad-slide';
 })
 export class HomePageComponent {
 
-  items: IProduct[];
+  items: IProduct[] = [];
 
   constructor(private productService: ProductService) { }
 

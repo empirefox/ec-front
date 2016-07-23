@@ -1,4 +1,4 @@
-import { isPrimitive } from 'angular2/src/facade/lang';
+import { isPrimitive } from '@angular/core/src/facade/lang';
 import { groupBy, keyBy, chain } from 'lodash';
 
 interface Poser {
@@ -57,6 +57,7 @@ export function one2manyRelate(
   manys.forEach(many => {
     let one = oneMap[many[oneIdInMany]];
     if (one) {
+      if (!one[manyInOne]) { one[manyInOne] = []; }
       one[manyInOne].push(many);
       many[oneInMany] = one;
     }

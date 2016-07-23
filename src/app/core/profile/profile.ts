@@ -11,7 +11,7 @@ export interface IProfile {
 }
 
 export const PATHS = {
-  WX_OAUTH2_LOCAL_PATH: `/oauth/weixin`,
+  WX_OAUTH2_LOCAL_PATH: `oauth/weixin`,
 };
 
 export let URLS = {

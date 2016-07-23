@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { IProduct, ProductService } from '../../core';
+import { Router } from '@angular/router';
+import { IProduct, ProductService, LocalProductService } from '../../core';
 import { HomeSectionBaseComponent } from '../section-base.component';
 
 @Component({
@@ -10,5 +11,12 @@ import { HomeSectionBaseComponent } from '../section-base.component';
 export class HomeAdSlideComponent extends HomeSectionBaseComponent {
 
   @Input() item: IProduct;
+
+  constructor(
+    router: Router,
+    productService: ProductService,
+    localProductService: LocalProductService) {
+    super(router, productService, localProductService);
+  }
 
 }

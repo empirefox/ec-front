@@ -70,7 +70,7 @@ export class CartService {
     item.checked = !item.invalid && item.checked !== false;
 
     let img = sku ? sku.Img : null;
-    img = img || product ? product.Img : null;
+    img = img || (product ? product.Img : null);
     item.Img = img || item.Img;
 
     item.Name = product ? (product.Name ? product.Name : item.Name) : item.Name;

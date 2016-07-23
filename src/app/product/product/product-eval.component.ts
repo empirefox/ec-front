@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Optional, ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, LocalProductService } from '../../core';
+import { IProduct, ProductService, LocalProductService, LocalProductsService } from '../../core';
 
 @Component({
   selector: 'product-detail',
@@ -13,12 +14,17 @@ export class ProductEvalComponent {
 
   private subProduct: Subscription;
 
-  constructor(private localProductService: LocalProductService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    @Optional() private localProductService: LocalProductService,
+    @Optional() private localProductsService: LocalProductsService) { }
 
   ngOnInit() {
-    this.subProduct = this.localProductService.src$.subscribe(product => {
-      this.product = product;
-    });
+    let id = +this.route.snapshot.params['id'];
+    this.subProduct = this.productService.getLocalOrRequest(id, this.localProductService, this.localProductsService).
+      subscribe(product => this.product = product);
+
   }
 
   ngOnDestroy() {

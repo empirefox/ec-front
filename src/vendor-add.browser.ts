@@ -1,5 +1,5 @@
 
-import "angular2/src/facade/lang";
+import '@angular/core/src/facade/lang';
 import 'rxjs/Observable';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/of';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'angular2-jwt'; // user
 import 'jwt-simple'; // order
 import 'lodash'; // product, util
-import 'ng2-cache/ng2-cache'; // CategoryComponent
+import './app/swiper';
 
 // import 'cross-storage'; // xstorage
 

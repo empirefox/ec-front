@@ -1,8 +1,8 @@
-<div style="position: relative; z-index: 1;">
+<div style="position: relative; z-index: 1;" *ngIf="product">
   <div class="goods-detail-top">
     <div class="goods-detail-pic">
       <ul>
-        <li><img src="images/xpic1.jpg"></li>
+        <li><img [src]="img"></li>
       </ul>
     </div>
   </div>

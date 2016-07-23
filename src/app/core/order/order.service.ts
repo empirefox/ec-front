@@ -35,8 +35,17 @@ export class OrderService {
   getLocalOrRequest(id: number, itemService?: LocalOrderService, itemsService?: LocalOrdersService) {
     return itemsService ? itemsService.src$.flatMap(items => {
       let order = items.find(item => item.ID === id);
-      return order ? Observable.of(order) : (itemService ? itemService.src$ : this.getOrder(id));
-    }) : (itemService ? itemService.src$ : this.getOrder(id));
+      return order ? Observable.of(order) : this._getLocalOrRequest(id, itemService);
+    }) : this._getLocalOrRequest(id, itemService);
+  }
+
+  _getLocalOrRequest(id: number, itemService?: LocalOrderService) {
+    if (itemService && itemService.published) {
+      return itemService.src$.flatMap(item => {
+        return item ? Observable.of(item) : this.getOrder(id).map(item => itemService.publish(item));
+      });
+    }
+    return this.getOrder(id).map(item => itemService ? itemService.publish(item) : item);
   }
 
   getOrders(): Observable<IOrder[]> {

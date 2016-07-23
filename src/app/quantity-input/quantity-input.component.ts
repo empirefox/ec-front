@@ -1,29 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'quantity-input',
   template: require('./quantity-input.html'),
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: QuantityInputComponent,
-    multi: true
-  }],
 })
 
-export class QuantityInputComponent implements ControlValueAccessor, OnInit {
+export class QuantityInputComponent implements OnInit {
+
   @Input() max: number;
+  @Output() valueChange = new EventEmitter<number>();
+
+
   private min = 1;
 
   private _value: number = 1;
 
   get value() { return this._value; }
-
   @Input() set value(value: number) {
     if (value !== this._value) {
       value = (value && value > 1) ? (value > this.max ? this.max : value) : 1;
       this._value = value;
-      this.onChange(value);
+      this.valueChange.next(value);
     }
   }
 
@@ -53,21 +50,10 @@ export class QuantityInputComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  writeValue(value: number) {
-    this.value = value;
-  }
-
-  onChange = (event) => { };
-  onTouched = (input) => {
+  onTouched(input) {
     if (input && this._value !== (+input.value)) {
       input.value = this._value;
     }
-    if (this._onTouched) {
-      this._onTouched();
-    }
   };
 
-  _onTouched: () => void;
-  registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this._onTouched = fn; }
 }

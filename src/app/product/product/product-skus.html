@@ -20,6 +20,8 @@
     </div>
   </div>
   <div class="goods-option-value">购买数量
-    <quantity-input [(ngModel)]="quantity" [max]="stock"></quantity-input>
+    <form>
+      <quantity-input [(value)]="quantity" [max]="stock"></quantity-input>
+    </form>
   </div>
 </div>

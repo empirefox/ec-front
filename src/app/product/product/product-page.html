@@ -9,7 +9,7 @@
 <router-outlet></router-outlet>
 
 <div class="bottom-mask" [class.up]="showSkus">
-  <product-skus [sku]="sku" [product]="product" (skuChange)="onSkuChange($event)" (dismiss)="onCloseSkus()"></product-skus>
+  <product-skus *ngIf="product" [sku]="sku" [product]="product" (skuChange)="onSkuChange($event)" (dismiss)="onCloseSkus()"></product-skus>
 </div>
 
 <div class="goods-detail-foot" *ngIf="product">

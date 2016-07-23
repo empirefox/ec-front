@@ -290,7 +290,7 @@ export const asyncRoutes: AsyncRoutes = {
   'BalanceWithdrawComponent': require('es6-promise-loader!./wallet'),
   'PointsComponent': require('es6-promise-loader!./wallet'),
 
-  'WeixinOauthPageComponent': require('es6-promise-loader!./wenxin-oauth'),
+  'WeixinOauthPageComponent': require('es6-promise-loader!./weixin-oauth'),
   'Wishlist': require('es6-promise-loader!./wishlist'),
 };
 
