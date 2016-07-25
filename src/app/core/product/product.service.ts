@@ -9,10 +9,9 @@ import {
   ISku, ProductAttrGroup, IProduct, IProductResponse, IProductsResponse,
   IProductQuery
 } from './product';
-import { LocalProductService, LocalProductsService } from './local.service.ts';
 
-const O2M_PRODUCT_SKUS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Product', manyInOne: 'Skus', oneIdInMany: 'ProductID' };
-const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Group', manyInOne: 'Attrs', oneIdInMany: 'GroupID' };
+export const O2M_PRODUCT_SKUS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Product', manyInOne: 'Skus', oneIdInMany: 'ProductID' };
+export const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Group', manyInOne: 'Attrs', oneIdInMany: 'GroupID' };
 
 @Injectable()
 export class ProductService {
@@ -21,35 +20,12 @@ export class ProductService {
 
   constructor(private http: Http) { }
 
-  getLocalOrRequest(id: number, itemService?: LocalProductService, itemsService?: LocalProductsService) {
-    return itemsService && itemsService.published ? itemsService.src$.flatMap(items => {
-      let item = items.find(item => item.ID === id);
-      return item ? Observable.of(item) : this._getLocalOrRequest(id, itemService);
-    }) : this._getLocalOrRequest(id, itemService);
-  }
-
-  _getLocalOrRequest(id: number, itemService?: LocalProductService) {
-    if (itemService && itemService.published) {
-      return itemService.src$.flatMap(item => {
-        return item ? Observable.of(item) : this.getProduct(id).map(item => itemService.publish(item));
-      });
-    }
-    return this.getProduct(id).map(item => itemService ? itemService.publish(item) : item);
-  }
-
   clearAttrsCache() { this._attrs = null; }
 
   getAttrs() {
     if (!this._attrs) {
       this._attrs = this.http.get(URLS.PRODUCT_ATTR_LIST).
-        map((res) => {
-          let {Groups = [], Attrs = []} = <IProductAttrsResponse>res.json();
-          one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
-          return {
-            Groups: keyBy(Groups, item => item.ID),
-            Attrs: keyBy(Attrs, item => item.ID),
-          } as ProductAttrs;
-        }).
+        map((res) => this.initAttrs(<IProductAttrsResponse>res.json())).
         publishReplay(1).refCount();
     }
     return this._attrs;
@@ -98,10 +74,10 @@ export class ProductService {
 
       one2manyRelate(Products, Skus, O2M_PRODUCT_SKUS_OPTION);
       let attrIdsBySku = groupBy(Attrs, item => item.SkuID);
-      Products.forEach(Product => {
-        let Attrs = Product.Skus.map(sku => attrIdsBySku[sku.ID]).reduce((a, b) => [...a, ...b], []);
-        let Skus = Product.Skus;
-        Product.response = { Product, Skus, Attrs };
+      Products.forEach(product => {
+        let attrs = product.Skus.map(sku => attrIdsBySku[sku.ID]).reduce((a, b) => [...a, ...b], []);
+        let skus = product.Skus;
+        product.raw = { skus, attrs };
       });
       return Products;
     });
@@ -109,41 +85,50 @@ export class ProductService {
 
   getProduct(id: number): Observable<IProduct> {
     return this.http.get(URLS.Product(id)).map(res => {
-      let {Product, Skus = [], Attrs = []} = <IProductResponse>res.json();
-      one2manyRelate([Product], Skus, O2M_PRODUCT_SKUS_OPTION);
-      Product.response = { Product, Skus, Attrs };
-      return Product;
+      let {Product: product, Skus: skus = [], Attrs: attrs = []} = <IProductResponse>res.json();
+      one2manyRelate([product], skus, O2M_PRODUCT_SKUS_OPTION);
+      product.raw = { skus, attrs };
+      return product;
     });
   }
 
-  proccessSkus(Product: IProduct): Observable<IProduct> {
-    if (Product.proccessed) {
-      return Observable.of(Product);
+  proccessSkus(product: IProduct): Observable<IProduct> {
+    if (product.proccessed) {
+      return Observable.of(product);
     }
 
-    let {Skus: skus = [], Attrs: attrs = []} = Product.response;
+    let { skus = [], attrs = []} = product.raw;
     return this.getAttrs().map(attrAndGroupMap => {
       attrs = attrs.filter(attrId => attrId.AttrID in attrAndGroupMap.Attrs);
 
       let flattenAttrs = attrs.map(attrId => attrAndGroupMap.Attrs[attrId.AttrID]);
       let AttrsByGroup = groupBy(uniq(flattenAttrs), item => item.GroupID);
-      Product.Groups = Object.keys(AttrsByGroup).filter(groupId => groupId in attrAndGroupMap.Groups).
+      product.Groups = Object.keys(AttrsByGroup).filter(groupId => groupId in attrAndGroupMap.Groups).
         map(groupId => new ProductAttrGroup(attrAndGroupMap.Groups[groupId], AttrsByGroup[groupId].sort(descSortor))).
         sort(descSortor);
 
       let attrIdsBySku = groupBy(attrs, item => item.SkuID);
       let skuMap = keyBy(skus, item => item.ID);
       // join all Attrs
-      let attrMap = keyBy(Product.Groups.map(group => group.Attrs).reduce((a, b) => [...a, ...b], []));
+      let attrMap = keyBy(product.Groups.map(group => group.Attrs).reduce((a, b) => [...a, ...b], []), item => item.ID);
       Object.keys(attrIdsBySku).filter(id => id in skuMap).forEach(skuId => {
         // add Attrs to sku
-        skuMap[skuId].Attrs = attrIdsBySku[skuId].map(attrId => attrMap[attrId.AttrID]).filter(attrs => !!attrs);
+        skuMap[skuId].Attrs = attrIdsBySku[skuId].filter(attrId => attrId.AttrID in attrMap).map(attrId => attrMap[attrId.AttrID]);
       });
 
-      Product.proccessed = true;
+      product.proccessed = true;
 
-      return Product;
+      return product;
     });
+  }
+
+  private initAttrs(res: IProductAttrsResponse): ProductAttrs {
+    let {Groups = [], Attrs = []} = res;
+    one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
+    return {
+      Groups: keyBy(Groups, item => item.ID),
+      Attrs: keyBy(Attrs, item => item.ID),
+    } as ProductAttrs;
   }
 
 }

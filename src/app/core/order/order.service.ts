@@ -8,7 +8,6 @@ import { IPayArgs, MoneyService, ITradeState } from '../money';
 import { ISku } from '../product';
 import { IOrder, IOrderItem, ICheckoutPayload, IOrderPayClaims } from './order';
 import { ICheckout, ICheckoutItem, toPayload } from './checkout';
-import { LocalOrderService, LocalOrdersService } from './local.service';
 
 @Injectable()
 export class OrderService {
@@ -30,22 +29,6 @@ export class OrderService {
 
   changeState(orderId: number, state: string): Observable<IOrder> {
     return this.http.post(URLS.Order(orderId), JSON.stringify({ OrderID: orderId, State: state })).map(res => <IOrder>res.json());
-  }
-
-  getLocalOrRequest(id: number, itemService?: LocalOrderService, itemsService?: LocalOrdersService) {
-    return itemsService ? itemsService.src$.flatMap(items => {
-      let order = items.find(item => item.ID === id);
-      return order ? Observable.of(order) : this._getLocalOrRequest(id, itemService);
-    }) : this._getLocalOrRequest(id, itemService);
-  }
-
-  _getLocalOrRequest(id: number, itemService?: LocalOrderService) {
-    if (itemService && itemService.published) {
-      return itemService.src$.flatMap(item => {
-        return item ? Observable.of(item) : this.getOrder(id).map(item => itemService.publish(item));
-      });
-    }
-    return this.getOrder(id).map(item => itemService ? itemService.publish(item) : item);
   }
 
   getOrders(): Observable<IOrder[]> {

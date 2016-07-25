@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { URLS } from '../profile';
+import { updateAfterSave, descSortor } from '../util';
 import { IAddress } from './address';
-
-const posSortor = (b: IAddress, a: IAddress) => a.Pos - b.Pos;
 
 @Injectable()
 export class AddressService {
@@ -19,7 +18,9 @@ export class AddressService {
 
   getItems(): Observable<IAddress[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.ADDR_LIST).map(res => (<IAddress[]>res.json()).sort(posSortor)).publishReplay(1).refCount();
+      this._items = this.http.get(URLS.ADDR_LIST).map(res =>
+        (<IAddress[]>res.json()).sort(descSortor)
+      ).publishReplay(1).refCount();
     }
     return this._items;
   }
@@ -33,22 +34,14 @@ export class AddressService {
   }
 
   save(copy: IAddress): Observable<IAddress> {
-    return this.http.post(URLS.ADDR_ADD, JSON.stringify(copy)).flatMap(res => {
-      return this.getItems().map(items => {
+    return this.http.post(URLS.ADDR_ADD, JSON.stringify(copy)).flatMap(res =>
+      this.getItems().map(items => {
         let item = <IAddress>res.json();
-        if (!copy.ID) {
-          items = [item, ...items];
-        } else {
-          let i = items.findIndex(i => i.ID === item.ID);
-          if (~i) {
-            items[i] = item;
-          }
-          items = [...items];
-        }
-        this._items = Observable.of(items.sort(posSortor));
+        items = updateAfterSave(items, item, copy);
+        this._items = Observable.of(items);
         return item;
-      });
-    });
+      })
+    );
   }
 
   delete(id: number): Observable<void> {

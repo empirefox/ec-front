@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 
-@Injectable()
 export class LocalPublishService<T> {
   // Observable string sources
   private source = new Subject<T>();

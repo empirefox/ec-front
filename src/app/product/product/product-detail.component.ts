@@ -1,12 +1,12 @@
-import { Component, Optional, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizationService, SafeHtml } from '@angular/platform-browser';
 import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, ProductService, LocalProductService, LocalProductsService } from '../../core';
+import { IProduct, ProductContextService } from '../../core';
 
 @Component({
   selector: 'product-detail',
   template: require('./product-detail.html'),
+  providers: [ProductContextService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailComponent {
@@ -17,17 +17,12 @@ export class ProductDetailComponent {
 
   constructor(
     private sanitizer: DomSanitizationService,
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    @Optional() private localProductService: LocalProductService,
-    @Optional() private localProductsService: LocalProductsService) { }
+    private productContextService: ProductContextService) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-    this.subProduct = this.productService.getLocalOrRequest(id, this.localProductService, this.localProductsService)
-      .subscribe(product => {
-        this.html = this.sanitizer.bypassSecurityTrustHtml(product.Detail);
-      });
+    this.subProduct = this.productContextService.asObservable().subscribe(product => {
+      this.html = this.sanitizer.bypassSecurityTrustHtml(product.Detail);
+    });
   }
 
   ngOnDestroy() {

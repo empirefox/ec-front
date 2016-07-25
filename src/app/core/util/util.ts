@@ -1,16 +1,28 @@
 import { isPrimitive } from '@angular/core/src/facade/lang';
+import { Observable } from 'rxjs/Observable';
 import { groupBy, keyBy, chain } from 'lodash';
 
 interface Poser {
   Pos: number;
 }
-export function descSortor(b: Poser, a: Poser) { return a.Pos - b.Pos; }
+export function descSortor<T extends Poser>(b: T, a: T) { return a.Pos - b.Pos; }
 
-export function objectToParams(object) {
-  return object ? Object.keys(object).map((value) => {
-    let objectValue = isPrimitive(object[value]) ? object[value] : JSON.stringify(object[value]);
-    return `${value}=${objectValue}`;
-  }).join('&') : '';
+interface IdPos extends Poser {
+  ID: number;
+}
+
+// save => replace/push => copy items
+export function updateAfterSave<T extends IdPos>(items: T[], item: T, copy: T): T[] {
+  if (!copy.ID) {
+    items = [item, ...items];
+  } else {
+    let i = items.findIndex(i => i.ID === copy.ID);
+    if (~i) {
+      items[i] = item;
+    }
+    items = [...items];
+  }
+  return items.sort(descSortor);
 }
 
 // http://stackoverflow.com/questions/10726909/random-alpha-numeric-string-in-javascript
@@ -34,6 +46,13 @@ export function parseUrlPath(u: string) {
 
 export function toQuery(param: any) {
   return param ? Object.keys(param).map(k => `${k}=${param[k]}`).join('&') : '';
+}
+
+export function objectToParams(object) {
+  return object ? Object.keys(object).map((value) => {
+    let objectValue = isPrimitive(object[value]) ? object[value] : JSON.stringify(object[value]);
+    return `${value}=${objectValue}`;
+  }).join('&') : '';
 }
 
 export function one2manyRelate(

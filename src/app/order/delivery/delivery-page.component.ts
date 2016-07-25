@@ -1,13 +1,14 @@
-import { Component, Optional } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription }   from 'rxjs/Subscription';
 import { Header1Component } from '../../header-bar';
-import { IDelivery, IDeliveryDay, DeliveryService, OrderService, LocalOrderService, LocalOrdersService, IOrder } from '../../core';
+import { IDelivery, IDeliveryDay, DeliveryService, OrderService, OrderContextService, IOrder } from '../../core';
 import { kuaidi100map } from './kuaidi100';
 
 @Component({
   template: require('./delivery-page.html'),
   directives: [Header1Component],
+  providers: [OrderContextService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeliveryPageComponent {
 
@@ -19,20 +20,15 @@ export class DeliveryPageComponent {
   private sub: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
     private deliveryService: DeliveryService,
-    private orderService: OrderService,
-    @Optional() private localOrderService: LocalOrderService,
-    @Optional() private localOrdersService: LocalOrdersService) { }
+    private orderContextService: OrderContextService) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-    this.sub = this.orderService.getLocalOrRequest(id, this.localOrderService, this.localOrdersService).
-      subscribe(order => {
-        this.order = order;
-        this.company = kuaidi100map[this.order.DeliverCom].name;
-        this.deliveryService.query(this.order.ID).subscribe(delivery => this.delivery = delivery);
-      });
+    this.sub = this.orderContextService.asObservable().subscribe(order => {
+      this.order = order;
+      this.company = kuaidi100map[this.order.DeliverCom].name;
+      this.deliveryService.query(this.order.ID).subscribe(delivery => this.delivery = delivery);
+    });
   }
 
   ngOnDestroy() {

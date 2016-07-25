@@ -132,8 +132,13 @@ export interface IProduct {
   //   }]
   // }
   Groups?: ProductAttrGroup[];
-  response?: IProductResponse;
   proccessed?: boolean;
+  raw?: IProductRawInfo;
+}
+
+export interface IProductRawInfo {
+  skus: ISku[];
+  attrs: IProductAttrId[];
 }
 
 export interface IProductResponse {

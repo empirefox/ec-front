@@ -1,5 +1,6 @@
-import { Component, Optional, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription }   from 'rxjs/Subscription';
 import {
   CartService,
   IWishItem,
@@ -12,9 +13,8 @@ import {
   ISku,
   ProductAttrGroup,
   ProductService,
-  LocalProductService,
-  LocalProductsService,
-  LocalSkuService
+  LocalSkuService,
+  ProductContextService,
 } from '../../core';
 import { HeaderBarComponent } from '../../header-bar';
 import { ProductSkusComponent } from './product-skus.component';
@@ -26,7 +26,8 @@ import { ProductSkusComponent } from './product-skus.component';
     HeaderBarComponent,
     ProductSkusComponent,
   ],
-  providers: [LocalSkuService],
+  providers: [ProductContextService, LocalSkuService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPageComponent implements OnInit {
 
@@ -35,6 +36,7 @@ export class ProductPageComponent implements OnInit {
   inWishlist: boolean;
   canOpertaeWishlist: boolean = true;
 
+  private subProduct: Subscription;
   private cartLen: number;
   private showSkus: boolean;
   private groups: ProductAttrGroup[];
@@ -51,21 +53,18 @@ export class ProductPageComponent implements OnInit {
     private cartService: CartService,
     private wishlistService: WishlistService,
     private productService: ProductService,
-    @Optional() private localProductService: LocalProductService,
-    @Optional() private localProductsService: LocalProductsService,
+    private productContextService: ProductContextService,
     private localSkuService: LocalSkuService) { }
 
   ngOnInit() {
     this.localSkuService.src$.subscribe();
     this.localSkuService.openSkus$.subscribe(_ => this.onOpenSkus(1));
+    this.subProduct = this.productContextService.asObservable().
+      flatMap(this.proccessSkus).flatMap(this.refreshWishlist).flatMap(this.setCartLen).subscribe();
+  }
 
-    let id = +this.route.snapshot.params['id'];
-    this.productService.getLocalOrRequest(id, this.localProductService, this.localProductsService).subscribe(product => {
-      this.product = product;
-      this.proccessSkus();
-      this.refreshWishlist();
-    });
-    this.setCartLen();
+  ngOnDestroy() {
+    this.subProduct.unsubscribe();
   }
 
   get sku() { return this._sku; }
@@ -81,11 +80,11 @@ export class ProductPageComponent implements OnInit {
   onGuanzhu() {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
-      (this.inWishlist ? this.wishlistService.delete : this.wishlistService.add)(this.product.ID).subscribe(
-        _ => this.refreshWishlist(),
+      (this.inWishlist ? this.wishlistService.delete : this.wishlistService.add)(this.product.ID).
+        flatMap(this.refreshWishlist).subscribe(
         _ => this.canOpertaeWishlist = true,
-        () => this.canOpertaeWishlist = true
-      );
+        _ => this.canOpertaeWishlist = true
+        );
     }
   }
 
@@ -106,7 +105,7 @@ export class ProductPageComponent implements OnInit {
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
         } else if (this.sku && this.sku.Quantity) {
-          this.cartService.add(this.sku, this.sku.Quantity).take(1).subscribe(_ => this.setCartLen());
+          this.cartService.add(this.sku, this.sku.Quantity).take(1).map(this.setCartLen).subscribe();
         }
       }
     } else {
@@ -117,16 +116,18 @@ export class ProductPageComponent implements OnInit {
   onCloseSkus() { this.showSkus = false; }
 
   private refreshWishlist() {
-    this.wishlistService.getItems().subscribe(items => this.inWishlist = items.some(item => item.ProductID === this.product.ID));
+    return this.wishlistService.getItems().
+      map(items => this.inWishlist = items.some(item => item.ProductID === this.product.ID));
   }
 
-  private proccessSkus() {
-    this.productService.proccessSkus(this.product).take(1).subscribe(p => {
+  private proccessSkus(product: IProduct) {
+    this.product = product;
+    return this.productService.proccessSkus(this.product).take(1).flatMap(p => {
       this.groups = p.Groups;
       this.skus = p.Skus;
       this.sku = this.skus[0];
       let skuId = +this.router.routerState.snapshot.queryParams['SkuID'];
-      this.groupBuyService.getItem(skuId).subscribe(item => {
+      return this.groupBuyService.getItem(skuId).map(item => {
         this.groupBuyItem = item;
         this.sku = this.skus.find(sku => sku.ID === item.Sku.ID);
         this.onOpenSkus(1);
@@ -135,7 +136,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   private setCartLen() {
-    this.cartService.getItems().take(1).subscribe(items => this.cartLen = items ? items.length : 0);
+    return this.cartService.getItems().take(1).map(items => this.cartLen = items ? items.length : 0);
   }
 
 }

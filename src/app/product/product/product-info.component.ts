@@ -1,11 +1,13 @@
-import { Component, Optional } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, ISku, ProductService, LocalProductService, LocalProductsService, LocalSkuService, IAddress, AddressService } from '../../core';
+import { IProduct, ISku, ProductContextService, LocalSkuService, IAddress, AddressService } from '../../core';
 
 @Component({
   selector: 'product-info',
   template: require('./product-info.html'),
+  providers: [ProductContextService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductInfoComponent {
 
@@ -21,10 +23,8 @@ export class ProductInfoComponent {
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
-    private productService: ProductService,
-    @Optional() private localProductService: LocalProductService,
-    @Optional() private localProductsService: LocalProductsService,
-    @Optional() private localSkuService: LocalSkuService) { }
+    private productContextService: ProductContextService,
+    private localSkuService: LocalSkuService) { }
 
   get salePrice() {
     return this.sku ? this.sku.SalePrice : this.product.Skus[0].SalePrice;
@@ -34,8 +34,7 @@ export class ProductInfoComponent {
 
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
-    this.subProduct = this.productService.getLocalOrRequest(id, this.localProductService, this.localProductsService).
-      subscribe(product => this.product = product);
+    this.subProduct = this.productContextService.asObservable().subscribe(product => this.product = product);
     this.subAddr = this.addressService.getDefault().subscribe(addr => this.addr = addr);
     if (this.localSkuService) {
       this.subSku = this.localSkuService.src$.subscribe(sku => this.sku = sku);
