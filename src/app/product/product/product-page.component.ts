@@ -81,7 +81,7 @@ export class ProductPageComponent implements OnInit {
   onGuanzhu() {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
-      (this.inWishlist ? this.wishlistService.delete : this.wishlistService.add)(this.product.ID).
+      (this.inWishlist ? this.wishlistService.delete(this.product.ID) : this.wishlistService.add(this.product.ID)).
         flatMap(_ => this.refreshWishlist()).subscribe(
         _ => this.canOpertaeWishlist = true,
         _ => this.canOpertaeWishlist = true
@@ -89,7 +89,7 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-  onGotoCart() { this.router.navigate(['/cart']); }
+  onGotoCart() { this.router.navigateByUrl('/cart'); }
 
   onSkuChange(sku: ISku) { this.sku = sku; }
 

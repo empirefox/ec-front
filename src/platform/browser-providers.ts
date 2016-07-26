@@ -5,7 +5,7 @@
 // Angular 2
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // Angular 2 Http
-import { HTTP_PROVIDERS } from '@angular/http';
+import { HTTP_PROVIDERS, BaseRequestOptions, RequestOptions } from '@angular/http';
 // Angular 2 Router
 import { provideRouter } from '@angular/router';
 // Angular 2 forms
@@ -18,6 +18,14 @@ import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callbac
 
 import { routes, asyncRoutes, prefetchRouteCallbacks } from '../app/app.routes';
 import { APP_RESOLVER_PROVIDERS } from '../app/app.resolver';
+
+class JsonRequestOptions extends BaseRequestOptions {
+  constructor() {
+    super();
+    this.headers.append('Content-Type', 'application/json; charset=UTF-8');
+  }
+}
+
 /*
 * Application Providers/Directives/Pipes
 * providers/directives/pipes that only live in our browser environment
@@ -34,6 +42,7 @@ export const APPLICATION_PROVIDERS = [
   providePrefetchIdleCallbacks(prefetchRouteCallbacks),
 
   ...HTTP_PROVIDERS,
+  { provide: RequestOptions, useClass: JsonRequestOptions },
 
   // { provide: LocationStrategy, useClass: HashLocationStrategy }
 ];

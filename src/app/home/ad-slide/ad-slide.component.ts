@@ -19,4 +19,8 @@ export class HomeAdSlideComponent extends HomeSectionBaseComponent {
     super(router, productService, localProductService);
   }
 
+  get img() {
+    return this.item.Img || this.item.Skus[0].Img;
+  }
+
 }

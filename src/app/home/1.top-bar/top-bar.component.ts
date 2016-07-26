@@ -6,8 +6,8 @@ import { ICarouselItem, CarouselService } from '../../core';
 @Component({
   selector: 'home-top-bar',
   template: require('./top-bar.html'),
+  styles: [require('./top-bar.css')],
   directives: [KSSwiperContainer, KSSwiperSlide],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeTopBarComponent {
 

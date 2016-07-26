@@ -14,7 +14,8 @@ export class CarouselService {
 
   getItems(): Observable<ICarouselItem[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.CAROUSEL).map(res => (<ICarouselItem[]>res.json()).sort(descSortor));
+      this._items = this.http.get(URLS.CAROUSEL).map(res => (<ICarouselItem[]>res.json()).sort(descSortor)).
+        publishReplay(1).refCount();
     }
     return this._items;
   }
