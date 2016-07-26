@@ -10,7 +10,8 @@
   <meta name="description" content="<%= webpackConfig.metadata.title %>">
 
   <!-- base url -->
-  <base href="<%= webpackConfig.metadata.baseUrl %>">
+  <!-- <base href="<%= webpackConfig.metadata.baseUrl %>"> -->
+  <base href="/">
 
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/common.css">
@@ -29,10 +30,10 @@
     载入中...
   </app>
 
-  <% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
+  <!-- <% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %> -->
   <!-- Webpack Dev Server reload -->
   <script src="/webpack-dev-server.js"></script>
-  <% } %>
+  <!-- <% } %> -->
 
 
 </body>
