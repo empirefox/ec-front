@@ -7,6 +7,7 @@ import { AddressItemComponent } from './address-item.component';
 @Component({
   selector: 'address-selector',
   template: require('./address-selector.html'),
+  styles: [require('./address-selector.css')],
   directives: [AddressItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

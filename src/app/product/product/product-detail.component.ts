@@ -6,6 +6,7 @@ import { IProduct, LocalProductService } from '../../core';
 @Component({
   selector: 'product-detail',
   template: require('./product-detail.html'),
+  styles: [require('./product-detail.css')],
 })
 export class ProductDetailComponent {
 

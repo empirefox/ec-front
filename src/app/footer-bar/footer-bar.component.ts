@@ -5,6 +5,7 @@ import { NavMenuListComponent } from '../nav-menu-list';
 @Component({
   selector: 'footer-bar',
   template: require('./footer-bar.html'),
+  styles: [require('./footer-bar.css')],
   directives: [NavMenuListComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

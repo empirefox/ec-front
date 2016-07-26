@@ -9,6 +9,7 @@ const SEARCH_COLS = ['Name', 'Intro', 'Detail'];
 @Component({
   selector: 'products-page',
   template: require('./products-page.html'),
+  styles: [require('./products-page.css')],
   directives: [ProductsItemComponent],
 })
 export class ProductsPageComponent {

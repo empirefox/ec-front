@@ -4,6 +4,7 @@ import { ICheckout, ICheckoutItem } from '../../core';
 @Component({
   selector: 'checkout-item',
   template: require('./checkout-item.html'),
+  styles: [require('./checkout-item.css')],
 })
 export class CheckoutItemComponent {
 

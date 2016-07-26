@@ -6,6 +6,7 @@ import { Header1Component } from '../header-bar';
 
 @Component({
   template: require('./phone.html'),
+  styles: [require('./phone.css')],
   directives: [Header1Component],
 })
 export class BindPhoneComponent {

@@ -6,6 +6,7 @@ import { WalletComponent } from '../wallet';
 @Component({
   selector: 'money-overview',
   template: require('./money-overview.html'),
+  styles: [require('./money-overview.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['wallet'],
 })

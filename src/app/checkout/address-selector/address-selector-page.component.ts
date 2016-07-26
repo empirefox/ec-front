@@ -6,6 +6,7 @@ import { AddressSelectorComponent } from '../../address';
 
 @Component({
   template: require('./address-selector-page.html'),
+  styles: [require('./address-selector-page.css')],
   directives: [Header1Component, AddressSelectorComponent],
 })
 export class AddressSelectorPageComponent {

@@ -7,6 +7,7 @@ import { MoneyOverviewComponent } from './money-overview.component';
 
 @Component({
   template: require('./member-page.html'),
+  styles: [require('./member-page.css')],
   directives: [Header1Component, OrderListMenuComponent, MoneyOverviewComponent],
 })
 export class MemberPageComponent {

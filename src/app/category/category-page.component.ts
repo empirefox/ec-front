@@ -7,6 +7,7 @@ import { HeaderBarComponent } from '../header-bar';
 
 @Component({
   template: require('./category-page.html'),
+  styles: [require('./category-page.css')],
   directives: [HeaderBarComponent],
 })
 export class CategoryPageComponent {

@@ -8,6 +8,7 @@ import { CartItemComponent } from './cart-item.component';
 
 @Component({
   template: require('./cart-list-page.html'),
+  styles: [require('./cart-list-page.css')],
   directives: [Header1Component, CartItemComponent],
 })
 export class CartListPageComponent {

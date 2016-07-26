@@ -5,6 +5,7 @@ import { HeaderBarInnerComponent } from './header-bar.component';
 @Component({
   selector: 'header1-inner',
   template: require('./header1-inner.html'),
+  styles: [require('./header1-inner.css')],
   directives: [HeaderBarInnerComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,6 +6,7 @@ import { GroupBuyItemComponent } from './group-buy-item.component';
 
 @Component({
   template: require('./group-buy-page.html'),
+  styles: [require('./group-buy-page.css')],
   directives: [Header1Component, GroupBuyItemComponent],
 })
 export class GroupBuyPageComponent {

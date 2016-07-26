@@ -5,6 +5,7 @@ import { SearchService } from '../core';
 
 @Component({
   template: require('./search-page.html'),
+  styles: [require('./search-page.css')],
 })
 export class SearchPageComponent {
 

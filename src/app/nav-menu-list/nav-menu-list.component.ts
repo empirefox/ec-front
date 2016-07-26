@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'nav-menu-list',
   template: require('./nav-menu-list.html'),
+  styles: [require('./nav-menu-list.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavMenuListComponent {

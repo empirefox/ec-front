@@ -4,6 +4,7 @@ import { IWishItem, WishlistService, ProductService } from '../core';
 
 @Component({
   template: require('./wishlist-page.html'),
+  styles: [require('./wishlist-page.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WishlistPageComponent {

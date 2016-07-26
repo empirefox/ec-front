@@ -6,6 +6,7 @@ import { HomeSectionBaseComponent } from '../section-base.component';
 @Component({
   selector: 'home-ad-slide',
   template: require('./ad-slide.html'),
+  styles: [require('./ad-slide.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeAdSlideComponent extends HomeSectionBaseComponent {

@@ -4,8 +4,9 @@ import { Subscription }   from 'rxjs/Subscription';
 import { IProduct, ProductService, LocalProductService } from '../../core';
 
 @Component({
-  selector: 'product-detail',
-  template: require('./product-detail.html'),
+  selector: 'product-eval',
+  template: require('./product-eval.html'),
+  styles: [require('./product-eval.css')],
 })
 export class ProductEvalComponent {
 

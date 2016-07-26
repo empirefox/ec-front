@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'home-nav-bar',
   template: require('./nav-bar.html'),
+  styles: [require('./nav-bar.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeNavBarComponent {

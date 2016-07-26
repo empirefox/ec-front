@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'quantity-input',
   template: require('./quantity-input.html'),
+  styles: [require('./quantity-input.css')],
 })
 
 export class QuantityInputComponent implements OnInit {

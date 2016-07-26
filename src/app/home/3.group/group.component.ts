@@ -5,6 +5,7 @@ import { IGroupBuyItem, GroupBuyService, APP_CORE_PIPES } from '../../core';
 @Component({
   selector: 'home-group-buy',
   template: require('./group.html'),
+  styles: [require('./group.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
   pipes: [...APP_CORE_PIPES],
 })

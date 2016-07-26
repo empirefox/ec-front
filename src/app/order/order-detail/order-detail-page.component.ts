@@ -8,6 +8,7 @@ import { OrderDetailComponent } from './order-detail.component';
 
 @Component({
   template: require('./order-detail-page.html'),
+  styles: [require('./order-detail-page.css')],
   directives: [Header1Component, OrderDetailComponent],
   providers: [OrderContextService],
   changeDetection: ChangeDetectionStrategy.OnPush,

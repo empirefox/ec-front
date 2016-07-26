@@ -6,6 +6,7 @@ enum State { Init, Failed, Ok }
 
 @Component({
   template: require('./weixin-oauth-page.html'),
+  styles: [require('./weixin-oauth-page.css')],
 })
 export class WeixinOauthPageComponent {
 

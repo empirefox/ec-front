@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'order-list-menu',
-  styles: [`.member-center dd ul li { width:33.3% }`],
+  styles: [require('./order-list-menu.css')],
   template: require('./order-list-menu.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

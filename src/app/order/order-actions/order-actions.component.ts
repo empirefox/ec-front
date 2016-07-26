@@ -6,6 +6,7 @@ import { OrderPayComponent } from '../../pay';
 @Component({
   selector: 'order-actions',
   template: require('./order-actions.html'),
+  styles: [require('./order-actions.css')],
   directives: [OrderPayComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

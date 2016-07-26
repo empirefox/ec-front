@@ -6,6 +6,7 @@ import { kuaidi100map } from './kuaidi100';
 
 @Component({
   template: require('./delivery-page.html'),
+  styles: [require('./delivery-page.css')],
   directives: [Header1Component],
   providers: [OrderContextService],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -22,6 +22,7 @@ import { ProductSkusComponent } from './product-skus.component';
 @Component({
   selector: 'product-page',
   template: require('./product-page.html'),
+  styles: [require('./product-page.css')],
   directives: [
     HeaderBarComponent,
     ProductSkusComponent,

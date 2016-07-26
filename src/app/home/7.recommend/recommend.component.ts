@@ -6,6 +6,7 @@ import { HomeSectionBaseComponent } from '../section-base.component';
 @Component({
   selector: 'home-recommend',
   template: require('./recommend.html'),
+  styles: [require('./recommend.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeRecommendComponent extends HomeSectionBaseComponent {

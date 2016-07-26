@@ -12,6 +12,7 @@ import { HomeAdSlideComponent } from './ad-slide';
 @Component({
   selector: 'home-page',
   template: require('./home-page.html'),
+  styles: [require('./home-page.css')],
   directives: [
     HomeTopBarComponent,
     HomeNavBarComponent,

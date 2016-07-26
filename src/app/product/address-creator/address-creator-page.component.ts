@@ -6,6 +6,7 @@ import { AddressEditorComponent } from '../../address';
 
 @Component({
   template: require('./address-creator-page.html'),
+  styles: [require('./address-creator-page.css')],
   directives: [Header1Component, AddressEditorComponent],
 })
 export class AddressCreatorPageComponent {

@@ -6,6 +6,7 @@ import { IProduct, ISku, LocalProductService, LocalSkuService, IAddress, Address
 @Component({
   selector: 'product-info',
   template: require('./product-info.html'),
+  styles: [require('./product-info.css')],
 })
 export class ProductInfoComponent {
 

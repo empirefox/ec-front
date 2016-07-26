@@ -5,6 +5,7 @@ import { NavMenuComponent } from './nav-menu.component';
 @Component({
   selector: 'header-bar-inner',
   template: require('./header-bar.html'),
+  styles: [require('./header-bar.css')],
   directives: [NavMenuComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

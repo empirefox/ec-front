@@ -8,6 +8,7 @@ import { CheckoutItemComponent } from './checkout-item.component';
 @Component({
   selector: 'checkout-content',
   template: require('./checkout-content.html'),
+  styles: [require('./checkout-content.css')],
   directives: [AddressItemComponent, Header1Component, CheckoutItemComponent],
 })
 export class CheckoutContentComponent {

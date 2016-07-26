@@ -6,6 +6,7 @@ import { HomeSectionBaseComponent } from '../section-base.component';
 @Component({
   selector: 'home-special-offer',
   template: require('./special-offer.html'),
+  styles: [require('./special-offer.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeSpecialOfferComponent extends HomeSectionBaseComponent {

@@ -4,6 +4,7 @@ import { Header1Component } from '../header-bar';
 
 @Component({
   template: require('./paykey.html'),
+  styles: [require('./paykey.css')],
   directives: [Header1Component],
 })
 export class PaykeyComponent {

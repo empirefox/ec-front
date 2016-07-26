@@ -7,6 +7,7 @@ import { InvoiceComponent } from './invoice.component';
 
 @Component({
   template: require('./invoice-page.html'),
+  styles: [require('./invoice-page.css')],
   directives: [Header1Component, InvoiceComponent],
 })
 export class InvoicePageComponent {

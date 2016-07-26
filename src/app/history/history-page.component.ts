@@ -5,6 +5,7 @@ import { Header1Component } from '../header-bar';
 
 @Component({
   template: require('./history-page.html'),
+  styles: [require('./history-page.css')],
   directives: [Header1Component],
 })
 export class HistoryComponent {

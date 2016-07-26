@@ -4,6 +4,7 @@ import { IInvoice } from '../../core';
 @Component({
   selector: 'invoice',
   template: require('./invoice.html'),
+  styles: [require('./invoice.css')],
 })
 export class InvoiceComponent implements OnInit {
 

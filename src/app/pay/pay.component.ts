@@ -6,6 +6,7 @@ import { IWallet, MoneyService, IOrder, OrderService, LocalOrderService, LocalOr
 @Component({
   selector: 'order-pay',
   template: require('./pay.html'),
+  styles: [require('./pay.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderPayComponent {

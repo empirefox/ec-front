@@ -8,6 +8,7 @@ import { ProductAttrGroupComponent } from './product-attr-group.component';
 @Component({
   selector: 'product-skus',
   template: require('./product-skus.html'),
+  styles: [require('./product-skus.css')],
   directives: [QuantityInputComponent, ProductAttrGroupComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

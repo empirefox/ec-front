@@ -6,14 +6,7 @@ import { ChinaRegionService, RegionPair } from './china-region.service';
 @Component({
   selector: 'address-editor',
   template: require('./address-editor.html'),
-  styles: [`
-.ng-valid[required] {
-  border-right: 5px solid #42A948; /* green */
-}
-
-.ng-invalid {
-  border-right: 5px solid #a94442; /* red */
-}`],
+  styles: [require('./address-editor.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
   viewProviders: [ChinaRegionService],
 })
