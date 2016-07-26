@@ -24,6 +24,12 @@ export class HistoryService {
   }
 
   add(product: IProduct) {
+    let index = this.getItems().findIndex(item => item.ProductID === product.ID);
+    if (~index) {
+      let id = this.getItems()[index].ID;
+      this.localdbService.getDB().deleteRows('history', row => row.ID === id);
+      this.getItems().splice(index, 1);
+    }
     let item = {
       ID: 0,
       ProductID: product.ID,
@@ -33,15 +39,17 @@ export class HistoryService {
     };
     this.localdbService.getDB().insert('history', item);
     this.getItems().unshift(item);
-    if (this._items.length > MAX) {
+    if (this.getItems().length > MAX) {
       let map = keyBy(this._items.splice(MAX));
-      this.localdbService.getDB().deleteRows('history', row => !!map[row.ID]);
+      this.localdbService.getDB().deleteRows('history', row => row.ID in map);
     }
+    this.localdbService.getDB().commit();
   }
 
   clear() {
     this._items = [];
     this.localdbService.getDB().truncate('history');
+    this.localdbService.getDB().commit();
   }
 
 }

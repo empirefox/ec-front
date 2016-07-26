@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-require('./localStorageDB');
+import { LocalStorageDB } from '../../../vendor';
 
 @Injectable()
 export class LocaldbService {
@@ -11,7 +11,7 @@ export class LocaldbService {
   }
 
   private newDB() {
-    let db = new localStorageDB('ecfront');
+    let db: localStorageDB = new LocalStorageDB('ecfront');
     if (db.isNew()) {
       db.createTable('history', ['ProductID', 'Name', 'Img', 'Price']);
     }

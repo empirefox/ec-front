@@ -10,13 +10,8 @@ export class SafeComponent {
 
   constructor(private router: Router) { }
 
-  onGotoPassword() { }
-
-  onGotoBindPhone() {
-    this.router.navigate(['/safe/phone']);
-  }
-
-  // account/setpaykey
-  onGotoPaypsd() { }
+  onGotoPassword() { this.router.navigateByUrl('/safe/password'); }
+  onGotoBindPhone() { this.router.navigateByUrl('/safe/phone'); }
+  onGotoPaypsd() { this.router.navigateByUrl('/safe/paykey'); }
 
 }

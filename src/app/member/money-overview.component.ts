@@ -1,23 +1,33 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MoneyService, LocalWalletService } from '../core';
+import { Subscription }   from 'rxjs/Subscription';
+import { MoneyService, IWallet } from '../core';
 import { WalletComponent } from '../wallet';
 
 @Component({
   selector: 'money-overview',
   template: require('./money-overview.html'),
   styles: [require('./money-overview.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['wallet'],
 })
-export class MoneyOverviewComponent extends WalletComponent {
+export class MoneyOverviewComponent {
+
+  wallet: IWallet;
+
+  private sub: Subscription;
 
   constructor(
-    route: ActivatedRoute,
-    router: Router,
-    moneyService: MoneyService,
-    localWalletService: LocalWalletService) {
-    super(route, router, moneyService, localWalletService);
+    private route: ActivatedRoute,
+    private router: Router,
+    private moneyService: MoneyService) {
+  }
+
+  ngOnInit() {
+    this.sub = this.moneyService.getWallet().subscribe(wallet => this.wallet = wallet);
+  }
+
+  ngOnDestroy() {
+    if (this.sub) { this.sub.unsubscribe(); }
   }
 
   onGotoWallet() { this.router.navigate(['/wallet']); }

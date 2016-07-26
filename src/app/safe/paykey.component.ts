@@ -11,4 +11,7 @@ export class PaykeyComponent {
 
   constructor(private router: Router) { }
 
+  gotoPaykeyForget() { this.router.navigateByUrl('/safe/paykey-forget'); }
+  gotoPaykeySet() { this.router.navigateByUrl('/safe/paykey-set'); }
+
 }

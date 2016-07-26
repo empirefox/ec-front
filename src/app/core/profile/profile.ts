@@ -8,6 +8,7 @@ export interface IProfile {
   WxAppId: string;
   WxScope: string;
   WxLoginPath: string;
+  DefaultHeadImage: string;
 }
 
 export const PATHS = {
@@ -17,7 +18,7 @@ export const PATHS = {
 export let URLS = {
   PROFILE: `${API_URL}/profile`, // get
 
-  CAPTHCA: `${API_URL}/captcha`, // get
+  CAPTHCA: `${API_URL}/captcha`, // post
   CAROUSEL: `${API_URL}/carousel`, // get
 
   UserRefreshToken: (refreshToken: string) => `${API_URL}/oauth/update/${refreshToken}`, // get

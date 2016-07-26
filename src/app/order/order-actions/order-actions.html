@@ -1,4 +1,4 @@
-<template [ngSwitch]="order.State">
+<div [ngSwitch]="order.State">
 
   <template [ngSwitchWhen]="'checkout'">
     <a (click)="showOrderPay=true" class="btn">去付款</a>
@@ -35,4 +35,4 @@
     <a (click)="gotoEval()" class="btn key">去评价</a>
   </template>
 
-</template>
+</div>

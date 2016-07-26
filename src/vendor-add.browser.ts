@@ -15,3 +15,4 @@ import './app/swiper';
 // import 'cross-storage'; // xstorage
 
 require('list-to-tree-lite'); // category
+require('./vendor');

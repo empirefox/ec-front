@@ -8,7 +8,6 @@ import { OrderPayComponent } from '../../pay';
   template: require('./order-actions.html'),
   styles: [require('./order-actions.css')],
   directives: [OrderPayComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderActionsComponent {
 

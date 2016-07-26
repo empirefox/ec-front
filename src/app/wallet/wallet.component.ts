@@ -8,6 +8,7 @@ import { MoneyService, LocalWalletService } from '../core';
   template: require('./wallet.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [Header1Component],
+  providers: [LocalWalletService],
 })
 export class WalletComponent extends AbstractWalletComponent {
 

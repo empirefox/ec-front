@@ -3,7 +3,8 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
 import { PATHS, URLS, ProfileService, WxExchangeCode, WxCodeResult } from '../profile';
-import { Jwt, nonce } from '../util';
+import { Jwt } from '../jwt';
+import { nonce } from '../util';
 import { IUserInfo, IUserTokenResponse, IBindPhoneData } from './user';
 
 @Injectable()

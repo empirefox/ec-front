@@ -3,7 +3,7 @@
   <div class="address-list">
     <ul>
       <li *ngFor="let item of items">
-        <address-item [address]="item"></address-item>
+        <address-item [addr]="item"></address-item>
         <div class="handle">
           <span>
 					  <a (click)="onGotoEdit(item)"><i class="edit"></i>编辑</a>
@@ -11,6 +11,7 @@
 				  </span>
         </div>
       </li>
+    </ul>
   </div>
 </div>
 <div class="add-address-footer">

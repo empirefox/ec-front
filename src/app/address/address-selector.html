@@ -1,6 +1,6 @@
 <div class="main-layout">
   <ul class="cart-add-list" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
     <li *ngFor="let addr of items" [class.selected]="addr==selected" (click)="onSelect(addr)">
-      <address-item [address]="addr"></address-item>
+      <address-item [addr]="addr"></address-item>
     </li>
 </div>

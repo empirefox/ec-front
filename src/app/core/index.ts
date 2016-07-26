@@ -8,6 +8,7 @@ import { COUNTDOWN_PROVIDERS } from './countdown';
 import { DELIVERY_PROVIDERS } from './delivery';
 import { GROUPBUY_PROVIDERS } from './groupbuy';
 import { HISTORY_PROVIDERS } from './history';
+import { JWT_PROVIDERS } from './jwt';
 // import { LocalPublishService } from './local-publish';
 import { LOCALDB_PROVIDERS } from './localdb';
 import { MONEY_PROVIDERS } from './money';
@@ -16,7 +17,6 @@ import { PRODUCT_PROVIDERS } from './product';
 import { PROFILE_PROVIDERS } from './profile';
 import { SEARCH_PROVIDERS } from './search';
 import { USER_PROVIDERS } from './user';
-import { UTIL_PROVIDERS } from './util';
 import { WISHLIST_PROVIDERS } from './wishlist';
 // import { XSTORAGE_PROVIDERS } from './xstorage';
 
@@ -30,6 +30,7 @@ export * from './countdown';
 export * from './delivery';
 export * from './groupbuy';
 export * from './history';
+export * from './jwt';
 export * from './local-publish';
 export * from './localdb';
 export * from './money';
@@ -54,6 +55,7 @@ export const APP_CORE_PROVIDERS = [
   ...DELIVERY_PROVIDERS,
   ...GROUPBUY_PROVIDERS,
   ...HISTORY_PROVIDERS,
+  ...JWT_PROVIDERS,
   //  LocalPublishService,
   ...LOCALDB_PROVIDERS,
   ...MONEY_PROVIDERS,
@@ -62,7 +64,6 @@ export const APP_CORE_PROVIDERS = [
   ...PROFILE_PROVIDERS,
   ...SEARCH_PROVIDERS,
   ...USER_PROVIDERS,
-  ...UTIL_PROVIDERS,
   ...WISHLIST_PROVIDERS,
   //  ...XSTORAGE_PROVIDERS,
 ];

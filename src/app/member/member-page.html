@@ -2,7 +2,7 @@
 <div class="scroller-body">
   <div class="scroller-box">
     <div class="member-top">
-      <div class="member-info">
+      <div class="member-info" *ngIf="user">
         <div class="user-avatar">
           <img [src]="user.HeadImageURL">
         </div>
@@ -20,7 +20,7 @@
         </span>
         <span>
           <a (click)="onGotoHistory()">
-            <i class="goods-browse"></i>
+            <i class="goods-browse"></i><em>{{historyLen}}</em>
             <p>浏览记录</p>
           </a>
         </span>
@@ -28,7 +28,7 @@
     </div>
     <div class="member-center" style="margin-bottom:50px;">
       <order-list-menu></order-list-menu>
-      <money-overview [wallet]="wallet"></money-overview>
+      <money-overview *ngIf="wallet" [wallet]="wallet"></money-overview>
       <dl class="mt5">
         <dt>
           <a (click)="onGotoAddressManage()">

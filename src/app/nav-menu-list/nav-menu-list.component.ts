@@ -17,5 +17,5 @@ export class NavMenuListComponent {
 
   onGotoCart() { this._router.navigate(['/cart']); }
 
-  onGotoMenber() { this._router.navigate(['/menber']); }
+  onGotoMenber() { this._router.navigate(['/member']); }
 }

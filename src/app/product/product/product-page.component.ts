@@ -15,6 +15,7 @@ import {
   ProductService,
   LocalSkuService,
   ProductContextService,
+  HistoryService,
 } from '../../core';
 import { HeaderBarComponent } from '../../header-bar';
 import { ProductSkusComponent } from './product-skus.component';
@@ -53,6 +54,7 @@ export class ProductPageComponent implements OnInit {
     private groupBuyService: GroupBuyService,
     private cartService: CartService,
     private wishlistService: WishlistService,
+    private historyService: HistoryService,
     private productService: ProductService,
     private productContextService: ProductContextService,
     private localSkuService: LocalSkuService) { }
@@ -62,7 +64,10 @@ export class ProductPageComponent implements OnInit {
     this.localSkuService.openSkus$.subscribe(_ => this.onOpenSkus(1));
     this.subProduct = this.productContextService.asObservable().
       flatMap(p => this.initSkus(p)).flatMap(_ => this.refreshWishlist()).flatMap(_ => this.setCartLen()).
-      subscribe(_ => this.cd.markForCheck(), _ => this.cd.markForCheck());
+      subscribe(_ => {
+        this.historyService.add(this.product);
+        this.cd.markForCheck();
+      }, _ => this.cd.markForCheck());
   }
 
   ngOnDestroy() {

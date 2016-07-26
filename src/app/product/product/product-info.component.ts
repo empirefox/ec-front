@@ -33,7 +33,6 @@ export class ProductInfoComponent {
   get img() { return this.product.Img || this.product.Skus[0].Img; }
 
   ngOnInit() {
-    console.log('info init ....')
     this.subProduct = this.localProductService.src$.subscribe(product => {
       this.product = product;
       this.cd.markForCheck();
