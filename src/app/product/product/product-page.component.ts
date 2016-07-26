@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 import {
@@ -27,7 +27,6 @@ import { ProductSkusComponent } from './product-skus.component';
     ProductSkusComponent,
   ],
   providers: [ProductContextService, LocalSkuService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPageComponent implements OnInit {
 
@@ -46,6 +45,7 @@ export class ProductPageComponent implements OnInit {
   private groupBuyItem: IGroupBuyItem;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
@@ -60,11 +60,12 @@ export class ProductPageComponent implements OnInit {
     this.localSkuService.src$.subscribe();
     this.localSkuService.openSkus$.subscribe(_ => this.onOpenSkus(1));
     this.subProduct = this.productContextService.asObservable().
-      flatMap(this.proccessSkus).flatMap(this.refreshWishlist).flatMap(this.setCartLen).subscribe();
+      flatMap(p => this.initSkus(p)).flatMap(_ => this.refreshWishlist()).flatMap(_ => this.setCartLen()).
+      subscribe(_ => this.cd.markForCheck(), _ => this.cd.markForCheck());
   }
 
   ngOnDestroy() {
-    this.subProduct.unsubscribe();
+    if (this.subProduct) { this.subProduct.unsubscribe(); }
   }
 
   get sku() { return this._sku; }
@@ -81,7 +82,7 @@ export class ProductPageComponent implements OnInit {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
       (this.inWishlist ? this.wishlistService.delete : this.wishlistService.add)(this.product.ID).
-        flatMap(this.refreshWishlist).subscribe(
+        flatMap(_ => this.refreshWishlist()).subscribe(
         _ => this.canOpertaeWishlist = true,
         _ => this.canOpertaeWishlist = true
         );
@@ -105,7 +106,7 @@ export class ProductPageComponent implements OnInit {
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
         } else if (this.sku && this.sku.Quantity) {
-          this.cartService.add(this.sku, this.sku.Quantity).take(1).map(this.setCartLen).subscribe();
+          this.cartService.add(this.sku, this.sku.Quantity).take(1).map(_ => this.setCartLen()).subscribe();
         }
       }
     } else {
@@ -120,17 +121,19 @@ export class ProductPageComponent implements OnInit {
       map(items => this.inWishlist = items.some(item => item.ProductID === this.product.ID));
   }
 
-  private proccessSkus(product: IProduct) {
-    this.product = product;
-    return this.productService.proccessSkus(this.product).take(1).flatMap(p => {
+  private initSkus(product: IProduct) {
+    return this.productService.proccessSkus(product).take(1).flatMap(p => {
       this.groups = p.Groups;
       this.skus = p.Skus;
       this.sku = this.skus[0];
+      this.product = p;
       let skuId = +this.router.routerState.snapshot.queryParams['SkuID'];
       return this.groupBuyService.getItem(skuId).map(item => {
-        this.groupBuyItem = item;
-        this.sku = this.skus.find(sku => sku.ID === item.Sku.ID);
-        this.onOpenSkus(1);
+        if (item) {
+          this.groupBuyItem = item;
+          this.sku = this.skus.find(sku => sku.ID === item.Sku.ID);
+          this.showSkus = true;
+        }
       });
     });
   }

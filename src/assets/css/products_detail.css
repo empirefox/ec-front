@@ -1,4 +1,4 @@
-.goods-detail-cnt { background: #F5F5F5; position: relative; z-index: 1; margin-top: 16rem;}
+.goods-detail-cnt { background: #F5F5F5; position: relative; z-index: 0; margin-top: 16rem;}
 .goods-detail-top { background-color: #FFF; display: block; position: fixed; z-index: -1; left: 0; right: 0; top: 0;}
 .goods-detail-pic { position: relative; overflow: hidden; z-index: 1; width: 16rem; margin: 0 auto;}
 .goods-detail-pic ul { overflow: hidden; position: relative; font-size: 0; white-space: nowrap;}
@@ -108,7 +108,7 @@
 .goods-options-stock dd a { display: inline-block; height: 0.9rem; padding: 0.25rem 0.5rem; margin-left: 0.3rem; margin-bottom: 0.3rem; font-size: 0.55rem; color: #888; line-height: 0.9rem; background: #FFF; border: solid 0.05rem #BBB; border-radius: 0.15rem;}
 .goods-options-stock dd a:first-child { margin-left: 0;}
 .goods-options-stock dd a.current { padding: 0.28rem 0.53rem; color: #FFF; background: #ED5564; border: none;}
-.goods-option-value { display: block; height: 1.2rem; padding: 0.5rem; margin-bottom: 2rem; line-height: 1.2rem; font-size: 0.6rem; color: #999; border-top: solid 0.05rem #EEE;}
+.goods-option-value { display: block; height: 1.2rem; padding: 0.5rem; margin-bottom: 4rem; line-height: 1.2rem; font-size: 0.6rem; color: #999; border-top: solid 0.05rem #EEE;}
 .fixed-tab-pannel p, .fixed-tab-pannel div, .fixed-tab-pannel table{width: 100% !important; font-size: 0.6rem !important;}
 .fixed-tab-pannel img{width: 100% !important;}
 .goods-detail-bottom { margin: 0.5rem 0 2.5rem 0; text-align: center;}

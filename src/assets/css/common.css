@@ -9,7 +9,7 @@
 .search-layout a.clear-history { display: inline-block; width: 79%; height: 1.94rem; text-align: center; margin: 1.5rem 10% 0 10%; background-color: #EEE; border-radius: 0.2rem; font-size: 0.7rem; line-height: 1.94rem; color: #555; }
 .search_his_list_container li{border: none; border-bottom:1px solid #eee; display: block;}
 /*页内下部滑入遮罩*/
-.bottom-mask { position: fixed; z-index: 20; top: 0; left: 0; right: 0; display: block;}
+.bottom-mask { position: fixed; top: 0; left: 0; right: 0; display: block;}
 .bottom-mask-bg { display: block; position: absolute; z-index: 21; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.65);}
 .bottom-mask-block { display: block; position: absolute; z-index: 22; bottom: 0; left: 0; right: 0; min-height: 12rem; background: #FFF;}
 .bottom-mask.up { display: block; bottom: 0; animation: optionBlockUp 0.5s ease-in-out; -webkit-animation:optionBlockUp 0.5s ease-in-out;}

@@ -1,13 +1,11 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, ISku, ProductContextService, LocalSkuService, IAddress, AddressService } from '../../core';
+import { IProduct, ISku, LocalProductService, LocalSkuService, IAddress, AddressService } from '../../core';
 
 @Component({
   selector: 'product-info',
   template: require('./product-info.html'),
-  providers: [ProductContextService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductInfoComponent {
 
@@ -20,10 +18,11 @@ export class ProductInfoComponent {
   private subSku: Subscription;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
-    private productContextService: ProductContextService,
+    private localProductService: LocalProductService,
     private localSkuService: LocalSkuService) { }
 
   get salePrice() {
@@ -33,12 +32,13 @@ export class ProductInfoComponent {
   get img() { return this.product.Img || this.product.Skus[0].Img; }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-    this.subProduct = this.productContextService.asObservable().subscribe(product => this.product = product);
+    console.log('info init ....')
+    this.subProduct = this.localProductService.src$.subscribe(product => {
+      this.product = product;
+      this.cd.markForCheck();
+    });
     this.subAddr = this.addressService.getDefault().subscribe(addr => this.addr = addr);
-    if (this.localSkuService) {
-      this.subSku = this.localSkuService.src$.subscribe(sku => this.sku = sku);
-    }
+    this.subSku = this.localSkuService.src$.subscribe(sku => this.sku = sku);
   }
 
   ngOnDestroy() {

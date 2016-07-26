@@ -14,7 +14,7 @@ export class OrderContextService {
     private itemsService: LocalOrdersService) { }
 
   asObservable() {
-    return this.route.params.flatMap(params => this.getOrder(+params['id']));
+    return this.route.params.map(params => +params['id']).filter(id => !!id).flatMap(id => this.getOrder(id));
   }
 
   getOrder(id: number) {
@@ -30,14 +30,14 @@ export class OrderContextService {
     if (this.itemsService.published) {
       return this.itemsService.src$.take(1).flatMap(items => {
         let item = items && items.find(item => item.ID === id);
-        return item ? Observable.of(item).map(this.itemService.publish) : this.request(id);
+        return item ? Observable.of(item).map(src => this.itemService.publish(src)) : this.request(id);
       });
     }
     return this.request(id);
   }
 
   private request(id: number) {
-    return this.orderService.getOrder(id).map(this.itemService.publish);
+    return this.orderService.getOrder(id).map(src => this.itemService.publish(src));
   }
 
 }

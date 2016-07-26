@@ -17,7 +17,7 @@ export class HomeGroupBuyComponent {
     private groupBuyService: GroupBuyService) { }
 
   ngOnInit() {
-    this.groupBuyService.getItems().subscribe(gb => this.items = gb.active.slice(0, 3));
+    this.groupBuyService.getItems().filter(gb => !!gb).subscribe(gb => this.items = gb.active.slice(0, 3));
   }
 
   onGotoGroupBuy() { this.router.navigate(['/groupbuy']); }

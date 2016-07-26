@@ -25,7 +25,7 @@ export const routes = {
       component: ProductPageComponent,
       children: [
         {
-          path: '', // info
+          path: 'info', // info
           component: ProductInfoComponent
         },
         {

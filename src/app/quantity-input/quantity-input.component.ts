@@ -18,7 +18,7 @@ export class QuantityInputComponent implements OnInit {
   get value() { return this._value; }
   @Input() set value(value: number) {
     if (value !== this._value) {
-      value = (value && value > 1) ? (value > this.max ? this.max : value) : 1;
+      // value = (value && value > 1) ? (value > this.max ? this.max : value) : 1;
       this._value = value;
       this.valueChange.next(value);
     }
@@ -54,6 +54,6 @@ export class QuantityInputComponent implements OnInit {
     if (input && this._value !== (+input.value)) {
       input.value = this._value;
     }
-  };
+  }
 
 }

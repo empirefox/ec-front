@@ -14,7 +14,6 @@ import { ProductAttrGroupComponent } from './product-attr-group.component';
 export class ProductSkusComponent implements OnInit {
 
   @Input() product: IProduct;
-  @Input() sku: ISku;
 
   @Output() dismiss = new EventEmitter<any>();
   @Output() skuChange = new EventEmitter<ISku>();
@@ -30,22 +29,34 @@ export class ProductSkusComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
-    if (this.sku && this.sku.Attrs) {
-      this.sku.Attrs.forEach(attr => this.current[attr.Group.ID] = attr);
-      this.findGroupBuyItem();
+    if (!this.sku) {
+      this.sku = this.product.Skus[0];
+    }
+    this.findGroupBuyItem();
+  }
+
+  @Input() get sku(): ISku { return this._sku; }
+  set sku(sku: ISku) {
+    if (this._sku !== sku) {
+      this._sku = sku;
+      if (sku) {
+        sku.Attrs.forEach(attr => this.current[attr.Group.ID] = attr);
+      } else {
+        this.current = {};
+      }
     }
   }
 
   get img() {
-    return this.sku ? (this.sku.Img ? this.sku.Img : this.product.Img) : this.product.Img;
+    return this.sku.Img ? this.sku.Img : this.product.Img;
   }
 
   get price() {
-    return this.gbItem && this.gbItem.Sku.ID === this.sku.ID ? this.gbItem.Price : (this.sku ? this.sku.SalePrice : 0);
+    return this.gbItem && this.gbItem.Sku.ID === this.sku.ID ? this.gbItem.Price : this.sku.SalePrice;
   }
 
   get stock() {
-    return this.sku ? this.sku.Stock : 0;
+    return this.sku.Stock;
   }
 
   get maxQuantity() {
@@ -53,7 +64,7 @@ export class ProductSkusComponent implements OnInit {
   }
 
   get quantity() {
-    return this.sku ? this.sku.Quantity : 1;
+    return this.sku.Quantity;
   }
   set quantity(q: number) {
     if (this.sku) {

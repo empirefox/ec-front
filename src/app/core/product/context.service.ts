@@ -14,7 +14,8 @@ export class ProductContextService {
     private itemsService: LocalProductsService) { }
 
   asObservable() {
-    return this.route.params.flatMap(params => this.getProduct(+params['id']));
+    return this.route.params.map(params => +params['id']).filter(id => !!id).
+      flatMap(id => this.getProduct(id)).map(src => this.itemService.publish(src));
   }
 
   getProduct(id: number) {
@@ -30,14 +31,14 @@ export class ProductContextService {
     if (this.itemsService.published) {
       return this.itemsService.src$.take(1).flatMap(items => {
         let item = items && items.find(item => item.ID === id);
-        return item ? Observable.of(item).map(this.itemService.publish) : this.request(id);
+        return item ? Observable.of(item) : this.request(id);
       });
     }
     return this.request(id);
   }
 
   private request(id: number) {
-    return this.productService.getProduct(id).map(this.itemService.publish);
+    return this.productService.getProduct(id);
   }
 
 }

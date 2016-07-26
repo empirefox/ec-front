@@ -49,7 +49,7 @@ export class CartListPageComponent {
     this.service.getItems().take(1).subscribe(items => this.items = items);
   }
 
-  viewProducts() { this.router.navigate(['/products']); }
+  viewProducts() { this.router.navigateByUrl('/product/list'); }
 
   onItemCheckedChange(item: ICartItem, checked: boolean) {
     item.checked = checked;

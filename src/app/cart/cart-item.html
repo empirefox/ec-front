@@ -13,7 +13,7 @@
   <dd class="goods-type">{{item.Type}}</dd>
 </dl>
 <div class="goods-del">
-  <a (click)="onDelete()"></a>
+  <a (click)="onDelete()">{{delTxt}}</a>
 </div>
 <div class="goods-subtotal">
   <span class="goods-price">￥<em>{{item.Price|money}}</em></span>

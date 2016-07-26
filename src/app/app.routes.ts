@@ -38,7 +38,12 @@ export const routes: RouterConfig = [
         component: ProductPageComponent,
         children: [
           {
-            path: '', // info
+            path: '',
+            redirectTo: 'info',
+            pathMatch: 'full'
+          },
+          {
+            path: 'info', // info
             component: ProductInfoComponent
           },
           {
@@ -153,7 +158,12 @@ export const routes: RouterConfig = [
         component: ProductPageComponent,
         children: [
           {
-            path: '', // info
+            path: '',
+            redirectTo: 'info',
+            pathMatch: 'full'
+          },
+          {
+            path: 'info', // info
             component: ProductInfoComponent
           },
           {

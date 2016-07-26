@@ -19,7 +19,7 @@ export class GroupBuyPageComponent {
     private groupBuyService: GroupBuyService) { }
 
   ngOnInit() {
-    this.groupBuyService.getItems().subscribe(gb => {
+    this.groupBuyService.getItems().filter(gb => !!gb).subscribe(gb => {
       this.current = this.active = gb.active;
       this.inactive = gb.inactive;
     });

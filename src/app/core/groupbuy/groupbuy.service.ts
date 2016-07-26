@@ -29,7 +29,7 @@ export class GroupBuyService {
   }
 
   getItem(skuId: number): Observable<IGroupBuyItem> {
-    return this.getItems().map(gb => gb.map[skuId]).filter(item => !!item);
+    return this.getItems().map(gb => gb.map[skuId]);
   }
 
   clearCache() { this._gb = null; }

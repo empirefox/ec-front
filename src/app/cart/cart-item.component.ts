@@ -32,6 +32,10 @@ export class CartItemComponent implements OnInit, OnDestroy {
     }
   }
 
+  get delTxt() {
+    return this.item.invalid ? '(失效)删除' : '删除';
+  }
+
   ngOnInit() {
     this.sub = this.quantity$.debounceTime(300).distinctUntilChanged().subscribe(_ => {
       this.service.saveQuantity(this.item);
