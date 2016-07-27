@@ -301,7 +301,7 @@ export const asyncRoutes: AsyncRoutes = {
   'PointsComponent': require('es6-promise-loader!./wallet'),
 
   'WeixinOauthPageComponent': require('es6-promise-loader!./weixin-oauth'),
-  'Wishlist': require('es6-promise-loader!./wishlist'),
+  'WishlistPageComponent': require('es6-promise-loader!./wishlist'),
 };
 
 

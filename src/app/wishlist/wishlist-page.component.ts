@@ -1,11 +1,12 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { IWishItem, WishlistService, ProductService } from '../core';
+import { Header1Component } from '../header-bar';
 
 @Component({
   template: require('./wishlist-page.html'),
   styles: [require('./wishlist-page.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  directives: [Header1Component],
 })
 export class WishlistPageComponent {
 

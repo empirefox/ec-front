@@ -6,7 +6,7 @@ export interface IWishItem {
   CreatedAt: number;
   Name: string;
   Img: string;
-  Price: string;
+  Price: number;
   ProductID: number;
   Product?: IProduct;
 

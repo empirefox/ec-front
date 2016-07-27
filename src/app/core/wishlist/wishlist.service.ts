@@ -50,6 +50,7 @@ export class WishlistService {
     item.invalid = !product;
     item.Img = product ? product.Img : item.Img;
     item.Name = product ? product.Name : item.Name;
+    item.Price = product ? (product.Skus && product.Skus[0] && product.Skus[0].SalePrice) : item.Price;
 
     // TODO add sku price/img
 
