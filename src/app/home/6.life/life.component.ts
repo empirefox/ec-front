@@ -9,7 +9,6 @@ const COLORS = ['text-fd', 'text-b6', 'text-yellow'];
   selector: 'home-life',
   template: require('./life.html'),
   styles: [require('./life.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeLifeComponent extends HomeSectionBaseComponent {
 

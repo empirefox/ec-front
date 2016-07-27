@@ -6,7 +6,6 @@ import { IProduct } from '../../core';
   selector: 'products-item',
   template: require('./products-item.html'),
   styles: [require('./products-item.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsItemComponent {
 

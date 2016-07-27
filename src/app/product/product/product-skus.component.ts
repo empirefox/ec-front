@@ -10,7 +10,6 @@ import { ProductAttrGroupComponent } from './product-attr-group.component';
   template: require('./product-skus.html'),
   styles: [require('./product-skus.css')],
   directives: [QuantityInputComponent, ProductAttrGroupComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductSkusComponent implements OnInit {
 

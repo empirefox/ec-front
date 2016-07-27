@@ -6,7 +6,6 @@ import { MoneyService, LocalWalletService } from '../core';
 
 @Component({
   template: require('./wallet.html'),
-  changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [Header1Component],
   providers: [LocalWalletService],
 })

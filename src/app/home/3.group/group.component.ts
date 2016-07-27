@@ -6,7 +6,6 @@ import { IGroupBuyItem, GroupBuyService, APP_CORE_PIPES } from '../../core';
   selector: 'home-group-buy',
   template: require('./group.html'),
   styles: [require('./group.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   pipes: [...APP_CORE_PIPES],
 })
 export class HomeGroupBuyComponent {
@@ -24,7 +23,7 @@ export class HomeGroupBuyComponent {
   onGotoGroupBuy() { this.router.navigateByUrl('/groupbuy'); }
 
   onGotoProduct(item: IGroupBuyItem) {
-    this.router.navigate(['/product/1', item.Sku.ProductID]);
+    this.router.navigate(['./home/1', item.Sku.ProductID]);
   }
 
   img(item: IGroupBuyItem) { return item.Img || item.Sku.Img; }

@@ -8,7 +8,6 @@ import { HeaderBarInnerComponent } from './header-bar.component';
   styles: [require('./header1-inner.css')],
   directives: [HeaderBarInnerComponent],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header1InnerComponent {
 

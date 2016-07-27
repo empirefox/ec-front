@@ -7,7 +7,6 @@ import { MoneyService, LocalWalletService } from '../../core';
   selector: 'balance-deposit',
   template: require('./balance-deposit.html'),
   styles: [require('./balance-deposit.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BalanceDepositComponent extends AbstractWalletComponent {
 

@@ -7,7 +7,6 @@ import { NavMenuListComponent } from '../nav-menu-list';
   template: require('./nav-menu.html'),
   styles: [require('./nav-menu.css')],
   directives: [NavMenuListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavMenuComponent {
   @Input() show: boolean;

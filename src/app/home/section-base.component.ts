@@ -10,7 +10,7 @@ export class HomeSectionBaseComponent {
 
   onGotoProduct(product: IProduct) {
     this.localProductService.publish(product);
-    this.router.navigate(['/product/1', product.ID]); // SkuID
+    this.router.navigate(['./home/1', product.ID]); // SkuID
   }
 
   getImg(product: IProduct) { return product.Img || product.Skus[0].Img; }

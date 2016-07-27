@@ -8,7 +8,6 @@ import { NavMenuComponent } from './nav-menu.component';
   styles: [require('./header-bar.css')],
   directives: [NavMenuComponent],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderBarInnerComponent {
 
@@ -25,7 +24,6 @@ export class HeaderBarInnerComponent {
   template: require('./header-bar.html'),
   directives: [NavMenuComponent],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderBarComponent extends HeaderBarInnerComponent {
 

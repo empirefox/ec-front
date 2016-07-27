@@ -7,7 +7,6 @@ import { MoneyService, LocalWalletService } from '../../core';
 @Component({
   selector: 'points',
   template: require('./points.html'),
-  changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [Header1Component],
 })
 export class PointsComponent extends AbstractWalletComponent {

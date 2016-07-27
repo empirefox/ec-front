@@ -5,7 +5,6 @@ import { ICoupon } from '../../core/coupon';
 @Component({
   selector: 'coupon-item',
   template: require('./coupon-item.html'),
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CouponItemComponent {
 

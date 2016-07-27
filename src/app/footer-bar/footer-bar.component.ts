@@ -7,7 +7,6 @@ import { NavMenuListComponent } from '../nav-menu-list';
   template: require('./footer-bar.html'),
   styles: [require('./footer-bar.css')],
   directives: [NavMenuListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterBarComponent {
   @Input() show: boolean = true;

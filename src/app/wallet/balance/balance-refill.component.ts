@@ -7,7 +7,6 @@ import { MoneyService, LocalWalletService } from '../../core';
   selector: 'balance-refill',
   template: require('./balance-refill.html'),
   styles: [require('./balance-refill.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BalanceRefillComponent extends AbstractWalletComponent {
 

@@ -5,7 +5,6 @@ import { ProductAttrGroup, ProductAttr } from '../../core';
   selector: 'product-attr-group',
   template: require('./product-attr-group.html'),
   styles: [require('./product-attr-group.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductAttrGroupComponent {
 

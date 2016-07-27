@@ -6,7 +6,6 @@ import { IAddress } from '../core';
   selector: 'address-item',
   template: require('./address-item.html'),
   styles: [require('./address-item.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddressItemComponent {
 

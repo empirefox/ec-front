@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
   selector: 'order-list-menu',
   styles: [require('./order-list-menu.css')],
   template: require('./order-list-menu.html'),
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderListMenuComponent {
 

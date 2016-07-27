@@ -8,6 +8,5 @@ import { HeaderBarComponent } from './header-bar.component';
   styles: [require('./header1.css')],
   directives: [HeaderBarComponent],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header1Component { }

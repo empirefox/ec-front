@@ -7,7 +7,6 @@ import { HomeSectionBaseComponent } from '../section-base.component';
   selector: 'home-featured',
   template: require('./featured.html'),
   styles: [require('./featured.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeFeaturedComponent extends HomeSectionBaseComponent {
 
