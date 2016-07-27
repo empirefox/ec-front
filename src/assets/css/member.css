@@ -212,7 +212,7 @@ i.cc-09 { background-image: url(../images/mcc_09_b.png); background-size: cover;
 .order-item-footer .handle .del { position: absolute; z-index: 1; top: 0.4rem; left: 0; display: block; height: 1.2rem; font-size: 0.6rem; line-height: 1.2rem; color: #888;}
 .order-item-footer .handle .del i { display: inline-block; vertical-align: top; width: 1.2rem; height: 1.2rem; background-image: url(../images/del_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.9;}
 .order-item-footer .handle p { position: absolute; z-index: 1; top: 0.4rem; left: 0; display: block; font-size: 0.6rem; line-height: 1.2rem; color: #ED5564; display: inline-block; }
-.order-bottom{position: fixed;padding:0.6rem 1rem 0rem 0.5rem; z-index: 1; top: auto; left: 0; right: 0; bottom: 0; height: 1.8rem; background: #e5e5e5; border-top: solid 0.05rem #EEE;}
+.order-bottom{position: fixed;padding:0.6rem 1rem 0rem 0.5rem; z-index: 10; top: auto; left: 0; right: 0; bottom: 0; height: 1.8rem; background: #e5e5e5; border-top: solid 0.05rem #EEE;}
 .order-bottom a{}
 .check-payment em { font-size: 0.7rem; font-weight: 600;}
 /*订单详情*/

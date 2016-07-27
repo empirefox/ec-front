@@ -5,7 +5,6 @@ import { IDeliveryDay } from '../../core';
   selector: 'delivery-day',
   template: require('./delivery-day.html'),
   styles: [require('./delivery-day.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeliveryDayComponent {
 

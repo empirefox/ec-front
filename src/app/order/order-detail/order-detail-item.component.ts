@@ -6,7 +6,6 @@ import { IOrderItem } from '../../core';
   selector: 'order-detail-item',
   template: require('./order-detail-item.html'),
   styles: [require('./order-detail-item.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderDetailItemComponent {
 

@@ -11,7 +11,6 @@ import { OrderDetailComponent } from './order-detail.component';
   styles: [require('./order-detail-page.css')],
   directives: [Header1Component, OrderDetailComponent],
   providers: [OrderContextService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderDetailPageComponent implements OnInit {
 

@@ -7,7 +7,6 @@ import { OrderActionsComponent } from '../order-actions';
   selector: 'order-list-item',
   template: require('./order-list-item.html'),
   styles: [require('./order-list-item.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [OrderActionsComponent],
 })
 export class OrderListItemComponent {

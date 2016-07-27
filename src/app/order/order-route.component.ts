@@ -14,7 +14,6 @@ export class OrderRouteComponent {
   ngOnInit() {
     this.localOrdersService.src$.subscribe();
     this.localOrderService.src$.subscribe();
-    this.localOrdersService.publish([]);
   }
 
 }

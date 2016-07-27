@@ -1,5 +1,5 @@
 <header1>查看物流</header1>
-<div class="main-layout">
+<div class="main-layout" *ngIf="order">
   <div class="order-item-con">
     <div class="logis-order">订单商品</div>
     <div class="goods-block" *ngFor="let item of order.Items">
@@ -16,7 +16,7 @@
     <p> 物流公司 {{company}} </p>
     <p> 运单号码 {{order.DeliverNo}} </p>
   </div>
-  <div class="logis-detail">
+  <div class="logis-detail" *ngIf="delivery">
     <ul>
       <li *ngFor="let day of delivery.days">
         <delivery-day [day]="day"></delivery-day>

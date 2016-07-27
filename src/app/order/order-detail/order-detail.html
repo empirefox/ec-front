@@ -1,4 +1,4 @@
-<div class="main-layout mb20">
+<div class="main-layout mb20" *ngIf="order">
   <div class="order-list">
     <div class="oredr-detail-block h3">
       <h3>订单号：{{order.TrackingNumber}}</h3>
@@ -54,6 +54,6 @@
     </div>
   </div>
 </div>
-<div class="order-bottom">
+<div class="order-bottom" *ngIf="order">
   <order-actions [order]="order" (stateChange)="onStateChanged()"></order-actions>
 </div>
