@@ -23,7 +23,7 @@
 .goods-detail-price .activity { display: inline-block; font-size: 0.45rem;}
 .goods-detail-price .sold { position: absolute; z-index: 1; top: 0.5rem; right: 0.75rem; display: block; font-size: 0.55rem; line-height: 1rem; height: 1rem;}
 .goods-detail-price .activity { font-size: 0.45rem; line-height: 0.6rem; vertical-align: middle; display: inline-block; height: 0.6rem; padding-right: 0.1rem; margin-top: 0.05rem; border: solid #EC5464 0.05rem; color: #EC5464;}
-.goods-detail-price .activity i { display: inline-block; vertical-align: middle; margin-right: 0.1rem; width: 0.6rem; height: 0.6rem; background: #ED5564 url(../images/mobile_w.png) no-repeat 50% 50%; background-size: 80%;}
+.goods-detail-price .activity i { display: inline-block; vertical-align: middle; margin-right: 0.1rem; width: 0.6rem; height: 0.6rem; background: #ED5564 url(../img/mobile_w.png) no-repeat 50% 50%; background-size: 80%;}
 /*商品详情项目*/
 .goods-detail-item { position: relative; z-index: 1; padding: 0.5rem; background: #FFF; border-bottom: solid 0.05rem #EEE;}
 .goods-detail-item .itme-name {width: 1.6rem; height: 0.9rem; font-size: 0.6rem; color: #888; line-height: 0.9rem; float: left}
@@ -32,8 +32,8 @@
 .goods-detail-item .item-con dt { font-size: 0.6rem; color: #333;}
 .goods-detail-item .item-con dt span{margin-right: 8px;}
 .goods-detail-item .item-con dd { font-size: 0.55rem; color: #888;}
-.item-more { position: absolute; z-index: -1; top: 0.5rem; right: 0.5rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; opacity: 0.4;}
-.item-more.location { background-image: url(../images/location_b.png); opacity: 0.55;}
+.item-more { position: absolute; z-index: -1; top: 0.5rem; right: 0.5rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../img/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; opacity: 0.4;}
+.item-more.location { background-image: url(../img/location_b.png); opacity: 0.55;}
 /*商品详情评价*/
 .comment-info .user-name{}
 .goods-detail-comment { background-color: #FFF; padding: 0 0.5rem; margin-top: 0.5rem; border-top: solid #EEE 0.05rem; border-bottom: solid #EEE 0.05rem;}
@@ -47,7 +47,7 @@
 .goods-detail-comment dl { display: block; padding-bottom: 0.4rem;}
 .goods-detail-comment dt { display: block; height: 0.9rem; padding: 0.4rem 0 0.2rem 0; line-height: 0.9rem; overflow: hidden;}
 .goods-detail-comment dt .goods-raty { display: block; float: left; width: 3rem; height: 0.5rem; font-size: 0;}
-.goods-detail-comment dt .goods-raty i { display: inline-block; height: 0.5rem; background-image: url(../images/star_r.png); background-repeat: repeat-x; background-position: 0 0; background-size: contain;}
+.goods-detail-comment dt .goods-raty i { display: inline-block; height: 0.5rem; background-image: url(../img/star_r.png); background-repeat: repeat-x; background-position: 0 0; background-size: contain;}
 .goods-detail-comment dt .goods-raty i.star1 { width: 0.5rem;}
 .goods-detail-comment dt .goods-raty i.star2 { width: 1rem;}
 .goods-detail-comment dt .goods-raty i.star3 { width: 1.5rem;}
@@ -59,7 +59,7 @@
 /*商品详情店铺*/
 .goods-detail-store { display: block; position: relative; z-index: 1; padding: 0 0.5rem; margin: 0.5rem 0; background: #FFF; border: solid #EEE; border-width: 0.05rem;}
 .goods-detail-store .store-name { height: 0.9rem; padding: 0.5rem 0 0.25rem  0; font-size: 0.7rem; line-height: 0.9rem; color: #333; }
-.goods-detail-store .store-name .icon-store { display: inline-block; width: 0.8rem; height: 0.9rem; vertical-align: top; margin-right: 0.2rem; background-image: url(../images/store_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; opacity: 0.75;}
+.goods-detail-store .store-name .icon-store { display: inline-block; width: 0.8rem; height: 0.9rem; vertical-align: top; margin-right: 0.2rem; background-image: url(../img/store_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; opacity: 0.75;}
 .goods-detail-store .store-name .icon-mall { color: #ed5564;font-size: 0.55rem; margin-left: 0.5rem;}
 .goods-detail-store .store-rate { height: 0.7rem; padding: 0.4rem 0 0.5rem 0; border-top: solid 0.05rem #EEE; font-size: 0; }
 .goods-detail-store .store-rate span { display: inline-block; width: 33.33%; height: 0.7rem; font-size: 0.55rem; line-height: 0.7rem; color: #888; }
@@ -130,11 +130,11 @@
 .goods-detail-foot .otreh-handle a i,
 .goods-option-foot .otreh-handle a i { display: inline-block; width: 0.9rem; height: 0.9rem; margin: 0.15rem auto 0.05rem auto; background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; opacity: 0.65;}
 .goods-detail-foot .otreh-handle a.kefu i,
-.goods-option-foot .otreh-handle a.kefu i { background-image: url(../images/kefu_b.png);}
+.goods-option-foot .otreh-handle a.kefu i { background-image: url(../img/kefu_b.png);}
 .goods-detail-foot .otreh-handle a.guanzhu i,
-.goods-option-foot .otreh-handle a.guanzhu i { background: url(../images/focus-icon-new.png) 0 0; background-size: 100%}
+.goods-option-foot .otreh-handle a.guanzhu i { background: url(../img/focus-icon-new.png) 0 0; background-size: 100%}
 .goods-detail-foot .otreh-handle a.cart i,
-.goods-option-foot .otreh-handle a.cart i { background-image: url(../images/cart_b.png);}
+.goods-option-foot .otreh-handle a.cart i { background-image: url(../img/cart_b.png);}
 .goods-detail-foot .otreh-handle a p,
 .goods-option-foot .otreh-handle a p { display: block; height: 0.8rem; font-size: 0.55rem; line-height: 0.8rem; }
 .goods-detail-foot .otreh-handle a sup,
@@ -169,7 +169,7 @@
 .product-eval-list .eval-user .user-name { display: block; height: 1rem; margin: 0 0 0 2rem; padding: 0.5rem 0; font-size: 0.6rem; line-height: 1rem;}
 .product-eval-list .eval-user time,.comment-info .eval-user time  { position: absolute; z-index: 1; top: 0.5rem; right: 0.5rem; height: 1rem; font-size: 0.55rem; color: #BBB; line-height: 1rem;}
 .product-eval-list .goods-raty,.comment-info  .goods-raty{ display: block; height: 0.5rem; padding: 0.5rem 0 0; font-size: 0;}
-.product-eval-list .goods-raty i,.comment-info .goods-raty i { display: inline-block; height: 0.5rem; background-image: url(../images/star_r.png); background-repeat: repeat-x; background-position: 0 0; background-size: contain;}
+.product-eval-list .goods-raty i,.comment-info .goods-raty i { display: inline-block; height: 0.5rem; background-image: url(../img/star_r.png); background-repeat: repeat-x; background-position: 0 0; background-size: contain;}
 .product-eval-list .goods-raty i.star1,.comment-info .goods-raty i.star1 { width: 0.5rem;}
 .product-eval-list .goods-raty i.star2,.comment-info .goods-raty i.star2 { width: 1rem;}
 .product-eval-list .goods-raty i.star3,.comment-info .goods-raty i.star3 { width: 1.5rem;}

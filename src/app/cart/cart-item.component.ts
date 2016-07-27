@@ -33,8 +33,8 @@ export class CartItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  get delTxt() {
-    return this.item.invalid ? '(失效)删除' : '删除';
+  get invalidTxt() {
+    return this.item.invalid ? '(失效)' : '';
   }
 
   ngOnInit() {

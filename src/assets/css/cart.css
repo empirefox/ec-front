@@ -4,15 +4,15 @@
 .cart-store { display: block; border-bottom: solid 0.05rem #EEE;}
 .cart-store dt { position: relative; z-index: 1; display: block; height: 0.9rem; padding: 0.5rem; font-size: 0.7rem; line-height: 0.9rem;}
 .cart-store dt .store-check { display: inline-block; vertical-align: top; margin-right: 0.2rem;}
-.cart-store dt i.icon-store { display: inline-block; width: 0.8rem; height: 0.9rem; margin-right: 0.2rem; vertical-align: middle; background:url(../images/store_b.png) no-repeat 50% 50%; background-size: 90%; opacity: 0.8;}
+.cart-store dt i.icon-store { display: inline-block; width: 0.8rem; height: 0.9rem; margin-right: 0.2rem; vertical-align: middle; background:url(../img/store_b.png) no-repeat 50% 50%; background-size: 90%; opacity: 0.8;}
 .cart-store dt .handle { display: block; height: 0.9rem; padding: 0.5rem; position: absolute; z-index: 1; top: 0; right: 0; border-left: solid 0.05rem #EEE; background-color: #FCFCFC;}
 .cart-store dt .handle a { color: #555; line-height: 0.9rem; font-size: 0.6rem;}
 .cart-store dt .handle a i { display: inline-block; vertical-align: top; width: 0.9rem; height: 0.9rem; margin-right: 0.1rem;}
-.cart-store dt .handle a.voucher i { background-image: url(../images/mcc_08_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 75%; opacity: 0.65;
+.cart-store dt .handle a.voucher i { background-image: url(../img/mcc_08_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 75%; opacity: 0.65;
 }
 
 .cart-store dd { position: relative; z-index: 1; overflow: hidden; display: block; height: 0.9rem; padding: 0.2rem 0.5rem; font-size: 0.55rem; line-height: 0.9rem; border-top: solid 0.05rem #EEE; color: #555;}
-.cart-store dd .arrow-down { position: absolute; z-index: 1; top: 0.15rem; right: 0.3rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../images/arrow_down_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.5;}
+.cart-store dd .arrow-down { position: absolute; z-index: 1; top: 0.15rem; right: 0.3rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../img/arrow_down_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.5;}
 .cart-store dd img { width: 0.6rem; height: 0.6rem; display: inline-block; vertical-align: middle; margin: 0 0.1rem;}
 .cart-store dd em { position: absolute; z-index: 1; top: 0.3rem; left: 0.5rem; display: block; height: 0.5rem; padding: 0.1rem 0.2rem; background: #ED5564; font-size: 0.45rem; line-height: 0.5rem; color: #FFF; border-radius: 0.1rem;}
 .cart-store dd span { display: block; clear: both; margin: 0 0.5rem 0 2rem;}
@@ -28,13 +28,13 @@
 .cart-item li .goods-info dt.goods-name a { display: block; height: 1.4rem; font-size: 0.6rem; color: #111; line-height: 0.7rem; overflow: hidden;}
 .cart-item li .goods-info dd.goods-type { overflow: hidden; white-space: nowrap; width: 70%; height: 0.9rem; font-size: 0.45rem; line-height: 0.9rem; color: #999; text-overflow: ellipsis;}
 .cart-item li .goods-del { display: block; position: absolute; z-index: 1; top: 0.3rem; right: 0.5rem; width: 1rem; height: 1rem; }
-.cart-item li .goods-del a { display: block;  width: 100%; height: 100%; background-image: url(../images/del_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 60%; opacity: 0.4;}
+.cart-item li .goods-del a { display: block;  width: 100%; height: 100%; background-image: url(../img/del_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 60%; opacity: 0.4;}
 .cart-item li .goods-subtotal { display: block; height: 1rem; margin: 0 0.5rem 0 4.5rem; line-height: 1rem; font-size: 0.6rem; position: relative; z-index: 1;}
 .cart-item li .goods-subtotal .goods-price { color: #DB4453; font-size: 0.55rem; font-weight: 600;}
 .cart-item li .goods-subtotal .goods-price em { font-size: 0.6rem;}
 .cart-item li .goods-subtotal .goods-sale { display: inline-block; vertical-align: top; margin-right: 0.1rem;}
 .cart-item li .goods-subtotal .goods-sale em {  display: inline-block; vertical-align: top; height: 0.7rem; padding: 0 0.1rem; margin-top: 0.1rem; font-size: 0.45rem; color: #FFF; line-height: 0.7rem; background-color: #ED5564; border-radius: 0.15rem;}
-.cart-item li .goods-subtotal .goods-sale em i { display: inline-block; vertical-align: middle; margin-right: 0.1rem; width: 0.6rem; height: 0.6rem; background: #ED5564 url(../images/mobile_w.png) no-repeat 50% 50%; background-size: 80%; }
+.cart-item li .goods-subtotal .goods-sale em i { display: inline-block; vertical-align: middle; margin-right: 0.1rem; width: 0.6rem; height: 0.6rem; background: #ED5564 url(../img/mobile_w.png) no-repeat 50% 50%; background-size: 80%; }
 .cart-item li .value-box { position: absolute; z-index:1; bottom: 0; right: 0; }
 .cart-item li .goods-num { font-size: 0.5rem; line-height: 1rem; position: absolute; z-index:1; top: 2.7rem; right: 1rem; }
 .cart-item li .goods-num em { font-size: 0.6rem; font-weight: 600; margin: 0 0.2rem;}
@@ -68,20 +68,20 @@
 
 .cart-block { background: #FFF; display: block;}
 .cart-block a { display: block; overflow: hidden;}
-.cart-block i.icon-arrow { position: absolute; z-index: 1; top: 50%; right: 0.5rem; display: block; width: 0.5rem; height: 0.5rem; margin-top: -0.25rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.5; }
+.cart-block i.icon-arrow { position: absolute; z-index: 1; top: 50%; right: 0.5rem; display: block; width: 0.5rem; height: 0.5rem; margin-top: -0.25rem; background-image: url(../img/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.5; }
 .cart-block h3 { position: absolute; z-index: 1; top: 0.4rem; left: 0.5rem; display: block; width: 7rem; height: 1rem; font-size: 0.7rem; line-height: 1rem; color: #555;}
 .cart-block h3 i { display: inline-block; vertical-align: middle; width: 0.9rem; height: 0.9rem; margin-right: 0.1rem; background-position: 50% 50%; background-repeat: no-repeat; background-size: 70%; opacity: 0.7;}
-.cart-block h3 i.pay { background-image: url(../images/mcc_01.png);}
-.cart-block h3 i.invoice { background-image: url(../images/mcc_08_b.png)}
-.cart-block h3 i.mobile { background-image: url(../images/mobile_b.png);}
-.cart-block h3 i.paytype { background-image: url(../images/mcc_08_b.png);}
+.cart-block h3 i.pay { background-image: url(../img/mcc_01.png);}
+.cart-block h3 i.invoice { background-image: url(../img/mcc_08_b.png)}
+.cart-block h3 i.mobile { background-image: url(../img/mobile_b.png);}
+.cart-block h3 i.paytype { background-image: url(../img/mcc_08_b.png);}
 .cart-block .current-con { display: block; margin: 0 1.5rem 0 6rem; padding: 0.5rem 0; text-align: right; font-size: 0.6rem; color: #333; font-weight: 600;}
 .cart-block .tip-con { display: block; margin: 0 0.5rem 0 5rem; padding: 0.5rem 0; text-align: right; font-size: 0.5rem; color: #ED5564; line-height: 0.9rem;}
 .cart-block .inp-tel { display: block; width: 80%; height: 1.2rem; padding: 0.2rem; margin: 0.1rem auto 0 auto; border: solid #ED5564 0.05rem; border-radius: 0.2rem; font-size: 0.8rem; text-align: center; line-height: 1.2rem; background-color: #FEF6F7; color: #000;}
 /*购物车默认收货人地址*/
 .cart-add-default { position: relative; z-index: 1; width: 100%;}
 .cart-add-default a { color: #555;}
-.cart-add-default i.icon-add { position: absolute; z-index: 1; top: 0.5rem; left: 0.5rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../images/location_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; }
+.cart-add-default i.icon-add { position: absolute; z-index: 1; top: 0.5rem; left: 0.5rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../img/location_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; }
 .cart-add-default dl { margin: 0 0 0 1.6rem; padding: 0.5rem 0;}
 .cart-add-default dt { display: block; height: 0.9rem; font-size: 0.7rem; line-height: 0.9rem;}
 .cart-add-default dt span { margin-left: 0.3rem; font-weight: 600;}
@@ -89,7 +89,7 @@
 /*购物车选择地址*/
 .cart-add-list { background: #FFF;}
 .cart-add-list li { position: relative; z-index: 1; display: block; border-bottom: solid #EEE 0.05rem;}
-.cart-add-list li i { position: absolute; z-index: 1; top: 0.8rem; left: 0.5rem; display: none; width: 0.7rem; height: 0.7rem; background-image: url(../images/ok.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%;}
+.cart-add-list li i { position: absolute; z-index: 1; top: 0.8rem; left: 0.5rem; display: none; width: 0.7rem; height: 0.7rem; background-image: url(../img/ok.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%;}
 .cart-add-list li.selected i { display: block;}
 .cart-add-list dl { margin: 0 0 0 0.5rem; padding: 0.5rem 0; color: #666;}
 .cart-add-list li.selected dl { margin-left: 1.8rem}
