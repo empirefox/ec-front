@@ -11,6 +11,7 @@ import 'angular2-jwt'; // user
 import 'jwt-simple'; // order
 import 'lodash'; // product, util
 import './app/swiper';
+require('!!style!css!swiper/dist/css/swiper.css');
 
 // import 'cross-storage'; // xstorage
 

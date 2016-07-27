@@ -23,9 +23,8 @@ export class HomeTopBarComponent {
   ngOnInit() {
     this.carouselService.getItems().subscribe(items => this.items = items);
     this.swipeOptions = {
-      slidesPerView: 4,
-      loop: false,
-      spaceBetween: 5
+      slidesPerView: 1,
+      loop: true,
     };
   }
 
