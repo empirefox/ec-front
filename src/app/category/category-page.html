@@ -3,7 +3,7 @@
     <a (click)="onGotoSearch()"> <i class="icon"></i> <span class="search-input">请输入关键字</span></a>
   </div>
 </header-bar>
-<div class="main-layout">
+<div class="main-layout" *ngIf="tree">
   <div class="categroy-cnt">
     <ul class="categroy-list">
       <li *ngFor="let item of tree" class="category-item selected">
@@ -12,8 +12,8 @@
     </ul>
   </div>
 
-  <div class="categroy-rgt">
-    <category-col *ngFor="let item of root"></category-col>
+  <div class="categroy-rgt" *ngIf="root">
+    <category-col [category]="item" *ngFor="let item of root.children"></category-col>
     <!-- <dl class="brands-recommend">
       <dd *ngFor="let product of products$|async">
         <a (click)="onGotoProduct(product)">

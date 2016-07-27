@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ICategory, CategoryService } from '../core';
 import { HeaderBarComponent } from '../header-bar';
+import { CategoryColComponent } from './category-col.component';
 
 @Component({
   template: require('./category-page.html'),
   styles: [require('./category-page.css')],
-  directives: [HeaderBarComponent],
+  directives: [HeaderBarComponent, CategoryColComponent],
 })
 export class CategoryPageComponent {
 

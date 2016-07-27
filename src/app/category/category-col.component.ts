@@ -6,7 +6,6 @@ import { ICategory } from '../core';
   selector: 'category-col',
   template: require('./category-col.html'),
   styles: [require('./category-col.css')],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryColComponent {
 
