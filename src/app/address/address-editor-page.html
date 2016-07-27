@@ -1,2 +1,2 @@
 <header1>编辑收货地址</header1>
-<address-editor (saved)="onSaved()" [addr]="addr"></address-editor>
+<address-editor *ngIf="addr" (saved)="onSaved()" [addr]="addr"></address-editor>
