@@ -11,11 +11,8 @@ export class NavMenuListComponent {
 
   constructor(private _router: Router) { }
 
-  onGotoHome() { this._router.navigate(['/home']); }
-
-  onGotoCategory() { this._router.navigate(['/category']); }
-
-  onGotoCart() { this._router.navigate(['/cart']); }
-
-  onGotoMenber() { this._router.navigate(['/member']); }
+  onGotoHome() { this._router.navigateByUrl('/home'); }
+  onGotoCategory() { this._router.navigateByUrl('/category'); }
+  onGotoCart() { this._router.navigateByUrl('/cart'); }
+  onGotoMenber() { this._router.navigateByUrl('/member'); }
 }

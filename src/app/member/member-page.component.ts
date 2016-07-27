@@ -47,9 +47,9 @@ export class MemberPageComponent {
     return (this.user && this.user.HeadImageURL) || this.defaultHeadImage;
   }
 
-  onGotoWishlist() { this.router.navigate(['/wishlist']); }
-  onGotoHistory() { this.router.navigate(['/history']); }
-  onGotoAddressManage() { this.router.navigate(['/addr']); }
-  onGotoAccount() { this.router.navigate(['/account']); }
+  onGotoWishlist() { this.router.navigateByUrl('/wishlist'); }
+  onGotoHistory() { this.router.navigateByUrl('/history'); }
+  onGotoAddressManage() { this.router.navigateByUrl('/addr'); }
+  onGotoAccount() { this.router.navigateByUrl('/account'); }
 
 }

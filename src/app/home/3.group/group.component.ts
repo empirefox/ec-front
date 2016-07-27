@@ -21,7 +21,7 @@ export class HomeGroupBuyComponent {
     this.groupBuyService.getItems().filter(gb => !!gb).subscribe(gb => this.items = gb.active.slice(0, 3));
   }
 
-  onGotoGroupBuy() { this.router.navigate(['/groupbuy']); }
+  onGotoGroupBuy() { this.router.navigateByUrl('/groupbuy'); }
 
   onGotoProduct(item: IGroupBuyItem) {
     this.router.navigate(['/product/1', item.Sku.ProductID]);

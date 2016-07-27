@@ -25,6 +25,6 @@ export class HomeRecommendComponent extends HomeSectionBaseComponent {
     });
   }
 
-  onGotoProducts() { this.router.navigate(['/product/list']); }
+  onGotoProducts() { this.router.navigateByUrl('/product/list'); }
 
 }

@@ -12,7 +12,7 @@ export class AccountPageComponent {
   constructor(private router: Router) { }
 
   onGotoSafe() {
-    this.router.navigate(['/safe']);
+    this.router.navigateByUrl('/safe');
   }
 
 }

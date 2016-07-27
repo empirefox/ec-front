@@ -29,6 +29,6 @@ export class HomeTopBarComponent {
     };
   }
 
-  onGotoSearch() { this.router.navigate(['/search']); }
+  onGotoSearch() { this.router.navigateByUrl('/search'); }
 
 }

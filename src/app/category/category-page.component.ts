@@ -28,7 +28,7 @@ export class CategoryPageComponent {
   }
 
   onGotoSearch() {
-    this.router.navigate(['/search']);
+    this.router.navigateByUrl('/search');
   }
 
 }

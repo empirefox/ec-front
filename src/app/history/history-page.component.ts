@@ -20,7 +20,7 @@ export class HistoryComponent {
     this.items = this.historyService.getItems();
   }
 
-  onGotoProducts() { this.router.navigate(['/product/list']); }
+  onGotoProducts() { this.router.navigateByUrl('/product/list'); }
 
   onGotoProduct(item: HistoryItem) { this.router.navigate(['/product/1', item.ProductID]); }
 

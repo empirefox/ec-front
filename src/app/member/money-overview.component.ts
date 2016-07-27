@@ -30,10 +30,10 @@ export class MoneyOverviewComponent {
     if (this.sub) { this.sub.unsubscribe(); }
   }
 
-  onGotoWallet() { this.router.navigate(['/wallet']); }
+  onGotoWallet() { this.router.navigateByUrl('/wallet'); }
 
-  onViewBalance() { this.router.navigate(['/wallet/ballance']); }
+  onViewBalance() { this.router.navigateByUrl('/wallet/ballance'); }
 
-  onViewPoints() { this.router.navigate(['/wallet/points']); }
+  onViewPoints() { this.router.navigateByUrl('/wallet/points'); }
 
 }
