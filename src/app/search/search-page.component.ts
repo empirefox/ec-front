@@ -28,9 +28,11 @@ export class SearchPageComponent {
 
   onGoBack() { this._location.back(); }
 
-  onSearch() {
+  onSearch(item: string) {
+    this.keyword = item || this.keyword;
     this.searchService.addHistory(this.keyword);
-    this.router.navigate(['/product/list'], { queryParams: { q: this.keyword } });
+    let params = this.keyword ? { queryParams: { q: this.keyword } } : null;
+    this.router.navigate(['/product/list'], params);
   }
 
   onClearHistory() {
