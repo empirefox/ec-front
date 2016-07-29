@@ -33,7 +33,7 @@ export class DeliveryPageComponent {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.sub) { this.sub.unsubscribe(); }
   }
 
 }

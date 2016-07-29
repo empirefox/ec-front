@@ -1,57 +1,28 @@
-<div class="main-layout">
+<div class="main-layout" *ngIf="evals">
   <div class="tag-nav-tab">
     <ul>
-      <li class="tab-item tab-hover">
+      <li class="tab-item" [class.tab-hover]="current===evals.items" (click)="current=evals.items">
         <p class="tab-assess-title">全部评价</p>
-        <p class="tab-assess-num">24829 </p>
+        <p class="tab-assess-num">{{evals.items.length}}</p>
       </li>
-      <li class="tab-item">
+      <li class="tab-item" [class.tab-hover]="current===evals.good" (click)="current=evals.good">
         <p class="tab-assess-title">好评</p>
-        <p class="tab-assess-num">578 </p>
+        <p class="tab-assess-num">{{evals.good.length}}</p>
       </li>
-      <li class="tab-item">
+      <li class="tab-item" [class.tab-hover]="current===evals.common" (click)="current=evals.common">
         <p class="tab-assess-title">中评</p>
-        <p class="tab-assess-num">456 </p>
+        <p class="tab-assess-num">{{evals.common.length}}</p>
       </li>
-      <li class="tab-item">
+      <li class="tab-item" [class.tab-hover]="current===evals.bad" (click)="current=evals.bad">
         <p class="tab-assess-title">差评</p>
-        <p class="tab-assess-num">566 </p>
-      </li>
-      <li class="tab-item">
-        <p class="tab-assess-title">有图</p>
-        <p class="tab-assess-num">5667 </p>
+        <p class="tab-assess-num">{{evals.bad.length}}</p>
       </li>
     </ul>
   </div>
-  <div class="product-eval-list">
+  <div class="product-eval-list" *ngIf="current">
     <ul>
-      <li>
-        <div class="eval-user">
-          <div class="user-avatar"><img src="http://127.0.0.1:9999/img/boy.gif"></div>
-          <span class="user-name">yuda</span>
-          <time>2016-05-02</time>
-        </div>
-        <div class="goods-raty"><i class="star5"></i></div>
-        <dl class="eval-con">
-          <dt>还好</dt>
-          <dd class="goods_geval">
-            <a href="javascript:void(0);"><img src="http://127.0.0.1:9999/img/pjpic1.jpg"></a>
-          </dd>
-        </dl>
-      </li>
-      <li>
-        <div class="eval-user">
-          <div class="user-avatar"><img src="http://127.0.0.1:9999/img/boy.gif"></div>
-          <span class="user-name">yuda</span>
-          <time>2016-05-02</time>
-        </div>
-        <div class="goods-raty"><i class="star5"></i></div>
-        <dl class="eval-con">
-          <dt>还好</dt>
-          <dd class="goods_geval">
-            <a href="javascript:void(0);"><img src="http://127.0.0.1:9999/img/pjpic1.jpg"></a>
-          </dd>
-        </dl>
+      <li *ngFor="let item of current">
+        <product-eval-item [item]="item"></product-eval-item>
       </li>
     </ul>
   </div>

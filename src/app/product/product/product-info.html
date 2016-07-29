@@ -55,29 +55,27 @@
       </div>
     </div>
 
-    <div class="goods-detail-comment">
+    <div class="goods-detail-comment" *ngIf="evals">
       <div class="title">
-        <a href="javascript:void(0);">
-          评价(172)<span class="rate">
-          好评度<em>97%</em></span>
+        <a (click)="gotoEval()">
+          评价({{evals.items.length}})<span class="rate">
+          好评度<em>{{evals.praiseOf|percent}}</em></span>
           <div class="item-more"></div>
         </a>
       </div>
       <div class="comment-info">
         <ul>
-          <li>
-            <div class="eval-user">
-              <div class="goods-raty"><i class="star5"></i></div>
-              <time>苏**</time>
-            </div>
-            <dl class="eval-con">
-              <dt>不错，不愧是索尼电视，很爱很爱很爱！谢谢京东！</dt>
-              <dd class="goods_geval">
-                <a href="javascript:void(0);"><img src="http://127.0.0.1:9999/img/pjpic1.jpg"></a>
-              </dd>
-            </dl>
+          <li *ngFor="let item of evalItems">
+            <product-info-eval-item [item]="item"></product-info-eval-item>
           </li>
         </ul>
+      </div>
+      <div class="goods-detail-store">
+        <div class="store-rate">
+          <span class="equal">描述相符<em>{{evals.fit|number:'1.0-1'}}</em><i>平</i></span>
+          <span class="equal">服务态度<em>{{evals.serve|number:'1.0-1'}}</em><i>平</i></span>
+          <span class="equal">发货速度<em>{{evals.deliver|number:'1.0-1'}}</em><i>平</i></span>
+        </div>
       </div>
     </div>
     <div class="goods-detail-bottom">
