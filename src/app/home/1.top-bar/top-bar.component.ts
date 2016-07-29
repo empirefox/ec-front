@@ -24,8 +24,20 @@ export class HomeTopBarComponent {
     this.carouselService.getItems().subscribe(items => this.items = items);
     this.swipeOptions = {
       slidesPerView: 1,
-      loop: true,
+      loop: false,
+      autoplay: 3000,
+      autoplayDisableOnInteraction: false,
     };
+  }
+
+  ngOnDestroy() {
+    if (this.swiperContainer) {
+      this.swiperContainer.swiper.stopAutoplay();
+    }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => this.swiperContainer.swiper.startAutoplay());
   }
 
   onGotoSearch() { this.router.navigateByUrl('/search'); }
