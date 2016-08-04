@@ -9,7 +9,6 @@ import {
   ISku, ProductAttrGroup, IProduct, IProductResponse, IProductsResponse,
   IProductQuery
 } from './product';
-import { IProductEval, IEvalItem } from './eval';
 
 export const O2M_PRODUCT_SKUS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Product', manyInOne: 'Skus', oneIdInMany: 'ProductID' };
 export const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'Group', manyInOne: 'Attrs', oneIdInMany: 'GroupID' };
@@ -121,40 +120,6 @@ export class ProductService {
 
       return product;
     });
-  }
-
-  getEvals(product: IProduct): Observable<IProductEval> {
-    if (!product.evals) {
-      product.evals = this.http.get(URLS.ProductEvals(product.ID)).map(res => {
-        let items = (<IEvalItem[]>res.json()).sort((b, a) => a.EvalAt - b.EvalAt);
-
-        let good: IEvalItem[] = [];
-        let common: IEvalItem[] = [];
-        let bad: IEvalItem[] = [];
-        let group = [good, bad, common, common, good, good]; // 5 star
-
-        let fits: number = 0;
-        let serves: number = 0;
-        let delivers: number = 0;
-        items.forEach(item => {
-          item.RateStar = item.RateStar || 4;
-          group[item.RateStar].push(item);
-          fits += item.RateFit || 4.9;
-          serves += item.RateServe || 4.9;
-          delivers += item.RateDeliver || 4.9;
-        });
-
-        let total = items.length;
-        return {
-          items, good, common, bad,
-          praiseOf: total ? (good.length / total) : 0,
-          fit: fits ? fits / total : 0,
-          serve: fits ? serves / total : 0,
-          deliver: fits ? delivers / total : 0,
-        };
-      }).publishReplay(1).refCount();
-    }
-    return product.evals;
   }
 
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {

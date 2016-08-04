@@ -1,19 +1,16 @@
 import { Component, Optional, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, ProductService, LocalProductService, IProductEval, IEvalItem } from '../../core';
-import { ProductEvalItemComponent } from './product-eval-item.component';
+import { IProduct, ProductService, LocalProductService } from '../../core';
 
 @Component({
   selector: 'product-eval',
   template: require('./product-eval.html'),
   styles: [require('./product-eval.css')],
-  directives: [ProductEvalItemComponent],
 })
 export class ProductEvalComponent {
 
-  evals: IProductEval;
-  current: IEvalItem[];
+  product: IProduct;
 
   private subProduct: Subscription;
 
@@ -23,12 +20,10 @@ export class ProductEvalComponent {
     private localProductService: LocalProductService) { }
 
   ngOnInit() {
-    this.subProduct = this.localProductService.src$.flatMap(product => this.productService.getEvals(product)).
-      subscribe(evals => {
-        this.evals = evals;
-        this.current = evals.items;
-        this.cd.markForCheck();
-      });
+    this.subProduct = this.localProductService.src$.subscribe(product => {
+      this.product = product;
+      this.cd.markForCheck();
+    });
   }
 
   ngOnDestroy() {

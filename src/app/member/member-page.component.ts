@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
 import {
   IUserInfo,
   UserService,
@@ -38,10 +37,10 @@ export class MemberPageComponent {
 
   ngOnInit() {
     this.historyLen = this.historyService.getItems().length;
-    this.profileService.getProfile().take(1).subscribe(profile => this.defaultHeadImage = profile.DefaultHeadImage);
-    this.userService.getUserinfo().take(1).subscribe(user => this.user = user);
-    this.wishlistService.getItems().take(1).subscribe(items => this.wishlistLen = items.length);
-    this.moneyService.getWallet().take(1).subscribe(wallet => this.wallet);
+    this.profileService.getProfile().subscribe(profile => this.defaultHeadImage = profile.DefaultHeadImage);
+    this.userService.getUserinfo().subscribe(user => this.user = user);
+    this.wishlistService.getItems().subscribe(items => this.wishlistLen = items.length);
+    this.moneyService.getWallet().subscribe(wallet => this.wallet);
   }
 
   get headImage(): string {

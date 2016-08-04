@@ -1,32 +1,18 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import {
-  IProduct,
-  ISku,
-  ProductService,
-  LocalProductService,
-  LocalSkuService,
-  IAddress,
-  AddressService,
-  IEvalItem,
-  IProductEval
-} from '../../core';
-import { ProductInfoEvalItemComponent } from './product-info-eval-item.component';
+import { IProduct, ISku, LocalProductService, LocalSkuService, IAddress, AddressService } from '../../core';
 
 @Component({
   selector: 'product-info',
   template: require('./product-info.html'),
   styles: [require('./product-info.css')],
-  directives: [ProductInfoEvalItemComponent],
 })
 export class ProductInfoComponent {
 
   product: IProduct;
   sku: ISku;
   addr: IAddress;
-  evals: IProductEval;
-  evalItems: IEvalItem[];
 
   private subAddr: Subscription;
   private subProduct: Subscription;
@@ -37,7 +23,6 @@ export class ProductInfoComponent {
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
-    private productService: ProductService,
     private localProductService: LocalProductService,
     private localSkuService: LocalSkuService) { }
 
@@ -50,10 +35,6 @@ export class ProductInfoComponent {
   ngOnInit() {
     this.subProduct = this.localProductService.src$.subscribe(product => {
       this.product = product;
-      this.productService.getEvals(product).take(1).subscribe(evals => {
-        this.evals = evals;
-        this.evalItems = evals.items.slice(0, 5);
-      });
       this.cd.markForCheck();
     });
     this.subAddr = this.addressService.getDefault().subscribe(addr => this.addr = addr);
@@ -71,9 +52,5 @@ export class ProductInfoComponent {
   gotoAddressSelector() { this.router.navigate(['../../addrs'], { relativeTo: this.route }); }
 
   gotoProductDetail() { this.router.navigate(['../detail'], { relativeTo: this.route }); }
-
-  gotoEval() { this.router.navigate(['../eval'], { relativeTo: this.route }); };
-
-  gotoKefu() { }
 
 }

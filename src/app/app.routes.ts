@@ -135,10 +135,6 @@ export const routes: RouterConfig = [
         component: 'OrderListComponent'
       },
       {
-        path: 'eval/:id',
-        component: 'OrderEvalComponent',
-      },
-      {
         path: 'detail/:id',
         component: 'OrderDetailPageComponent',
       },
@@ -288,7 +284,6 @@ export const asyncRoutes: AsyncRoutes = {
   'OrderListComponent': require('es6-promise-loader!./order'),
   'OrderDetailPageComponent': require('es6-promise-loader!./order'),
   'DeliveryPageComponent': require('es6-promise-loader!./order'),
-  'OrderEvalComponent': require('es6-promise-loader!./order'),
 
   'SafeComponent': require('es6-promise-loader!./safe'),
   'PasswordComponent': require('es6-promise-loader!./safe'),

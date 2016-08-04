@@ -10,7 +10,7 @@ const views = {
   checkout: 1,
   receipted: 1,
   returned: 1,
-};
+}
 
 @Component({
   styles: [require('./order-list.css')],
@@ -68,6 +68,7 @@ export class OrderListComponent implements OnInit {
   }
 
   private setOrders(orders: IOrder[]) {
+    console.log('set orders:', orders.length)
     this.all = orders;
     this.checkout = orders.filter(order => order.State === 'checkout');
     this.receipted = orders.filter(order => order.State === 'receipted');

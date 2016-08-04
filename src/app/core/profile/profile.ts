@@ -39,10 +39,6 @@ export let URLS = {
   ORDER_WX_PAY: `${API_URL}/order_wx_pay`, // post
   Order: (id: number) => `${API_URL}/order/${id}`, // get
 
-  OrderEval: (orderItemId: number) => `${API_URL}/eval/${orderItemId}`, // post
-  OrderEvals: (orderId: number) => `${API_URL}/evals/${orderId}`, // post
-  ProductEvals: (productId: number) => `${API_URL}/evals/${productId}`, // get
-
   CART_LIST: `${API_URL}/cart`, // get
   CART_ADD: `${API_URL}/cart_item`, // post
   CART_SET_QUANTITY: `${API_URL}/cart_item_quantity`, // post

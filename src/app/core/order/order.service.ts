@@ -5,7 +5,7 @@ import { encode } from 'jwt-simple';
 import { URLS } from '../profile';
 import { nonce } from '../util';
 import { IPayArgs, MoneyService, ITradeState } from '../money';
-import { ISku, IEvalItem } from '../product';
+import { ISku } from '../product';
 import { IOrder, IOrderItem, ICheckoutPayload, IOrderPayClaims } from './order';
 import { ICheckout, ICheckoutItem, toPayload } from './checkout';
 
@@ -37,14 +37,6 @@ export class OrderService {
 
   getOrder(id: number): Observable<IOrder> {
     return this.http.get(URLS.Order(id)).map(res => <IOrder>res.json());
-  }
-
-  evalItem(itemId: number, itemEval: IEvalItem): Observable<IOrderItem> {
-    return this.http.post(URLS.OrderEval(itemId), JSON.stringify(itemEval)).map(res => <IOrderItem>res.json());
-  }
-
-  evalItems(orderId: number, itemEval: IEvalItem): Observable<IOrder> {
-    return this.http.post(URLS.OrderEval(orderId), JSON.stringify(itemEval)).map(res => <IOrder>res.json());
   }
 
   pay(orderId: number, amount: number, key: string): Observable<IOrder> {
