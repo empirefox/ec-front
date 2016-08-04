@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { LocalOrderService, LocalOrdersService } from './local.service';
+import { IOrder } from './order';
 import { OrderService } from './order.service';
 
 @Injectable()
@@ -24,6 +25,10 @@ export class OrderContextService {
       });
     }
     return this.getFromItemsOrRequest(id);
+  }
+
+  publish(order: IOrder) {
+    return this.itemService.publish(order);
   }
 
   private getFromItemsOrRequest(id: number) {

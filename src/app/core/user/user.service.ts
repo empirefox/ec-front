@@ -20,7 +20,7 @@ export class UserService {
 
   getUserinfo() {
     if (!this._userinfo) {
-      this._userinfo = this.authHttp.get(URLS.USER_INFO).map(res => <IUserInfo>res.json());
+      this._userinfo = this.authHttp.get(URLS.USER_INFO).map(res => <IUserInfo>res.json()).publishReplay(1).refCount();
     }
     return this._userinfo;
   }

@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs/Observable';
+import { IProductEval } from './eval';
+
 export interface IProductQuery {
   q?: string; // query
   sp?: string; // scope
@@ -88,6 +91,11 @@ export class ProductAttrGroup {
   }
 }
 
+export interface IProductRawInfo {
+  skus: ISku[];
+  attrs: IProductAttrId[];
+}
+
 export interface IProduct {
   ID: number;
   Name: string;
@@ -100,7 +108,9 @@ export interface IProduct {
   TimeSale: number;
   TimeShelf: number;
   CategoryID: number;
+
   Skus?: ISku[];
+  evals?: Observable<IProductEval>;
 
   // {
   //   Groups: [{
@@ -134,11 +144,6 @@ export interface IProduct {
   Groups?: ProductAttrGroup[];
   proccessed?: boolean;
   raw?: IProductRawInfo;
-}
-
-export interface IProductRawInfo {
-  skus: ISku[];
-  attrs: IProductAttrId[];
 }
 
 export interface IProductResponse {

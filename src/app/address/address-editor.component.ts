@@ -46,7 +46,7 @@ export class AddressEditorComponent {
     this.form = this.fb.group({
       Contact: [this.addr.Contact || '', Validators.compose([Validators.required, Validators.pattern(`[\u4E00-\u9FA5]{2,4}`)])],
       Phone: [this.addr.Phone || '', Validators.compose([Validators.required, Validators.pattern(`1[3|4|5|7|8]\\d{9}`)])],
-      House: [this.addr.House || '', Validators.compose([Validators.required, Validators.pattern(`\\S{4,}`)])],
+      House: [this.addr.House || '', Validators.compose([Validators.required, Validators.minLength(4)])],
       province: this.provinceControl,
       city: this.cityControl,
       district: this.districtControl,

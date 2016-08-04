@@ -1,4 +1,4 @@
-﻿/*多分辨率设定rem设定*/
+/*多分辨率设定rem设定*/
 html { font-size : 20px; }
 @media only screen and (min-width: 360px) {
     html { font-size: 22px !important; }
@@ -171,8 +171,7 @@ footer.bottom .footer-wrap { background-color: transparent; border: none; }
 .value-box span.minus { background-color: #FAFAFA; border-radius: 0.2rem 0 0 0.2rem;}
 .value-box span.add a { background-image: url(../img/value_add.png); background-repeat: no-repeat; background-repeat: 50% 50%; background-size: 100%;}
 .value-box span.minus a { background-image: url(../img/value_minus.png); background-repeat: no-repeat; background-repeat: 50% 50%; background-size: 100%;}
-.value-box .buy-num { width: 1.2rem; height: 1.2rem; padding: 0; font-size: 0.6rem; font-weight: lighter; line-height: 1.3rem; text-align: center; border: solid #CCC; border-width: 0 0.05rem; border-radius: 0;}
-
+.value-box span .buy-num { width: 1.2rem; height: 1.2rem; padding: 0; font-size: 0.6rem; font-weight: lighter; line-height: 1.3rem; text-align: center; border: solid #CCC; border-width: 0 0.05rem; border-radius: 0;}
 /*默认输入表单*/
 .inp-con { display: block; clear: both;}
 .inp-con ul { background: #FFF;}
@@ -297,4 +296,3 @@ footer.bottom .footer-wrap { background-color: transparent; border: none; }
 #scroller { position: absolute; z-index: 1; -webkit-tap-highlight-color: rgba(0,0,0,0); width: 100%; -webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0); -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none; -o-text-size-adjust: none; text-size-adjust: none; }
 #scroller ul { list-style: none; padding: 0; margin: 0; width: 100%; text-align: left; }
 #scroller li { padding: 0 10px; height: 40px; line-height: 40px; border-bottom: 1px solid #ccc; border-top: 1px solid #fff; background-color: #fafafa; font-size: 14px; }
-

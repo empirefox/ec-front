@@ -26,7 +26,7 @@ import { one2manyRelate } from '../util';
 let posAttr = 0;
 let createAttr = (ID: number, Value: string, GroupID: number): IProductAttr => {
   return { ID, Value, GroupID, Pos: posAttr++ };
-}
+};
 const attrs: IProductAttr[] = [
   createAttr(1, 'X', 1),
   createAttr(2, 'XL', 1),
@@ -37,7 +37,7 @@ const attrs: IProductAttr[] = [
 let posGroup = 0;
 let createGroup = (ID: number, Name: string): IProductAttrGroup => {
   return { ID, Name, Pos: posGroup++ };
-}
+};
 const groups: IProductAttrGroup[] = [
   createGroup(1, 'color'),
   createGroup(2, 'size'),
@@ -46,7 +46,7 @@ const groups: IProductAttrGroup[] = [
 
 let createAttrId = (ID: number, SkuID: number, AttrID: number): IProductAttrId => {
   return { ID, SkuID, AttrID };
-}
+};
 const attrIds: IProductAttrId[] = [
   createAttrId(1, 1, 1),
   createAttrId(2, 1, 3),
@@ -67,7 +67,7 @@ let createProduct = (
   TimeShelf: number,
   CategoryID: number): IProduct => {
   return { ID, Name, Img, Intro, Detail, Saled, ForSale: !!status, TimeCreated, TimeSale, TimeShelf, CategoryID };
-}
+};
 const products: IProduct[] = [
   createProduct(
     1,
@@ -80,7 +80,7 @@ const products: IProduct[] = [
 
 let createSku = (ID: number, ProductID: number, Stock: number, Img: string, SalePrice: number, MarketPrice: number, Freight: number): ISku => {
   return { ID, ProductID, Stock, Img, SalePrice, MarketPrice, Freight };
-}
+};
 const skus: ISku[] = [
   createSku(1, 1, 99, `tj2.jpg`, 12000, 13000, 20000),
 ];
@@ -115,13 +115,13 @@ describe('ProductService', () => {
     expect(Object.keys(parsedAttrs.Attrs).length).toBe(3);
 
     service._attrs = Observable.of(parsedAttrs);
-    let product = products[0];
-    product.raw = productRaw;
-    one2manyRelate([product], skus, O2M_PRODUCT_SKUS_OPTION);
-    expect(product.Skus.length).toBe(1);
+    let p = products[0];
+    p.raw = productRaw;
+    one2manyRelate([p], skus, O2M_PRODUCT_SKUS_OPTION);
+    expect(p.Skus.length).toBe(1);
     expect(skus[0].Product).toBeDefined();
 
-    (<ProductService>service).proccessSkus(product).subscribe(product => {
+    (<ProductService>service).proccessSkus(p).subscribe(product => {
       expect(product.proccessed).toBe(true);
       expect(product.Groups.length).toBe(2);
       expect(product.Groups[0].Name).toBe('size');

@@ -17,7 +17,7 @@ export class OrderDetailComponent implements OnInit {
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.profileService.getProfile().subscribe(profile => this.phone = `tel:${profile.Phone}`);
+    this.profileService.getProfile().take(1).subscribe(profile => this.phone = `tel:${profile.Phone}`);
   }
 
   get payMethod() {

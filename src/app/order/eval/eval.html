@@ -1,42 +1,45 @@
 <header1>我要评价</header1>
-<div class="main-layout">
-  <div>
-    <div class="order-item-con">
-      <div class="goods-block">
-        <a href="order_detail.html">
-          <div class="goods-pic">
-            <img src="http://127.0.0.1:9999/img/t1.png">
-          </div>
-          <dl class="goods-info">
-            <dt class="goods-name">秋冬季时尚单鞋 糖果色亮面浅口细跟职业女鞋 漆皮镜面尖头高跟鞋 草绿色 34</dt>
-            <dd class="goods-type"></dd>
-          </dl>
-        </a>
+<div class="main-layout" *ngIf="order">
+  <div class="order-item-con" [style.opacity]="current===item?1:0.8" (click)="setCurrent(item)" *ngFor="let item of order.Items">
+    <div class="goods-block">
+      <div class="goods-pic">
+        <img [src]="item.Img">
       </div>
+      <dl class="goods-info">
+        <dt class="goods-name">{{item.Name}}</dt>
+        <dd class="goods-type">{{item.Attrs}}</dd>
+      </dl>
     </div>
-    <form>
-      <div class="oc-text">
-        <span class="c-f-textarea"><textarea maxlength="500" placeholder="请输入评论内容"></textarea></span>
-      </div>
-      <section class="oc-star">
-        <div class="oc-star-f">
-          <div class="oc-star-fc">
-            <label> 描述相符： </label>
-            <rating [(ngModel)]="starsCount"></rating>
-          </div>
-          <div class="oc-star-fc">
-            <label> 服务态度： </label>
-            <rating [(ngModel)]="starsCount"></rating>
-          </div>
-          <div class="oc-star-fc">
-            <label> 物流服务： </label>
-            <rating [(ngModel)]="starsCount"></rating>
-          </div>
-        </div>
-        <div class="oc-star-b">
-          <button type="submit" class="btn btn-red">发表评价</button>
-        </div>
-      </section>
-    </form>
   </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="current">
+    <div class="oc-text">
+      <textarea placeholder="请输入评论内容(2-500)" formControlName="Eval"></textarea>
+    </div>
+    <section class="oc-star">
+      <div class="oc-star-f">
+        <div class="oc-star-fc">
+          <label>总体评价：</label>
+          <rating formControlName="RateStar"></rating>{{starTxt}}
+        </div>
+        <div class="oc-star-fc">
+          <label>描述相符：</label>
+          <rating formControlName="RateFit"></rating>
+        </div>
+        <div class="oc-star-fc">
+          <label>服务态度：</label>
+          <rating formControlName="RateServe"></rating>
+        </div>
+        <div class="oc-star-fc">
+          <label>物流服务：</label>
+          <rating formControlName="RateDeliver"></rating>
+        </div>
+      </div>
+      <label>批量评价
+        <input type="checkbox" [formControl]="allControl">
+      </label>
+      <div class="oc-star-b">
+        <button type="submit" class="btn btn-red" [disabled]="!form.valid">发表评价</button>
+      </div>
+    </section>
+  </form>
 </div>
