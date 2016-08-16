@@ -257,6 +257,25 @@ export const routes: RouterConfig = [
     ]
   },
 
+  {
+    path: 'cheyou',
+    canActivate: [WebpackAsyncRoute],
+    children: [
+      {
+        path: '', // content
+        component: 'CheyouHubComponent'
+      },
+      {
+        path: 'detail',
+        component: 'CheyouDetailComponent',
+      },
+      {
+        path: 'buy',
+        component: 'CheyouBuyComponent',
+      },
+    ]
+  },
+
   { path: PATHS.WX_OAUTH2_LOCAL_PATH, component: 'WeixinOauthPageComponent' },
   { path: 'wishlist', component: 'WishlistPageComponent' },
   { path: '**', component: NoContent },
@@ -307,6 +326,10 @@ export const asyncRoutes: AsyncRoutes = {
 
   'WeixinOauthPageComponent': require('es6-promise-loader!./weixin-oauth'),
   'WishlistPageComponent': require('es6-promise-loader!./wishlist'),
+
+  'CheyouHubComponent': require('es6-promise-loader!./cheyou'),
+  'CheyouDetailComponent': require('es6-promise-loader!./cheyou'),
+  'CheyouBuyComponent': require('es6-promise-loader!./cheyou'),
 };
 
 

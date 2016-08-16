@@ -19,7 +19,7 @@ export class WalletComponent extends AbstractWalletComponent {
     super(route, router, moneyService, localWalletService);
   }
 
-  onViewBalance() { this.router.navigate(['../ballance'], { relativeTo: this.route }); }
+  onViewBalance() { this.router.navigate(['../balance'], { relativeTo: this.route }); }
 
   onViewPoints() { this.router.navigate(['../points'], { relativeTo: this.route }); }
 }
