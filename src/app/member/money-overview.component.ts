@@ -32,7 +32,7 @@ export class MoneyOverviewComponent {
 
   onGotoWallet() { this.router.navigateByUrl('/wallet'); }
 
-  onViewBalance() { this.router.navigateByUrl('/wallet/ballance'); }
+  onViewBalance() { this.router.navigateByUrl('/wallet/balance'); }
 
   onViewPoints() { this.router.navigateByUrl('/wallet/points'); }
 

@@ -41,7 +41,7 @@ export class MemberPageComponent {
     this.profileService.getProfile().take(1).subscribe(profile => this.defaultHeadImage = profile.DefaultHeadImage);
     this.userService.getUserinfo().take(1).subscribe(user => this.user = user);
     this.wishlistService.getItems().take(1).subscribe(items => this.wishlistLen = items.length);
-    this.moneyService.getWallet().take(1).subscribe(wallet => this.wallet);
+    this.moneyService.getWallet().take(1).subscribe(wallet => this.wallet = wallet);
   }
 
   get headImage(): string {
@@ -52,5 +52,6 @@ export class MemberPageComponent {
   onGotoHistory() { this.router.navigateByUrl('/history'); }
   onGotoAddressManage() { this.router.navigateByUrl('/addr'); }
   onGotoAccount() { this.router.navigateByUrl('/account'); }
+  gotoCheyou() { this.router.navigateByUrl('/cheyou'); }
 
 }
