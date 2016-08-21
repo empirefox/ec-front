@@ -29,24 +29,6 @@
     <div class="member-center" style="margin-bottom:50px;">
       <order-list-menu></order-list-menu>
       <money-overview *ngIf="wallet" [wallet]="wallet"></money-overview>
-      <dl class="mt5 money">
-        <dt><a href="member_asset.html">
-          <h3><i class="mc-02"></i>我的钱包</h3>
-          <h5>查看全部财产<i class="arrow-r"></i></h5>
-        </a></dt>
-        <dd>
-          <ul>
-            <li><a href="predepositlog_list.html（余额里面有账户余额和余额明细）">0.00
-              <p>余额</p></a></li>
-            <li><a href="voucher_list.html（优惠券）">0
-              <p>优惠券</p></a></li>
-            <li><a href="pointslog_list.html（积分明细）">100
-              <p>积分</p></a></li>
-            <li><a href="fanli_list.html（返利明细）">100
-              <p>返利</p></a></li>
-          </ul>
-        </dd>
-      </dl>
       <dl class="mt5">
         <dt><a (click)="gotoQr()">
           <h3><i class="mc-05"></i>邀请返利</h3>
