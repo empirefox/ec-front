@@ -118,12 +118,13 @@
 .member-center dt h3 i.mc-02 { background-image: url(../img/mc_02.png);}
 .member-center dt h3 i.mc-03 { background-image: url(../img/mc_03.png);}
 .member-center dt h3 i.mc-04 { background-image: url(../img/mc_04.png);}
+.member-center dt h3 i.mc-05{background-image: url(../img/mc_05.png);}
 .member-center dt h5 { font-size: 0.6rem; color: #999; float: right; line-height: 1rem;}
 .member-center dt h5 i { display: inline-block; vertical-align: middle; width: 0.7rem; height: 0.7rem; background-image: url(../img/arrow_right_b.png); background-repeat: no-repeat ; background-position: 50% 50%; background-size: 75%; opacity: 0.4;}
 .member-center dd { display: block; padding: 0.2rem 0;}
 .member-center dd ul { font-size: 0;}
 .member-center dd ul li { vertical-align: top; display: inline-block; text-align: center; width: 25%; padding: 0.5rem 0 0.2rem 0;}
-.member-center .money dd ul li{width:33.3%}
+.member-center .money dd ul li{width:25%}img
 .member-center dd ul li a { display: block; position: relative;}
 .member-center dd ul li a em { background-color: #ED5564; width: 0.3rem; height: 0.3rem; border-radius: 100%; position: absolute; top: -0.15rem; right: 0.85rem;}
 .member-center dd ul li i { vertical-align: top; display: inline-block; width: 1rem; height: 1rem; margin: 0 auto 0.1rem auto; opacity: 0.5;}

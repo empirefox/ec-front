@@ -171,7 +171,7 @@ footer.bottom .footer-wrap { background-color: transparent; border: none; }
 .value-box span.minus { background-color: #FAFAFA; border-radius: 0.2rem 0 0 0.2rem;}
 .value-box span.add a { background-image: url(../img/value_add.png); background-repeat: no-repeat; background-repeat: 50% 50%; background-size: 100%;}
 .value-box span.minus a { background-image: url(../img/value_minus.png); background-repeat: no-repeat; background-repeat: 50% 50%; background-size: 100%;}
-.value-box span .buy-num { width: 1.2rem; height: 1.2rem; padding: 0; font-size: 0.6rem; font-weight: lighter; line-height: 1.3rem; text-align: center; border: solid #CCC; border-width: 0 0.05rem; border-radius: 0;}
+.value-box .buy-num { width: 1.2rem; height: 1.2rem; padding: 0; font-size: 0.6rem; font-weight: lighter; line-height: 1.3rem; text-align: center; border: solid #CCC; border-width: 0 0.05rem; border-radius: 0;}
 /*默认输入表单*/
 .inp-con { display: block; clear: both;}
 .inp-con ul { background: #FFF;}
@@ -179,6 +179,7 @@ footer.bottom .footer-wrap { background-color: transparent; border: none; }
 .inp-con ul li:nth-last-child(1) { border-bottom: none 0; }
 .inp-con ul li.upload-item { height: 2.55rem}
 .inp-con ul li h4 { position: absolute; z-index: 1; top: 0; left: 0; width: 3rem; font-size: 0.6rem; line-height: 1.95rem; color: #444; text-align: right;}
+
 .inp-con ul li .input-box { display: block; height: 1.95rem; margin: 0 0.5rem 0 3.5rem; position: relative; z-index: 1;}
 .inp-con ul li.upload-item .input-box { height: 1.95rem; padding: 0.3rem 0;}
 .inp-con ul li .input-box .inp { width: 100%; min-height: 0.95rem; padding: 0.5rem 0; border: 0 none; font-size: 0.6rem; line-height: 0.95rem; color: #000;}
