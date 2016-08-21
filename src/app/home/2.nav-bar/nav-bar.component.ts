@@ -10,8 +10,9 @@ export class HomeNavBarComponent {
 
   constructor(private router: Router) { }
 
-  onGotoHot() { this.router.navigate(['./product/list'], { queryParams: { sp: 'hot' } }); }
-  onGotoRecommend() { this.router.navigate(['./product/list'], { queryParams: { sp: 'recommend' } }); }
-  onGotoNew() { this.router.navigate(['./product/list'], { queryParams: { sp: 'new' } }); }
+  gotoHot() { this.router.navigate(['./product/list'], { queryParams: { sp: 'hot' } }); }
+  gotoRecommend() { this.router.navigate(['./product/list'], { queryParams: { sp: 'recommend' } }); }
+  gotoNew() { this.router.navigate(['./product/list'], { queryParams: { sp: 'new' } }); }
+  gotoCheyou() { this.router.navigateByUrl('/cheyou'); }
 
 }

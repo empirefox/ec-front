@@ -124,6 +124,7 @@ export const routes: RouterConfig = [
   { path: 'groupbuy', component: 'GroupBuyPageComponent' },
   { path: 'history', component: HistoryComponent },
   { path: 'member', component: 'MemberPageComponent' },
+  { path: 'member-qr', component: 'MemberQrComponent' },
 
   {
     path: 'order',
@@ -302,6 +303,7 @@ export const asyncRoutes: AsyncRoutes = {
 
   'GroupBuyPageComponent': require('es6-promise-loader!./group-buy'),
   'MemberPageComponent': require('es6-promise-loader!./member'),
+  'MemberQrComponent': require('es6-promise-loader!./member-qr'),
 
   'OrderRouteComponent': require('es6-promise-loader!./order'),
   'OrderListComponent': require('es6-promise-loader!./order'),
