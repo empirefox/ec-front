@@ -36,4 +36,6 @@ export class MoneyOverviewComponent {
 
   onViewPoints() { this.router.navigateByUrl('/wallet/points'); }
 
+  gotoReward() { this.router.navigateByUrl('/wallet/reward'); }
+
 }

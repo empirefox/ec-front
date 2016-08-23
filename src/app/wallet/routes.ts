@@ -8,6 +8,7 @@ import {
   BalanceWithdrawComponent
 } from './balance';
 import { PointsComponent } from './points';
+import { RewardComponent } from './reward';
 
 export const routes = {
   path: 'wallet',
@@ -38,6 +39,10 @@ export const routes = {
     {
       path: 'points',
       component: PointsComponent
-    }
+    },
+    {
+      path: 'reward',
+      component: RewardComponent
+    },
   ]
 };

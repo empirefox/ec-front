@@ -254,7 +254,11 @@ export const routes: RouterConfig = [
       {
         path: 'points',
         component: 'PointsComponent'
-      }
+      },
+      {
+        path: 'reward',
+        component: 'RewardComponent'
+      },
     ]
   },
 
@@ -273,6 +277,14 @@ export const routes: RouterConfig = [
       {
         path: 'buy',
         component: 'CheyouBuyComponent',
+      },
+      {
+        path: 'list',
+        component: 'CheyouListComponent',
+      },
+      {
+        path: 'my',
+        component: 'CheyouMyComponent',
       },
     ]
   },
@@ -325,6 +337,7 @@ export const asyncRoutes: AsyncRoutes = {
   'BalanceRefillComponent': require('es6-promise-loader!./wallet'),
   'BalanceWithdrawComponent': require('es6-promise-loader!./wallet'),
   'PointsComponent': require('es6-promise-loader!./wallet'),
+  'RewardComponent': require('es6-promise-loader!./wallet'),
 
   'WeixinOauthPageComponent': require('es6-promise-loader!./weixin-oauth'),
   'WishlistPageComponent': require('es6-promise-loader!./wishlist'),
@@ -332,6 +345,8 @@ export const asyncRoutes: AsyncRoutes = {
   'CheyouHubComponent': require('es6-promise-loader!./cheyou'),
   'CheyouDetailComponent': require('es6-promise-loader!./cheyou'),
   'CheyouBuyComponent': require('es6-promise-loader!./cheyou'),
+  'CheyouListComponent': require('es6-promise-loader!./cheyou'),
+  'CheyouMyComponent': require('es6-promise-loader!./cheyou'),
 };
 
 
