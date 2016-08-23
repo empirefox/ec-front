@@ -351,3 +351,23 @@ i.cc-09 { background-image: url(../img/mcc_09_b.png); background-size: cover;}
     margin-left: 0;
 }
 #order_pj .btn-red{display: block;color:#fff!important;width: 90%; margin: 5%; font-size: 0.8rem; line-height: 2.6rem; height: 2.6rem; text-align: center; color: #FFF; background: #ED5564; border-radius: 0.2rem; }
+/*二维码*/
+h2.pic{text-align: center; padding-top:1.5rem;}
+h2.pic img{width:80%;}
+/*我的粉丝*/
+.tuijlist{font-size: 0.7rem;}
+.tuijlist .user-item{border-bottom:1px solid #ddd; margin: 0 0.3rem; padding: 0.5rem 0.3rem; display: flex;}
+.tuijlist a{color: #333; display: block;}
+.tuijlist .user-pic{width:2.4rem; height:2.4rem; display: inline-block; margin-right:0.5rem;}
+.tuijlist .user-pic img{width: 100%;height:100%; border-radius: 100%}
+.tuijlist .wz{line-height: 1.3rem;}
+.tuijlist .wz span{color: #888;}
+.account .asset-info{margin: 1.5rem auto 2rem;}
+.account .asset-info h3{font-size: 0.7rem;}
+.account .asset-info h2{font-size: 1.4rem;}
+.text-center{text-align: center;}
+.account .form-btn .btn-red{ background-color: #ED5564; color: #fff!important; border: none;}
+.account .form-btn .btn-block{width: 90%; margin: 0 auto; height: 1.8rem; line-height: 1.8rem; font-size: 0.8rem;}
+/*银行卡*/
+.form-tips{font-size: 0.64rem; padding-left: 1rem; line-height: 1.2rem; padding-top:0.6rem; color: #808080;}
+.tips-border-t{border-top:1px solid #eee; padding-bottom: 0.6rem;}
