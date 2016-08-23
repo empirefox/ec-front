@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Header1Component } from '../header-bar';
+import { HeaderBarComponent } from '../header-bar';
 
 @Component({
-  template: require('./cheyou-detail.html'),
-  styles: [require('./cheyou-detail.css')],
-  directives: [Header1Component],
+  template: require('./cheyou-my.html'),
+  styles: [require('./cheyou-my.css')],
+  directives: [HeaderBarComponent],
 })
-export class CheyouDetailComponent {
+export class CheyouMyComponent {
 
   constructor(private router: Router) { }
 
-  gotoBuy() { this.router.navigateByUrl('/cheyou/buy'); }
   gotoDetail() { this.router.navigateByUrl('/cheyou/detail'); }
   gotoCheyouList() { this.router.navigateByUrl('/cheyou/list'); }
   gotoMy() { this.router.navigateByUrl('/cheyou/my'); }
