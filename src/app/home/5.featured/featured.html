@@ -1,10 +1,11 @@
+<div class="home-block">
 <div class="zhuti">
   <div class="tit-bar">购特色</div>
 
   <ul class="item-pic-lr w50h">
     <li *ngFor="let item of first">
       <a (click)="onGotoProduct(item)">
-        <div class="wz big">
+        <div class="wz">
           <h2>{{item.Name}}</h2>
           <h3>低至{{prices[item.ID]|money}}元</h3>
         </div>
@@ -24,4 +25,5 @@
       </a>
     </li>
   </ul>
+</div>
 </div>

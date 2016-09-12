@@ -21,5 +21,7 @@
   align-items: center;
 }
 .slide-img {
-  width: 100%;
+  height: 100%;
 }
+
+.swiper-slide,.swiper-slide>div,.adv_list.myslides{height:8rem;}
