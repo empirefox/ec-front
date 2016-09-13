@@ -81,6 +81,8 @@
 .item-pic-12 li h3{font-size: 0.40rem; color: #c0c0c0}
 
 .ad-slide{margin-top: 8px;margin-bottom: 8px;padding-left: 8px; padding-right: 8px;}
+.ad-slide{height: 5rem;}
+.ad-slide img{height: 100%}
 .ad-slide img{width: 100%;}
 
 .swipe { position: relative; overflow: hidden; visibility: hidden; }
@@ -108,7 +110,7 @@
 .home-nav li p { display: block; font-size: 0.6rem; line-height: 0.9rem; color: #555;}
 /*首页推荐商品*/
 .home-layout { display: block; max-width: 640px; margin: 0 auto 2.2rem; overflow: hidden; position: relative; z-index: 0; }
-.home-block { width: 100%; clear: both;}
+.home-block { width: 100%; clear: both; overflow: hidden;}
 .home-block .tit-bar { border-left: solid 0.15rem #ED5564; padding-top:8px; height: 0.8rem; margin: 0.5rem 0 0.5rem 0.3rem; padding-left: 0.3rem;  font-size: 0.7rem; line-height: 0.8rem;}
 .home-block .content { display: block;}
 .item-goods{margin-top:8px;}
@@ -123,4 +125,6 @@
 .item-goods ul.goods-list li dt.goods-name { display: block; font-size: 0.65rem; line-height: 0.8rem; color: #000; height: 1.6rem; overflow: hidden;}
 .item-goods ul.goods-list li dd.goods-price { display: block; font-size: 0.55rem; line-height: 1rem; height: 1rem; margin-top: 0.4rem; padding-top: 0.4rem; color: #DB4453; border-top: solid 0.05rem #EEE;}
 .item-goods ul.goods-list li dd.goods-price em { font-size: 0.7rem; font-weight: 600;}
+
+main{margin-bottom: 2.2rem;}
 

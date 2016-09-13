@@ -6,7 +6,7 @@
 <div class="main-layout" *ngIf="tree">
   <div class="categroy-cnt">
     <ul class="categroy-list">
-      <li *ngFor="let item of tree" class="category-item selected">
+      <li *ngFor="let item of tree" class="category-item">
         <a (click)="root=item" class="category-item-a">{{item.Name}}</a>
       </li>
     </ul>

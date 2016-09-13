@@ -9,7 +9,7 @@
     </div>
   </header>
   <div class="adv_list myslides">
-    <ks-swiper-container [options]="swipeOptions">
+    <ks-swiper-container [options]="swipeOptions" style="height: 8rem;">
       <ks-swiper-slide *ngFor="let s of items">
         <a [href]="s.Link">
           <img class="slide-img" [src]="s.Img">
