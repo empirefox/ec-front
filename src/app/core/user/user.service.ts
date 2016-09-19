@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
 import { PATHS, URLS, ProfileService, WxExchangeCode, WxCodeResult } from '../profile';
 import { Jwt } from '../jwt';
-import { nonce } from '../util';
+import { nonce, removeURLParameter } from '../util';
 import { IUserInfo, IUserTokenResponse, IBindPhoneData } from './user';
 
 @Injectable()
@@ -13,12 +14,13 @@ export class UserService {
   _userinfo: Observable<IUserInfo>;
 
   constructor(
+    private router: Router,
     private http: Http,
     private authHttp: AuthHttp,
     private profileService: ProfileService,
     private jwt: Jwt) { }
 
-  getUserinfo() {
+  getUserinfo(): Observable<IUserInfo> {
     if (!this._userinfo) {
       this._userinfo = this.authHttp.get(URLS.USER_INFO).map(res => <IUserInfo>res.json()).publishReplay(1).refCount();
     }
@@ -57,13 +59,16 @@ export class UserService {
   mustUpdateToken(): Observable<string> {
     return this.updateToken().catch((err, caught) => {
       return this.profileService.getProfile().flatMap(profile => {
+        // clean url
+        let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
+        let query = (+user1) ? `?user1=${user1}` : '';
         let state = nonce(8);
         this.jwt.setOauth2State(state);
-        this.jwt.setCurrentUrl();
+        this.jwt.setCurrentUrl(u);
         // return this.jwt.setOauth2State(state).flatMap(_ => this.jwt.setCurrentUrl()).flatMap(_ => {
         let codeEndpoint = 'https://open.weixin.qq.com/connect/oauth2/authorize';
         let {WxAppId: appId, WxScope: scope} = profile;
-        let redirectUri = encodeURIComponent(`${location.protocol}//${location.host}${PATHS.WX_OAUTH2_LOCAL_PATH}`);
+        let redirectUri = encodeURIComponent(`${location.protocol}//${location.host}${PATHS.WX_OAUTH2_LOCAL_PATH}${query}`);
         location.href = `${codeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
         return caught;
         // });
@@ -81,6 +86,10 @@ export class UserService {
       obs.error(new Error('Refresh token expired'));
     });
     // });
+  }
+
+  isLoggedIn(): boolean {
+    return this.jwt.notExpired();
   }
 
 }

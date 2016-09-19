@@ -9,6 +9,7 @@ export interface IProfile {
   WxScope: string;
   WxLoginPath: string;
   DefaultHeadImage: string;
+  QrLogoUrl: string; // TODO add to backend
 }
 
 export const PATHS = {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 import { JWT_CONFIG } from '../profile';
+import { removeURLParameter } from '../util';
 // import { XstorageService } from '../xstorage';
 
 @Injectable()
@@ -29,7 +30,7 @@ export class Jwt extends JwtHelper {
     return state;
   }
 
-  setCurrentUrl() { localStorage.setItem(JWT_CONFIG.currentUrlKey, this.router.url); }
+  setCurrentUrl(u: string) { localStorage.setItem(JWT_CONFIG.currentUrlKey, u); }
   getCurrentUrl() {
     let u = localStorage.getItem(JWT_CONFIG.currentUrlKey);
     localStorage.removeItem(JWT_CONFIG.currentUrlKey);

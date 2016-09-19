@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Header1Component } from '../header-bar';
+
+import { QrService } from '../core';
 
 @Component({
   template: require('./member-qr.html'),
@@ -8,6 +9,8 @@ import { Header1Component } from '../header-bar';
 })
 export class MemberQrComponent {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private qrService: QrService) { }
 
 }
