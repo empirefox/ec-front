@@ -1,0 +1,8 @@
+<header1>我的粉丝</header1>
+<div class="main-layout mb20" *ngIf="profile&&fans">
+  <div *ngFor="let fan of fans">
+    <span>{{fan.Nickname}}</span>
+    <img [src]="getFanImg(fan)" />
+    <span>{{fan.CreatedAt | ago}}</span>
+  </div>
+</div>

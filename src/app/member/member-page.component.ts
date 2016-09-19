@@ -49,5 +49,6 @@ export class MemberPageComponent {
   onGotoAddressManage() { this.router.navigateByUrl('/addr'); }
   onGotoAccount() { this.router.navigateByUrl('/account'); }
   gotoQr() { this.router.navigateByUrl('/member-qr'); }
+  gotoFans() { this.router.navigateByUrl('/fans'); }
 
 }

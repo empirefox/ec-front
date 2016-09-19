@@ -5,46 +5,12 @@ import { NoContent } from './no-content';
 import { AccountPageComponent } from './account';
 import { CartListPageComponent } from './cart';
 import { CategoryPageComponent } from './category';
+import { FansComponent } from './fans';
 import { GroupBuyPageComponent } from './group-buy';
 import { HistoryComponent } from './history';
 import { MemberPageComponent } from './member';
 import { MemberQrComponent } from './member-qr';
-import {
-  OrderRouteComponent,
-  OrderListComponent,
-  OrderEvalComponent,
-  OrderDetailPageComponent,
-  DeliveryPageComponent,
-} from './order';
-import {
-  ProductRouteComponent,
-  ProductsPageComponent,
-  ProductPageComponent,
-  ProductInfoComponent,
-  ProductDetailComponent,
-  ProductEvalComponent,
-  AddressSelectorPageComponent,
-  AddressCreatorPageComponent,
-} from './product';
-import {
-  SafeComponent,
-  PasswordComponent,
-  BindPhoneComponent,
-  PaykeyComponent,
-  PaykeyForgetComponent,
-  PaykeySetComponent,
-} from './safe';
 import { SearchPageComponent } from './search';
-import {
-  WalletRouteComponent,
-  WalletComponent,
-  BalanceComponent,
-  BalanceDepositComponent,
-  BalanceRefillComponent,
-  BalanceWithdrawComponent,
-  PointsComponent,
-  RewardComponent,
-} from './wallet';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
 import { PATHS } from './core';
@@ -57,6 +23,7 @@ export const ROUTES: Routes = [
   { path: 'cart', component: CartListPageComponent },
   { path: 'category', component: CategoryPageComponent },
 
+  { path: 'fans', component: FansComponent },
   { path: 'groupbuy', component: GroupBuyPageComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'member', component: MemberPageComponent },

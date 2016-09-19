@@ -16,9 +16,10 @@ export const PATHS = {
   WX_OAUTH2_LOCAL_PATH: `oauth/weixin`,
 };
 
-export let URLS = {
+export const URLS = {
   PROFILE: `${API_URL}/profile`, // get
 
+  FANS: `${API_URL}/myfans`, // get
   CAPTHCA: `${API_URL}/captcha`, // post
   CAROUSEL: `${API_URL}/carousel`, // get
 

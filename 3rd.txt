@@ -1,4 +1,4 @@
-npm i angular2-jwt angular2-swiper cross-storage list-to-tree-lite lodash
+npm i angular2-jwt angular2-swiper cross-storage jsqrgen list-to-tree-lite lodash timeago.js
 npm i @types/cross-storage @types/lodash
 
 //  promised-xhr angular2-moment ng2-bootstrap crypto-js jwt-simple @types/jwt-simple
