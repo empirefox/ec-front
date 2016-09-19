@@ -4,8 +4,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 import { Subscription }   from 'rxjs/Subscription';
 import { IOrder, IOrderItem, OrderContextService, OrderService } from '../../core';
-import { Header1Component } from '../../header-bar';
-import { RatingComponent } from '../../rating';
 
 // sync to product service
 const starTxt = ['', '差评', '中评', '中评', '好评', '好评'];
@@ -13,7 +11,6 @@ const starTxt = ['', '差评', '中评', '中评', '好评', '好评'];
 @Component({
   template: require('./eval.html'),
   styles: [require('./eval.css')],
-  directives: [Header1Component, RatingComponent],
   providers: [OrderContextService],
 })
 export class OrderEvalComponent implements OnInit {
@@ -70,12 +67,7 @@ export class OrderEvalComponent implements OnInit {
   setCurrent(item: IOrderItem) {
     if (this.current !== item) {
       this.current = item;
-      // TODO update after rc.5 released
-      (<FormControl>this.form.controls['Eval']).updateValue(item.Eval);
-      (<FormControl>this.form.controls['RateStar']).updateValue(item.RateStar);
-      (<FormControl>this.form.controls['RateFit']).updateValue(item.RateFit);
-      (<FormControl>this.form.controls['RateServe']).updateValue(item.RateServe);
-      (<FormControl>this.form.controls['RateDeliver']).updateValue(item.RateDeliver);
+      this.form.reset(item);
     }
   }
 

@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService, CartService, ICheckout, LocalCheckoutService, OrderService } from '../../core';
-import { AddressItemComponent } from '../../address';
-import { Header1Component } from '../../header-bar';
-import { CheckoutItemComponent } from './checkout-item.component';
 
 @Component({
   selector: 'checkout-content',
   template: require('./checkout-content.html'),
   styles: [require('./checkout-content.css')],
-  directives: [AddressItemComponent, Header1Component, CheckoutItemComponent],
 })
 export class CheckoutContentComponent {
 
@@ -18,6 +14,7 @@ export class CheckoutContentComponent {
   _total: number;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService,
     private orderService: OrderService,
@@ -46,7 +43,7 @@ export class CheckoutContentComponent {
 
   onCheckout() {
     this.orderService.checkout(this.checkout).subscribe(orderId => {
-      let src = this.router.routerState.snapshot.queryParams['src'];
+      let src = this.route.snapshot.queryParams['src'];
       if (src === 'cache') {
         this.orderService.clearCheckoutItemCache();
       } else {

@@ -11,14 +11,10 @@ import {
   ProfileService,
   HistoryService,
 } from '../core';
-import { Header1Component } from '../header-bar';
-import { OrderListMenuComponent } from './order-list-menu.component';
-import { MoneyOverviewComponent } from './money-overview.component';
 
 @Component({
   template: require('./member-page.html'),
   styles: [require('./member-page.css')],
-  directives: [Header1Component, OrderListMenuComponent, MoneyOverviewComponent],
 })
 export class MemberPageComponent {
 

@@ -11,7 +11,7 @@ export class CheckoutItemsResolver implements Resolve<ICheckoutItem[]> {
     private orderService: OrderService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (state.queryParams['src'] === 'cache') {
+    if (route.queryParams['src'] === 'cache') {
       let cache = this.orderService.getCheckoutItemCache();
       return Observable.of(cache ? [cache] : []);
     }
@@ -24,5 +24,5 @@ export class CheckoutItemsResolver implements Resolve<ICheckoutItem[]> {
 
 // an array of services to resolve routes with data
 export const APP_RESOLVER_PROVIDERS = [
-  CheckoutItemsResolver
+  CheckoutItemsResolver,
 ];

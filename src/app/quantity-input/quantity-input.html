@@ -1,9 +1,9 @@
 <div class="value-box">
-  <span class="minus">
-    <a (click)="onMinus()"></a>
+  <span class="minus" (click)="onMinus()">
+    <a></a>
   </span>
   <input #input type="number" [min]="min" [max]="max" [(ngModel)]="value" (blur)="onTouched(input)" class="buy-num buynum">
-  <span class="add">
-    <a (click)="onAdd()"></a>
+  <span class="add" (click)="onAdd()">
+    <a></a>
   </span>
 </div>

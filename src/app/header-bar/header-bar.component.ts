@@ -6,7 +6,6 @@ import { NavMenuComponent } from './nav-menu.component';
   selector: 'header-bar-inner',
   template: require('./header-bar.html'),
   styles: [require('./header-bar.css')],
-  directives: [NavMenuComponent],
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderBarInnerComponent {
@@ -22,7 +21,6 @@ export class HeaderBarInnerComponent {
 @Component({
   selector: 'header-bar',
   template: require('./header-bar.html'),
-  directives: [NavMenuComponent],
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderBarComponent extends HeaderBarInnerComponent {

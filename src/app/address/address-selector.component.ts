@@ -2,13 +2,11 @@ import { Component, ChangeDetectionStrategy, OnInit, EventEmitter, Output } from
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { IAddress, AddressService } from '../core';
-import { AddressItemComponent } from './address-item.component';
 
 @Component({
   selector: 'address-selector',
   template: require('./address-selector.html'),
   styles: [require('./address-selector.css')],
-  directives: [AddressItemComponent],
 })
 export class AddressSelectorComponent implements OnInit {
 

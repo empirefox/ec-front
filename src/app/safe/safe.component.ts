@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Header1Component } from '../header-bar';
 
 @Component({
   template: require('./safe.html'),
-  directives: [Header1Component],
 })
 export class SafeComponent {
 

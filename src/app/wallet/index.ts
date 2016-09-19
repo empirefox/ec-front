@@ -5,3 +5,4 @@ export * from './reward';
 export * from './wallet-route.component';
 
 export * from './routes';
+export * from './module';

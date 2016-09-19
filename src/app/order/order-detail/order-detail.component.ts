@@ -1,13 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IOrder, ProfileService } from '../../core';
-import { OrderActionsComponent } from '../order-actions';
-import { OrderDetailItemComponent } from './order-detail-item.component';
 
 @Component({
   selector: 'order-detail',
   template: require('./order-detail.html'),
   styles: [require('./order-detail.css')],
-  directives: [OrderActionsComponent, OrderDetailItemComponent],
 })
 export class OrderDetailComponent implements OnInit {
 

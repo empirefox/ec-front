@@ -12,13 +12,11 @@ import {
   IEvalItem,
   IProductEval
 } from '../../core';
-import { ProductInfoEvalItemComponent } from './product-info-eval-item.component';
 
 @Component({
   selector: 'product-info',
   template: require('./product-info.html'),
   styles: [require('./product-info.css')],
-  directives: [ProductInfoEvalItemComponent],
 })
 export class ProductInfoComponent {
 

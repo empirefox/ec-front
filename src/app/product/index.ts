@@ -5,3 +5,4 @@ export * from './address-creator';
 export * from './product-route.component';
 
 export * from './routes';
+export * from './module';

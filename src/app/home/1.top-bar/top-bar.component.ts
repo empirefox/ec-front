@@ -1,13 +1,12 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { KSSwiperContainer, KSSwiperSlide } from '../../swiper';
+import { KSSwiperContainer, KSSwiperSlide } from 'angular2-swiper';
 import { ICarouselItem, CarouselService } from '../../core';
 
 @Component({
   selector: 'home-top-bar',
   template: require('./top-bar.html'),
   styles: [require('./top-bar.css')],
-  directives: [KSSwiperContainer, KSSwiperSlide],
 })
 export class HomeTopBarComponent {
 

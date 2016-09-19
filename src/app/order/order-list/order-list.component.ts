@@ -1,9 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { Header1Component } from '../../header-bar';
 import { IOrder, OrderService, LocalOrderService, LocalOrdersService } from '../../core';
-import { OrderListItemComponent } from './order-list-item.component';
 
 const views = {
   all: 1,
@@ -15,7 +13,6 @@ const views = {
 @Component({
   styles: [require('./order-list.css')],
   template: require('./order-list.html'),
-  directives: [Header1Component, OrderListItemComponent],
 })
 export class OrderListComponent implements OnInit {
 
@@ -34,12 +31,13 @@ export class OrderListComponent implements OnInit {
 
   constructor(
     private cd: ChangeDetectorRef,
+    private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
     private localOrdersService: LocalOrdersService) { }
 
   ngOnInit() {
-    this.view = this.router.routerState.snapshot.queryParams['view'];
+    this.view = this.route.snapshot.queryParams['view'];
     this.sub = this.localOrdersService.src$.subscribe(orders => this.setOrders(orders));
     this.orderService.getOrders().take(1).subscribe(orders => this.localOrdersService.publish(orders));
   }

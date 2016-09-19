@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Header1Component } from '../header-bar';
 import { IGroupBuyItem, GroupBuy, GroupBuyService } from '../core';
-import { GroupBuyItemComponent } from './group-buy-item.component';
 
 @Component({
   template: require('./group-buy-page.html'),
   styles: [require('./group-buy-page.css')],
-  directives: [Header1Component, GroupBuyItemComponent],
 })
 export class GroupBuyPageComponent {
 

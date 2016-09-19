@@ -3,4 +3,5 @@
     <li *ngFor="let addr of items" [class.selected]="addr==selected" (click)="onSelect(addr)">
       <address-item [addr]="addr"></address-item>
     </li>
+  </ul>
 </div>

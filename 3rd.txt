@@ -1,8 +1,7 @@
-npm i list-to-tree-lite lodash jwt-simple angular2-jwt cross-storage angular2-swiper
+npm i angular2-jwt angular2-swiper cross-storage list-to-tree-lite lodash
+npm i @types/cross-storage @types/lodash
 
---global registry:dt/cross-storage
-
-//  promised-xhr angular2-moment ng2-bootstrap crypto-js
+//  promised-xhr angular2-moment ng2-bootstrap crypto-js jwt-simple @types/jwt-simple
 // registry:dt/crypto-js
 
 // no tsconfig.json see https://github.com/TypeStrong/atom-typescript/issues/833

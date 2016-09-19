@@ -1,12 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { IGroupBuyItem, GroupBuyService, APP_CORE_PIPES } from '../../core';
+import { IGroupBuyItem, GroupBuyService } from '../../core';
 
 @Component({
   selector: 'home-group-buy',
   template: require('./group.html'),
   styles: [require('./group.css')],
-  pipes: [...APP_CORE_PIPES],
 })
 export class HomeGroupBuyComponent {
 

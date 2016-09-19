@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IAddress, IProduct, LocalProductService } from '../../core';
 import { Header1Component } from '../../header-bar';
-import { AddressSelectorComponent } from '../../address';
 
 @Component({
   template: require('./address-selector-page.html'),
   styles: [require('./address-selector-page.css')],
-  directives: [Header1Component, AddressSelectorComponent],
 })
 export class AddressSelectorPageComponent {
 

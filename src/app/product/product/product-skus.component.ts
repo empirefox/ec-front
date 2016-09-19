@@ -2,14 +2,11 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit
 import { Router } from '@angular/router';
 import { values } from 'lodash';
 import { OrderService, IGroupBuyItem, GroupBuyService, ISku, ProductAttr, IProduct, ProductService } from '../../core';
-import { QuantityInputComponent } from '../../quantity-input';
-import { ProductAttrGroupComponent } from './product-attr-group.component';
 
 @Component({
   selector: 'product-skus',
   template: require('./product-skus.html'),
   styles: [require('./product-skus.css')],
-  directives: [QuantityInputComponent, ProductAttrGroupComponent],
 })
 export class ProductSkusComponent implements OnInit {
 

@@ -6,3 +6,4 @@ export * from './address-editor-page.component';
 export * from './address-manage-page.component';
 
 export * from './routes';
+export * from './module';

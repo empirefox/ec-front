@@ -3,14 +3,12 @@ import { Router } from '@angular/router';
 import { IAddress } from '../../core/address';
 import { ICheckout, LocalCheckoutService } from '../../core';
 import { Header1Component } from '../../header-bar';
-import { AddressEditorComponent } from '../../address';
 
 @Component({
   template: require('./address-creator-page.html'),
   styles: [require('./address-creator-page.css')],
-  directives: [Header1Component, AddressEditorComponent],
 })
-export class AddressCreatorPageComponent {
+export class CheckoutAddrCreatorComponent {
 
   checkout: ICheckout;
 
