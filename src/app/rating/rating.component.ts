@@ -1,54 +1,49 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, forwardRef, Provider } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, forwardRef, NgModule } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'rating',
+  selector: "rating",
   template: `
-<span (mouseleave)='resetHovered()'
-      class='rating'
-      [class.disabled]='disabled'
-      [class.readonly]='readonly'
-      tabindex='0'
-      role='slider'
-      aria-valuemin='0'
-      [attr.aria-valuemax]='ratingRange.length'
-      [attr.aria-valuenow]='model'>
-    <span *ngFor='let item of ratingRange; let index = index'>
-        <i (mouseenter)='setHovered(item)'
-           (mousemove)='changeHovered($event)'
-           (click)='rate(item)'
-           [attr.data-icon]='fullIcon'
-           class='{{ iconClass }} half{{ calculateWidth(item) }}'
-           [title]='titles[index] || item'>{{ emptyIcon }}</i>
+<span (mouseleave)="resetHovered()"
+      class="rating"
+      [class.disabled]="disabled"
+      [class.readonly]="readonly"
+      tabindex="0"
+      role="slider"
+      aria-valuemin="0"
+      [attr.aria-valuemax]="ratingRange.length"
+      [attr.aria-valuenow]="model">
+    <span *ngFor="let item of ratingRange; let index = index">
+        <i (mouseenter)="setHovered(item)"
+           (mousemove)="changeHovered($event)"
+           (click)="rate(item)"
+           [attr.data-icon]="fullIcon"
+           class="{{ iconClass }} half{{ calculateWidth(item) }}"
+           [title]="titles[index] || item">{{ emptyIcon }}</i>
     </span>
 </span>
 `,
   providers: [
-    new Provider(NG_VALUE_ACCESSOR, {
-      useExisting: forwardRef(() => RatingComponent),
-      multi: true
-    }),
-    new Provider(NG_VALIDATORS, {
-      useExisting: forwardRef(() => RatingComponent),
-      multi: true
-    })
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => Rating), multi: true },
+    { provide: NG_VALIDATORS, useExisting: forwardRef(() => Rating), multi: true },
   ],
-  styles: [require('./rating.css')]
+  styleUrls: ['./rating.css'],
 })
-export class RatingComponent implements OnInit, ControlValueAccessor, Validator {
+export class Rating implements OnInit, ControlValueAccessor, Validator {
 
   // -------------------------------------------------------------------------
   // Inputs
   // -------------------------------------------------------------------------
 
   @Input()
-  iconClass = 'star-icon';
+  iconClass = "star-icon";
 
   @Input()
-  fullIcon = '★';
+  fullIcon = "★";
 
   @Input()
-  emptyIcon = '☆';
+  emptyIcon = "☆";
 
   @Input()
   readonly: boolean;
@@ -152,7 +147,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor, Validator 
   // Host Bindings
   // -------------------------------------------------------------------------
 
-  @HostListener('keydown', ['$event'])
+  @HostListener("keydown", ["$event"])
   onKeydown(event: KeyboardEvent): void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1 || this.hovered)
       return;
@@ -187,7 +182,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor, Validator 
   changeHovered(event: MouseEvent): void {
     if (!this.float) return;
     const target = event.target as HTMLElement;
-    const relativeX = event.pageX - target.offsetLeft - 5;
+    const relativeX = event.pageX - target.offsetLeft;
     const percent = Math.round((relativeX * 100 / target.offsetWidth) / 10) * 10;
     this.hoveredPercent = percent > 50 ? 100 : 50;
   }
@@ -222,5 +217,20 @@ export class RatingComponent implements OnInit, ControlValueAccessor, Validator 
     }
     return foo;
   }
+
+}
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    Rating,
+  ],
+  exports: [
+    Rating,
+  ],
+})
+export class RatingModule {
 
 }

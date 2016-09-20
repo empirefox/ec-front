@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeaderBarComponent } from '../header-bar';
 
 @Component({
   template: require('./cheyou-my.html'),
   styles: [require('./cheyou-my.css')],
-  directives: [HeaderBarComponent],
 })
 export class CheyouMyComponent {
 

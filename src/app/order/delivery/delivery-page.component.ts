@@ -1,14 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription }   from 'rxjs/Subscription';
-import { Header1Component } from '../../header-bar';
 import { IDelivery, IDeliveryDay, DeliveryService, OrderService, OrderContextService, IOrder } from '../../core';
-import { DeliveryDayComponent } from './delivery-day.component';
 import { kuaidi100map } from './kuaidi100';
 
 @Component({
   template: require('./delivery-page.html'),
   styles: [require('./delivery-page.css')],
-  directives: [Header1Component, DeliveryDayComponent],
   providers: [OrderContextService],
 })
 export class DeliveryPageComponent {

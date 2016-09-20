@@ -3,13 +3,10 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { CartService, ICartItem } from '../core';
-import { Header1Component } from '../header-bar';
-import { CartItemComponent } from './cart-item.component';
 
 @Component({
   template: require('./cart-list-page.html'),
   styles: [require('./cart-list-page.css')],
-  directives: [Header1Component, CartItemComponent],
 })
 export class CartListPageComponent {
   total: number = 0;

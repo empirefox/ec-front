@@ -3,10 +3,10 @@
   <div class="single-nav">
     <ul class="w50h">
       <li [class.selected]="current==active">
-        <a (click)="current=active" 今日团购({{active.length}})</a>
+        <a (click)="current=active">今日团购({{active.length}})</a>
       </li>
       <li [class.selected]="current==inactive">
-        <a (click)="current=inactive" 往期团购({{inactive.length}})</a>
+        <a (click)="current=inactive">往期团购({{inactive.length}})</a>
       </li>
     </ul>
   </div>

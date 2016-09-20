@@ -6,7 +6,6 @@ import { HeaderBarInnerComponent } from './header-bar.component';
   selector: 'header1-inner',
   template: require('./header1-inner.html'),
   styles: [require('./header1-inner.css')],
-  directives: [HeaderBarInnerComponent],
   encapsulation: ViewEncapsulation.None,
 })
 export class Header1InnerComponent {

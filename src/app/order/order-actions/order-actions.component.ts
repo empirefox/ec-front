@@ -1,13 +1,11 @@
 import { Component, Input, Optional, ChangeDetectionStrategy, Output, EventEmitter  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IOrder, OrderService, LocalOrderService } from '../../core';
-import { OrderPayComponent } from '../../pay';
 
 @Component({
   selector: 'order-actions',
   template: require('./order-actions.html'),
   styles: [require('./order-actions.css')],
-  directives: [OrderPayComponent],
 })
 export class OrderActionsComponent {
 
@@ -25,7 +23,7 @@ export class OrderActionsComponent {
     @Optional() private localOrderService: LocalOrderService) { }
 
   ngOnInit() {
-    let showPay = this.router.routerState.snapshot.queryParams['pay'] === 'show';
+    let showPay = this.route.snapshot.queryParams['pay'] === 'show';
     let showCurrentPay = (+this.route.snapshot.params['id']) === this.order.ID;
     this.showOrderPay = showPay && showCurrentPay;
   }

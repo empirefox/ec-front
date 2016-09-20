@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ICaptcha, CaptchaService, UserService, IBindPhoneData, CountdownService } from '../core';
-import { Header1Component } from '../header-bar';
 
 @Component({
   template: require('./phone.html'),
   styles: [require('./phone.css')],
-  directives: [Header1Component],
 })
 export class BindPhoneComponent {
 

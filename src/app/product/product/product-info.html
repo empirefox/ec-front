@@ -36,7 +36,7 @@
         <a (click)="gotoAddressSelector()">
           <dl class="goods-detail-freight">
             <dt>
-              <address-short *ngIf="addr" [address]="addr"></address-short>
+              <address-short *ngIf="addr" [addr]="addr"></address-short>
               <template [ngIf]="sku">
                 <br>
                 <strong>{{sku.Stock?'现货':'缺货'}}</strong>

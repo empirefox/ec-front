@@ -1,13 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Header1Component } from '../../header-bar';
 import { AbstractWalletComponent } from '../abstract-wallet.component';
 import { MoneyService, LocalWalletService } from '../../core';
 
 @Component({
   template: require('./balance.html'),
   styles: [require('./balance.css')],
-  directives: [Header1Component],
 })
 export class BalanceComponent extends AbstractWalletComponent {
 

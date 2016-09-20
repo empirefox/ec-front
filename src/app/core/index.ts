@@ -6,6 +6,7 @@ import { CATEGORY_PROVIDERS } from './category';
 import { COUNTDOWN_PROVIDERS } from './countdown';
 // import { COUPON_PROVIDERS } from './coupon';
 import { DELIVERY_PROVIDERS } from './delivery';
+import { FANS_PROVIDERS } from './fans';
 import { GROUPBUY_PROVIDERS } from './groupbuy';
 import { HISTORY_PROVIDERS } from './history';
 import { JWT_PROVIDERS } from './jwt';
@@ -18,6 +19,7 @@ import { PROFILE_PROVIDERS } from './profile';
 import { SEARCH_PROVIDERS } from './search';
 import { USER_PROVIDERS } from './user';
 import { WISHLIST_PROVIDERS } from './wishlist';
+import { QR_PROVIDERS } from './qr';
 // import { XSTORAGE_PROVIDERS } from './xstorage';
 
 export * from './address';
@@ -28,6 +30,7 @@ export * from './category';
 export * from './countdown';
 // export * from './coupon';
 export * from './delivery';
+export * from './fans';
 export * from './groupbuy';
 export * from './history';
 export * from './jwt';
@@ -37,6 +40,7 @@ export * from './money';
 export * from './order';
 export * from './product';
 export * from './profile';
+export * from './qr';
 export * from './search';
 export * from './user';
 export * from './util';
@@ -53,6 +57,7 @@ export const APP_CORE_PROVIDERS = [
   ...COUNTDOWN_PROVIDERS,
   //  ...COUPON_PROVIDERS ,
   ...DELIVERY_PROVIDERS,
+  ...FANS_PROVIDERS,
   ...GROUPBUY_PROVIDERS,
   ...HISTORY_PROVIDERS,
   ...JWT_PROVIDERS,
@@ -62,6 +67,7 @@ export const APP_CORE_PROVIDERS = [
   ...ORDER_PROVIDERS,
   ...PRODUCT_PROVIDERS,
   ...PROFILE_PROVIDERS,
+  ...QR_PROVIDERS,
   ...SEARCH_PROVIDERS,
   ...USER_PROVIDERS,
   ...WISHLIST_PROVIDERS,

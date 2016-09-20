@@ -1,4 +1,6 @@
-import { RouterConfig } from '@angular/router';
+import { ModuleWithProviders }   from '@angular/core';
+import { Routes, RouterModule }  from '@angular/router';
+
 import { WalletRouteComponent } from './wallet-route.component';
 import { WalletComponent } from './wallet.component';
 import {
@@ -10,39 +12,43 @@ import {
 import { PointsComponent } from './points';
 import { RewardComponent } from './reward';
 
-export const routes = {
-  path: 'wallet',
-  component: WalletRouteComponent,
-  children: [
-    {
-      path: '', // wallet
-      component: WalletComponent
-    },
-    {
-      path: 'balance', // balance
-      component: BalanceComponent,
-      children: [
-        {
-          path: '', // deposit
-          component: BalanceDepositComponent
-        },
-        {
-          path: 'refill',
-          component: BalanceRefillComponent
-        },
-        {
-          path: 'withdraw',
-          component: BalanceWithdrawComponent
-        }
-      ]
-    },
-    {
-      path: 'points',
-      component: PointsComponent
-    },
-    {
-      path: 'reward',
-      component: RewardComponent
-    },
-  ]
-};
+export const routes :Routes= [
+  {
+    path: 'wallet',
+    component: WalletRouteComponent,
+    children: [
+      {
+        path: '', // wallet
+        component: WalletComponent
+      },
+      {
+        path: 'balance', // balance
+        component: BalanceComponent,
+        children: [
+          {
+            path: '', // deposit
+            component: BalanceDepositComponent
+          },
+          {
+            path: 'refill',
+            component: BalanceRefillComponent
+          },
+          {
+            path: 'withdraw',
+            component: BalanceWithdrawComponent
+          }
+        ]
+      },
+      {
+        path: 'points',
+        component: PointsComponent
+      },
+      {
+        path: 'reward',
+        component: RewardComponent
+      },
+    ]
+  },
+];
+
+export const walletRouting: ModuleWithProviders = RouterModule.forChild(routes);

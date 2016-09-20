@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { IAddress, AddressService } from '../core';
-import { Header1Component } from '../header-bar';
-import { AddressItemComponent } from './address-item.component';
 
 @Component({
   selector: 'address-manage-page',
   template: require('./address-manage-page.html'),
   styles: [require('./address-manage-page.css')],
-  directives: [Header1Component, AddressItemComponent],
 })
 export class AddressManagePageComponent implements OnInit {
 

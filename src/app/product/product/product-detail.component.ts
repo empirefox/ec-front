@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { DomSanitizationService, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription }   from 'rxjs/Subscription';
 import { IProduct, LocalProductService } from '../../core';
 
@@ -16,7 +16,7 @@ export class ProductDetailComponent {
 
   constructor(
     private cd: ChangeDetectorRef,
-    private sanitizer: DomSanitizationService,
+    private sanitizer: DomSanitizer,
     private localProductService: LocalProductService) { }
 
   ngOnInit() {

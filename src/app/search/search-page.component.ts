@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../core';
 
 @Component({
@@ -14,12 +14,13 @@ export class SearchPageComponent {
 
   constructor(
     private _location: Location,
+    private route: ActivatedRoute,
     private router: Router,
     private searchService: SearchService) { }
 
   ngOnInit() {
     this.refreshHistory();
-    this.keyword = this.router.routerState.snapshot.queryParams['q'];
+    this.keyword = this.route.snapshot.queryParams['q'];
   }
 
   refreshHistory() {

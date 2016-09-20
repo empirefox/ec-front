@@ -2,13 +2,11 @@ import { Component, Optional, ChangeDetectionStrategy, ChangeDetectorRef } from 
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 import { IProduct, ProductService, LocalProductService, IProductEval, IEvalItem } from '../../core';
-import { ProductEvalItemComponent } from './product-eval-item.component';
 
 @Component({
   selector: 'product-eval',
   template: require('./product-eval.html'),
   styles: [require('./product-eval.css')],
-  directives: [ProductEvalItemComponent],
 })
 export class ProductEvalComponent {
 

@@ -1,13 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { IOrder, LocalOrderService } from '../../core';
-import { OrderActionsComponent } from '../order-actions';
 
 @Component({
   selector: 'order-list-item',
   template: require('./order-list-item.html'),
   styles: [require('./order-list-item.css')],
-  directives: [OrderActionsComponent],
 })
 export class OrderListItemComponent {
 

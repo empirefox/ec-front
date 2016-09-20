@@ -9,7 +9,6 @@ import { CartService, ICartItem } from '../core';
   selector: 'cart-item',
   template: require('./cart-item.html'),
   styles: ['./cart-item.css'],
-  directives: [QuantityInputComponent],
 })
 export class CartItemComponent implements OnInit, OnDestroy {
 

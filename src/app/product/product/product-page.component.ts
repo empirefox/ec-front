@@ -17,17 +17,11 @@ import {
   ProductContextService,
   HistoryService,
 } from '../../core';
-import { HeaderBarComponent } from '../../header-bar';
-import { ProductSkusComponent } from './product-skus.component';
 
 @Component({
   selector: 'product-page',
   template: require('./product-page.html'),
   styles: [require('./product-page.css')],
-  directives: [
-    HeaderBarComponent,
-    ProductSkusComponent,
-  ],
   providers: [ProductContextService, LocalSkuService],
 })
 export class ProductPageComponent implements OnInit {
@@ -133,7 +127,7 @@ export class ProductPageComponent implements OnInit {
       this.skus = p.Skus;
       this.sku = this.skus[0];
       this.product = p;
-      let skuId = +this.router.routerState.snapshot.queryParams['SkuID'];
+      let skuId = +this.route.snapshot.queryParams['SkuID'];
       return this.groupBuyService.getItem(skuId).map(item => {
         if (item) {
           this.groupBuyItem = item;

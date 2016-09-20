@@ -5,3 +5,4 @@ export { CheyouListComponent } from './cheyou-list.component';
 export { CheyouMyComponent } from './cheyou-my.component';
 
 export * from './routes';
+export * from './module';
