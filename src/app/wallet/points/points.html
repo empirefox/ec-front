@@ -11,7 +11,7 @@
   </div>
   <ul class="log-list">
     <li *ngFor="let item of wallet.PointsList">
-      <dl><dt>{{item.Reason}}</dt></dl>
+      <dl><dt>{{item.Reason}}</dt><dd>{{item.Reason}}</dd></dl>
       <div class="money add">{{item.Amount}}</div>
       <time class="date">{{item.CreatedAt|date:'yyyy.MM.dd'}}</time>
     </li>
