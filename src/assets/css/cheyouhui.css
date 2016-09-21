@@ -1,0 +1,57 @@
+#cyh_myinfo .input-box input{display: block;height: 1rem;position: relative; z-index: 1;}
+#cyh_myinfo .input-box .inp {
+    width: 100%;
+    min-height: 0.95rem;
+    padding: 0.5rem;
+    border: 0 none;
+    font-size: 0.6rem;
+    line-height: 0.95rem;
+    color: #000;}
+.cheyouhui-bottom{position: fixed;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 2rem;
+    background-color: #F5F5F5;
+    border-top: solid 0.05rem #CCC;
+}
+.cheyouhui-bottom ul { font-size: 0;}
+.cheyouhui-bottom li { display: inline-block; width: 33%; height: 2rem; text-align: center; font-size: 0.7rem; line-height: 2rem; border-left: solid #CCC 0.05rem;}
+.cheyouhui-bottom li:nth-child(1) { border-left: 0;}
+.cheyouhui-bottom li a { display: block; color: #333;}
+.cheyouhui-info{padding:0.5rem; font-size: 0.7rem; line-height: 1.6rem;}
+.userlist{font-size: 0.7rem;}
+.userlist a{color: #333; display: block;}
+.userlist .user-pic{width:2rem; height:2rem; display: inline-block;}
+.userlist .user-pic img{width: 100%;height:100%;}
+.user-item{padding: 0.5rem; border-bottom: 1px solid #ddd}
+.user-top{padding:0.5rem; font-size:0.7rem; background: #fff; overflow: hidden}
+.user-top .pic{float: left; width: 3.6rem; height: 3.6rem;}
+.user-top .pic img{width: 100%; height: 100%}
+.user-info{margin-left:0.5rem; float: left}
+.user-info dd{margin-top:0.5rem; line-height: 1.5; color: #666}
+.user-info dd span{display: block;}
+.user-desc{margin-top:0.5rem; background: #fff; font-size: 0.7rem; padding: 0.5rem; position: relative;}
+.user-desc a{display: block;color:#333;}
+.user-desc .arrow-r{position:absolute; top:0.5rem; right: 0.5rem; width: 0.7rem;  height: 0.7rem;  background: url(../images/arrow_right_b.png) no-repeat 50% 50%;  background-size: 75%;  opacity: 0.4;}
+.btn-block{display: block!important; height: 3em; line-height: 3; margin: 0.5rem; font-size: 0.6rem; background: #FB6E52; border-color: red; color: #fff!important;}
+/*洗车券*/
+.cheyouhui-xcq .grid .goods-secrch-list .goods-item{padding-bottom: 0.6rem;}
+.cheyouhui-xcq .grid .goods-info{padding: 0 0.5rem!important;}
+.cheyouhui-xcq .grid .goods-name a h4{font-size: 0.7rem;}
+.xcq-list{position: relative;
+display: none;
+overflow: hidden;
+background-color: #FFF;}
+.goods-assist{text-align: center; margin-top:0.5rem;}
+.cheyouhui-xcq .grid .goods-assist .btn{background: orangered; border-color: red; color: #fff!important;}
+.default-list .desc{font-size: 0.6rem; color: #666; padding: 0.4rem;}
+
+/*车友汇详细信息*/
+.cyh_des{padding-bottom:  2.5rem}
+.cyh_des .pic{height:6rem;}
+.cyh_des .pic img{height: 100%; width: 100%}
+.myself{background: #FB6E52; color: #fff;}
+.myself a{color:#fff;}
