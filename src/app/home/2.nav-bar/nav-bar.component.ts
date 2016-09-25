@@ -11,7 +11,7 @@ export class HomeNavBarComponent {
   constructor(private router: Router) { }
 
   gotoHot() { this.router.navigate(['./product/list'], { queryParams: { sp: 'hot' } }); }
-  gotoRecommend() { this.router.navigate(['./product/list'], { queryParams: { sp: 'recommend' } }); }
+  gotoNews() { this.router.navigateByUrl('/news'); }
   gotoNew() { this.router.navigate(['./product/list'], { queryParams: { sp: 'new' } }); }
   gotoCheyou() { this.router.navigateByUrl('/cheyou'); }
 

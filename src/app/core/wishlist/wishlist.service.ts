@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { URLS } from '../profile';
 import { Observable } from 'rxjs/Observable';
+import keyBy from 'lodash/keyBy';
 import { IProduct } from '../product';
-import { IWishItem } from './wishlist';
+import { IWishItem, IWishListResponse, IWishlistSavePayload } from './wishlist';
 
 @Injectable()
 export class WishlistService {
 
   private _items: Observable<IWishItem[]> = null;
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   clearCache() {
     this._items = null;
@@ -18,17 +19,25 @@ export class WishlistService {
 
   getItems(): Observable<IWishItem[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.WISH_LIST).
-        map(res => (<IWishItem[]>res.json()).map(this.initItem).sort((b, a) => a.CreatedAt - b.CreatedAt)).
-        publishReplay(1).refCount();
+      this._items = this.http.get(URLS.WISH_LIST).map(res => this.parseResponse(res.json())).publishReplay(1).refCount();
     }
     return this._items;
   }
 
-  add(id: number): Observable<void> {
-    return this.http.post(URLS.WISH_LIST_ADD, JSON.stringify({ ProductID: id })).flatMap(res => {
+  add(product: IProduct, price: number): Observable<void> {
+    let {Name, Img, ID: ProductID} = product;
+    let payload: IWishlistSavePayload = { ProductID, Name, Img, Price: price };
+    return this.http.post(URLS.WISH_LIST_ADD, JSON.stringify(payload)).flatMap(res => {
       return this._items ? this._items.map(items => {
-        this._items = Observable.of([this.initItem(<IWishItem>res.json()), ...items]);
+        let item = this.initItem(res.json(), product);
+        let index = items.findIndex(i => i.ID === item.ID);
+        if (~index) {
+          items[index] = item;
+          items = [...items];
+        } else {
+          items = [item, ...items];
+        }
+        this._items = Observable.of(items);
       }) : Observable.of<void>(null);
     });
   }
@@ -44,13 +53,19 @@ export class WishlistService {
     });
   }
 
-  private initItem(item: IWishItem) {
-    let product = item.Product;
+  private parseResponse(res: IWishListResponse): IWishItem[] {
+    let {Items: items = [], Products: products = []} = res;
+    let productMap = keyBy(products, item => item.ID);
 
+    return items.map(item => this.initItem(item, productMap[item.ProductID])).sort((b, a) => a.CreatedAt - b.CreatedAt);
+  }
+
+  private initItem(item: IWishItem, product: IProduct): IWishItem {
+    item.product = product;
     item.invalid = !product;
     item.Img = product ? product.Img : item.Img;
     item.Name = product ? product.Name : item.Name;
-    item.Price = product ? (product.Skus && product.Skus[0] && product.Skus[0].SalePrice) : item.Price;
+    item.Price = product ? (product.skus && product.skus[0] && product.skus[0].SalePrice) : item.Price;
 
     // TODO add sku price/img
 

@@ -64,6 +64,6 @@ export class CartItemComponent implements OnInit, OnDestroy {
   }
 
   onViewProduct() {
-    this.router.navigate(['/product/1', this.item.Sku.ProductID]);
+    this.router.navigate(['/product/1', this.item.sku.ProductID]);
   }
 }

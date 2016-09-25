@@ -1,6 +1,5 @@
 import { IProduct } from '../product';
 
-// TODO sseparet product with item
 export interface IWishItem {
   ID: number;
   CreatedAt: number;
@@ -8,7 +7,19 @@ export interface IWishItem {
   Img: string;
   Price: number;
   ProductID: number;
-  Product?: IProduct;
 
+  product?: IProduct;
   invalid?: boolean;
+}
+
+export interface IWishListResponse {
+  Items: IWishItem[]; // can be null
+  Products: IProduct[]; // can be null
+}
+
+export interface IWishlistSavePayload {
+  ProductID: number;
+  Name: string;
+  Img: string;
+  Price: number;
 }

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
+import keyBy from 'lodash/keyBy';
 import { URLS } from '../profile';
 import { ISku } from '../product';
-import { ICartItem } from './cart-item';
+import { ICartItemContent, ICartItem, ICartResponse } from './cart-item';
 
 @Injectable()
 export class CartService {
 
   private _items: Observable<ICartItem[]> = null;
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   clearCache() {
     this._items = null;
@@ -19,17 +20,24 @@ export class CartService {
   getItems(): Observable<ICartItem[]> {
     if (!this._items) {
       this._items = this.http.get(URLS.CART_LIST).
-        map(res => (<ICartItem[]>res.json()).map(this.initItem).sort((b, a) => a.CreatedAt - b.CreatedAt)).
+        map(res => this.parseResponse(res.json()).map(this.initItem).sort((b, a) => a.CreatedAt - b.CreatedAt)).
         publishReplay(1).refCount();
     }
     return this._items;
   }
 
+// TODO POST /cart merge with saveQuantity
   add(sku: ISku, quantity: number): Observable<void> {
-    return this.http.post(URLS.CART_ADD, JSON.stringify({
-      SkuID: sku.ID,
+    let payload: ICartItemContent = {
+      Img: sku.Img || sku.Product.Img,
+      Name: sku.Product.Name,
+      Type: sku.Attrs.map(attr => attr.Value).join(' '),
+      Price: sku.SalePrice,
       Quantity: quantity,
-    })).flatMap(res => {
+      SkuID: sku.ID,
+    };
+    return this.http.post(URLS.CART_ADD, JSON.stringify(payload)).flatMap(res => {
+
       return this._items ? this._items.map(items => {
         this._items = Observable.of([this.initItem(<ICartItem>res.json()), ...items]);
       }) : Observable.of<void>(null);
@@ -56,14 +64,25 @@ export class CartService {
   }
 
   saveQuantity(item: ICartItem) {
-    return this.http.post(URLS.CART_SET_QUANTITY, {
-      CartItemID: item.ID,
-      Quantity: item.Quantity,
+    return this.http.post(URLS.CART_SET_QUANTITY, JSON.stringify(item));
+  }
+
+  private parseResponse(res: ICartResponse): ICartItem[] {
+    let {Items: items = [], Skus: skus = [], Products: products = []} = res;
+    let skuMap = keyBy(skus, item => item.ID);
+    let productMap = keyBy(products, item => item.ID);
+    items.forEach(item => {
+      let sku = skuMap[item.SkuID];
+      if (sku) {
+        sku.Product = productMap[sku.ProductID];
+        item.sku = sku;
+      }
     });
+    return items;
   }
 
   private initItem(item: ICartItem) {
-    let sku = item.Sku;
+    let sku = item.sku;
     let product = sku ? sku.Product : null;
 
     item.invalid = !product;

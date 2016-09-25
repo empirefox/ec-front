@@ -9,8 +9,8 @@ export class CheyouHubComponent {
 
   constructor(private router: Router) { }
 
-  gotoDetail() { this.router.navigateByUrl('/cheyou/detail'); }
-  gotoCheyouList() { this.router.navigateByUrl('/cheyou/list'); }
-  gotoMy() { this.router.navigateByUrl('/cheyou/my'); }
+  get isDetailActive() {
+    return this.router.isActive('cheyou/detail', false);
+  }
 
 }

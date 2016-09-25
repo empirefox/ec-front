@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { keyBy } from 'lodash';
+import keyBy from 'lodash/keyBy';
 import { IProduct } from '../product';
 import { HistoryItem } from './history';
 import { LocaldbService } from '../localdb';

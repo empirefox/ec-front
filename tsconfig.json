@@ -17,8 +17,10 @@
       "es6"
     ],
     "types": [
+      "countdown",
       "hammerjs",
       "jasmine",
+      "lodash",
       "node",
       "protractor",
       "selenium-webdriver",

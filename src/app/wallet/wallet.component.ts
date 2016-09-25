@@ -18,6 +18,6 @@ export class WalletComponent extends AbstractWalletComponent {
   }
 
   onViewBalance() { this.router.navigate(['../balance'], { relativeTo: this.route }); }
-
   onViewPoints() { this.router.navigate(['../points'], { relativeTo: this.route }); }
+  gotoReward() { this.router.navigate(['../reward'], { relativeTo: this.route }); }
 }

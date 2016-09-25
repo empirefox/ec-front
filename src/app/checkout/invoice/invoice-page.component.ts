@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IInvoice, ICheckout, LocalCheckoutService } from '../../core';
+import { Invoice, ICheckout, LocalCheckoutService } from '../../core';
 
 @Component({
   template: require('./invoice-page.html'),
@@ -18,7 +18,7 @@ export class InvoicePageComponent {
     this.localCheckoutService.src$.subscribe(checkout => this.checkout = checkout);
   }
 
-  onEdited(invoice: IInvoice) {
+  onEdited(invoice: Invoice) {
     this.checkout.Invoice = invoice;
     this.router.navigate(['/checkout']);
   }

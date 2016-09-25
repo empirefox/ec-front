@@ -76,12 +76,16 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
+  get snapshotPice() {
+    return (this.sku || this.product.Skus[0]).SalePrice;
+  }
+
   onGotoKefu() { }
 
   onGuanzhu() {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
-      (this.inWishlist ? this.wishlistService.delete(this.product.ID) : this.wishlistService.add(this.product.ID)).
+      (this.inWishlist ? this.wishlistService.delete(this.product.ID) : this.wishlistService.add(this.product, this.snapshotPice)).
         flatMap(_ => this.refreshWishlist()).subscribe(
         _ => this.canOpertaeWishlist = true,
         _ => this.canOpertaeWishlist = true

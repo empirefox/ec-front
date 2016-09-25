@@ -1,0 +1,15 @@
+export const userTrans = {
+  HeadImageURL: '头像',
+  Nickname: '微信号',
+  Sex: '性别',
+  City: '城市',
+  Province: '省份',
+  Birthday: '生日',
+  CarInsurance: '车险情况',
+  InsuranceFee: '保险费用',
+  CarIntro: '车况说明',
+  Hobby: '兴趣爱好',
+  Career: '职业',
+  Demand: '需求',
+  Intro: '个人说明',
+};

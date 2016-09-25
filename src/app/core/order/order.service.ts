@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import { encode } from 'jwt-simple';
 import { URLS } from '../profile';
-import { nonce } from '../util';
-import { IPayArgs, MoneyService, ITradeState } from '../money';
+import { IWxPayArgs, MoneyService } from '../money';
 import { ISku, IEvalItem } from '../product';
-import { IOrder, IOrderItem, ICheckoutPayload, IOrderPayClaims } from './order';
+import { IOrder, IOrderItem, ICheckoutPayload, IOrderPayPayload, IOrderWxPayPayload, IOrderChangeStatePayload, IEvalResponse } from './order';
 import { ICheckout, ICheckoutItem, toPayload } from './checkout';
 
 @Injectable()
@@ -15,59 +14,57 @@ export class OrderService {
   _checkoutItemCache: ICheckoutItem;
 
   constructor(
-    private http: Http,
+    private http: AuthHttp,
     private moneyService: MoneyService) { }
 
   getCheckoutItemCache() { return this._checkoutItemCache; }
   setCheckoutItemCache(cache: ICheckoutItem) { this._checkoutItemCache = cache; }
   clearCheckoutItemCache() { this._checkoutItemCache = null; }
 
-  // return OrderID
-  checkout(checkout: ICheckout): Observable<number> {
-    return this.http.post(URLS.ORDER_CHECKOUT, JSON.stringify(toPayload(checkout))).map(res => <number>res.json());
+  // with items
+  checkout(checkout: ICheckout): Observable<IOrder> {
+    return this.http.post(URLS.ORDER_CHECKOUT, JSON.stringify(toPayload(checkout))).map(res => <IOrder>res.json());
   }
 
-  changeState(orderId: number, state: string): Observable<IOrder> {
-    return this.http.post(URLS.Order(orderId), JSON.stringify({ OrderID: orderId, State: state })).map(res => <IOrder>res.json());
+  changeState(orderId: number, state: number): Observable<IOrder> {
+    let payload: IOrderChangeStatePayload = { ID: orderId, State: state };
+    return this.http.post(URLS.ORDER_STATE, JSON.stringify(payload)).map(res => <IOrder>res.json());
   }
 
+  // with items
   getOrders(): Observable<IOrder[]> {
     return this.http.get(URLS.ORDER_LIST).map(res => <IOrder[]>res.json());
   }
 
+  // with items
   getOrder(id: number): Observable<IOrder> {
     return this.http.get(URLS.Order(id)).map(res => <IOrder>res.json());
   }
 
-  evalItem(itemId: number, itemEval: IEvalItem): Observable<IOrderItem> {
-    return this.http.post(URLS.OrderEval(itemId), JSON.stringify(itemEval)).map(res => <IOrderItem>res.json());
+  evalOrder(orderId: number, itemId: number, itemEval: IEvalItem): Observable<IEvalResponse> {
+    let options = itemId ? { search: new URLSearchParams(`item=${itemId}`) } : null;
+    return this.http.post(URLS.OrderEval(orderId), JSON.stringify(itemEval), options).
+      map(res => <IEvalResponse>res.json());
   }
 
-  evalItems(orderId: number, itemEval: IEvalItem): Observable<IOrder> {
-    return this.http.post(URLS.OrderEval(orderId), JSON.stringify(itemEval)).map(res => <IOrder>res.json());
-  }
-
-  pay(orderId: number, amount: number, key: string): Observable<IOrder> {
-    let iat = Math.floor(Date.now() / 1000);
-    let n = nonce(32);
-    let pay: IOrderPayClaims = {
-      UserID: 0, // TODO use fact user id
-      Amount: amount,
-      OrderID: orderId,
-      Nonce: n,
-      iat: iat,
-      exp: iat + 300, // 5 min
+  pay(order: IOrder, key: string): Observable<IOrder> {
+    let pay: IOrderPayPayload = {
+      Key: key,
+      OrderID: order.ID,
+      Amount: order.PayPoints || order.PayAmount,
+      IsPoints: !!order.PayPoints,
     };
-    return this.http.post(URLS.ORDER_PAY, encode(pay, key, 'HS256')).map(res => <IOrder>res.json());
+    return this.http.post(URLS.ORDER_PAY, JSON.stringify(pay)).map(res => <IOrder>res.json());
   }
 
-  wxPay(orderId: number, amount: number): Observable<IOrder> {
-    return this.http.post(URLS.ORDER_WX_PAY, JSON.stringify({
-      UserID: 0,
-      Amount: amount,
-      OrderID: orderId,
-    })).flatMap(res => this.moneyService.requestPay(<IPayArgs>res.json())).
-      flatMap(_ => this.http.get(URLS.Order(orderId))).
+  wxPay(order: IOrder, amount: number): Observable<IOrder> {
+    if (order.PayPoints) {
+      return Observable.throw<IOrder>('Points order');
+    }
+    let pay: IOrderWxPayPayload = { OrderID: order.ID };
+    return this.http.post(URLS.ORDER_WX_PAY, JSON.stringify(pay)).
+      flatMap(res => this.moneyService.requestPay(<IWxPayArgs>res.json())).
+      flatMap(_ => this.http.get(URLS.PaiedOrder(order.ID))).
       map(res => <IOrder>res.json());
   }
 

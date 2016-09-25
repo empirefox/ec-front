@@ -48,6 +48,7 @@ export class MemberPageComponent {
   onGotoHistory() { this.router.navigateByUrl('/history'); }
   onGotoAddressManage() { this.router.navigateByUrl('/addr'); }
   onGotoAccount() { this.router.navigateByUrl('/account'); }
+  gotoQualification() { this.router.navigateByUrl('/qualification'); }
   gotoQr() { this.router.navigateByUrl('/member-qr'); }
   gotoFans() { this.router.navigateByUrl('/fans'); }
 

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { values } from 'lodash';
+import values from 'lodash/values';
 import { OrderService, IGroupBuyItem, GroupBuyService, ISku, ProductAttr, IProduct, ProductService } from '../../core';
 
 @Component({

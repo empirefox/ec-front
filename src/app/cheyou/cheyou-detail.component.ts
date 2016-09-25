@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+
+import { IProfile, ProfileService, IVipIntro, VipService, userTrans} from '../core';
+
+const simpleCols = 'Nickname, Sex, City, Province, Birthday, CarInsurance, InsuranceFee, CarIntro, Hobby, Career'.split(', ');
+const descCols = 'Demand, Intro'.split(', ');
 
 @Component({
   template: require('./cheyou-detail.html'),
@@ -7,11 +13,32 @@ import { Router } from '@angular/router';
 })
 export class CheyouDetailComponent {
 
-  constructor(private router: Router) { }
+  trans = userTrans;
+  simpleCols = simpleCols;
+  descCols = descCols;
 
-  gotoBuy() { this.router.navigateByUrl('/cheyou/buy'); }
-  gotoDetail() { this.router.navigateByUrl('/cheyou/detail'); }
-  gotoCheyouList() { this.router.navigateByUrl('/cheyou/list'); }
-  gotoMy() { this.router.navigateByUrl('/cheyou/my'); }
+  profile: IProfile;
+  vip: IVipIntro;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private vipService: VipService,
+    private profileService: ProfileService) { }
+
+  ngOnInit() {
+    let id = +this.route.snapshot.params['id'];
+    if (id) {
+      Observable.forkJoin(
+        this.profileService.getProfile().take(1),
+        this.vipService.getItem(id).take(1),
+      ).subscribe(([profile, vip]: [IProfile, IVipIntro]) => {
+        this.profile = profile;
+        this.vip = vip;
+      });
+    } else {
+      this.router.navigate(['./list', { relativeTo: this.route }]);
+    }
+  }
 
 }

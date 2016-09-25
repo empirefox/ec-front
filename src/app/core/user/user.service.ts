@@ -6,7 +6,16 @@ import { AuthHttp } from 'angular2-jwt';
 import { PATHS, URLS, ProfileService, WxExchangeCode, WxCodeResult } from '../profile';
 import { Jwt } from '../jwt';
 import { nonce, removeURLParameter } from '../util';
-import { IUserInfo, IUserTokenResponse, IBindPhoneData } from './user';
+import {
+  ISetUserInfoPayload,
+  IUserInfo,
+  ISetUserInfoResponse,
+  IUserTokenResponse,
+  IPreBindPhonePayload,
+  IBindPhonePayload,
+  IRefreshTokenResponse,
+  ISetPaykeyPayload,
+} from './user';
 
 @Injectable()
 export class UserService {
@@ -15,39 +24,78 @@ export class UserService {
 
   constructor(
     private router: Router,
-    private http: Http,
-    private authHttp: AuthHttp,
+    private rawHttp: Http,
+    private http: AuthHttp,
     private profileService: ProfileService,
     private jwt: Jwt) { }
 
   getUserinfo(): Observable<IUserInfo> {
     if (!this._userinfo) {
-      this._userinfo = this.authHttp.get(URLS.USER_INFO).map(res => <IUserInfo>res.json()).publishReplay(1).refCount();
+      this.jwt.accessToken = '';
+      this.jwt.refreshToken = '';
+      this.mustUpdateToken();
     }
     return this._userinfo;
   }
 
-  // return times can be sent
-  preBindPhone(phone: string): Observable<number> {
-    return this.authHttp.get(URLS.UserPreBindPhone(phone)).map(res => <number>res.json()).publishReplay(1).refCount();
+  setUserinfo(writable: ISetUserInfoPayload): Observable<IUserInfo> {
+    return this.http.post(URLS.USER_SET_INFO, JSON.stringify(writable)).flatMap(res => {
+      return this.getUserinfo().flatMap(info => {
+        let data = <ISetUserInfoResponse>res.json();
+        info.UpdatedAt = data.UpdatedAt;
+        return this._userinfo = Observable.of(Object.assign({}, info)).publishReplay(1).refCount();
+      });
+    });
   }
 
-  // return status 200
-  bindPhone(data: IBindPhoneData) {
-    return this.authHttp.post(URLS.USER_BIND_PHONE, JSON.stringify(data));
+  // return times can be sent
+  preBindPhone(Phone: string): Observable<number> {
+    let payload: IPreBindPhonePayload = { Phone };
+    return this.http.post(URLS.USER_PREBIND_PHONE, JSON.stringify(payload)).map(res => <number>res.json());
+  }
+
+  bindPhone(payload: IBindPhonePayload): Observable<string> {
+    payload.RefreshToken = this.jwt.refreshToken;
+    return this.http.post(URLS.USER_BIND_PHONE, JSON.stringify(payload)).map(res => this._updateToken(res.json()));
+  }
+
+  preSetPaykey() {
+    return this.getUserinfo().flatMap(info => {
+      if (!info.Phone) {
+        return Observable.throw('Phone not binded');
+      }
+      return this.http.get(URLS.USER_PAYKEY_PRESET);
+    });
+  }
+
+  setPaykey(payload: ISetPaykeyPayload) {
+    return this.getUserinfo().flatMap(info => {
+      if (!info.Phone) {
+        return Observable.throw('Phone not binded');
+      }
+      return this.http.post(URLS.USER_PAYKEY_SET, JSON.stringify(payload)).flatMap(_ => {
+        info.HasPayKey = true;
+        return this._userinfo = Observable.of(Object.assign({}, info)).publishReplay(1).refCount();
+      });
+    });
   }
 
   exchange(query: WxCodeResult): Observable<string> {
     return query.code && query.state && query.state === this.jwt.getOauth2State() ?
-      this.http.get(WxExchangeCode(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+      this.rawHttp.get(WxExchangeCode(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 
   _parseAuthResult(res: IUserTokenResponse) {
-    res.user.ID = +this.jwt.decodeToken(res.accessToken).UserId;
+    let claims = this.jwt.decodeToken(res.accessToken);
+    let user = res.user;
+    user.ID = +claims.uid;
+    user.OpenId = claims.oid;
+    user.Phone = claims.mob;
+    user.User1 = +claims.us1;
     this.jwt.accessToken = res.accessToken;
     this.jwt.refreshToken = res.refreshToken;
-    this._userinfo = Observable.of(res.user).publishReplay(1).refCount();
+    this._userinfo = Observable.of(user).publishReplay(1).refCount();
     return res.accessToken;
   }
 
@@ -78,18 +126,23 @@ export class UserService {
 
   updateToken(): Observable<string> {
     // return this.parseAuthResult().catch((err, caught) => {
-    return this.jwt.canUpdate() ? this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).map(res => {
-      let accessToken = <string>res.json().accessToken;
-      this.jwt.accessToken = accessToken;
-      return accessToken;
-    }) : new Observable<string>((obs: any) => {
-      obs.error(new Error('Refresh token expired'));
-    });
+    return this.jwt.canUpdate() ?
+      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).map(res => this._updateToken(res.json())) :
+      new Observable<string>((obs: any) => {
+        obs.error(new Error('Refresh token expired'));
+      });
     // });
   }
 
   isLoggedIn(): boolean {
     return this.jwt.notExpired();
+  }
+
+  _updateToken(res: IRefreshTokenResponse): string {
+    if (res.OK) {
+      this.jwt.accessToken = res.AccessToken;
+    }
+    return this.jwt.accessToken;
   }
 
 }

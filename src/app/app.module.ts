@@ -4,18 +4,22 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { MyDatePickerModule } from 'mydatepicker/src/my-date-picker/my-date-picker.module';
 
 import { AddressModule } from './address';
 import { CartModule } from './cart';
 import { CategoryModule } from './category';
 import { CheckoutModule } from './checkout';
 import { CheyouModule } from './cheyou';
+import { DateInputModule } from './date-input';
 import { FooterBarModule } from './footer-bar';
 import { GroupbuyModule } from './group-buy';
 import { HeaderBarModule } from './header-bar';
 import { HomeModule } from './home';
 import { MemberModule } from './member';
 import { NavMenuListModule } from './nav-menu-list';
+import { NewsModule } from './news';
 import { OrderModule } from './order';
 import { PayModule } from './pay';
 import { ProductModule } from './product';
@@ -30,6 +34,7 @@ import { FansComponent } from './fans';
 import { HistoryComponent } from './history';
 import { MemberQrComponent } from './member-qr';
 import { NoContent } from './no-content';
+import { QualificationComponent } from './qualification';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
 
@@ -68,6 +73,7 @@ type StoreType = {
     HistoryComponent,
     MemberQrComponent,
     NoContent,
+    QualificationComponent,
     WeixinOauthPageComponent,
     WishlistPageComponent,
   ],
@@ -76,6 +82,8 @@ type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    InfiniteScrollModule,
+    MyDatePickerModule,
     RouterModule.forRoot(ROUTES),
     CoreModule,
 
@@ -84,12 +92,14 @@ type StoreType = {
     CategoryModule,
     CheckoutModule,
     CheyouModule,
+    DateInputModule,
     FooterBarModule,
     GroupbuyModule,
     HeaderBarModule,
     HomeModule,
     MemberModule,
     NavMenuListModule,
+    NewsModule,
     OrderModule,
     PayModule,
     ProductModule,

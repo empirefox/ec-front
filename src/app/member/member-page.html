@@ -30,6 +30,11 @@
       <order-list-menu></order-list-menu>
       <money-overview *ngIf="wallet" [wallet]="wallet"></money-overview>
       <dl class="mt5">
+        <dt><a (click)="gotoQualification()">
+          <h3><i class="mc-05"></i>全返资格</h3>
+        </a></dt>
+      </dl>
+      <dl class="mt5">
         <dt><a (click)="gotoQr()">
           <h3><i class="mc-05"></i>邀请返利</h3>
           <h5>邀请好友注册/购物，获得积分<i class="arrow-r"></i></h5>

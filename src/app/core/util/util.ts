@@ -1,6 +1,5 @@
 import { isPrimitive } from '@angular/core/src/facade/lang';
 import { Observable } from 'rxjs/Observable';
-import { groupBy, keyBy, chain } from 'lodash';
 
 interface Poser {
   Pos: number;
@@ -95,13 +94,14 @@ export function one2manyRelate(
   let oneMap = {};
   ones.forEach(one => {
     oneMap[one[oneId]] = one;
-    one[manyId] = one[manyId] || [];
+    // one[manyId] = one[manyId] || [];
+    one[manyInOne] = one[manyInOne] || [];
   });
 
   manys.forEach(many => {
     let one = oneMap[many[oneIdInMany]];
     if (one) {
-      if (!one[manyInOne]) { one[manyInOne] = []; }
+      // if (!one[manyInOne]) { one[manyInOne] = []; }
       one[manyInOne].push(many);
       many[oneInMany] = one;
     }

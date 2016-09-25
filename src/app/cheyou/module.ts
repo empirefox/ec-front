@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ModalModule } from 'ng2-bootstrap/components/modal';
+import { CoreModule } from '../core.module';
 
+import { DateInputModule } from '../date-input';
 import { HeaderBarModule } from '../header-bar';
 import { cheyouRouting } from './routes';
 
@@ -20,6 +23,9 @@ import { CheyouMyComponent } from './cheyou-my.component';
   ],
   imports: [
     CommonModule,
+    ModalModule,
+    CoreModule,
+    DateInputModule,
     HeaderBarModule,
     cheyouRouting,
   ],

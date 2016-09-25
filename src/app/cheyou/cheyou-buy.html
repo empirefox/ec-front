@@ -1,61 +1,46 @@
-<header id="header" class="fixed">
-  <div class="header-wrap">
-    <div class="header-l"> <a href="javascript:history.go(-1)"> <i class="back"></i> </a> </div>
-    <div class="header-title">
-      <h1>A套餐</h1>
+<div class="cheyouhui-tc" *ngIf="abcs">
+  <div *ngFor="let abc of abcs">
+    <div class="cheyouhui-tc-item" *ngFor="let item of abc.skus">
+      <a (click)="gotoBuy(item)"> <img [src]="item.Img" width="100%"></a>
     </div>
   </div>
-</header>
-<div class="main-layout cyh_des">
-  <h2 class="pic"><img src="http://127.0.0.1:9999/img/che1.jpg"> </h2>
-
-  <div class="cheyouhui-info">会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员<p>会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员活动说明会员</p>活动说明会员活动说明会员活动说明会员活动说明会员活动说明</div>
-  <div class="goods-detail-comment">
-    <div class="title">
-      <a href="javascript:void(0);">评价(172)<span class="rate">好评度<em>97%</em></span>
-        <div class="item-more"></div>
-      </a>
-    </div>
-    <div class="comment-info">
-      <ul>
-        <li>
-          <div class="eval-user">
-            <div class="goods-raty"><i class="star5"></i></div>
-            <time>苏**</time>
-          </div>
-          <dl class="eval-con">
-            <dt>不错，不愧是索尼电视，很爱很爱很爱！谢谢京东！</dt>
-
-          </dl>
-        </li>
-        <li>
-          <div class="eval-user">
-            <div class="goods-raty"><i class="star5"></i></div>
-            <time>苏**</time>
-          </div>
-          <dl class="eval-con">
-            <dt>产品很一般 底座所料质感很差！</dt>
-          </dl>
-        </li>
-      </ul>
-    </div>
+</div>
+<div class="cheyouhui-xcq">
+  <div class="tit"><img src="asserts/img/xcq.jpg" width="100%"> </div>
+  <div class="grid" *ngIf="vbuys">
+    <ul class="goods-secrch-list" *ngFor="let vbuy of vbuys">
+      <li class="goods-item" *ngFor="let item of vbuy.skus">
+        <span class="goods-pic">
+					<a (click)="gotoBuy(item)">
+            <img [src]="getImg(item)">
+          </a>
+				</span>
+        <dl class="goods-info">
+          <dt class="goods-name">
+            <a (click)="gotoBuy(item)">
+                <h4>{{item.product.Name}}</h4><h6>{{getAttrs(item)}}</h6>
+              </a>
+            </dt>
+          <dd class="goods-sale">
+            <a (click)="gotoBuy(item)">
+              <span class="goods-price">￥<em>{{item.SalePrice|money}}</em></span>
+            </a>
+          </dd>
+          <dd class="goods-assist">
+            <a class="btn" (click)="gotoBuy(item)">
+                点击购买
+            </a>
+          </dd>
+        </dl>
+      </li>
+    </ul>
   </div>
-  <div class="goods-detail-foot">
-    <div class="otreh-handle">
-      <a href="javascript:void(0);" class="kefu"><i></i>
-        <p>客服</p></a>
-      <a href="javascript:void(0);" class="guanzhu">
-        <i></i>cart
-        <p>关注</p>
-      </a>
-      <a href="../template/cart_list.html" class="cart"><i></i>
-        <p>购物车</p><span id="cart_count"><sup>1</sup></span></a>
-    </div>
-    <div class="buy-handle ">
+</div>
 
-      <a href="javascript:void(0);" class="animation-up add-cart">加入购物车</a>
-
-      <a href="javascript:void(0);" class="animation-up buy-now">立即购买</a>
-    </div>
-  </div>
+<div class="cheyouhui-bottom fixed-width" *ngIf="profile">
+  <ul>
+    <li><a (click)="onModal(profile.IntroVipDetail,'会员活动说明')">会员活动说明</a></li>
+    <li><a (click)="onModal(profile.IntroVipPrivilege,'会员权限说明')">会员权限说明</a></li>
+    <li><a (click)="onModal(profile.IntroCarInsurance,'车险说明')">车险说明</a></li>
+  </ul>
 </div>

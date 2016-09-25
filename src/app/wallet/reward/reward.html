@@ -1,26 +1,18 @@
 <header1>返利明细</header1>
 <div class="main-layout">
   <div class="tips_reward">
-
-    <p class="dj">冻结<br><span>￥100</span></p>
-    <p>返利<br><span>100</span></p>
-
+    <p class="dj">冻结中<br><span>￥{{wallet.frozen|money}}</span></p>
+    <p>返利中<br><span>￥{{wallet.unrebated|money}}</span></p>
   </div>
-    <div class="tips_btn_group">
-
-      <a class="btn">解除冻结</a>
-      <a class="btn">兑换现金</a>
-    </div>
-  <div class="tips_info">
-    <h3>返利明细</h3>
+  <div class="tips_info" *ngFor="let rebate of rebates">
+    <h3>￥{{rebate.Amount|money}}({{reabte.DoneAt?'已完成':'进行中'}})</h3>
+    <h3 *ngIf="rebate.Remark">{{rebate.Remark}}</h3>
+    <h3>完成{{rebate.items.length}}/{{rebate.Stages}}期</h3>
     <ul class="log-list">
-      <li><dl><dt>注册会员</dt>
-        <dd>注册会员</dd>
-      </dl>
-        <div class="money add">+20</div>
-        <time class="date">2016-05-16 21:39:19</time>
+      <li *ngFor="let item of rebate.items">
+        <div class="money add">+{{item.Amount|money}}</div>
+        <time class="date">{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</time>
       </li>
     </ul>
   </div>
-  </div>
-
+</div>

@@ -1,0 +1,27 @@
+<header1>公益</header1>
+<div class="main-layout mb20">
+  <div class="news_ads">
+    <div class="adv_list">
+      <div class="swipe-wrap">
+        <div class="item">
+          <a href="#"><img src="images/s0.jpg" alt=""></a>
+        </div>
+
+        <div class="item">
+          <a href="#"><img src="images/s1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll(true)" (scrolledUp)="onScroll(false)"
+      infinite-scroll>
+    <ul class="newslist" *ngIf="items">
+      <li *ngFor="let item of items; trackBy:trackByItems">
+        <a (click)="gotoDetail()">
+          <p class="pic"><img [src]="item.Icon"> </p>
+          <p class="info">{{item.Title}}<span>{{item.CreatedAt | ago}}</span></p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

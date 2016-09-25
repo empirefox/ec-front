@@ -10,6 +10,7 @@ import { GroupBuyPageComponent } from './group-buy';
 import { HistoryComponent } from './history';
 import { MemberPageComponent } from './member';
 import { MemberQrComponent } from './member-qr';
+import { QualificationComponent } from './qualification';
 import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
@@ -30,6 +31,8 @@ export const ROUTES: Routes = [
   { path: 'member-qr', component: MemberQrComponent },
 
   { path: 'search', component: SearchPageComponent },
+
+  { path: 'qualification', component: QualificationComponent },
 
   { path: PATHS.WX_OAUTH2_LOCAL_PATH, component: WeixinOauthPageComponent },
   { path: 'wishlist', component: WishlistPageComponent },

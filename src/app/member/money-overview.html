@@ -8,22 +8,20 @@
   <dd>
     <ul>
       <li>
-        <a (click)="onViewBalance()">{{wallet.Deposit}}
+        <a (click)="onViewBalance()">{{wallet.cash}}
           <p>余额</p>
         </a>
       </li>
       <li>
-        <div>0
-          <p>优惠券</p>
-        </div>
-      </li>
-      <li>
-        <a (click)="onViewPoints()">{{wallet.Points}}
+        <a (click)="onViewPoints()">{{wallet.points}}
           <p>积分</p>
         </a>
       </li>
-      <li><a (click)="gotoReward()">100
-        <p>返利</p></a></li>
+      <li>
+        <a (click)="gotoReward()">{{wallet.unrebated+wallet.frozen}}
+          <p>返利</p>
+        </a>
+      </li>
     </ul>
   </dd>
 </dl>

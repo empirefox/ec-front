@@ -12,7 +12,14 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'angular2-jwt'; // user
 import 'jwt-simple'; // order
-import 'lodash'; // product, util
+
+import 'lodash/groupBy';
+import 'lodash/isEqual';
+import 'lodash/keyBy';
+import 'lodash/sumBy';
+import 'lodash/uniq';
+import 'lodash/values';
+
 import 'angular2-swiper';
 require('!!style!css!swiper/dist/css/swiper.css');
 

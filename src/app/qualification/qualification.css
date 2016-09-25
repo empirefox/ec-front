@@ -1,0 +1,11 @@
+.current {
+  color: red;
+}
+
+.selected {
+  color: red;
+}
+
+a.active {
+  color: .red;
+}

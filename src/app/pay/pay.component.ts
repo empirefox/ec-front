@@ -52,7 +52,7 @@ export class OrderPayComponent {
   }
 
   onSetPayKey() {
-    this.router.navigate(['/account/paykey-set'], { queryParams: { OrderID: this.orderId } });
+    this.router.navigate(['/safe/paykey-set'], { queryParams: { OrderID: this.orderId } });
   }
 
   onPay() {

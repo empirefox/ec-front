@@ -1,21 +1,27 @@
-import { ISku, IProductAttr } from '../product';
+import { ISku, IProduct } from '../product';
 
-export interface ICartItem {
-  ID: number;
+// SaveToCartPayload
+export interface ICartItemContent {
   Img: string;
   Name: string;
   Type: string; // sku attrs
   Price: number;
   Quantity: number;
-  CreatedAt: number;
-  Sku: ISku; // with product proloaded
+  SkuID: number;
+}
 
+// SetCartQuantityPayload
+export interface ICartItem extends ICartItemContent {
+  ID: number;
+  CreatedAt: number;
+
+  sku?: ISku; // TODO change to lower case
   checked?: boolean;
   invalid?: boolean;
 }
 
-// TODO
 export interface ICartResponse {
-  Items: ICartItem[];
-  Attrs: IProductAttr[];
+  Items: ICartItem[]; // can be null
+  Skus: ISku[]; // can be null
+  Products: IProduct[]; // can be null
 }

@@ -6,9 +6,11 @@ export interface IGroupBuyItem {
   Title: string;
   Reason: string;
   Price: number;
-  Sku: ISku; // preload
   Start: number;
   End: number;
+  SkuID: number;
+
+  sku: ISku;
 }
 
 export interface GroupBuy {
@@ -16,4 +18,9 @@ export interface GroupBuy {
   map: Dict<IGroupBuyItem>;
   active: IGroupBuyItem[];
   inactive: IGroupBuyItem[];
+}
+
+export interface IGroupBuyResponse {
+  Items: IGroupBuyItem[]; // can be null
+  Skus: ISku[]; // can be null
 }
