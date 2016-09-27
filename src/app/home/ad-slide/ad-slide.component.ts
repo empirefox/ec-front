@@ -1,26 +1,20 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProduct, ProductService, LocalProductService } from '../../core';
-import { HomeSectionBaseComponent } from '../section-base.component';
+import { ICarouselItem, CarouselService } from '../../core';
 
 @Component({
   selector: 'home-ad-slide',
   template: require('./ad-slide.html'),
   styles: [require('./ad-slide.css')],
 })
-export class HomeAdSlideComponent extends HomeSectionBaseComponent {
+export class HomeAdSlideComponent {
 
-  @Input() item: IProduct;
+  @Input() slide: ICarouselItem;
 
   constructor(
-    router: Router,
-    productService: ProductService,
-    localProductService: LocalProductService) {
-    super(router, productService, localProductService);
-  }
+    private router: Router,
+    private carouselService: CarouselService) { }
 
-  get img() {
-    return this.item.Img || this.item.Skus[0].Img;
-  }
+  gotoSlide() { this.carouselService.gotoSlide(this.slide); }
 
 }

@@ -19,7 +19,7 @@ export class AddressService {
   getItems(): Observable<IAddress[]> {
     if (!this._items) {
       this._items = this.http.get(URLS.ADDR_LIST).map(res =>
-        (<IAddress[]>res.json()).sort(descSortor)
+        (<IAddress[]>res.json() || []).sort(descSortor)
       ).publishReplay(1).refCount();
     }
     return this._items;

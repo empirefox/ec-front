@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { overlayConfigFactory } from "angular2-modal";
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
-import { config, ConstMap, IProfile, ProfileService, ISku, IProduct, ProductAttrs, ProductService } from '../core';
+import { config, constMap, IProfile, ProfileService, ISku, IProduct, ProductAttrs, ProductService } from '../core';
 
 @Component({
   template: require('./cheyou-buy.html'),
@@ -25,11 +25,11 @@ export class CheyouBuyComponent {
     Observable.forkJoin(
       this.profileService.getProfile().take(1),
       this.productService.getAttrs().take(1),
-      this.productService.query({ ft: `Vpn:eq:${ConstMap.VpnType['TVpnVip']}` }).take(1),
+      this.productService.query({ ft: `Vpn:eq:${constMap.VpnType['TVpnVip']}` }).take(1),
     ).flatMap(([profile, attrs, abcs]: [IProfile, ProductAttrs, IProduct[]]) => {
       this.profile = profile;
       this.abcs = abcs;
-      let special = attrs.specials.find(item => item.Name === config.VbuysSpecialName);
+      let special = attrs.specials.find(item => item.Name === config.vbuysSpecialName);
       return special ? this.productService.fromSpecial(special.ID).take(1) : Observable.of(null);
     }).subscribe(vbuys => this.vbuys = vbuys);
   }

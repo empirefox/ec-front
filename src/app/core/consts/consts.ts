@@ -1,4 +1,4 @@
-export interface consts {
+export interface Consts {
   BillboardType: string[];
   CodedError: string[];
   OrderState: string[];
@@ -12,7 +12,7 @@ interface Typer {
   [index: string]: number;
 }
 
-export interface constmap {
+export interface ConstMap {
   BillboardType: Typer;
   CodedError: Typer;
   OrderState: Typer;
@@ -22,13 +22,13 @@ export interface constmap {
   VpnType: Typer;
 }
 
-const Consts: consts = require('./esecend_consts.json');
+const consts: Consts = require('./esecend_consts.json');
 
-let ConstMap = <constmap>{};
-Object.keys(Consts).forEach(typ => {
+let constMap = <ConstMap>{};
+Object.keys(consts).forEach(typ => {
   let typer: Typer = {};
-  (<string[]>Consts[typ]).forEach((value, index) => typer[value] = index);
-  ConstMap[typ] = typer;
+  (<string[]>consts[typ]).forEach((value, index) => typer[value] = index);
+  constMap[typ] = typer;
 });
 
-export {Consts, ConstMap};
+export {consts, constMap};

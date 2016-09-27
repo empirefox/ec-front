@@ -2,40 +2,30 @@ import { ModuleWithProviders }   from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 
 import { SafeComponent } from './safe.component';
-import { PasswordComponent } from './password.component';
+import { SetHeadComponent } from './head.component';
 import { BindPhoneComponent } from './phone.component';
-import { PaykeyComponent } from './paykey.component';
-import { PaykeyForgetComponent } from './paykey-forget.component';
-import { PaykeySetComponent } from './paykey-set.component';
+import { SetPaykeyComponent } from './paykey.component';
 
 export const routes: Routes = [
   {
     path: 'safe',
     children: [
       {
-        path: '', // safe
+        path: '',
         component: SafeComponent
       },
       {
-        path: 'password',
-        component: PasswordComponent
+        path: 'head',
+        component: SetHeadComponent
       },
       {
         path: 'phone',
         component: BindPhoneComponent,
       },
       {
-        path: 'paykey', // paykey
-        component: PaykeyComponent,
+        path: 'paykey',
+        component: SetPaykeyComponent,
       },
-      {
-        path: 'paykey-forget',
-        component: PaykeyForgetComponent,
-      },
-      {
-        path: 'paykey-set',
-        component: PaykeySetComponent,
-      }
     ]
   },
 ];

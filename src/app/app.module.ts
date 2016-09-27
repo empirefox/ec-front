@@ -29,7 +29,6 @@ import { SafeModule } from './safe';
 import { SearchModule } from './search';
 import { WalletModule } from './wallet';
 
-import { AccountPageComponent } from './account';
 import { FansComponent } from './fans';
 import { HistoryComponent } from './history';
 import { MemberQrComponent } from './member-qr';
@@ -68,7 +67,6 @@ type StoreType = {
   bootstrap: [App],
   declarations: [
     App,
-    AccountPageComponent,
     FansComponent,
     HistoryComponent,
     MemberQrComponent,

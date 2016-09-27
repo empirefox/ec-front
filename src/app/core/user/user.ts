@@ -60,4 +60,6 @@ export interface IRefreshTokenResponse {
 export interface ISetPaykeyPayload {
   Key: string;
   Code: string;
+  CaptchaID: string;
+  Captcha: string;
 }

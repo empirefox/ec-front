@@ -18,7 +18,7 @@ export class MoneyService {
 
   getWallet(): Observable<IWallet> {
     return this.http.get(URLS.WALLET).map(res => {
-      let wallet = <IWallet>res.json();
+      let wallet = <IWallet>(res.json() || {});
       wallet.Cashes = wallet.Cashes || [];
       wallet.Cashes.sort(sortor);
       wallet.cash = wallet.Cashes.length ? wallet.Cashes[0].Balance : 0;

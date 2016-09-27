@@ -1,14 +1,12 @@
 import { isPrimitive } from '@angular/core/src/facade/lang';
 import { Observable } from 'rxjs/Observable';
 
-interface Poser {
-  Pos: number;
-}
+interface IDer { ID: number; }
+interface Poser { Pos: number; }
+interface IdPos extends IDer, Poser { }
+
 export function descSortor<T extends Poser>(b: T, a: T) { return a.Pos - b.Pos; }
 
-interface IdPos extends Poser {
-  ID: number;
-}
 
 // save => replace/push => copy items
 export function updateAfterSave<T extends IdPos>(items: T[], item: T, copy: T): T[] {
@@ -22,6 +20,19 @@ export function updateAfterSave<T extends IdPos>(items: T[], item: T, copy: T): 
     items = [...items];
   }
   return items.sort(descSortor);
+}
+
+export function updateAfterSaveWithoutSort<T extends IDer>(items: T[], item: T, id: number): T[] {
+  if (!id) {
+    items = [item, ...items];
+  } else {
+    let i = items.findIndex(i => i.ID === id);
+    if (~i) {
+      items[i] = item;
+    }
+    items = [...items];
+  }
+  return items;
 }
 
 // http://stackoverflow.com/questions/10726909/random-alpha-numeric-string-in-javascript

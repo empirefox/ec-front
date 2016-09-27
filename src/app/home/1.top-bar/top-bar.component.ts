@@ -20,7 +20,7 @@ export class HomeTopBarComponent {
     private carouselService: CarouselService) { }
 
   ngOnInit() {
-    this.carouselService.getItems().subscribe(items => this.items = items);
+    this.carouselService.getItems('TBillboardHome').subscribe(items => this.items = items);
     this.swipeOptions = {
       slidesPerView: 1,
       loop: false,
@@ -39,6 +39,6 @@ export class HomeTopBarComponent {
     setTimeout(() => this.swiperContainer.swiper.startAutoplay());
   }
 
-  onGotoSearch() { this.router.navigateByUrl('/search'); }
-
+  gotoSearch() { this.router.navigateByUrl('/search'); }
+  gotoSlide(item: ICarouselItem) { this.carouselService.gotoSlide(item); }
 }

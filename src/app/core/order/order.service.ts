@@ -33,7 +33,7 @@ export class OrderService {
 
   // with items
   getOrders(): Observable<IOrder[]> {
-    return this.http.get(URLS.ORDER_LIST).map(res => <IOrder[]>res.json());
+    return this.http.get(URLS.ORDER_LIST).map(res => <IOrder[]>res.json() || []);
   }
 
   // with items

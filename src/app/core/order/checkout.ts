@@ -28,7 +28,7 @@ export function toPayload(checkout: ICheckout): ICheckoutPayload {
   let addr = checkout.Address;
   let data: ICheckoutPayload = {
     Items: checkout.Items.map(item => {
-      let attrs = item.Sku.Attrs.map(attr => attr.ID);
+      let attrs = item.Sku.attrs.map(attr => attr.ID);
       let out: ICheckoutPayloadItem = { SkuID: item.Sku.ID, Quantity: item.Quantity, Attrs: attrs };
       if (item.GroupBuyID) {
         out.GroupBuyID = item.GroupBuyID;

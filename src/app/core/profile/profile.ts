@@ -1,4 +1,4 @@
-import { JWT_CONFIG, PUBLIC_URL, API_URL, XSTORAGE_HUB_URL } from '../share';
+import { config } from '../share';
 
 export * from '../share';
 
@@ -23,75 +23,73 @@ export interface IProfile {
   FreeDeliverLine: number;
 }
 
-export const PATHS = {
-  WX_OAUTH2_LOCAL_PATH: `oauth/weixin`,
-};
-
 export const URLS = {
-  PROFILE: `${API_URL}/profile`, // get
+  PROFILE: `${config.apiOrigin}/profile`, // get
 
-  CAPTHCA: `${API_URL}/captcha`, // get
-  CAROUSEL: `${API_URL}/carousel`, // get
-  NEWS: `${API_URL}/news`, // get
-  VIPS: `${API_URL}/vips`, // get
+  CAPTHCA: `${config.apiOrigin}/captcha`, // get
+  CAROUSEL: `${config.apiOrigin}/carousel`, // get
+  NEWS: `${config.apiOrigin}/news`, // get
+  VIPS: `${config.apiOrigin}/vips`, // get
 
-  MY_VIPS: `${API_URL}/myvips`, // get
-  QUALIFICATIONS: `${API_URL}/myqualifications`, // get
-  FANS: `${API_URL}/myfans`, // get
+  MY_VIPS: `${config.apiOrigin}/myvips`, // get
+  QUALIFICATIONS: `${config.apiOrigin}/myqualifications`, // get
+  FANS: `${config.apiOrigin}/myfans`, // get
 
-  UserRefreshToken: (refreshToken: string) => `${API_URL}/refresh_token/${refreshToken}`, // get
-  USER_SET_INFO: `${API_URL}/set_user_info`, // post
-  USER_PREBIND_PHONE: `${API_URL}/phone/prebind`, // post
-  USER_BIND_PHONE: `${API_URL}/phone/bind`, // post
-  USER_PAYKEY_PRESET: `${API_URL}/paykey/preset`, // get
-  USER_PAYKEY_SET: `${API_URL}/paykey/set`, // post
-  USER_REBATE: `${API_URL}/rebate`, // post
-  USER_WITHDRAW: `${API_URL}/withdraw`, // post
+  UserRefreshToken: (refreshToken: string) => `${config.apiOrigin}/refresh_token/${refreshToken}`, // get
+  USER_SET_INFO: `${config.apiOrigin}/set_user_info`, // post
+  USER_PREBIND_PHONE: `${config.apiOrigin}/phone/prebind`, // post
+  USER_BIND_PHONE: `${config.apiOrigin}/phone/bind`, // post
+  USER_PAYKEY_PRESET: `${config.apiOrigin}/paykey/preset`, // get
+  USER_PAYKEY_SET: `${config.apiOrigin}/paykey/set`, // post
+  USER_REBATE: `${config.apiOrigin}/rebate`, // post
+  USER_WITHDRAW: `${config.apiOrigin}/withdraw`, // post
 
-  WISH_LIST: `${API_URL}/wishlist`, // get
-  WISH_LIST_ADD: `${API_URL}/wishlist_add`, // post
-  WishItem: (id: number) => `${API_URL}/wishlist/${id}`, // get delete
+  WISH_LIST: `${config.apiOrigin}/wishlist`, // get
+  WISH_LIST_ADD: `${config.apiOrigin}/wishlist_add`, // post
+  WishItem: (id: number) => `${config.apiOrigin}/wishlist/${id}`, // get delete
 
-  WALLET: `${API_URL}/wallet`,
-  // TradeState: (id: string) => `${API_URL}/prepay/${id}`,
+  WALLET: `${config.apiOrigin}/wallet`,
+  // TradeState: (id: string) => `${config.apiOrigin}/prepay/${id}`,
 
-  ORDER_LIST: `${API_URL}/orders`, // get
-  ORDER_CHECKOUT: `${API_URL}/checkout`, // post
-  ORDER_PAY: `${API_URL}/order_pay`, // post
-  ORDER_WX_PAY: `${API_URL}/order_wx_pay`, // post
-  Order: (id: number) => `${API_URL}/order/${id}`, // get
-  ORDER_STATE: `${API_URL}/order_state`, // post
-  PaiedOrder: (id: number) => `${API_URL}/paied_order/${id}`, // get
+  ORDER_LIST: `${config.apiOrigin}/orders`, // get
+  ORDER_CHECKOUT: `${config.apiOrigin}/checkout`, // post
+  ORDER_PAY: `${config.apiOrigin}/order_pay`, // post
+  ORDER_WX_PAY: `${config.apiOrigin}/order_wx_pay`, // post
+  Order: (id: number) => `${config.apiOrigin}/order/${id}`, // get
+  ORDER_STATE: `${config.apiOrigin}/order_state`, // post
+  PaiedOrder: (id: number) => `${config.apiOrigin}/paied_order/${id}`, // get
 
-  OrderEval: (orderItemId: number) => `${API_URL}/eval/${orderItemId}`, // post
-  ProductEvals: (productId: number) => `${API_URL}/evals/${productId}`, // get
+  OrderEval: (orderItemId: number) => `${config.apiOrigin}/eval/${orderItemId}`, // post
+  ProductEvals: (productId: number) => `${config.apiOrigin}/evals/${productId}`, // get
 
-  CART_LIST: `${API_URL}/cart`, // get post
-  CART_ADD: `${API_URL}/cart_item`, // post
-  CART_SET_QUANTITY: `${API_URL}/cart_item_quantity`, // post
-  Cart: (id: number) => `${API_URL}/cart/${id}`, // delete
+  CART_LIST: `${config.apiOrigin}/cart`, // get post
+  CART_SAVE: `${config.apiOrigin}/cart_item`, // post
+  Cart: (id: number) => `${config.apiOrigin}/cart/${id}`, // delete
 
-  CATEGORY_LIST: `${API_URL}/category`, // get
+  CATEGORY_LIST: `${config.apiOrigin}/category`, // get
 
-  PRODUCT_LIST: `${API_URL}/product/ls`, // get
-  // PRODUCT_GROUP_LIST: `${API_URL}/products/groups`, // get
-  Product: (id: number) => `${API_URL}/product/1/${id}`, // get
-  PRODUCT_ATTR_LIST: `${API_URL}/product/attrs`, // get
-  // PRODUCT_ATTR_GROUP_LIST: `${API_URL}/product_attr_groups`, // get
+  PRODUCT_LIST: `${config.apiOrigin}/product/ls`, // get
+  // PRODUCT_GROUP_LIST: `${config.apiOrigin}/products/groups`, // get
+  Product: (id: number) => `${config.apiOrigin}/product/1/${id}`, // get
+  PRODUCT_ATTR_LIST: `${config.apiOrigin}/product/attrs`, // get
+  // PRODUCT_ATTR_GROUP_LIST: `${config.apiOrigin}/product_attr_groups`, // get
 
-  GROUP_BUY: `${API_URL}/groupbuy`, // get
-  // GroupBuyItem: (id: number) => `${API_URL}/groupbuy/${id}`,
+  GROUP_BUY: `${config.apiOrigin}/groupbuy`, // get
+  // GroupBuyItem: (id: number) => `${config.apiOrigin}/groupbuy/${id}`,
 
-  ADDR_LIST: `${API_URL}/addrs`, // get
-  ADDR_ADD: `${API_URL}/addr`,  // post
-  Addr: (id: number) => `${API_URL}/addr/${id}`, // delete
+  ADDR_LIST: `${config.apiOrigin}/addrs`, // get
+  ADDR_ADD: `${config.apiOrigin}/addr`,  // post
+  Addr: (id: number) => `${config.apiOrigin}/addr/${id}`, // delete
 
-  COUPON_LIST: `${API_URL}/coupons`,
+  COUPON_LIST: `${config.apiOrigin}/coupons`,
 
-  Delivery: (orderId: number) => `${API_URL}/delivery/${orderId}`, // get from kuaidi100
+  Delivery: (orderId: number) => `${config.apiOrigin}/delivery/${orderId}`, // get from kuaidi100
 
-  XSTORAGE_HUB_URL: XSTORAGE_HUB_URL,
+  XSTORAGE_HUB_URL: config.xstorageHubUrl,
 
+  // locals
+  WX_OAUTH2_LOCAL: `${config.publicOrigin}/oauth/weixin`,
+  WX_OAUTH2_LOCAL_PATH: `oauth/weixin`,
 };
 
 export interface CommonQuery {

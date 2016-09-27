@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription }   from 'rxjs/Subscription';
 
-import { ConstMap, IProfile, ProfileService, IVipRebateOrigin, MyVips, VipService, VipRebatePayload, MoneyService } from '../core';
+import { constMap, IProfile, ProfileService, IVipRebateOrigin, MyVips, VipService, VipRebatePayload, MoneyService } from '../core';
 
 @Component({
   template: require('./qualification.html'),
@@ -54,7 +54,7 @@ export class QualificationComponent {
   onReward() {
     if (this.canReward) {
       let payload: VipRebatePayload = {
-        Type: ConstMap.VipRebateType['TVipRebateReward'],
+        Type: constMap.VipRebateType['TVipRebateReward'],
         SubIDs: this.selected.map(item => item.ID),
       };
       this.moneyService.rebate(payload).subscribe(_ => this.afterRebate(false));
@@ -64,7 +64,7 @@ export class QualificationComponent {
   onRebate() {
     if (this.canRebate) {
       let payload: VipRebatePayload = {
-        Type: ConstMap.VipRebateType['TVipRebateRebate'],
+        Type: constMap.VipRebateType['TVipRebateRebate'],
         SubIDs: this.selected.map(item => item.ID),
       };
       this.moneyService.rebate(payload).subscribe(_ => this.afterRebate(true));

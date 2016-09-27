@@ -77,7 +77,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   get snapshotPice() {
-    return (this.sku || this.product.Skus[0]).SalePrice;
+    return (this.sku || this.product.skus[0]).SalePrice;
   }
 
   onGotoKefu() { }
@@ -102,15 +102,15 @@ export class ProductPageComponent implements OnInit {
     if (this.showSkus) {
       if (this.sku) {
         if (isBuy) {
-          let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.Quantity };
+          let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.quantity };
           if (this.groupBuyItem) {
             cache.GroupBuyID = this.groupBuyItem.ID;
             cache.GroupBuyPrice = this.groupBuyItem.Price;
           }
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
-        } else if (this.sku && this.sku.Quantity) {
-          this.cartService.add(this.sku, this.sku.Quantity).take(1).map(_ => this.setCartLen()).subscribe();
+        } else if (this.sku && this.sku.quantity) {
+          this.cartService.add(this.sku, this.sku.quantity).take(1).map(_ => this.setCartLen()).subscribe();
         }
       }
     } else {
@@ -127,15 +127,15 @@ export class ProductPageComponent implements OnInit {
 
   private initSkus(product: IProduct) {
     return this.productService.proccessSkus(product).take(1).flatMap(p => {
-      this.groups = p.Groups;
-      this.skus = p.Skus;
+      this.groups = p.groups;
+      this.skus = p.skus;
       this.sku = this.skus[0];
       this.product = p;
       let skuId = +this.route.snapshot.queryParams['SkuID'];
       return this.groupBuyService.getItem(skuId).map(item => {
         if (item) {
           this.groupBuyItem = item;
-          this.sku = this.skus.find(sku => sku.ID === item.Sku.ID);
+          this.sku = this.skus.find(sku => sku.ID === item.sku.ID);
           this.showSkus = true;
         }
       });

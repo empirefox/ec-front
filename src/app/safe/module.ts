@@ -7,20 +7,16 @@ import { HeaderBarModule } from '../header-bar';
 import { safeRouting } from './routes';
 
 import { SafeComponent } from './safe.component';
-import { PasswordComponent } from './password.component';
+import { SetHeadComponent } from './head.component';
 import { BindPhoneComponent } from './phone.component';
-import { PaykeyComponent } from './paykey.component';
-import { PaykeyForgetComponent } from './paykey-forget.component';
-import { PaykeySetComponent } from './paykey-set.component';
+import { SetPaykeyComponent } from './paykey.component';
 
 @NgModule({
   declarations: [
     SafeComponent,
-    PasswordComponent,
+    SetHeadComponent,
     BindPhoneComponent,
-    PaykeyComponent,
-    PaykeyForgetComponent,
-    PaykeySetComponent,
+    SetPaykeyComponent,
   ],
   imports: [
     CommonModule,
@@ -33,11 +29,9 @@ import { PaykeySetComponent } from './paykey-set.component';
   ],
   exports: [
     SafeComponent,
-    PasswordComponent,
+    SetHeadComponent,
     BindPhoneComponent,
-    PaykeyComponent,
-    PaykeyForgetComponent,
-    PaykeySetComponent,
+    SetPaykeyComponent,
   ],
 })
 export class SafeModule { }

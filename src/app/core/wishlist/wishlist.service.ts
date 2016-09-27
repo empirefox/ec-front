@@ -19,7 +19,7 @@ export class WishlistService {
 
   getItems(): Observable<IWishItem[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.WISH_LIST).map(res => this.parseResponse(res.json())).publishReplay(1).refCount();
+      this._items = this.http.get(URLS.WISH_LIST).map(res => this.parseResponse(res.json() || {})).publishReplay(1).refCount();
     }
     return this._items;
   }

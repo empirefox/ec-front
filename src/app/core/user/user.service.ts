@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
-import { PATHS, URLS, ProfileService, WxExchangeCode, WxCodeResult } from '../profile';
+import { config, URLS, ProfileService, WxCodeResult } from '../profile';
 import { Jwt } from '../jwt';
 import { nonce, removeURLParameter } from '../util';
 import {
@@ -82,7 +82,7 @@ export class UserService {
 
   exchange(query: WxCodeResult): Observable<string> {
     return query.code && query.state && query.state === this.jwt.getOauth2State() ?
-      this.rawHttp.get(WxExchangeCode(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+      this.rawHttp.get(config.wxExchangeCode(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 
@@ -116,7 +116,7 @@ export class UserService {
         // return this.jwt.setOauth2State(state).flatMap(_ => this.jwt.setCurrentUrl()).flatMap(_ => {
         let codeEndpoint = 'https://open.weixin.qq.com/connect/oauth2/authorize';
         let {WxAppId: appId, WxScope: scope} = profile;
-        let redirectUri = encodeURIComponent(`${location.protocol}//${location.host}${PATHS.WX_OAUTH2_LOCAL_PATH}${query}`);
+        let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
         location.href = `${codeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
         return caught;
         // });

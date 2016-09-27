@@ -23,7 +23,7 @@ export class HomeSpecialOfferComponent extends HomeSectionBaseComponent {
 
   ngOnInit() {
     this.productService.query({ sp: 'SpecialOffer' }).subscribe(items => {
-      items.slice(0, 3).forEach(item => this.prices[item.ID] = item.Skus.map(sku => sku.SalePrice).sort().shift());
+      items.slice(0, 3).forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
       this.item = items.shift();
       this.items = items;
     });

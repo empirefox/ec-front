@@ -14,7 +14,7 @@ export class GroupBuyService {
 
   getItems(): Observable<GroupBuy> {
     if (!this._gb) {
-      this._gb = this.http.get(URLS.GROUP_BUY).map(res => this.parseResponse(res.json())).publishReplay(1).refCount();
+      this._gb = this.http.get(URLS.GROUP_BUY).map(res => this.parseResponse(res.json() || {})).publishReplay(1).refCount();
     }
     return this._gb;
   }

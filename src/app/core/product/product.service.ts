@@ -13,6 +13,7 @@ import {
   IProductQuery
 } from './product';
 import { IProductEval, IEvalItem } from './eval';
+import { specialPresets, ISpecial } from './special';
 
 export const O2M_PRODUCT_SKUS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'product', manyInOne: 'skus', oneIdInMany: 'ProductID' };
 export const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'group', manyInOne: 'attrs', oneIdInMany: 'GroupID' };
@@ -29,7 +30,7 @@ export class ProductService {
   getAttrs() {
     if (!this._attrs) {
       this._attrs = this.http.get(URLS.PRODUCT_ATTR_LIST).
-        map((res) => this.initAttrs(<IProductAttrsResponse>res.json())).
+        map((res) => this.initAttrs(res.json() || {})).
         publishReplay(1).refCount();
     }
     return this._attrs;
@@ -40,11 +41,11 @@ export class ProductService {
   }
 
   fromCategory(categoryId: number): Observable<IProduct[]> {
-    return this.getProducts(new URLSearchParams(`CategoryID=${categoryId}`));
+    return this.getProducts(new URLSearchParams(`ft=CategoryID:eq:${categoryId}`));
   }
 
   fromSpecial(special: number): Observable<IProduct[]> {
-    return this.getProducts(new URLSearchParams(`SpecialID=${special}`));
+    return this.getProducts(new URLSearchParams(`ft=SpecialID:eq:${special}`));
   }
 
   query(query: IProductQuery): Observable<IProduct[]> {
@@ -53,7 +54,7 @@ export class ProductService {
 
   // ?CategoryID=111
   getProducts(params: URLSearchParams): Observable<IProduct[]> {
-    return this.http.get(URLS.PRODUCT_LIST, { search: params }).map(res => this.initProducts(<IProductsResponse>res.json()));
+    return this.http.get(URLS.PRODUCT_LIST, { search: params }).map(res => this.initProducts(res.json() || {}));
   }
 
   getProduct(id: number): Observable<IProduct> {
@@ -98,7 +99,7 @@ export class ProductService {
   getEvals(product: IProduct): Observable<IProductEval> {
     if (!product.evals) {
       product.evals = this.http.get(URLS.ProductEvals(product.ID)).map(res => {
-        let items = (<IEvalItem[]>res.json()).sort((b, a) => a.EvalAt - b.EvalAt);
+        let items = (<IEvalItem[]>res.json() || []).sort((b, a) => a.EvalAt - b.EvalAt);
 
         let good: IEvalItem[] = [];
         let common: IEvalItem[] = [];
@@ -132,11 +133,15 @@ export class ProductService {
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {
     let {Groups = [], Attrs = [], Specials = []} = res;
     one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
+    let specials = <Dict<number>>{};
+    specialPresets.forEach(item => specials[item] = 0);
+    Specials.forEach(item => specials[item.Name] = item.ID);
     return {
       groups: keyBy(Groups, item => item.ID),
       attrs: keyBy(Attrs, item => item.ID),
-      specials: Specials,
-    } as ProductAttrs;
+      specialList: Specials,
+      specials,
+    };
   }
 
   private initProducts(res: IProductsResponse): IProduct[] {

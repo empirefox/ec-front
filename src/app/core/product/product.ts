@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { CommonQuery } from '../profile';
 import { IProductEval } from './eval';
+import { ISpecial } from './special';
 
 export interface IProductQuery extends CommonQuery {
   CategoryID?: string;
@@ -26,22 +27,17 @@ export interface IProductAttrGroup {
   attrs: IProductAttr[];
 }
 
-export interface ISpecial {
-  ID: number;
-  Name: string;
-  Pos: number;
-}
-
 export interface IProductAttrsResponse {
   Groups: IProductAttrGroup[];
   Attrs: IProductAttr[];
   Specials: ISpecial[];
 }
 
-export class ProductAttrs {
+export interface ProductAttrs {
   groups: Dict<IProductAttrGroup>;
   attrs: Dict<IProductAttr>;
-  specials: ISpecial[];
+  specials: Dict<number>;
+  specialList: ISpecial[];
 }
 
 // Product skus

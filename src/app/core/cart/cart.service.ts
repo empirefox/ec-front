@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import keyBy from 'lodash/keyBy';
+import { updateAfterSaveWithoutSort } from '../util';
 import { URLS } from '../profile';
 import { ISku } from '../product';
 import { ICartItemContent, ICartItem, ICartResponse } from './cart-item';
+
+const sortor = (b: ICartItem, a: ICartItem) => a.CreatedAt - b.CreatedAt;
 
 @Injectable()
 export class CartService {
@@ -20,28 +23,22 @@ export class CartService {
   getItems(): Observable<ICartItem[]> {
     if (!this._items) {
       this._items = this.http.get(URLS.CART_LIST).
-        map(res => this.parseResponse(res.json()).map(this.initItem).sort((b, a) => a.CreatedAt - b.CreatedAt)).
+        map(res => this.parseResponse(res.json() || {}).map(this.initItem).sort(sortor)).
         publishReplay(1).refCount();
     }
     return this._items;
   }
 
-// TODO POST /cart merge with saveQuantity
-  add(sku: ISku, quantity: number): Observable<void> {
+  add(sku: ISku, quantity: number): Observable<ICartItem> {
     let payload: ICartItemContent = {
-      Img: sku.Img || sku.Product.Img,
-      Name: sku.Product.Name,
-      Type: sku.Attrs.map(attr => attr.Value).join(' '),
+      Img: sku.Img || sku.product.Img,
+      Name: sku.product.Name,
+      Type: sku.attrs.map(attr => attr.Value).join(' '),
       Price: sku.SalePrice,
       Quantity: quantity,
       SkuID: sku.ID,
     };
-    return this.http.post(URLS.CART_ADD, JSON.stringify(payload)).flatMap(res => {
-
-      return this._items ? this._items.map(items => {
-        this._items = Observable.of([this.initItem(<ICartItem>res.json()), ...items]);
-      }) : Observable.of<void>(null);
-    });
+    return this._save(payload);
   }
 
   computeTotal(items: ICartItem[]): number {
@@ -63,8 +60,10 @@ export class CartService {
     return this.http.delete(URLS.CART_LIST).map(_ => this.clearCache());
   }
 
-  saveQuantity(item: ICartItem) {
-    return this.http.post(URLS.CART_SET_QUANTITY, JSON.stringify(item));
+  save(item: ICartItem) {
+    let {ID, Img, Name, Type, Price, Quantity, SkuID} = item;
+    let payload: ICartItemContent = { ID, Img, Name, Type, Price, Quantity, SkuID };
+    return this._save(payload);
   }
 
   private parseResponse(res: ICartResponse): ICartItem[] {
@@ -74,7 +73,7 @@ export class CartService {
     items.forEach(item => {
       let sku = skuMap[item.SkuID];
       if (sku) {
-        sku.Product = productMap[sku.ProductID];
+        sku.product = productMap[sku.ProductID];
         item.sku = sku;
       }
     });
@@ -83,7 +82,7 @@ export class CartService {
 
   private initItem(item: ICartItem) {
     let sku = item.sku;
-    let product = sku ? sku.Product : null;
+    let product = sku ? sku.product : null;
 
     item.invalid = !product;
     item.checked = !item.invalid && item.checked !== false;
@@ -94,11 +93,21 @@ export class CartService {
 
     item.Name = product ? (product.Name ? product.Name : item.Name) : item.Name;
     item.Price = sku ? sku.SalePrice : item.Price;
-    item.Quantity = sku ? sku.Quantity : item.Quantity;
+    item.Quantity = sku ? sku.quantity : item.Quantity;
 
     // TODO add sku attrs
 
     return item;
+  }
+
+  private _save(payload: ICartItemContent): Observable<ICartItem> {
+    return this.http.post(URLS.CART_SAVE, JSON.stringify(payload)).flatMap(res => {
+      let item: ICartItem = res.json();
+      return this._items ? this._items.map(items => {
+        this._items = Observable.of(updateAfterSaveWithoutSort(items, item, payload.ID).sort(sortor));
+        return item;
+      }) : Observable.of(item);
+    });
   }
 
 }

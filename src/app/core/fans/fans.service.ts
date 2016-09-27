@@ -11,9 +11,9 @@ export class FansService {
   constructor(private http: AuthHttp) { }
 
   getItems(): Observable<IFan[]> {
-      return this.http.get(URLS.FANS).map(res =>
-        (<IFan[]>res.json()).sort(descSortor)
-      );
+    return this.http.get(URLS.FANS).map(res =>
+      (<IFan[]>res.json() || []).sort(descSortor)
+    );
   }
 
 }

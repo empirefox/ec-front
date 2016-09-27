@@ -18,7 +18,8 @@ export class CategoryService {
   // default DESC
   getTree(): Observable<ICategory[]> {
     if (!this._tree) {
-      this._tree = this.http.get(URLS.CATEGORY_LIST).map(res => this.listToTree(res.json())).publishReplay(1).refCount();
+      this._tree = this.http.get(URLS.CATEGORY_LIST).
+        map(res => this.listToTree(res.json() || [])).publishReplay(1).refCount();
     }
     return this._tree;
   }

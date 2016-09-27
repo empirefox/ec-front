@@ -51,7 +51,7 @@ export * from './vip';
 export * from './wishlist';
 // export * from './xstorage';
 export { APP_CORE_PIPES } from './pipes';
-export {Consts, ConstMap} from './consts';
+export * from './consts';
 
 export const APP_CORE_PROVIDERS = [
   ...ADDR_PROVIDERS,

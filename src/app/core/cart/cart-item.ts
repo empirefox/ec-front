@@ -2,6 +2,7 @@ import { ISku, IProduct } from '../product';
 
 // SaveToCartPayload
 export interface ICartItemContent {
+  ID?: number;
   Img: string;
   Name: string;
   Type: string; // sku attrs

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ICaptcha, CaptchaService, UserService, IBindPhoneData, CountdownService } from '../core';
+import { ICaptcha, CaptchaService, UserService, IBindPhonePayload, CountdownService } from '../core';
 
 @Component({
   template: require('./phone.html'),
@@ -63,7 +63,7 @@ export class BindPhoneComponent {
 
   onSubmit() {
     this.submitting = true;
-    let data = <IBindPhoneData>this.form.value;
+    let data = <IBindPhonePayload>this.form.value;
     data.CaptchaID = this.captcha.ID;
     this.userService.bindPhone(data).subscribe(
       _ => this.location.back(),
