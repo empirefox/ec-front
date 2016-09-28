@@ -3,6 +3,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import keyBy from 'lodash/keyBy';
 import { updateAfterSaveWithoutSort } from '../util';
+import { constMap } from '../consts';
 import { URLS } from '../profile';
 import { ISku } from '../product';
 import { ICartItemContent, ICartItem, ICartResponse } from './cart-item';
@@ -84,7 +85,7 @@ export class CartService {
     let sku = item.sku;
     let product = sku ? sku.product : null;
 
-    item.invalid = !product;
+    item.invalid = !product || product.Vpn !== constMap.VpnType['TVpnNormal'];
     item.checked = !item.invalid && item.checked !== false;
 
     let img = sku ? sku.Img : null;

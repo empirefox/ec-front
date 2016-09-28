@@ -1,6 +1,6 @@
 <dl class="spec">
   <dt>{{group.Name}}：</dt>
   <dd>
-    <a (click)="onSelect(attr)" *ngFor="let attr of group.Attrs" [class.current]="current===attr">{{attr.Value}}</a>
+    <a (click)="onSelect(attr)" *ngFor="let attr of group.attrs" [class.current]="current===attr">{{attr.Value}}</a>
   </dd>
 </dl>

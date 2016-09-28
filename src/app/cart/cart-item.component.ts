@@ -38,7 +38,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.quantity$.debounceTime(300).distinctUntilChanged().subscribe(_ => {
-      this.service.saveQuantity(this.item);
+      this.service.save(this.item);
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProfileService, CartService, ICheckout, LocalCheckoutService, OrderService } from '../../core';
+import { constMap, ProfileService, CartService, ICheckout, LocalCheckoutService, OrderService } from '../../core';
 
 @Component({
   selector: 'checkout-content',
@@ -31,6 +31,10 @@ export class CheckoutContentComponent {
         this.checkout.Total = this._total + this.checkout.DeliverFee;
       });
     });
+  }
+
+  get isPoints() {
+    return this.checkout.Items.length === 1 && this.checkout.Items[0].Sku.product.Vpn === constMap.VpnType['TVpnPoints'];
   }
 
   get payMethod() {

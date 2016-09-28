@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 import {
+  constMap,
   CartService,
   IWishItem,
   WishlistService,
@@ -109,7 +110,7 @@ export class ProductPageComponent implements OnInit {
           }
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
-        } else if (this.sku && this.sku.quantity) {
+        } else if (this.sku && this.sku.quantity && this.sku.product.Vpn === constMap.VpnType['TVpnNormal']) {
           this.cartService.add(this.sku, this.sku.quantity).take(1).map(_ => this.setCartLen()).subscribe();
         }
       }

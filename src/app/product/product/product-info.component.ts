@@ -40,10 +40,10 @@ export class ProductInfoComponent {
     private localSkuService: LocalSkuService) { }
 
   get salePrice() {
-    return this.sku ? this.sku.SalePrice : this.product.Skus[0].SalePrice;
+    return this.sku ? this.sku.SalePrice : this.product.skus[0].SalePrice;
   }
 
-  get img() { return this.product.Img || this.product.Skus[0].Img; }
+  get img() { return this.product.Img || this.product.skus[0].Img; }
 
   ngOnInit() {
     this.subProduct = this.localProductService.src$.subscribe(product => {

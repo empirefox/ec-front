@@ -15,7 +15,7 @@
   </div>
   <div class="bottom-mask-rolling">
     <div class="goods-options-stock" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-      <product-attr-group *ngFor="let group of product.Groups" [group]="group" [current]="current[group.ID]"
+      <product-attr-group *ngFor="let group of product.groups" [group]="group" [current]="current[group.ID]"
           (attr)="onAttrSelected($event)"></product-attr-group>
     </div>
   </div>

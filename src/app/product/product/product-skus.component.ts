@@ -27,7 +27,7 @@ export class ProductSkusComponent implements OnInit {
 
   ngOnInit() {
     if (!this.sku) {
-      this.sku = this.product.Skus[0];
+      this.sku = this.product.skus[0];
     }
     this.findGroupBuyItem();
   }
@@ -37,7 +37,7 @@ export class ProductSkusComponent implements OnInit {
     if (this._sku !== sku) {
       this._sku = sku;
       if (sku) {
-        sku.Attrs.forEach(attr => this.current[attr.Group.ID] = attr);
+        sku.attrs.forEach(attr => this.current[attr.Group.ID] = attr);
       } else {
         this.current = {};
       }
@@ -49,7 +49,7 @@ export class ProductSkusComponent implements OnInit {
   }
 
   get price() {
-    return this.gbItem && this.gbItem.Sku.ID === this.sku.ID ? this.gbItem.Price : this.sku.SalePrice;
+    return this.gbItem && this.gbItem.sku.ID === this.sku.ID ? this.gbItem.Price : this.sku.SalePrice;
   }
 
   get stock() {
@@ -61,11 +61,11 @@ export class ProductSkusComponent implements OnInit {
   }
 
   get quantity() {
-    return this.sku.Quantity;
+    return this.sku.quantity;
   }
   set quantity(q: number) {
     if (this.sku) {
-      this.sku.Quantity = q;
+      this.sku.quantity = q;
     }
   }
 

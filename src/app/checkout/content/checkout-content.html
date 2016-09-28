@@ -33,7 +33,7 @@
             <input type="text" placeholder="店铺订单留言：">
           </div>
           <div class="store-total">
-            合计<span><em>{{total|money}}</em></span>元
+            合计 <span><em>{{total|price}}</em></span>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
   </div>
   <!--商品列表End-->
   <!--付款方式Begin-->
-  <div class="cart-block mt5">
+  <div class="cart-block mt5" *ngIf="!isPoints">
     <a (click)="onChangePayMethod()" class="posr">
       <h3><i class="pay"></i>支付方式：</h3>
       <div class="current-con">{{payMethod}}</div>
@@ -50,7 +50,7 @@
   <!--付款方式End-->
 
   <!--发票信息Begin-->
-  <div class="cart-block mt5">
+  <div class="cart-block mt5" *ngIf="!isPoints">
     <a (click)="onViewInvoice()" class="posr">
       <h3><i class="invoice"></i>发票信息：</h3>
       <div class="current-con"> {{invoice}} </div>
@@ -72,7 +72,7 @@
     <div class="total">
       <dl class="total-money">
         <dt>实付款：</dt>
-        <dd>￥<em>{{checkout.Total|money}}</em></dd>
+        <dd><em>{{checkout.Total|price}}</em></dd>
       </dl>
     </div>
     <div class="check-out ok"><a (click)="onCheckout()">提交订单</a></div>

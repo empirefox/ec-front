@@ -11,7 +11,7 @@ export class CheckoutItemComponent {
   @Input() item: ICheckoutItem;
 
   get img() {
-    return this.item.Sku.Img ? this.item.Sku.Img : this.item.Sku.Product.Img;
+    return this.item.Sku.Img ? this.item.Sku.Img : this.item.Sku.product.Img;
   }
 
   get price() {

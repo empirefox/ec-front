@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ConstMap } from '../consts';
+import { constMap } from '../consts';
 
-const State = ConstMap.OrderState;
+const State = constMap.OrderState;
 
 // TODO study http://help.vipshop.com/themelist.php?type=detail&id=330
 const STATES = {
