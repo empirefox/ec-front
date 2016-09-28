@@ -1,6 +1,6 @@
 <ul class="item-pic-lr w50h" *ngIf="item">
   <li>
-    <a (click)="onGotoProduct(item)">
+    <a (click)="gotoProduct(item)">
       <div class="wz">
         <h2>{{item.Name}}</h2>
         <h3>低至{{prices[item.ID]|money}}元</h3>
@@ -11,7 +11,7 @@
     </a>
   </li>
   <li>
-    <a (click)="onGotoProduct(item)" *ngFor="let item of items">
+    <a (click)="gotoProduct(item)" *ngFor="let item of items">
       <div class="wz">
         <h2>{{item.Name}}</h2>
         <h3>低至{{prices[item.ID]|money}}元</h3>

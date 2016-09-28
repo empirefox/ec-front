@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { WxExchangeCode, WxCodeResult, Jwt, UserService } from '../core';
+import { WxCodeResult, Jwt, UserService } from '../core';
 
 enum State { Init, Failed, Ok }
 

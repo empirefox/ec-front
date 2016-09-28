@@ -9,6 +9,8 @@ import { constMap } from '../consts';
 import { descSortor } from '../util';
 import { ICarouselItem } from './carousel';
 
+const Url: typeof URL = require('url-parse');
+
 @Injectable()
 export class CarouselService {
 
@@ -36,7 +38,26 @@ export class CarouselService {
   clearCache() { this._boards = null; }
 
   gotoSlide(item: ICarouselItem) {
-    // TODO ...
+    if (item.Link) {
+      let url = new Url(item.Link);
+      let origin = new Url(this.router.url);
+      if (url.host === origin.host) {
+        this.router.navigateByUrl(url.pathname);
+        return;
+      }
+    }
+    if (item.ProductID) {
+      this.router.navigateByUrl(`/product/1${item.ProductID}`);
+      return;
+    }
+    if (item.SpecialID) {
+      this.router.navigateByUrl('/product/list', { queryParams: { ft: `SpecialID:eq:${item.SpecialID}` } });
+      return;
+    }
+    if (item.CategoryID) {
+      this.router.navigateByUrl('/product/list', { queryParams: { ft: `CategoryID:eq:${item.CategoryID}` } });
+      return;
+    }
   }
 
 }

@@ -29,8 +29,8 @@ export class CheyouBuyComponent {
     ).flatMap(([profile, attrs, abcs]: [IProfile, ProductAttrs, IProduct[]]) => {
       this.profile = profile;
       this.abcs = abcs;
-      let special = attrs.specials.find(item => item.Name === config.vbuysSpecialName);
-      return special ? this.productService.fromSpecial(special.ID).take(1) : Observable.of(null);
+      let special = attrs.specials[config.vbuysSpecialName];
+      return special ? this.productService.query({ ft: special }).take(1) : Observable.of(null);
     }).subscribe(vbuys => this.vbuys = vbuys);
   }
 

@@ -1,32 +1,38 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { IProduct, ProductService, LocalProductService } from '../../core';
-import { HomeSectionBaseComponent } from '../section-base.component';
 
 @Component({
   selector: 'home-special-offer',
   template: require('./special-offer.html'),
   styles: [require('./special-offer.css')],
 })
-export class HomeSpecialOfferComponent extends HomeSectionBaseComponent {
+export class HomeSpecialOfferComponent {
 
   item: IProduct; // first item
   items: IProduct[];
   prices: Dict<number> = {};
 
   constructor(
-    router: Router,
-    productService: ProductService,
-    localProductService: LocalProductService) {
-    super(router, productService, localProductService);
-  }
+    private router: Router,
+    private productService: ProductService,
+    private localProductService: LocalProductService) { }
 
   ngOnInit() {
-    this.productService.query({ sp: 'SpecialOffer' }).subscribe(items => {
-      items.slice(0, 3).forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
-      this.item = items.shift();
-      this.items = items;
-    });
+    this.productService.getAttrs().
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['specialOffer'], sz: 4 })).
+      take(1).subscribe(items => {
+        items.slice(0, 3).forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
+        this.item = items.shift();
+        this.items = items;
+      });
   }
+
+  gotoProduct(product: IProduct) {
+    this.localProductService.publish(product);
+    this.router.navigate(['./home/1', product.ID]); // SkuID
+  }
+
+  getImg(product: IProduct) { return product.Img || product.skus[0].Img; }
 
 }

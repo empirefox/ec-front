@@ -1,30 +1,36 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { IProduct, ProductService, LocalProductService } from '../../core';
-import { HomeSectionBaseComponent } from '../section-base.component';
 
 @Component({
   selector: 'home-recommend',
   template: require('./recommend.html'),
   styles: [require('./recommend.css')],
 })
-export class HomeRecommendComponent extends HomeSectionBaseComponent {
+export class HomeRecommendComponent {
 
   items: IProduct[];
 
   constructor(
-    router: Router,
-    productService: ProductService,
-    localProductService: LocalProductService) {
-    super(router, productService, localProductService);
-  }
+    private router: Router,
+    private productService: ProductService,
+    private localProductService: LocalProductService) { }
 
   ngOnInit() {
-    this.productService.query({ sp: 'Recommend' }).subscribe(items => {
-      this.items = items.slice(0, Math.floor(items.length / 2) * 2);
-    });
+    this.productService.getAttrs().
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['recommend'], sz: 3 * 2 })).
+      take(1).subscribe(items => {
+        this.items = items.slice(0, Math.floor(items.length / 2) * 2);
+      });
   }
 
-  onGotoProducts() { this.router.navigateByUrl('/product/list'); }
+  gotoProducts() { this.router.navigateByUrl('/product/list'); }
+
+  gotoProduct(product: IProduct) {
+    this.localProductService.publish(product);
+    this.router.navigate(['./home/1', product.ID]); // SkuID
+  }
+
+  getImg(product: IProduct) { return product.Img || product.skus[0].Img; }
 
 }

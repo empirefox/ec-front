@@ -4,7 +4,7 @@
 
   <ul class="item-pic-lr w50h">
     <li *ngFor="let item of first">
-      <a (click)="onGotoProduct(item)">
+      <a (click)="gotoProduct(item)">
         <div class="wz">
           <h2>{{item.Name}}</h2>
           <h3>低至{{prices[item.ID]|money}}元</h3>
@@ -18,7 +18,7 @@
 
   <ul class="item-pic-tb w25h">
     <li *ngFor="let item of items">
-      <a (click)="onGotoProduct(item)">
+      <a (click)="gotoProduct(item)">
         <h2>{{item.Name}}</h2>
         <h3>低至{{prices[item.ID]|money}}元</h3>
         <img [src]="getImg(item)">

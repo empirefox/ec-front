@@ -40,14 +40,6 @@ export class ProductService {
     return product.skus.find(sku => isEqual(sku.attrs, attrs.sort((b, a) => a.Group.Pos - b.Group.Pos).map(attr => attr.ID)));
   }
 
-  fromCategory(categoryId: number): Observable<IProduct[]> {
-    return this.getProducts(new URLSearchParams(`ft=CategoryID:eq:${categoryId}`));
-  }
-
-  fromSpecial(special: number): Observable<IProduct[]> {
-    return this.getProducts(new URLSearchParams(`ft=SpecialID:eq:${special}`));
-  }
-
   query(query: IProductQuery): Observable<IProduct[]> {
     return this.getProducts(new URLSearchParams(objectToParams(query)));
   }
@@ -133,9 +125,9 @@ export class ProductService {
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {
     let {Groups = [], Attrs = [], Specials = []} = res;
     one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
-    let specials = <Dict<number>>{};
-    specialPresets.forEach(item => specials[item] = 0);
-    Specials.forEach(item => specials[item.Name] = item.ID);
+    let specials = <Dict<string>>{};
+    specialPresets.forEach(item => specials[item] = '');
+    Specials.forEach(item => specials[item.Name] = `SpecialID:eq:${item.ID}`);
     return {
       groups: keyBy(Groups, item => item.ID),
       attrs: keyBy(Attrs, item => item.ID),

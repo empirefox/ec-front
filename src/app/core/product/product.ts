@@ -36,7 +36,7 @@ export interface IProductAttrsResponse {
 export interface ProductAttrs {
   groups: Dict<IProductAttrGroup>;
   attrs: Dict<IProductAttr>;
-  specials: Dict<number>;
+  specials: Dict<string>;
   specialList: ISpecial[];
 }
 

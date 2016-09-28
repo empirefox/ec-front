@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IProduct, ProductService } from '../core';
+import { ICarouselItem, CarouselService } from '../core';
 
 @Component({
   selector: 'home-page',
@@ -8,13 +8,12 @@ import { IProduct, ProductService } from '../core';
 })
 export class HomePageComponent {
 
-  items: IProduct[] = [];
+  items: ICarouselItem[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private carouselService: CarouselService) { }
 
-  // TODO support 'SpecialOffer+Featured+Life+Recommend+AdSlides'
   ngOnInit() {
-    this.productService.query({ sp: 'AdSlides' }).subscribe(items => this.items = items);
+    this.carouselService.getItems('TBillboardAdSlide').subscribe(items => this.items = items);
   }
 
 }
