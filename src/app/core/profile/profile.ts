@@ -21,10 +21,14 @@ export interface IProfile {
   CheckoutExpiresMinute: number;
   WxPayExpiresMinute: number;
   FreeDeliverLine: number;
+
+  HeadPrefix: string;
 }
 
 export const URLS = {
   PROFILE: `${config.apiOrigin}/profile`, // get
+
+  HEAD_UPTOKEN: `${config.apiOrigin}/headtoken`, // get
 
   CAPTHCA: `${config.apiOrigin}/captcha`, // get
   CAROUSEL: `${config.apiOrigin}/carousel`, // get

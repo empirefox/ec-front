@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
-import { config, URLS, ProfileService, WxCodeResult } from '../profile';
+import { config, URLS, IProfile, ProfileService, WxCodeResult } from '../profile';
 import { Jwt } from '../jwt';
 import { nonce, removeURLParameter } from '../util';
 import {
@@ -20,7 +20,9 @@ import {
 @Injectable()
 export class UserService {
 
-  _userinfo: Observable<IUserInfo>;
+  private _userinfo: Observable<IUserInfo>;
+  private headSrc: Observable<string>;
+  private headNonce: string = nonce(8);
 
   constructor(
     private router: Router,
@@ -28,6 +30,22 @@ export class UserService {
     private http: AuthHttp,
     private profileService: ProfileService,
     private jwt: Jwt) { }
+
+  get headSrc$(): Observable<string> {
+    if (!this.headSrc) {
+      this.headNonce = nonce(8);
+      this.headSrc = Observable.forkJoin(
+        this.profileService.getProfile().take(1),
+        this.getUserinfo().take(1),
+      ).map(([profile, user]: [IProfile, IUserInfo]) => `${config.cdnImgOrigin}/${profile.HeadPrefix}/${user.ID}?v=${this.headNonce}`).
+        publishReplay(1).refCount();
+    }
+    return this.headSrc;
+  }
+
+  refreshHead() {
+    this.headSrc = null;
+  }
 
   getUserinfo(): Observable<IUserInfo> {
     if (!this._userinfo) {

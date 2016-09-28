@@ -18,6 +18,7 @@
     ],
     "types": [
       "countdown",
+      "dropzone",
       "hammerjs",
       "jasmine",
       "lodash",

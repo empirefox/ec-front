@@ -47,7 +47,7 @@ export class NewsService {
 
   private _queryOne(id: number): Observable<INewsItem> {
     return this._current = (this._current || Observable.of(<INewsItem>{ ID: 0 })).flatMap(current => {
-      return current && current.ID === id ? this._current :
+      return current && current.ID === id ? Observable.of(current) :
         this._query({ sz: 1, ft: `ID:eq:${id}` }).map(items => items.length ? items[0] : null);
     });
   }

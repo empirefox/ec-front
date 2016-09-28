@@ -3,6 +3,7 @@ import { CAPTCHA_PROVIDERS } from './captcha';
 import { CAROUSEL_PROVIDERS } from './carousel';
 import { CART_PROVIDERS } from './cart';
 import { CATEGORY_PROVIDERS } from './category';
+import { CDN_PROVIDERS } from './cdn';
 import { COUNTDOWN_PROVIDERS } from './countdown';
 // import { COUPON_PROVIDERS } from './coupon';
 import { DELIVERY_PROVIDERS } from './delivery';
@@ -29,6 +30,7 @@ export * from './captcha';
 export * from './carousel';
 export * from './cart';
 export * from './category';
+export * from './cdn';
 export * from './countdown';
 // export * from './coupon';
 export * from './delivery';
@@ -59,6 +61,7 @@ export const APP_CORE_PROVIDERS = [
   ...CAROUSEL_PROVIDERS,
   ...CART_PROVIDERS,
   ...CATEGORY_PROVIDERS,
+  ...CDN_PROVIDERS,
   ...COUNTDOWN_PROVIDERS,
   //  ...COUPON_PROVIDERS ,
   ...DELIVERY_PROVIDERS,
