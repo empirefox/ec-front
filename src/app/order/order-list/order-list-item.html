@@ -18,7 +18,7 @@
       </a>
     </div>
     <div class="goods-subtotal">
-      共{{order.Items.length}}件商品　实付款：<span class="goods-price">￥<em>{{order.PaymentAmount|money}}</em></span>
+      共{{order.Items.length}}件商品　实付款：<span class="goods-price"><em>{{order.PayAmount|price:order.Items[0].Vpn}}</em></span>
     </div>
   </div>
   <div class="order-item-footer">

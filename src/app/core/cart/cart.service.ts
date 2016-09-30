@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import keyBy from 'lodash/keyBy';
-import { updateAfterSaveWithoutSort } from '../util';
+import { updateAfterSave, createdAtSortor } from '../util';
 import { constMap } from '../consts';
 import { URLS } from '../profile';
 import { ISku } from '../product';
 import { ICartItemContent, ICartItem, ICartResponse } from './cart-item';
-
-const sortor = (b: ICartItem, a: ICartItem) => a.CreatedAt - b.CreatedAt;
 
 @Injectable()
 export class CartService {
@@ -23,8 +21,8 @@ export class CartService {
 
   getItems(): Observable<ICartItem[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.CART_LIST).
-        map(res => this.parseResponse(res.json() || {}).map(this.initItem).sort(sortor)).
+      this._items = this.http.get(URLS.CART_ALL).
+        map(res => this.parseResponse(res.json() || {}).map(this.initItem).sort(createdAtSortor)).
         publishReplay(1).refCount();
     }
     return this._items;
@@ -46,19 +44,18 @@ export class CartService {
     return items ? items.map(item => !item.checked ? 0 : item.Price * item.Quantity).reduce((a, b) => a + b, 0) : 0;
   }
 
-  delete(id: number): Observable<void> {
+  delete(skuIds: number[]): Observable<void> {
     // DELETE /cart/:id
-    return this.http.delete(URLS.Cart(id)).flatMap(res => {
+    return this.http.delete(URLS.CART_ALL, { search: skuIds.map(id => `s=${id}`).join('&') }).flatMap(res => {
       return this._items ? this._items.map(items => {
-        let i = items.findIndex(item => item.ID === id);
-        if (~i) { items.splice(i, 1); }
-        this._items = Observable.of([...items]);
+        items = items.filter(item => !~skuIds.indexOf(item.SkuID));
+        this._items = Observable.of(items);
       }) : Observable.of<void>(null);
     });
   }
 
   clear() {
-    return this.http.delete(URLS.CART_LIST).map(_ => this.clearCache());
+    return this.http.delete(URLS.CART_ALL, { search: 's=all' }).map(_ => this.clearCache());
   }
 
   save(item: ICartItem) {
@@ -85,7 +82,7 @@ export class CartService {
     let sku = item.sku;
     let product = sku ? sku.product : null;
 
-    item.invalid = !product || product.Vpn !== constMap.VpnType['TVpnNormal'];
+    item.invalid = !product || product.Vpn !== constMap.VpnType.TVpnNormal;
     item.checked = !item.invalid && item.checked !== false;
 
     let img = sku ? sku.Img : null;
@@ -102,10 +99,11 @@ export class CartService {
   }
 
   private _save(payload: ICartItemContent): Observable<ICartItem> {
-    return this.http.post(URLS.CART_SAVE, JSON.stringify(payload)).flatMap(res => {
+    return this.http.post(URLS.CART_ALL, JSON.stringify(payload)).flatMap(res => {
       let item: ICartItem = res.json();
       return this._items ? this._items.map(items => {
-        this._items = Observable.of(updateAfterSaveWithoutSort(items, item, payload.ID).sort(sortor));
+        items = updateAfterSave(items, item, payload.ID).sort(createdAtSortor);
+        this._items = Observable.of(items);
         return item;
       }) : Observable.of(item);
     });

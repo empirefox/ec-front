@@ -5,8 +5,9 @@ import groupBy from 'lodash/groupBy';
 import keyBy from 'lodash/keyBy';
 import isEqual from 'lodash/isEqual';
 import uniq from 'lodash/uniq';
+import { stringify } from 'querystringify';
 import { URLS } from '../profile';
-import { one2manyRelate, descSortor, objectToParams } from '../util';
+import { one2manyRelate, posSortor } from '../util';
 import {
   IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
   ISku, ProductAttrGroup, IProduct, IProductsResponse,
@@ -41,7 +42,7 @@ export class ProductService {
   }
 
   query(query: IProductQuery): Observable<IProduct[]> {
-    return this.getProducts(new URLSearchParams(objectToParams(query)));
+    return this.getProducts(new URLSearchParams(stringify(query)));
   }
 
   // ?CategoryID=111
@@ -70,8 +71,8 @@ export class ProductService {
       let flattenAttrs = attrs.map(attrId => attrAndGroupMap.attrs[attrId.AttrID]);
       let AttrsByGroup = groupBy(uniq(flattenAttrs), item => item.GroupID);
       product.groups = Object.keys(AttrsByGroup).filter(groupId => groupId in attrAndGroupMap.groups).
-        map(groupId => new ProductAttrGroup(attrAndGroupMap.groups[groupId], AttrsByGroup[groupId].sort(descSortor))).
-        sort(descSortor);
+        map(groupId => new ProductAttrGroup(attrAndGroupMap.groups[groupId], AttrsByGroup[groupId].sort(posSortor))).
+        sort(posSortor);
 
       let attrIdsBySku = groupBy(attrs, item => item.SkuID);
       let skuMap = keyBy(skus, item => item.ID);

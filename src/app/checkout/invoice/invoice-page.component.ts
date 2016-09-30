@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Invoice, ICheckout, LocalCheckoutService } from '../../core';
+import { Invoice, ICheckout, LocalCheckoutBase } from '../../core';
 
 @Component({
   template: require('./invoice-page.html'),
@@ -12,10 +12,10 @@ export class InvoicePageComponent {
 
   constructor(
     private router: Router,
-    private localCheckoutService: LocalCheckoutService) { }
+    private base: LocalCheckoutBase) { }
 
   ngOnInit() {
-    this.localCheckoutService.src$.subscribe(checkout => this.checkout = checkout);
+    this.checkout = this.base.checkout;
   }
 
   onEdited(invoice: Invoice) {

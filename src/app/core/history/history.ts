@@ -4,4 +4,5 @@ export class HistoryItem {
   Name: string;
   Img: string;
   Price: number;
+  Vpn: number;
 }

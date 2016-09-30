@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import { URLS } from '../profile';
-import { descSortor } from '../util';
+import { createdAtSortor } from '../util';
 import { IVipIntro, IVipRebateOrigin, MyVips } from './vip';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class VipService {
   getItems(): Observable<IVipIntro[]> {
     if (!this._items) {
       this._items = this.rawHttp.get(URLS.VIPS).map(res =>
-        (<IVipIntro[]>res.json() || []).sort(descSortor)
+        (<IVipIntro[]>res.json() || []).sort(createdAtSortor)
       ).publishReplay(1).refCount();
     }
     return this._items;
@@ -34,7 +34,7 @@ export class VipService {
 
   getMyVips(): Observable<MyVips> {
     return this.http.get(URLS.MY_VIPS).map(res => {
-      let items = <IVipRebateOrigin[]>(res.json() || []).sort(descSortor);
+      let items = <IVipRebateOrigin[]>(res.json() || []).sort(createdAtSortor);
       let now = Date.now() / 1000;
       let current = items.find(item => item.NotBefore <= now && now < item.ExpiresAt);
       return { current, items };
@@ -43,7 +43,7 @@ export class VipService {
 
   getQualifications(): Observable<IVipRebateOrigin[]> {
     return this.http.get(URLS.QUALIFICATIONS).
-      map(res => (<IVipRebateOrigin[]>res.json() || []).filter(item => !item.User1Used).sort(descSortor));
+      map(res => (<IVipRebateOrigin[]>res.json() || []).filter(item => !item.User1Used).sort(createdAtSortor));
   }
 
 }

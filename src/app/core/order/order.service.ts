@@ -2,16 +2,28 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import { URLS } from '../profile';
+import { stringify } from 'querystringify';
+import { URLS, CommonQuery } from '../profile';
+import { createdAtSortor } from '../util';
 import { IWxPayArgs, MoneyService } from '../money';
 import { ISku, IEvalItem } from '../product';
-import { IOrder, IOrderItem, ICheckoutPayload, IOrderPayPayload, IOrderWxPayPayload, IOrderChangeStatePayload, IEvalResponse } from './order';
-import { ICheckout, ICheckoutItem, toPayload } from './checkout';
+import {
+  IOrder, IOrderItem,
+  ICheckoutPayload, IOrderPayPayload,
+  IOrderWxPayPayload,
+  IOrderChangeStatePayload,
+} from './order';
+import { ICheckout, ICheckoutItem, toPayload, toOnePayload } from './checkout';
 
 @Injectable()
 export class OrderService {
 
-  _checkoutItemCache: ICheckoutItem;
+  private _items: Observable<IOrder[]> = null;
+  private _current: Observable<IOrder> = null;
+  private _querying = false;
+
+  private _checkoutItemCache: ICheckoutItem;
+  private _orderFromCheckoutCache: IOrder;
 
   constructor(
     private http: AuthHttp,
@@ -21,30 +33,34 @@ export class OrderService {
   setCheckoutItemCache(cache: ICheckoutItem) { this._checkoutItemCache = cache; }
   clearCheckoutItemCache() { this._checkoutItemCache = null; }
 
+  getOrderFromCheckoutCache() { return this._orderFromCheckoutCache; }
+  setOrderFromCheckoutCache(cache: IOrder) { this._orderFromCheckoutCache = cache; }
+
   // with items
   checkout(checkout: ICheckout): Observable<IOrder> {
-    return this.http.post(URLS.ORDER_CHECKOUT, JSON.stringify(toPayload(checkout))).map(res => <IOrder>res.json());
+    let url = checkout.normal ? URLS.ORDER_CHECKOUT : URLS.ORDER_CHECKOUT_ONE;
+    let payload = (checkout.normal ? toPayload : toOnePayload)(checkout);
+    return this.http.post(url, JSON.stringify(payload)).flatMap(res => {
+      let order = <IOrder>res.json();
+      if (this._items) {
+        return this._items.map(items => {
+          items.unshift(order);
+          return order;
+        });
+      }
+      return Observable.of(order);
+    });
   }
 
-  changeState(orderId: number, state: number): Observable<IOrder> {
-    let payload: IOrderChangeStatePayload = { ID: orderId, State: state };
-    return this.http.post(URLS.ORDER_STATE, JSON.stringify(payload)).map(res => <IOrder>res.json());
+  changeState(order: IOrder, state: number): Observable<IOrder> {
+    let payload: IOrderChangeStatePayload = { ID: order.ID, State: state };
+    return this.http.post(URLS.ORDER_STATE, JSON.stringify(payload)).map(res => this._assign(order, res.json()));
   }
 
-  // with items
-  getOrders(): Observable<IOrder[]> {
-    return this.http.get(URLS.ORDER_LIST).map(res => <IOrder[]>res.json() || []);
-  }
-
-  // with items
-  getOrder(id: number): Observable<IOrder> {
-    return this.http.get(URLS.Order(id)).map(res => <IOrder>res.json());
-  }
-
-  evalOrder(orderId: number, itemId: number, itemEval: IEvalItem): Observable<IEvalResponse> {
+  evalOrder(order: IOrder, itemEval: IEvalItem, itemId?: number): Observable<IOrder> {
     let options = itemId ? { search: new URLSearchParams(`item=${itemId}`) } : null;
-    return this.http.post(URLS.OrderEval(orderId), JSON.stringify(itemEval), options).
-      map(res => <IEvalResponse>res.json());
+    return this.http.post(URLS.OrderEval(order.ID), JSON.stringify(itemEval), options).
+      map(res => Object.assign(order, res.json()));
   }
 
   pay(order: IOrder, key: string): Observable<IOrder> {
@@ -54,10 +70,10 @@ export class OrderService {
       Amount: order.PayPoints || order.PayAmount,
       IsPoints: !!order.PayPoints,
     };
-    return this.http.post(URLS.ORDER_PAY, JSON.stringify(pay)).map(res => <IOrder>res.json());
+    return this.http.post(URLS.ORDER_PAY, JSON.stringify(pay)).map(res => this._assign(order, res.json()));
   }
 
-  wxPay(order: IOrder, amount: number): Observable<IOrder> {
+  wxPay(order: IOrder): Observable<IOrder> {
     if (order.PayPoints) {
       return Observable.throw<IOrder>('Points order');
     }
@@ -65,7 +81,68 @@ export class OrderService {
     return this.http.post(URLS.ORDER_WX_PAY, JSON.stringify(pay)).
       flatMap(res => this.moneyService.requestPay(<IWxPayArgs>res.json())).
       flatMap(_ => this.http.get(URLS.PaiedOrder(order.ID))).
-      map(res => <IOrder>res.json());
+      map(res => this._assign(order, res.json()));
+  }
+
+  clearCache() {
+    this._items = null;
+  }
+
+  getOrders(next: boolean): Observable<IOrder[]> {
+    if (!this._items) {
+      this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
+      return this._items;
+    }
+
+    return this._items.flatMap(exist => {
+      if (exist && exist.length) {
+        let filter = next ?
+          `CreatedAt:gt:${exist[0].CreatedAt}` :
+          `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}`;
+        this._items = this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
+          flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
+      } else {
+        this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
+      }
+      return this._items;
+    });
+  }
+
+  getOrder(id: number): Observable<IOrder> {
+    return !id ? Observable.of(null) :
+      (this._items || Observable.of([])).flatMap(items => {
+        let item = items.find(item => item.ID === id);
+        return item ? Observable.of(item) : this._queryOne(id);
+      });
+  }
+
+  setCurrent(order: IOrder) {
+    this._current = Observable.of(order);
+  }
+
+  private _queryOne(id: number): Observable<IOrder> {
+    return this._current = (this._current || Observable.of(<IOrder>{ ID: 0 })).flatMap(current => {
+      return current && current.ID === id ? Observable.of(current) :
+        this.http.get(URLS.Order(id)).map(res => <IOrder>res.json()).publishReplay(1).refCount();
+    });
+  }
+
+  private _query(query: CommonQuery): Observable<IOrder[]> {
+    if (this._items && this._querying) {
+      return this._items;
+    }
+    this._querying = true;
+    return this.http.get(URLS.ORDER_LIST, { search: stringify(query) }).map(res => {
+      this._querying = false;
+      return (<IOrder[]>res.json() || []).sort(createdAtSortor);
+    }).catch((err, caught) => {
+      this._querying = false;
+      return caught;
+    }).publishReplay(1).refCount();
+  }
+
+  private _assign(dest: IOrder, src: IOrder): IOrder {
+    return Object.assign(dest, src, { Items: dest.Items });
   }
 
 }

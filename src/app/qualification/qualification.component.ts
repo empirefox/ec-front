@@ -54,7 +54,7 @@ export class QualificationComponent {
   onReward() {
     if (this.canReward) {
       let payload: VipRebatePayload = {
-        Type: constMap.VipRebateType['TVipRebateReward'],
+        Type: constMap.VipRebateType.TVipRebateReward,
         SubIDs: this.selected.map(item => item.ID),
       };
       this.moneyService.rebate(payload).subscribe(_ => this.afterRebate(false));
@@ -64,7 +64,7 @@ export class QualificationComponent {
   onRebate() {
     if (this.canRebate) {
       let payload: VipRebatePayload = {
-        Type: constMap.VipRebateType['TVipRebateRebate'],
+        Type: constMap.VipRebateType.TVipRebateRebate,
         SubIDs: this.selected.map(item => item.ID),
       };
       this.moneyService.rebate(payload).subscribe(_ => this.afterRebate(true));

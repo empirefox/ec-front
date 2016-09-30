@@ -4,13 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core.module';
 
 import { HeaderBarModule } from '../header-bar';
-import { RatingModule } from '../rating';
+import { RatingModule } from '../rating'; // https://github.com/pleerock/ng2-rating
 import { PayModule } from '../pay';
 import { orderRouting } from './routes';
 
-import { OrderRouteComponent } from './order-route.component';
 import { OrderListComponent } from './order-list';
-import { OrderDetailPageComponent } from './order-detail';
 import { OrderEvalComponent } from './eval';
 import { DeliveryPageComponent } from './delivery';
 
@@ -22,9 +20,8 @@ import { OrderListItemComponent } from './order-list/order-list-item.component';
 
 @NgModule({
   declarations: [
-    OrderRouteComponent,
     OrderListComponent, OrderListItemComponent,
-    OrderDetailPageComponent, OrderActionsComponent, OrderDetailComponent, OrderDetailItemComponent,
+    OrderActionsComponent, OrderDetailComponent, OrderDetailItemComponent,
     OrderEvalComponent,
     DeliveryPageComponent, DeliveryDayComponent,
   ],
@@ -40,9 +37,7 @@ import { OrderListItemComponent } from './order-list/order-list-item.component';
     orderRouting,
   ],
   exports: [
-    OrderRouteComponent,
     OrderListComponent,
-    OrderDetailPageComponent,
     OrderEvalComponent,
     DeliveryPageComponent,
   ],

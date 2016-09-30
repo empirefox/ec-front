@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { stringify } from 'querystringify';
 import { URLS } from '../profile';
-import { descSortor, objectToParams } from '../util';
+import { createdAtSortor } from '../util';
 import { INewsItem, INewsQuery } from './news';
 
 @Injectable()
@@ -48,7 +49,7 @@ export class NewsService {
   private _queryOne(id: number): Observable<INewsItem> {
     return this._current = (this._current || Observable.of(<INewsItem>{ ID: 0 })).flatMap(current => {
       return current && current.ID === id ? Observable.of(current) :
-        this._query({ sz: 1, ft: `ID:eq:${id}` }).map(items => items.length ? items[0] : null);
+        this.rawHttp.get(URLS.NewsItem(id)).map(res => res.json()).publishReplay(1).refCount();
     });
   }
 
@@ -57,9 +58,9 @@ export class NewsService {
       return this._items;
     }
     this._querying = true;
-    return this.rawHttp.get(URLS.NEWS, { search: new URLSearchParams(objectToParams(query)) }).map(res => {
+    return this.rawHttp.get(URLS.NEWS, { search: stringify(query) }).map(res => {
       this._querying = false;
-      return (<INewsItem[]>res.json() || []).sort(descSortor);
+      return (<INewsItem[]>res.json() || []).sort(createdAtSortor);
     }).catch((err, caught) => {
       this._querying = false;
       return caught;

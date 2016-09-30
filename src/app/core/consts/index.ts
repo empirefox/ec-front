@@ -1,1 +1,1 @@
-export * from './consts';
+export * from './const-map';

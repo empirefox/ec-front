@@ -81,8 +81,6 @@ export class ProductPageComponent implements OnInit {
     return (this.sku || this.product.skus[0]).SalePrice;
   }
 
-  onGotoKefu() { }
-
   onGuanzhu() {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
@@ -94,7 +92,9 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-  onGotoCart() { this.router.navigateByUrl('/cart'); }
+
+  gotoChat() { this.router.navigateByUrl('/chat'); }
+  gotoCart() { this.router.navigateByUrl('/cart'); }
 
   onSkuChange(sku: ISku) { this.sku = sku; }
 
@@ -110,7 +110,7 @@ export class ProductPageComponent implements OnInit {
           }
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
-        } else if (this.sku && this.sku.quantity && this.sku.product.Vpn === constMap.VpnType['TVpnNormal']) {
+        } else if (this.sku && this.sku.quantity && this.sku.product.Vpn === constMap.VpnType.TVpnNormal) {
           this.cartService.add(this.sku, this.sku.quantity).take(1).map(_ => this.setCartLen()).subscribe();
         }
       }

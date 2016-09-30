@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IOrder, LocalOrderService } from '../../core';
+import { IOrder, OrderService } from '../../core';
 
 @Component({
   selector: 'order-list-item',
@@ -13,10 +13,9 @@ export class OrderListItemComponent {
 
   constructor(
     private router: Router,
-    private localOrderService: LocalOrderService) { }
+    private orderService: OrderService) { }
 
   gotoDetail() {
-    this.localOrderService.publish(this.order);
     this.router.navigate(['/order/detail', this.order.ID]);
   }
 

@@ -1,7 +1,11 @@
 import { Component, Optional, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IWallet, MoneyService, IOrder, OrderService, LocalOrderService, LocalOrdersService } from '../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { constMap, removeURLParameter, IUserInfo, UserService, IWallet, MoneyService, IOrder, OrderService } from '../core';
+
+enum PayType { none, wx, cash, points }
 
 @Component({
   selector: 'order-pay',
@@ -10,39 +14,54 @@ import { IWallet, MoneyService, IOrder, OrderService, LocalOrderService, LocalOr
 })
 export class OrderPayComponent {
 
-  @Input() orderId: number;
-  @Input() amount: number;
+  @Input() order: IOrder;
 
   @Input() show: boolean;
   @Output() showChange = new EventEmitter<boolean>();
 
+  PayType = PayType;
+  payType = PayType.none;
+  user: IUserInfo;
   wallet: IWallet;
-  canUseDeposit: boolean;
+  vpn: number;
   error: boolean;
   key: string;
   keyControl: FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
-  private _useDeposit: boolean;
-
   constructor(
+    private location: Location,
+    private route: ActivatedRoute,
     private router: Router,
     private moneyService: MoneyService,
-    private orderService: OrderService,
-    @Optional() private localOrderService: LocalOrderService,
-    @Optional() private localOrdersService: LocalOrdersService) { }
+    private userService: UserService,
+    private orderService: OrderService) { }
 
-  get useDeposit(): boolean {
-    return this.canUseDeposit && this._useDeposit;
-  }
-  set useDeposit(use: boolean) {
-    this._useDeposit = this.canUseDeposit && use;
+  get valid(): boolean {
+    switch (this.payType) {
+      case PayType.wx:
+        return !this.order.PayPoints;
+      case PayType.cash:
+        return !this.order.PayPoints && this.wallet.cash >= this.order.PayAmount && this.keyControl.valid;
+      case PayType.points:
+        return this.order.PayPoints && this.wallet.points >= this.order.PayPoints && this.keyControl.valid;
+    }
+    return false;
   }
 
   ngOnInit() {
-    this.moneyService.getWallet().subscribe(wallet => {
+    Observable.forkJoin(
+      this.userService.getUserinfo().take(1),
+      this.moneyService.getWallet().take(1),
+    ).subscribe(([user, wallet]: [IUserInfo, IWallet]) => {
+      this.user = user;
       this.wallet = wallet;
-      this.canUseDeposit = this.wallet.Deposit >= this.amount;
     });
+    this.vpn = this.order.Items[0].Vpn;
+    let paying = +this.route.snapshot.queryParams['paying'];
+    if (paying === this.order.ID) {
+      this.showChange.next(true);
+      this.location.replaceState(removeURLParameter(this.router.url, 'paying').url);
+    }
   }
 
   onDismiss() {
@@ -51,38 +70,32 @@ export class OrderPayComponent {
     this.showChange.next(false);
   }
 
-  onSetPayKey() {
-    this.router.navigate(['/safe/paykey-set'], { queryParams: { OrderID: this.orderId } });
+  gotoSetPayKey() {
+    this.location.replaceState(this.router.url, `paying=${this.order.ID}`);
+    this.router.navigateByUrl('/safe/paykey');
   }
 
   onPay() {
-    this.orderService.pay(this.orderId, this.amount, this.key).subscribe(
-      this.payOk,
-      _ => this.error = true
-    );
+    if (this.valid) {
+      switch (this.payType) {
+        case PayType.wx:
+          this.orderService.wxPay(this.order).subscribe(
+            this.payOk,
+            _ => this.error = true,
+          );
+          break;
+        case PayType.cash, PayType.points:
+          this.orderService.pay(this.order, this.key).subscribe(
+            this.payOk,
+            _ => this.error = true,
+          );
+          break;
+      }
+    }
   }
 
-  onWxPay() {
-    this.orderService.wxPay(this.orderId, this.amount).subscribe(
-      this.payOk,
-      _ => this.error = true
-    );
-  }
-
-  private payOk(order: IOrder) {
-    if (this.localOrderService) {
-      this.localOrderService.publish(order);
-    }
-    if (this.localOrdersService) {
-      this.localOrdersService.src$.take(1).subscribe(items => {
-        let index = items.findIndex(item => item.ID === order.ID);
-        if (~index) {
-          items[index] = order;
-        }
-        this.localOrdersService.publish([...items]);
-      });
-    }
-    this.router.navigate(['/order/detail', this.orderId]);
+  private payOk() {
+    this.router.navigate(['/order/detail', this.order.ID]);
   }
 
 }

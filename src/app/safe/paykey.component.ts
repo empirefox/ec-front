@@ -80,6 +80,7 @@ export class SetPaykeyComponent {
     let data = <ISetPaykeyPayload>this.form.value;
     data.CaptchaID = this.captcha.ID;
     this.userService.setPaykey(data).subscribe(
+      // need back when paying
       _ => this.location.back(),
       errRes => {
         this.submitting = false;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { URLS } from '../profile';
-import { descSortor } from '../util';
+import { posSortor } from '../util';
 import { ICategory } from './category';
 import { Observable } from 'rxjs/Observable';
 
@@ -31,7 +31,7 @@ export class CategoryService {
   // TODO only used with tree data
   listToTree(list: ICategory[]): ICategory[] {
     let tree = listToTree(list, listToTreeOpts) as ICategory[];
-    return tree.sort(descSortor);
+    return tree.sort(posSortor);
   }
 
 }

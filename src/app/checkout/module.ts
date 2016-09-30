@@ -14,6 +14,8 @@ import { CheckoutAddrsComponent } from './address-selector';
 import { CheckoutAddrCreatorComponent } from './address-creator';
 import { InvoicePageComponent, InvoiceComponent } from './invoice';
 
+import { CheckoutItemsResolver } from '../checkout.resolver';
+
 @NgModule({
   declarations: [
     CheckoutRouteComponent,
@@ -39,6 +41,9 @@ import { InvoicePageComponent, InvoiceComponent } from './invoice';
     CheckoutAddrsComponent,
     CheckoutAddrCreatorComponent,
     InvoicePageComponent,
+  ],
+  providers: [
+    CheckoutItemsResolver,
   ],
 })
 export class CheckoutModule { }

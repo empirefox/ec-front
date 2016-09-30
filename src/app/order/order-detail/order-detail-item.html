@@ -1,15 +1,20 @@
-<div class="order-item-con">
-  <div class="goods-block detail">
-    <div class="goods-pic" (click)="onGotoProduct()">
-      <img [src]="item.Img">
-    </div>
-    <dl class="goods-info" (click)="onGotoProduct()">
-      <dt class="goods-name">{{item.Name}}</dt>
-      <dd class="goods-type"></dd>
-    </dl>
-    <div class="goods-subtotal">
-      <span class="goods-price">￥<em>{{item.Price}}</em></span>
-      <span class="goods-num">x{{item.Quantity}}</span>
+<div class="order-item mt5">
+  <div class="order-item-head">
+    <a class="store"><i class="icon"></i>{{stores[item.StoreID]?.Name}}</a>
+  </div>
+  <div class="order-item-con">
+    <div class="goods-block detail">
+      <div class="goods-pic" (click)="gotoProduct()">
+        <img [src]="item.Img">
+      </div>
+      <dl class="goods-info" (click)="gotoProduct()">
+        <dt class="goods-name">{{item.Name}}</dt>
+        <dd class="goods-type">{{item.Attrs}}</dd>
+      </dl>
+      <div class="goods-subtotal">
+        <span class="goods-price"><em>{{item.Price|pirce:item}}</em></span>
+        <span class="goods-num">x{{item.Quantity}}</span>
+      </div>
     </div>
   </div>
 </div>

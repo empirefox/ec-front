@@ -19,6 +19,7 @@ import { ORDER_PROVIDERS } from './order';
 import { PRODUCT_PROVIDERS } from './product';
 import { PROFILE_PROVIDERS } from './profile';
 import { SEARCH_PROVIDERS } from './search';
+import { STORE_PROVIDERS } from './store';
 import { USER_PROVIDERS } from './user';
 import { VIP_PROVIDERS } from './vip';
 import { WISHLIST_PROVIDERS } from './wishlist';
@@ -47,6 +48,7 @@ export * from './product';
 export * from './profile';
 export * from './qr';
 export * from './search';
+export * from './store';
 export * from './user';
 export * from './util';
 export * from './vip';
@@ -78,6 +80,7 @@ export const APP_CORE_PROVIDERS = [
   ...PROFILE_PROVIDERS,
   ...QR_PROVIDERS,
   ...SEARCH_PROVIDERS,
+  ...STORE_PROVIDERS,
   ...USER_PROVIDERS,
   ...VIP_PROVIDERS,
   ...WISHLIST_PROVIDERS,

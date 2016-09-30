@@ -11,9 +11,10 @@
       <li [class.selected]="all&&orders===returned"><a (click)="setCurrent(returned)">退款/退货</a></li>
     </ul>
   </div>
-  <div class="order-list">
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll(true)" (scrolledUp)="onScroll(false)"
+      infinite-scroll class="order-list">
     <ul>
-      <li *ngFor="let order of orders" class="green-order-skin">
+      <li *ngFor="let order of orders; trackBy:trackByItems" class="green-order-skin">
         <order-list-item [order]="order"></order-list-item>
       </li>
     </ul>

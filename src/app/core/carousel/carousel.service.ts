@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import URL from 'url-parse';
 import groupBy from 'lodash/groupBy';
 import values from 'lodash/values';
 import { URLS } from '../profile';
 import { constMap } from '../consts';
-import { descSortor } from '../util';
+import { posSortor } from '../util';
 import { ICarouselItem } from './carousel';
-
-const Url: typeof URL = require('url-parse');
 
 @Injectable()
 export class CarouselService {
@@ -28,7 +27,7 @@ export class CarouselService {
     if (!this._boards) {
       this._boards = this.http.get(URLS.CAROUSEL).map(res => {
         let boards = groupBy(<ICarouselItem[]>res.json() || [], (item: ICarouselItem) => item.Billboard) as Dict<ICarouselItem[]>;
-        values(boards).forEach(board => board.sort(descSortor));
+        values(boards).forEach(board => board.sort(posSortor));
         return boards;
       }).publishReplay(1).refCount();
     }
@@ -39,8 +38,8 @@ export class CarouselService {
 
   gotoSlide(item: ICarouselItem) {
     if (item.Link) {
-      let url = new Url(item.Link);
-      let origin = new Url(this.router.url);
+      let url = new URL(item.Link);
+      let origin = new URL(this.router.url);
       if (url.host === origin.host) {
         this.router.navigateByUrl(url.pathname);
         return;

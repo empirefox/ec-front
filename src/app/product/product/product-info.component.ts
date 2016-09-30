@@ -72,6 +72,4 @@ export class ProductInfoComponent {
 
   gotoEval() { this.router.navigate(['../eval'], { relativeTo: this.route }); };
 
-  gotoKefu() { }
-
 }

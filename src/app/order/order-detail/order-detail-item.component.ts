@@ -13,7 +13,7 @@ export class OrderDetailItemComponent {
 
   constructor(private router: Router) { }
 
-  onGotoProduct() {
+  gotoProduct() {
     this.router.navigate(['/product/1', this.item.ProductID]);
   }
 

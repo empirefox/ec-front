@@ -4,25 +4,14 @@ import { Observable } from 'rxjs/Observable';
 interface IDer { ID: number; }
 interface Poser { Pos: number; }
 interface IdPos extends IDer, Poser { }
+interface CreateAter { CreatedAt: number; }
 
-export function descSortor<T extends Poser>(b: T, a: T) { return a.Pos - b.Pos; }
-
+export function posSortor<T extends Poser>(b: T, a: T) { return a.Pos - b.Pos; }
+export function createdAtSortor<T extends CreateAter>(b: T, a: T) { return a.CreatedAt - b.CreatedAt; }
+export function idSortor<T extends IDer>(b: T, a: T) { return a.ID - b.ID; }
 
 // save => replace/push => copy items
-export function updateAfterSave<T extends IdPos>(items: T[], item: T, copy: T): T[] {
-  if (!copy.ID) {
-    items = [item, ...items];
-  } else {
-    let i = items.findIndex(i => i.ID === copy.ID);
-    if (~i) {
-      items[i] = item;
-    }
-    items = [...items];
-  }
-  return items.sort(descSortor);
-}
-
-export function updateAfterSaveWithoutSort<T extends IDer>(items: T[], item: T, id: number): T[] {
+export function updateAfterSave<T extends IDer>(items: T[], item: T, id: number): T[] {
   if (!id) {
     items = [item, ...items];
   } else {
@@ -44,25 +33,6 @@ export function nonce(length) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
-}
-
-// int SCHEMA = 2, DOMAIN = 3, PORT = 5, PATH = 6, FILE = 8, QUERYSTRING = 9, HASH = 12
-// see http://stackoverflow.com/a/309360/2778814
-export const urlParser = /^((http[s]?):\/)?\/?([^:\/\s]+)(:([^\/]*))?((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(\?([^#]*))?(#(.*))?$/;
-
-export function parseUrlPath(u: string) {
-  return u ? u.match(urlParser)[6] : '';
-}
-
-export function toQuery(param: any) {
-  return param ? Object.keys(param).map(k => `${k}=${param[k]}`).join('&') : '';
-}
-
-export function objectToParams(object) {
-  return object ? Object.keys(object).map((value) => {
-    let objectValue = isPrimitive(object[value]) ? object[value] : JSON.stringify(object[value]);
-    return `${value}=${objectValue}`;
-  }).join('&') : '';
 }
 
 // http://stackoverflow.com/a/1634841/2778814

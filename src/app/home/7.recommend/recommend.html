@@ -15,7 +15,7 @@
         </div>
         <dl class="goods-info">
           <dt class="goods-name">{{item.Name}}</dt>
-          <dd class="goods-price">￥<em>{{item.Skus[0].SalePrice|money}}</em></dd>
+          <dd class="goods-price">￥<em>{{item.Skus[0].SalePrice|price:item}}</em></dd>
         </dl>
       </a>
     </li>

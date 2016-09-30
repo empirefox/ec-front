@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
 import { URLS } from '../profile';
-import { updateAfterSave, descSortor } from '../util';
+import { updateAfterSave, posSortor } from '../util';
 import { IAddress } from './address';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class AddressService {
   getItems(): Observable<IAddress[]> {
     if (!this._items) {
       this._items = this.http.get(URLS.ADDR_LIST).map(res =>
-        (<IAddress[]>res.json() || []).sort(descSortor)
+        (<IAddress[]>res.json() || []).sort(posSortor)
       ).publishReplay(1).refCount();
     }
     return this._items;
@@ -37,7 +37,7 @@ export class AddressService {
     return this.http.post(URLS.ADDR_ADD, JSON.stringify(copy)).flatMap(res =>
       this.getItems().map(items => {
         let item = <IAddress>res.json();
-        items = updateAfterSave(items, item, copy);
+        items = updateAfterSave(items, item, copy.ID).sort(posSortor);
         this._items = Observable.of(items);
         return item;
       })

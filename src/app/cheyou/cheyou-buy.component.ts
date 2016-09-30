@@ -25,7 +25,7 @@ export class CheyouBuyComponent {
     Observable.forkJoin(
       this.profileService.getProfile().take(1),
       this.productService.getAttrs().take(1),
-      this.productService.query({ ft: `Vpn:eq:${constMap.VpnType['TVpnVip']}` }).take(1),
+      this.productService.query({ ft: `Vpn:eq:${constMap.VpnType.TVpnVip}` }).take(1),
     ).flatMap(([profile, attrs, abcs]: [IProfile, ProductAttrs, IProduct[]]) => {
       this.profile = profile;
       this.abcs = abcs;

@@ -36,6 +36,7 @@ export class HistoryService {
       Name: product.Name,
       Img: product.Img || product.skus[0].Img,
       Price: product.skus[0].SalePrice,
+      Vpn: product.Vpn,
     };
     this.localdbService.getDB().insert('history', item);
     this.getItems().unshift(item);

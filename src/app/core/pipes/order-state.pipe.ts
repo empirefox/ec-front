@@ -1,32 +1,32 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { constMap } from '../consts';
 
-const State = constMap.OrderState;
+const state = constMap.OrderState;
 
 // TODO study http://help.vipshop.com/themelist.php?type=detail&id=330
 const STATES = {
-  [State["TOrderStateUnknown"]]: "未知状态",
-  [State["TOrderStateNopay"]]: "待付款",
-  [State["TOrderStatePrepaid"]]: "支付中",
-  [State["TOrderStatePaid"]]: "待发货",
-  [State["TOrderStateCanceled"]]: "已关闭",
-  [State["TOrderStatePicking"]]: "发货中",
-  [State["TOrderStateDelivered"]]: "已发货",
-  [State["TOrderStateReturnStarted"]]: "已申请退款",
-  [State["TOrderStateReturning"]]: "退货中",
-  [State["TOrderStateReturned"]]: "已退款",
-  [State["TOrderStateRejecting"]]: "拒收货",
-  [State["TOrderStateRejectBack"]]: "拒收已退回",
-  [State["TOrderStateRejectRefound"]]: "拒收已退款",
-  [State["TOrderStateCompleted"]]: "待评价",
-  [State["TOrderStateEvalStarted"]]: "评价中",
-  [State["TOrderStateEvaled"]]: "已评价",
-  [State["TOrderStateHistory"]]: "已评价",
+  [state.TOrderStateUnknown]: "未知状态",
+  [state.TOrderStateNopay]: "待付款",
+  [state.TOrderStatePrepaid]: "支付中",
+  [state.TOrderStatePaid]: "待发货",
+  [state.TOrderStateCanceled]: "已关闭",
+  [state.TOrderStatePicking]: "发货中",
+  [state.TOrderStateDelivered]: "已发货",
+  [state.TOrderStateReturnStarted]: "已申请退款",
+  [state.TOrderStateReturning]: "退货中",
+  [state.TOrderStateReturned]: "已退款",
+  [state.TOrderStateRejecting]: "拒收货",
+  [state.TOrderStateRejectBack]: "拒收已退回",
+  [state.TOrderStateRejectRefound]: "拒收已退款",
+  [state.TOrderStateCompleted]: "待评价",
+  [state.TOrderStateEvalStarted]: "评价中",
+  [state.TOrderStateEvaled]: "已评价",
+  [state.TOrderStateHistory]: "已评价",
 };
 
 @Pipe({ name: 'orderState' })
 export class OrderStatePipe implements PipeTransform {
-  transform(value: string) {
+  transform(value: number) {
     return STATES[value] ? STATES[value] : '';
   }
 }

@@ -1,32 +1,46 @@
 import { ModuleWithProviders }   from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 
-import { OrderRouteComponent } from './order-route.component';
+import { OrderResolver, ProfileResolver } from '../core';
 import { OrderListComponent } from './order-list';
-import { OrderDetailPageComponent } from './order-detail';
+import { OrderDetailComponent } from './order-detail';
 import { OrderEvalComponent } from './eval';
 import { DeliveryPageComponent } from './delivery';
 
 export const routes: Routes = [
   {
     path: 'order',
-    component: OrderRouteComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full',
+      },
+      {
         path: 'list',
-        component: OrderListComponent
+        component: OrderListComponent,
       },
       {
         path: 'eval/:id',
         component: OrderEvalComponent,
+        resolve: {
+          order: OrderResolver,
+        },
       },
       {
         path: 'detail/:id',
-        component: OrderDetailPageComponent,
+        component: OrderDetailComponent,
+        resolve: {
+          profile: ProfileResolver,
+          order: OrderResolver,
+        },
       },
       {
         path: 'delivery/:id',
         component: DeliveryPageComponent,
+        resolve: {
+          order: OrderResolver,
+        },
       }
     ]
   },

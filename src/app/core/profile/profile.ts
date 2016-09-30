@@ -3,6 +3,8 @@ import { config } from '../share';
 export * from '../share';
 
 export interface IProfile {
+  OfficialStoreName: string;
+  WxMpName: string;
   Phone: string;
   DefaultHeadImage: string;
   IntroVipDetail: string;
@@ -32,7 +34,9 @@ export const URLS = {
 
   CAPTHCA: `${config.apiOrigin}/captcha`, // get
   CAROUSEL: `${config.apiOrigin}/carousel`, // get
+  STORE: `${config.apiOrigin}/store`, // get
   NEWS: `${config.apiOrigin}/news`, // get
+  NewsItem: (id: number) => `${config.apiOrigin}/news/1/${id}`, // get
   VIPS: `${config.apiOrigin}/vips`, // get
 
   MY_VIPS: `${config.apiOrigin}/myvips`, // get
@@ -57,6 +61,7 @@ export const URLS = {
 
   ORDER_LIST: `${config.apiOrigin}/orders`, // get
   ORDER_CHECKOUT: `${config.apiOrigin}/checkout`, // post
+  ORDER_CHECKOUT_ONE: `${config.apiOrigin}/checkout_one`, // post
   ORDER_PAY: `${config.apiOrigin}/order_pay`, // post
   ORDER_WX_PAY: `${config.apiOrigin}/order_wx_pay`, // post
   Order: (id: number) => `${config.apiOrigin}/order/${id}`, // get
@@ -66,9 +71,7 @@ export const URLS = {
   OrderEval: (orderItemId: number) => `${config.apiOrigin}/eval/${orderItemId}`, // post
   ProductEvals: (productId: number) => `${config.apiOrigin}/evals/${productId}`, // get
 
-  CART_LIST: `${config.apiOrigin}/cart`, // get post
-  CART_SAVE: `${config.apiOrigin}/cart_item`, // post
-  Cart: (id: number) => `${config.apiOrigin}/cart/${id}`, // delete
+  CART_ALL: `${config.apiOrigin}/cart`, // get post delete
 
   CATEGORY_LIST: `${config.apiOrigin}/category`, // get
 

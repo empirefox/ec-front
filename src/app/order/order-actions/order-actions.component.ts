@@ -1,6 +1,8 @@
 import { Component, Input, Optional, ChangeDetectionStrategy, Output, EventEmitter  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IOrder, OrderService, LocalOrderService } from '../../core';
+import { constMap, IOrder, OrderService } from '../../core';
+
+const states = constMap.OrderState;
 
 @Component({
   selector: 'order-actions',
@@ -16,11 +18,12 @@ export class OrderActionsComponent {
   showOrderPay: boolean;
   showEnsureDialog: boolean;
 
+  states = states;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService,
-    @Optional() private localOrderService: LocalOrderService) { }
+    private orderService: OrderService) { }
 
   ngOnInit() {
     let showPay = this.route.snapshot.queryParams['pay'] === 'show';
@@ -28,24 +31,35 @@ export class OrderActionsComponent {
     this.showOrderPay = showPay && showCurrentPay;
   }
 
-  onCancel() { this.changeState('cancel'); }
+  get state() {
+    switch (this.order.State) {
+      case states.TOrderStatePrepaid:
+        return states.TOrderStateNopay;
 
-  gotoDelivery() {
-    if (this.localOrderService) {
-      this.localOrderService.publish(this.order);
+      case states.TOrderStatePicking:
+        return states.TOrderStatePaid;
+
+      case states.TOrderStateEvalStarted:
+        return states.TOrderStateCompleted;
+
+      case states.TOrderStateRejectBack, states.TOrderStateRejectRefound,
+        states.TOrderStateReturnStarted, states.TOrderStateReturning, states.TOrderStateReturned:
+        return states.TOrderStateRejecting;
     }
-    this.router.navigate(['/order/delivery', this.order.ID]);
   }
 
-  onEnsure() { this.changeState('reciepted'); }
+  onCancel() { this.changeState(states.TOrderStateCanceled); }
 
-  gotoEval() { this.router.navigate(['/eval', this.order.ID]); }
+  onEnsure() { this.changeState(states.TOrderStateCompleted); }
 
-  private changeState(state: string) {
-    this.orderService.changeState(this.order.ID, state).subscribe(order => {
-      Object.assign(this.order, order);
-      this.stateChange.next(0);
-    });
+  onReturn() { this.changeState(states.TOrderStateReturnStarted); }
+
+  gotoDelivery() { this.router.navigate(['/order/delivery', this.order.ID]); }
+
+  gotoEval() { this.router.navigate(['/order/eval', this.order.ID]); }
+
+  private changeState(state: number) {
+    this.orderService.changeState(this.order, state).subscribe(order => this.stateChange.next(0));
   }
 
 }

@@ -54,7 +54,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    this.service.delete(this.item.ID).subscribe(_ => this.deleted.next(0));
+    this.service.delete([this.item.SkuID]).subscribe(_ => this.deleted.next(0));
   }
 
   // TODO get stock

@@ -23,6 +23,6 @@ export class HomeNavBarComponent {
   gotoNews() { this.router.navigateByUrl('/news'); }
   gotoNew() { this.router.navigate(['./product/list'], { queryParams: { ft: this.specials['new'] } }); }
   gotoCheyou() { this.router.navigateByUrl('/cheyou'); }
-  gotoPoints() { this.router.navigate(['./product/list'], { queryParams: { ft: `Vpn:eq:${constMap.VpnType['TVpnPoints']}` } }); }
+  gotoPoints() { this.router.navigate(['./product/list'], { queryParams: { ft: `Vpn:eq:${constMap.VpnType.TVpnPoints}` } }); }
 
 }

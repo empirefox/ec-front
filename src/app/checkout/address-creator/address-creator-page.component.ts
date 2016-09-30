@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IAddress } from '../../core/address';
-import { ICheckout, LocalCheckoutService } from '../../core';
-import { Header1Component } from '../../header-bar';
+import { IAddress, ICheckout, LocalCheckoutBase } from '../../core';
 
 @Component({
   template: require('./address-creator-page.html'),
@@ -14,10 +12,10 @@ export class CheckoutAddrCreatorComponent {
 
   constructor(
     private router: Router,
-    private localCheckoutService: LocalCheckoutService) { }
+    private base: LocalCheckoutBase) { }
 
   ngOnInit() {
-    this.localCheckoutService.src$.subscribe(checkout => this.checkout = checkout);
+    this.checkout = this.base.checkout;
   }
 
   onSaved(addr: IAddress) {

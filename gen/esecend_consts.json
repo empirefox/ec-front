@@ -1,6 +1,7 @@
 {
   "BillboardType": [
     "TBillboardUnknow",
+    "TBillboardAdSlide",
     "TBillboardHome",
     "TBillboardNews"
   ],
@@ -130,5 +131,10 @@
     "TVipRebateUnknown",
     "TVipRebateRebate",
     "TVipRebateReward"
+  ],
+  "VpnType": [
+    "TVpnNormal",
+    "TVpnPoints",
+    "TVpnVip"
   ]
 }

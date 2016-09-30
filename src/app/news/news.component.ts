@@ -18,8 +18,6 @@ export class NewsComponent {
 
   items: INewsItem[];
 
-  sub: Subscription;
-
   constructor(
     private router: Router,
     private carouselService: CarouselService,
@@ -34,14 +32,13 @@ export class NewsComponent {
       autoplayDisableOnInteraction: false,
     };
 
-    this.sub = this.newsService.getItems(false).subscribe(items => this.items = items);
+    this.newsService.getItems(false).subscribe(items => this.items = items);
   }
 
   ngOnDestroy() {
     if (this.swiperContainer) {
       this.swiperContainer.swiper.stopAutoplay();
     }
-    this.sub.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -49,8 +46,7 @@ export class NewsComponent {
   }
 
   onScroll(next: boolean) {
-    this.sub.unsubscribe();
-    this.sub = this.newsService.getItems(next).subscribe(items => this.items = items);
+    this.newsService.getItems(next).subscribe(items => this.items = items);
   }
 
   trackByItems(index: number, item: INewsItem) { return item.ID; }

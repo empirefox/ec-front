@@ -1,27 +1,29 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IOrder, ProfileService } from '../../core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IOrder, IProfile } from '../../core';
 
 @Component({
-  selector: 'order-detail',
   template: require('./order-detail.html'),
   styles: [require('./order-detail.css')],
 })
 export class OrderDetailComponent implements OnInit {
 
-  @Input() order: IOrder;
+  order: IOrder;
   phone: string;
+  payMethod: string;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
-    this.profileService.getProfile().take(1).subscribe(profile => this.phone = `tel:${profile.Phone}`);
+    let data = <{ profile: IProfile, order: IOrder }>this.route.snapshot.data;
+    this.phone = `tel:${data.profile.Phone}`;
+    this.order = data.order;
+    this.payMethod = this.order.IsDeliverPay ? '货到付款' : '在线付款';
   }
 
-  get payMethod() {
-    return this.order.IsDeliverPay ? '货到付款' : '在线付款';
-  }
-
-  onGotoChat() { }
+  gotoChat() { this.router.navigateByUrl('/chat'); }
 
   onStateChanged() { }
 
