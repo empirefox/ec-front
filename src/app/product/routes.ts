@@ -1,6 +1,8 @@
 import { ModuleWithProviders }   from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 
+import { ProfileResolver, AddressResolver } from '../core';
+
 import { ProductRouteComponent } from './product-route.component';
 import { ProductsPageComponent } from './products';
 import { ProductPageComponent, ProductInfoComponent, ProductDetailComponent, ProductEvalComponent } from './product';

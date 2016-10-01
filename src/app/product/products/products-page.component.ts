@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IProduct, ProductService, IProductQuery, LocalProductsService, LocalProductService } from '../../core';
+import { Observable } from "rxjs/Rx";
+import { IProduct, ProductService, IProductQuery, LocalProductBase } from '../../core';
 
 const SEARCH_COLS = ['Name', 'Intro', 'Detail'];
 
 @Component({
-  selector: 'products-page',
   template: require('./products-page.html'),
   styles: [require('./products-page.css')],
 })
@@ -22,15 +22,13 @@ export class ProductsPageComponent {
     private _location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService,
-    private localProductService: LocalProductService,
-    private localProductsService: LocalProductsService) { }
+    private base: LocalProductBase,
+    private productService: ProductService) { }
 
   ngOnInit() {
     let query = <IProductQuery>this.route.snapshot.queryParams;
     this.productService.query(query).subscribe(items => {
       this.products = items;
-      this.localProductsService.publish(items);
     });
   }
 
@@ -54,7 +52,7 @@ export class ProductsPageComponent {
   }
 
   onGotoProduct(product: IProduct) {
-    this.localProductService.publish(product);
+    this.productService.current = Observable.of(product);
     this.router.navigate(['/product/1', product.ID]);
   }
 

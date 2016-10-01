@@ -97,8 +97,8 @@ export class OrderService {
     return this._items.flatMap(exist => {
       if (exist && exist.length) {
         let filter = next ?
-          `CreatedAt:gt:${exist[0].CreatedAt}` :
-          `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}`;
+          `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}` :
+          `CreatedAt:gt:${exist[0].CreatedAt}`;
         this._items = this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
           flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
       } else {

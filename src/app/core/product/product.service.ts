@@ -22,6 +22,8 @@ export const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'g
 @Injectable()
 export class ProductService {
 
+  current: Observable<IProduct>;
+
   private _attrs: Observable<ProductAttrs> = null;
 
   constructor(private http: Http) { }
@@ -46,7 +48,7 @@ export class ProductService {
   }
 
   // ?CategoryID=111
-  getProducts(params: URLSearchParams): Observable<IProduct[]> {
+  getProducts(params: string | URLSearchParams): Observable<IProduct[]> {
     return this.http.get(URLS.PRODUCT_LIST, { search: params }).map(res => this.initProducts(res.json() || {}));
   }
 
@@ -57,6 +59,12 @@ export class ProductService {
       product.raw = { skus, attrs };
       return product;
     });
+  }
+
+  getCurrent(id: number): Observable<IProduct> {
+    return this.current = (this.current || Observable.of(null)).flatMap(product => {
+      return product && product.ID === id ? Observable.of(product) : this.getProduct(id);
+    }).publishReplay(1).refCount();
   }
 
   proccessSkus(product: IProduct): Observable<IProduct> {

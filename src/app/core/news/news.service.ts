@@ -28,28 +28,28 @@ export class NewsService {
     return this._items.flatMap(exist => {
       if (exist && exist.length) {
         let filter = next ?
-          `CreatedAt:gt:${exist[0].CreatedAt}` :
-          `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}`;
+          `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}` :
+          `CreatedAt:gt:${exist[0].CreatedAt}`;
         this._items = this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
           flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
       } else {
         this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
       }
       return this._items;
-    });
+    }).publishReplay(1).refCount();
   }
 
   getItem(id: number): Observable<INewsItem> {
     return (this._items || Observable.of([])).flatMap(items => {
       let item = items.find(item => item.ID === id);
       return item ? Observable.of(item) : this._queryOne(id);
-    });
+    }).publishReplay(1).refCount();
   }
 
   private _queryOne(id: number): Observable<INewsItem> {
     return this._current = (this._current || Observable.of(<INewsItem>{ ID: 0 })).flatMap(current => {
       return current && current.ID === id ? Observable.of(current) :
-        this.rawHttp.get(URLS.NewsItem(id)).map(res => res.json()).publishReplay(1).refCount();
+        this.rawHttp.get(URLS.NewsItem(id)).map(res => res.json());
     });
   }
 
@@ -64,6 +64,6 @@ export class NewsService {
     }).catch((err, caught) => {
       this._querying = false;
       return caught;
-    }).publishReplay(1).refCount();
+    });
   }
 }
