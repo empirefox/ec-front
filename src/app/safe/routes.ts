@@ -1,6 +1,8 @@
 import { ModuleWithProviders }   from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 
+import { ProfileResolver, UserResolver } from '../core';
+
 import { SafeComponent } from './safe.component';
 import { SetHeadComponent } from './head.component';
 import { BindPhoneComponent } from './phone.component';
@@ -12,11 +14,19 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: SafeComponent
+        component: SafeComponent,
+        resolve: {
+          profile: ProfileResolver,
+          user: UserResolver,
+        },
       },
       {
         path: 'head',
-        component: SetHeadComponent
+        component: SetHeadComponent,
+        resolve: {
+          profile: ProfileResolver,
+          user: UserResolver,
+        },
       },
       {
         path: 'phone',

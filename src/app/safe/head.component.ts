@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { IProfile, ProfileService, IUserInfo, UserService, IQiniuItem } from '../core';
+import { IQiniuItem, IProfile, IUserInfo } from '../core';
 
 const ng2UploaderOptions: any = {
   url: 'https://up.qbox.me',
@@ -17,6 +17,7 @@ export class SetHeadComponent {
 
   profile: IProfile;
   user: IUserInfo;
+  key: string;
 
   private requesting: boolean;
   private error: string;
@@ -24,22 +25,16 @@ export class SetHeadComponent {
   private fileChanged: boolean;
 
   constructor(
-    private router: Router,
-    private profileService: ProfileService,
-    private userService: UserService) { }
-
-  get key() { return `${this.profile.HeadPrefix}/${this.user.ID}` }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   get uploadActive() { return !this.requesting && this.hasFile && this.fileChanged; }
 
   ngOnInit() {
-    Observable.forkJoin(
-      this.profileService.getProfile().take(1),
-      this.userService.getUserinfo().take(1),
-    ).subscribe(([profile, user]: [IProfile, IUserInfo]) => {
-      this.profile = profile;
-      this.user = user;
-    });
+    let data = <{ profile: IProfile, user: IUserInfo }>this.route.snapshot.data;
+    this.profile = data.profile;
+    this.user = data.user;
+    this.key = `${this.profile.HeadPrefix}/${this.user.ID}`;
   }
 
   onSuccess(res: IQiniuItem) {

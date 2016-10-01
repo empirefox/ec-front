@@ -19,8 +19,7 @@ export class CarouselService {
     private http: Http,
     private router: Router) { }
 
-  getItems(boardName: string): Observable<ICarouselItem[]> {
-    let board = constMap.BillboardType[boardName];
+  getItems(board: number): Observable<ICarouselItem[]> {
     if (!board) {
       return Observable.of([]);
     }

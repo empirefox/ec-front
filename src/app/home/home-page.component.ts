@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ICarouselItem, CarouselService } from '../core';
+import { constMap, ICarouselItem, CarouselService } from '../core';
 
 @Component({
   selector: 'home-page',
@@ -13,7 +13,7 @@ export class HomePageComponent {
   constructor(private carouselService: CarouselService) { }
 
   ngOnInit() {
-    this.carouselService.getItems('TBillboardAdSlide').subscribe(items => this.items = items);
+    this.carouselService.getItems(constMap.BillboardType.TBillboardAdSlide).subscribe(items => this.items = items);
   }
 
 }

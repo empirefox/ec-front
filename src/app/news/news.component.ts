@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
 import { KSSwiperContainer, KSSwiperSlide } from 'angular2-swiper';
-import { ICarouselItem, CarouselService } from '../core';
+import { constMap, ICarouselItem, CarouselService } from '../core';
 
 import { INewsItem, NewsService } from '../core';
 
@@ -24,7 +24,7 @@ export class NewsComponent {
     private newsService: NewsService) { }
 
   ngOnInit() {
-    this.carouselService.getItems('TBillboardNews').subscribe(items => this.slides = items);
+    this.carouselService.getItems(constMap.BillboardType.TBillboardNews).subscribe(items => this.slides = items);
     this.swipeOptions = {
       slidesPerView: 1,
       loop: false,
