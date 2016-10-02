@@ -54,7 +54,7 @@ export class ProductsPageComponent {
   trackByItems(index: number, item: IProduct) { return item.ID; }
 
   gotoProduct(product: IProduct) {
-    this.productService.current = Observable.of(product);
+    this.productService.setCurrent(product);
     this.router.navigate(['/product/1', product.ID]);
   }
 

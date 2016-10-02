@@ -61,6 +61,12 @@ export class ProductService {
     });
   }
 
+  setCurrent(product: IProduct) {
+    if (product) {
+      this.current = Observable.of(product);
+    }
+  }
+
   getCurrent(id: number): Observable<IProduct> {
     return this.current = (this.current || Observable.of(null)).flatMap(product => {
       return product && product.ID === id ? Observable.of(product) : this.getProduct(id);

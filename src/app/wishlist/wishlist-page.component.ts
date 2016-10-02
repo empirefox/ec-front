@@ -20,6 +20,7 @@ export class WishlistPageComponent {
   }
 
   onGotoProduct(item: IWishItem) {
+    this.productService.setCurrent(item.product);
     this.router.navigate(['/product/1', item.ProductID]);
   }
 

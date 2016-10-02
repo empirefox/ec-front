@@ -17,7 +17,7 @@ export class GroupBuyItemComponent {
 
   get img() { return this.item.Img || this.item.sku.Img; }
 
-  // TODO cache product
+  // cannot cache product, because there is no product
   onGotoProduct() {
     let queryParams = { SkuID: this.item.sku.ID };
     this.router.navigate(['/product/1', this.item.sku.ProductID], { queryParams });

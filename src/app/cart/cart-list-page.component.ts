@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
-import { CartService, ICartItem } from '../core';
+import { CartService, ICartItem, ProductService } from '../core';
 
 @Component({
   template: require('./cart-list-page.html'),
@@ -17,8 +17,9 @@ export class CartListPageComponent {
 
   constructor(
     private router: Router,
-    private _location: Location,
-    private service: CartService) { }
+    private location: Location,
+    private service: CartService,
+    private productService: ProductService) { }
 
   get isAllSelected(): boolean { return this._isAllSelected; }
   set isAllSelected(checked: boolean) {
@@ -47,7 +48,9 @@ export class CartListPageComponent {
     this.service.getItems().take(1).subscribe(items => this.items = items);
   }
 
-  viewProducts() { this.router.navigateByUrl('/product/list'); }
+  viewProducts() {
+    this.router.navigateByUrl('/product/list');
+  }
 
   onItemCheckedChange(item: ICartItem, checked: boolean) {
     item.checked = checked;

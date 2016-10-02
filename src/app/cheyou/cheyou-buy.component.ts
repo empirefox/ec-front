@@ -39,6 +39,7 @@ export class CheyouBuyComponent {
   getAttrs(sku: ISku) { return sku.attrs.map(attr => attr.Value).join(' '); }
 
   gotoBuy(sku: ISku) {
+    this.productService.setCurrent(sku.product);
     this.router.navigate(['/product/1', sku.product.ID], { queryParams: { SkuID: sku.ID } });
   }
 

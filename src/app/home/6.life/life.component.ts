@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProduct, ProductService, LocalProductService } from '../../core';
+import { IProduct, ProductService } from '../../core';
 
 const COLORS = ['text-fd', 'text-b6', 'text-yellow'];
 
@@ -18,8 +18,7 @@ export class HomeLifeComponent {
 
   constructor(
     private router: Router,
-    private productService: ProductService,
-    private localProductService: LocalProductService) { }
+    private productService: ProductService) { }
 
   ngOnInit() {
     this.productService.getAttrs().
@@ -32,7 +31,7 @@ export class HomeLifeComponent {
   }
 
   gotoProduct(product: IProduct) {
-    this.localProductService.publish(product);
+    this.productService.setCurrent(product);
     this.router.navigate(['./home/1', product.ID]); // SkuID
   }
 

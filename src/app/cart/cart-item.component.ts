@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs/Subject';
 import { QuantityInputComponent } from '../quantity-input';
-import { CartService, ICartItem } from '../core';
+import { CartService, ICartItem, ProductService } from '../core';
 
 @Component({
   selector: 'cart-item',
@@ -23,7 +23,8 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private service: CartService) { }
+    private service: CartService,
+    private productService: ProductService) { }
 
   @Input() get checked(): boolean { return this._checked; };
   set checked(checked: boolean) {
@@ -64,6 +65,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
   }
 
   onViewProduct() {
+    this.productService.setCurrent(this.item.sku.product);
     this.router.navigate(['/product/1', this.item.sku.ProductID]);
   }
 }

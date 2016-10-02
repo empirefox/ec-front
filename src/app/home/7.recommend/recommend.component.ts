@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProduct, ProductService, LocalProductService } from '../../core';
+import { IProduct, ProductService } from '../../core';
 
 @Component({
   selector: 'home-recommend',
@@ -13,8 +13,7 @@ export class HomeRecommendComponent {
 
   constructor(
     private router: Router,
-    private productService: ProductService,
-    private localProductService: LocalProductService) { }
+    private productService: ProductService) { }
 
   ngOnInit() {
     this.productService.getAttrs().
@@ -27,7 +26,7 @@ export class HomeRecommendComponent {
   gotoProducts() { this.router.navigateByUrl('/product/list'); }
 
   gotoProduct(product: IProduct) {
-    this.localProductService.publish(product);
+    this.productService.setCurrent(product);
     this.router.navigate(['./home/1', product.ID]); // SkuID
   }
 
