@@ -39,6 +39,11 @@ export class MoneyService {
     });
   }
 
+  addCash(wallet: IWallet, cash: IUserCash) {
+    wallet.Cashes.unshift(cash);
+    wallet.cash = wallet.Cashes.length ? wallet.Cashes[0].Balance : 0;
+  }
+
   requestPay(payargs: IWxPayArgs): Observable<{}> {
     return Observable.fromPromise(this._requestPay(payargs));
   }

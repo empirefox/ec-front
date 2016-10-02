@@ -1,30 +1,26 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
-import { IWallet, MoneyService, LocalWalletService } from '../../core';
+import { IUserCashRebate, IWallet, MoneyService, LocalWalletBase } from '../../core';
 
 @Component({
   template: require('./reward.html'),
   styles: [require('./reward.css')],
 })
 export class RewardComponent {
-
-  wallet: IWallet;
-
-  private sub: Subscription;
+  rebates: IUserCashRebate[];
+  unrebated: number;
+  frozen: number;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private moneyService: MoneyService,
-    private localWalletService: LocalWalletService) { }
+    private base: LocalWalletBase) { }
 
   ngOnInit() {
-    this.sub = this.localWalletService.src$.subscribe(wallet => this.wallet = wallet);
-  }
-
-  ngOnDestroy() {
-    if (this.sub) { this.sub.unsubscribe(); }
+    this.rebates = this.base.wallet.Rebates;
+    this.unrebated = this.base.wallet.unrebated;
+    this.frozen = this.base.wallet.frozen;
   }
 
 }

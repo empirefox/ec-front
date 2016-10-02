@@ -2,7 +2,7 @@ export interface IUserCash {
   ID: number;
   OrderID: number;
   CreatedAt: number;
-  Type: string;
+  Type: number;
   Amount: number;
   Remark: string;
   Balance: number;
@@ -12,7 +12,7 @@ export interface IUserCashFrozen {
   ID: number;
   OrderID: number;
   CreatedAt: number;
-  Type: string;
+  Type: number;
   Amount: number;
   Remark: string;
   ThawedAt: number;

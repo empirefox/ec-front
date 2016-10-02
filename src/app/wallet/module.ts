@@ -8,8 +8,8 @@ import { WalletRouteComponent } from './wallet-route.component';
 import { WalletComponent } from './wallet.component';
 import {
   BalanceComponent,
-  BalanceDepositComponent,
-  BalanceRefillComponent,
+  BalanceCashComponent,
+  BalanceFrozenComponent,
   BalanceWithdrawComponent,
 } from './balance';
 import { PointsComponent } from './points';
@@ -20,8 +20,8 @@ import { RewardComponent } from './reward';
     WalletRouteComponent,
     WalletComponent,
     BalanceComponent,
-    BalanceDepositComponent,
-    BalanceRefillComponent,
+    BalanceCashComponent,
+    BalanceFrozenComponent,
     BalanceWithdrawComponent,
     PointsComponent,
     RewardComponent,
@@ -35,8 +35,8 @@ import { RewardComponent } from './reward';
     WalletRouteComponent,
     WalletComponent,
     BalanceComponent,
-    BalanceDepositComponent,
-    BalanceRefillComponent,
+    BalanceCashComponent,
+    BalanceFrozenComponent,
     BalanceWithdrawComponent,
     PointsComponent,
     RewardComponent,

@@ -1,11 +1,11 @@
 <header1>返利明细</header1>
 <div class="main-layout">
   <div class="tips_reward">
-    <p class="dj">冻结中<br><span>￥{{wallet.frozen|money}}</span></p>
-    <p>返利中<br><span>￥{{wallet.unrebated|money}}</span></p>
+    <p class="dj">冻结中<br><span>￥{{frozen|money}}</span></p>
+    <p>返利中<br><span>￥{{unrebated|money}}</span></p>
   </div>
   <div class="tips_info" *ngFor="let rebate of rebates">
-    <h3>￥{{rebate.Amount|money}}({{reabte.DoneAt?'已完成':'进行中'}})</h3>
+    <h3>￥{{rebate.Amount|money}} : {{reabte.DoneAt?'已完成':'进行中'}}</h3>
     <h3 *ngIf="rebate.Remark">{{rebate.Remark}}</h3>
     <h3>完成{{rebate.items.length}}/{{rebate.Stages}}期</h3>
     <ul class="log-list">

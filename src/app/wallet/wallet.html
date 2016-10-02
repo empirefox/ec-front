@@ -3,20 +3,20 @@
   <div class="asset-top w33h">
     <ul>
       <li>
-        <a (click)="onViewBalance()">
-          <span>{{wallet.cash}}</span>
+        <a (click)="gotoBalance()">
+          <span>{{base.wallet.cash}}</span>
           <p>账户余额</p>
         </a>
       </li>
       <li>
-        <a (click)="onViewPoints()">
-          <span>{{wallet.points}}</span>
+        <a (click)="gotoPoints()">
+          <span>{{base.wallet.points}}</span>
           <p>积分</p>
         </a>
       </li>
       <li>
         <a (click)="gotoReward()">
-          <span>{{wallet.unrebated+wallet.frozen}}</span>
+          <span>{{base.wallet.unrebated+base.wallet.frozen}}</span>
           <p>返利</p>
         </a>
       </li>

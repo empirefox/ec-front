@@ -24,6 +24,10 @@ const STATES = {
   [state.TOrderStateHistory]: "已评价",
 };
 
+if (Object.keys(STATES).length !== Object.keys(state).length) {
+  console.error('OrderState is dirt');
+}
+
 @Pipe({ name: 'orderState' })
 export class OrderStatePipe implements PipeTransform {
   transform(value: number) {

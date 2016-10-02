@@ -3,18 +3,22 @@
 <div class="main-layout account">
   <div class="single-nav">
     <ul class="w50h">
-      <li class="selected"><a href="javascript:void(0);">账户余额</a></li>
-      <li><a href="pdrecharge_list.html">余额明细</a></li>
+      <li routerLinkActive="selected"><a [routerLink]="['./cash']">余额明细</a></li>
+      <li routerLinkActive="selected"><a [routerLink]="['./frozen']">冻结明细</a></li>
+      <li routerLinkActive="selected"><a [routerLink]="['./withdraw']">提现</a></li>
     </ul>
   </div>
 
   <div class="asset-info text-center">
     <h3>我的余额</h3>
-    <h2>￥<em>500.00</em></h2>
+    <h2>可用余额：￥<em>{{base.wallet.cash|money}}</em></h2>
+    <h2>冻结中：￥<em>{{base.wallet.frozen|money}}</em></h2>
+    <h2>返利中:￥<em>{{base.wallet.unrebated|money}}</em></h2>
   </div>
   <div class="form-btn text-center mt10">
-    <a class="btn btn-red btn-block" href="account_recharge.html">充值</a>
-    <a class="btn btn-block mt5" href="account_withdrawals.html">提现</a>
+    <a class="btn btn-red btn-block" [routerLink]="['./cash']">余额明细</a>
+    <a class="btn btn-block mt5" [routerLink]="['./frozen']">冻结明细</a>
+    <a class="btn btn-block mt5" [routerLink]="['./withdraw']">提现</a>
   </div>
 </div>
 <router-outlet></router-outlet>
