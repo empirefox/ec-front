@@ -4,8 +4,8 @@ import { IOrder, OrderService } from '../../core';
 
 @Component({
   selector: 'order-list-item',
-  template: require('./order-list-item.html'),
-  styles: [require('./order-list-item.css')],
+  templateUrl: './order-list-item.html',
+  styleUrls: ['./order-list-item.css'],
 })
 export class OrderListItemComponent {
 

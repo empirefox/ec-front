@@ -4,8 +4,8 @@ import { IUserCash, MoneyService, LocalWalletBase } from '../../core';
 
 @Component({
   selector: 'balance-cash',
-  template: require('./balance-cash.html'),
-  styles: [require('./balance-cash.css')],
+  templateUrl: './balance-cash.html',
+  styleUrls: ['./balance-cash.css'],
 })
 export class BalanceCashComponent {
   items: IUserCash[];

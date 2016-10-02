@@ -4,8 +4,8 @@ import { ICarouselItem, CarouselService } from '../../core';
 
 @Component({
   selector: 'home-ad-slide',
-  template: require('./ad-slide.html'),
-  styles: [require('./ad-slide.css')],
+  templateUrl: './ad-slide.html',
+  styleUrls: ['./ad-slide.css'],
 })
 export class HomeAdSlideComponent {
 

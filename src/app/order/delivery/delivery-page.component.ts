@@ -4,8 +4,8 @@ import { IDelivery, IDeliveryDay, DeliveryService, OrderService, IOrder } from '
 import { KuaidiItem, kuaidi100map } from './kuaidi100';
 
 @Component({
-  template: require('./delivery-page.html'),
-  styles: [require('./delivery-page.css')],
+  templateUrl: './delivery-page.html',
+  styleUrls: ['./delivery-page.css'],
 })
 export class DeliveryPageComponent {
 

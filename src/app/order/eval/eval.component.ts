@@ -8,8 +8,8 @@ import { IOrder, IOrderItem, OrderService } from '../../core';
 const starTxt = ['', '差评', '中评', '中评', '好评', '好评'];
 
 @Component({
-  template: require('./eval.html'),
-  styles: [require('./eval.css')],
+  templateUrl: './eval.html',
+  styleUrls: ['./eval.css'],
 })
 export class OrderEvalComponent implements OnInit {
 

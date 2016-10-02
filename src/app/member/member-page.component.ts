@@ -13,8 +13,8 @@ import {
 } from '../core';
 
 @Component({
-  template: require('./member-page.html'),
-  styles: [require('./member-page.css')],
+  templateUrl: './member-page.html',
+  styleUrls: ['./member-page.css'],
 })
 export class MemberPageComponent {
 

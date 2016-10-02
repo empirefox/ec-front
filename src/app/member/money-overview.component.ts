@@ -6,8 +6,8 @@ import { WalletComponent } from '../wallet';
 
 @Component({
   selector: 'money-overview',
-  template: require('./money-overview.html'),
-  styles: [require('./money-overview.css')],
+  templateUrl: './money-overview.html',
+  styleUrls: ['./money-overview.css'],
   inputs: ['wallet'],
 })
 export class MoneyOverviewComponent {

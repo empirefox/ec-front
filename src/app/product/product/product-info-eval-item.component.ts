@@ -3,8 +3,8 @@ import { IEvalItem } from '../../core';
 
 @Component({
   selector: 'product-info-eval-item',
-  template: require('./product-info-eval-item.html'),
-  styles: [require('./product-info-eval-item.css')],
+  templateUrl: './product-info-eval-item.html',
+  styleUrls: ['./product-info-eval-item.css'],
 })
 export class ProductInfoEvalItemComponent {
 

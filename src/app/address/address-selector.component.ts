@@ -5,8 +5,8 @@ import { IAddress, AddressService } from '../core';
 
 @Component({
   selector: 'address-selector',
-  template: require('./address-selector.html'),
-  styles: [require('./address-selector.css')],
+  templateUrl: './address-selector.html',
+  styleUrls: ['./address-selector.css'],
 })
 export class AddressSelectorComponent implements OnInit {
 

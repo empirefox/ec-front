@@ -5,8 +5,8 @@ import { WxCodeResult, Jwt, UserService } from '../core';
 enum State { Init, Failed, Ok }
 
 @Component({
-  template: require('./weixin-oauth-page.html'),
-  styles: [require('./weixin-oauth-page.css')],
+  templateUrl: './weixin-oauth-page.html',
+  styleUrls: ['./weixin-oauth-page.css'],
 })
 export class WeixinOauthPageComponent {
 

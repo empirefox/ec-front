@@ -19,8 +19,8 @@ function minValidator(minValue: number) {
 }
 
 @Component({
-  template: require('./cheyou-my.html'),
-  styles: [require('./cheyou-my.css')],
+  templateUrl: './cheyou-my.html',
+  styleUrls: ['./cheyou-my.css'],
 })
 export class CheyouMyComponent {
 

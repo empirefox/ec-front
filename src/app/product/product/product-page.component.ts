@@ -26,8 +26,8 @@ const provideParent = (component: any, parentType?: any) => {
 };
 
 @Component({
-  template: require('./product-page.html'),
-  styles: [require('./product-page.css')],
+  templateUrl: './product-page.html',
+  styleUrls: ['./product-page.css'],
   providers: [provideParent(ProductPageComponent)],
 })
 export class ProductPageComponent implements OnInit {

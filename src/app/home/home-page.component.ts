@@ -3,8 +3,8 @@ import { constMap, ICarouselItem, CarouselService } from '../core';
 
 @Component({
   selector: 'home-page',
-  template: require('./home-page.html'),
-  styles: [require('./home-page.css')],
+  templateUrl: './home-page.html',
+  styleUrls: ['./home-page.css'],
 })
 export class HomePageComponent {
 

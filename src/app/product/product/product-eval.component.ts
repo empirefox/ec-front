@@ -5,8 +5,8 @@ import { ProductPageComponent } from './product-page.component';
 
 @Component({
   selector: 'product-eval',
-  template: require('./product-eval.html'),
-  styles: [require('./product-eval.css')],
+  templateUrl: './product-eval.html',
+  styleUrls: ['./product-eval.css'],
 })
 export class ProductEvalComponent {
 

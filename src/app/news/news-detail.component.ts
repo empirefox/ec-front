@@ -6,8 +6,8 @@ import { Subscription }   from 'rxjs/Subscription';
 import { INewsItem, NewsService } from '../core';
 
 @Component({
-  template: require('./news.html'),
-  styles: [require('./news.css')],
+  templateUrl: './news.html',
+  styleUrls: ['./news.css'],
 })
 export class NewsDetailComponent {
   item: INewsItem;

@@ -4,8 +4,8 @@ import { IGroupBuyItem, OrderService } from '../core';
 
 @Component({
   selector: 'group-buy-item',
-  template: require('./group-buy-item.html'),
-  styles: [require('./group-buy-item.css')],
+  templateUrl: './group-buy-item.html',
+  styleUrls: ['./group-buy-item.css'],
 })
 export class GroupBuyItemComponent {
 

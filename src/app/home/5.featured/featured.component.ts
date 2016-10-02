@@ -4,8 +4,8 @@ import { IProduct, ProductService } from '../../core';
 
 @Component({
   selector: 'home-featured',
-  template: require('./featured.html'),
-  styles: [require('./featured.css')],
+  templateUrl: './featured.html',
+  styleUrls: ['./featured.css'],
 })
 export class HomeFeaturedComponent {
 

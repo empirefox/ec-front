@@ -4,8 +4,8 @@ import { IAddress, AddressService } from '../core';
 import { Header1Component } from '../header-bar';
 
 @Component({
-  template: require('./address-editor-page.html'),
-  styles: [require('./address-editor-page.css')],
+  templateUrl: './address-editor-page.html',
+  styleUrls: ['./address-editor-page.css'],
 })
 export class AddressEditorPageComponent {
 

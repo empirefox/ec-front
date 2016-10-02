@@ -4,8 +4,8 @@ import { IProduct, ProductService } from '../../core';
 
 @Component({
   selector: 'home-recommend',
-  template: require('./recommend.html'),
-  styles: [require('./recommend.css')],
+  templateUrl: './recommend.html',
+  styleUrls: ['./recommend.css'],
 })
 export class HomeRecommendComponent {
 

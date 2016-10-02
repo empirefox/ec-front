@@ -4,7 +4,7 @@ import { AbstractWalletComponent } from './abstract-wallet.component';
 import { IWallet, MoneyService, LocalWalletBase } from '../core';
 
 @Component({
-  template: require('./wallet.html'),
+  templateUrl: './wallet.html',
   styleUrls: ['./wallet.css'],
 })
 export class WalletComponent {

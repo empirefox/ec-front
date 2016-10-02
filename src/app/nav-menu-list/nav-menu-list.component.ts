@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'nav-menu-list',
-  template: require('./nav-menu-list.html'),
-  styles: [require('./nav-menu-list.css')],
+  templateUrl: './nav-menu-list.html',
+  styleUrls: ['./nav-menu-list.css'],
 })
 export class NavMenuListComponent {
 

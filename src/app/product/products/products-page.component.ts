@@ -7,8 +7,8 @@ import { IProduct, ProductService, LocalProductBase } from '../../core';
 const SEARCH_COLS = ['Name', 'Intro', 'Detail'];
 
 @Component({
-  template: require('./products-page.html'),
-  styles: [require('./products-page.css')],
+  templateUrl: './products-page.html',
+  styleUrls: ['./products-page.css'],
 })
 export class ProductsPageComponent {
 

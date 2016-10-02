@@ -5,8 +5,8 @@ import { constMap, ProductService } from '../../core';
 
 @Component({
   selector: 'home-nav-bar',
-  template: require('./nav-bar.html'),
-  styles: [require('./nav-bar.css')],
+  templateUrl: './nav-bar.html',
+  styleUrls: ['./nav-bar.css'],
 })
 export class HomeNavBarComponent {
   specials: Dict<string>;

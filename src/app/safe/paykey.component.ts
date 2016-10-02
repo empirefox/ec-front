@@ -17,8 +17,8 @@ function repeatValidator(o: AbstractControl) {
 }
 
 @Component({
-  template: require('./paykey.html'),
-  styles: [require('./paykey.css')],
+  templateUrl: './paykey.html',
+  styleUrls: ['./paykey.css'],
 })
 export class SetPaykeyComponent {
 

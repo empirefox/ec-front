@@ -7,7 +7,7 @@ import { CartService, ICartItem, ProductService } from '../core';
 
 @Component({
   selector: 'cart-item',
-  template: require('./cart-item.html'),
+  templateUrl: './cart-item.html',
   styles: ['./cart-item.css'],
 })
 export class CartItemComponent implements OnInit, OnDestroy {

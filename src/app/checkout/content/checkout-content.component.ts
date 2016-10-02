@@ -5,8 +5,8 @@ import { constMap, CartService, ICheckout, LocalCheckoutBase, OrderService } fro
 
 @Component({
   selector: 'checkout-content',
-  template: require('./checkout-content.html'),
-  styles: [require('./checkout-content.css')],
+  templateUrl: './checkout-content.html',
+  styleUrls: ['./checkout-content.css'],
 })
 export class CheckoutContentComponent {
 

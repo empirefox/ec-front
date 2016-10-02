@@ -14,8 +14,8 @@ import { ProductPageComponent } from './product-page.component';
 
 @Component({
   selector: 'product-info',
-  template: require('./product-info.html'),
-  styles: [require('./product-info.css')],
+  templateUrl: './product-info.html',
+  styleUrls: ['./product-info.css'],
 })
 export class ProductInfoComponent {
 

@@ -3,8 +3,8 @@ import { IDeliveryDay } from '../../core';
 
 @Component({
   selector: 'delivery-day',
-  template: require('./delivery-day.html'),
-  styles: [require('./delivery-day.css')],
+  templateUrl: './delivery-day.html',
+  styleUrls: ['./delivery-day.css'],
 })
 export class DeliveryDayComponent {
 

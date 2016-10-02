@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { IProfile, ProfileService, IFan, FansService } from '../core';
 
 @Component({
-  template: require('./fans.html'),
-  styles: [require('./fans.css')],
+  templateUrl: './fans.html',
+  styleUrls: ['./fans.css'],
 })
 export class FansComponent {
   profile: IProfile;

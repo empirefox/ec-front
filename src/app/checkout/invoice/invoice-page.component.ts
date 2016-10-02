@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Invoice, ICheckout, LocalCheckoutBase } from '../../core';
 
 @Component({
-  template: require('./invoice-page.html'),
-  styles: [require('./invoice-page.css')],
+  templateUrl: './invoice-page.html',
+  styleUrls: ['./invoice-page.css'],
 })
 export class InvoicePageComponent {
 

@@ -5,8 +5,8 @@ import { OrderService, IGroupBuyItem, GroupBuyService, ISku, ProductAttr, IProdu
 
 @Component({
   selector: 'product-skus',
-  template: require('./product-skus.html'),
-  styles: [require('./product-skus.css')],
+  templateUrl: './product-skus.html',
+  styleUrls: ['./product-skus.css'],
 })
 export class ProductSkusComponent implements OnInit {
 

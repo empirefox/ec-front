@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPointsItem, LocalWalletBase } from '../../core';
 
 @Component({
-  template: require('./points.html'),
-  styles: [require('./points.css')],
+  templateUrl: './points.html',
+  styleUrls: ['./points.css'],
 })
 export class PointsComponent {
 

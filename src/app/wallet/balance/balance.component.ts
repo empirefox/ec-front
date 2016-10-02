@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocalWalletBase } from '../../core';
 
 @Component({
-  template: require('./balance.html'),
-  styles: [require('./balance.css')],
+  templateUrl: './balance.html',
+  styleUrls: ['./balance.css'],
 })
 export class BalanceComponent {
 

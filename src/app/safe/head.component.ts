@@ -10,8 +10,8 @@ const ng2UploaderOptions: any = {
 };
 
 @Component({
-  template: require('./head.html'),
-  styles: [require('./head.css')],
+  templateUrl: './head.html',
+  styleUrls: ['./head.css'],
 })
 export class SetHeadComponent {
 

@@ -19,8 +19,8 @@ export function createRangeValidator(wallet: IWallet, minValue: number) {
 }
 
 @Component({
-  template: require('./balance-withdraw.html'),
-  styles: [require('./balance-withdraw.css')],
+  templateUrl: './balance-withdraw.html',
+  styleUrls: ['./balance-withdraw.css'],
 })
 export class BalanceWithdrawComponent {
 

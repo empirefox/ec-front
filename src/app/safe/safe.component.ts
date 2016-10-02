@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { IProfile, IUserInfo } from '../core';
 
 @Component({
-  template: require('./safe.html'),
+  templateUrl: './safe.html',
 })
 export class SafeComponent {
   profile: IProfile;

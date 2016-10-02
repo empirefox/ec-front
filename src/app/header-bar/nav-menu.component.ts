@@ -3,8 +3,8 @@ import { NavMenuListComponent } from '../nav-menu-list';
 
 @Component({
   selector: 'nav-menu',
-  template: require('./nav-menu.html'),
-  styles: [require('./nav-menu.css')],
+  templateUrl: './nav-menu.html',
+  styleUrls: ['./nav-menu.css'],
 })
 export class NavMenuComponent {
   @Input() show: boolean;

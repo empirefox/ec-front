@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { ICategory, CategoryService } from '../core';
 
 @Component({
-  template: require('./category-page.html'),
-  styles: [require('./category-page.css')],
+  templateUrl: './category-page.html',
+  styleUrls: ['./category-page.css'],
 })
 export class CategoryPageComponent {
 

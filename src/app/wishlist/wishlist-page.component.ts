@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { IWishItem, WishlistService, ProductService } from '../core';
 
 @Component({
-  template: require('./wishlist-page.html'),
-  styles: [require('./wishlist-page.css')],
+  templateUrl: './wishlist-page.html',
+  styleUrls: ['./wishlist-page.css'],
 })
 export class WishlistPageComponent {
 

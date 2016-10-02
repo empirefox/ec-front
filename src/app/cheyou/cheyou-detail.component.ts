@@ -8,8 +8,8 @@ const simpleCols = 'Nickname, Sex, City, Province, Birthday, CarInsurance, Insur
 const descCols = 'Demand, Intro'.split(', ');
 
 @Component({
-  template: require('./cheyou-detail.html'),
-  styles: [require('./cheyou-detail.css')],
+  templateUrl: './cheyou-detail.html',
+  styleUrls: ['./cheyou-detail.css'],
 })
 export class CheyouDetailComponent {
 

@@ -13,8 +13,8 @@ const views = {
 const state = constMap.OrderState;
 
 @Component({
-  styles: [require('./order-list.css')],
-  template: require('./order-list.html'),
+  styleUrls: ['./order-list.css'],
+  templateUrl: './order-list.html',
 })
 export class OrderListComponent implements OnInit {
 

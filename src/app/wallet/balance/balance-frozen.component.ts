@@ -4,8 +4,8 @@ import { IUserCashFrozen, MoneyService, LocalWalletBase } from '../../core';
 
 @Component({
   selector: 'balance-frozen',
-  template: require('./balance-frozen.html'),
-  styles: [require('./balance-frozen.css')],
+  templateUrl: './balance-frozen.html',
+  styleUrls: ['./balance-frozen.css'],
 })
 export class BalanceFrozenComponent {
   items: IUserCashFrozen[];

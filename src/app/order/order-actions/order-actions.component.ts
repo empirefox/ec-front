@@ -6,8 +6,8 @@ const states = constMap.OrderState;
 
 @Component({
   selector: 'order-actions',
-  template: require('./order-actions.html'),
-  styles: [require('./order-actions.css')],
+  templateUrl: './order-actions.html',
+  styleUrls: ['./order-actions.css'],
 })
 export class OrderActionsComponent {
 

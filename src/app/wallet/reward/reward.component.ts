@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IUserCashRebate, IWallet, MoneyService, LocalWalletBase } from '../../core';
 
 @Component({
-  template: require('./reward.html'),
-  styles: [require('./reward.css')],
+  templateUrl: './reward.html',
+  styleUrls: ['./reward.css'],
 })
 export class RewardComponent {
   rebates: IUserCashRebate[];

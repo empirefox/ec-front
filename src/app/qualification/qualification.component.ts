@@ -6,8 +6,8 @@ import { Subscription }   from 'rxjs/Subscription';
 import { constMap, IProfile, ProfileService, IVipRebateOrigin, MyVips, VipService, VipRebatePayload, MoneyService } from '../core';
 
 @Component({
-  template: require('./qualification.html'),
-  styles: [require('./qualification.css')],
+  templateUrl: './qualification.html',
+  styleUrls: ['./qualification.css'],
 })
 export class QualificationComponent {
 

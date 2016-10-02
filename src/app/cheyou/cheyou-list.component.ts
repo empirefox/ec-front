@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { IProfile, ProfileService, IUserInfo, UserService, IVipIntro, VipService } from '../core';
 
 @Component({
-  template: require('./cheyou-list.html'),
-  styles: [require('./cheyou-list.css')],
+  templateUrl: './cheyou-list.html',
+  styleUrls: ['./cheyou-list.css'],
 })
 export class CheyouListComponent {
   profile: IProfile;

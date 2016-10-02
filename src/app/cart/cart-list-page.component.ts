@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { CartService, ICartItem, ProductService } from '../core';
 
 @Component({
-  template: require('./cart-list-page.html'),
-  styles: [require('./cart-list-page.css')],
+  templateUrl: './cart-list-page.html',
+  styleUrls: ['./cart-list-page.css'],
 })
 export class CartListPageComponent {
   total: number = 0;

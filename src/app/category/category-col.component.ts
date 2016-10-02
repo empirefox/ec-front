@@ -4,8 +4,8 @@ import { ICategory } from '../core';
 
 @Component({
   selector: 'category-col',
-  template: require('./category-col.html'),
-  styles: [require('./category-col.css')],
+  templateUrl: './category-col.html',
+  styleUrls: ['./category-col.css'],
 })
 export class CategoryColComponent {
 

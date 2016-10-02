@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IAddress, IProduct, LocalProductBase } from '../../core';
 
 @Component({
-  template: require('./address-selector-page.html'),
-  styles: [require('./address-selector-page.css')],
+  templateUrl: './address-selector-page.html',
+  styleUrls: ['./address-selector-page.css'],
 })
 export class AddressSelectorPageComponent {
 

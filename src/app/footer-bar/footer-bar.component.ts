@@ -4,8 +4,8 @@ import { NavMenuListComponent } from '../nav-menu-list';
 
 @Component({
   selector: 'footer-bar',
-  template: require('./footer-bar.html'),
-  styles: [require('./footer-bar.css')],
+  templateUrl: './footer-bar.html',
+  styleUrls: ['./footer-bar.css'],
 })
 export class FooterBarComponent {
   @Input() show: boolean = true;

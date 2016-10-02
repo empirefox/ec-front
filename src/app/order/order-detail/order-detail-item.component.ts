@@ -4,8 +4,8 @@ import { IOrderItem } from '../../core';
 
 @Component({
   selector: 'order-detail-item',
-  template: require('./order-detail-item.html'),
-  styles: [require('./order-detail-item.css')],
+  templateUrl: './order-detail-item.html',
+  styleUrls: ['./order-detail-item.css'],
 })
 export class OrderDetailItemComponent {
 

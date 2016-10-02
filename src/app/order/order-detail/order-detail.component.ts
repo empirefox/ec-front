@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IOrder, IProfile, ModalService } from '../../core';
 
 @Component({
-  template: require('./order-detail.html'),
-  styles: [require('./order-detail.css')],
+  templateUrl: './order-detail.html',
+  styleUrls: ['./order-detail.css'],
 })
 export class OrderDetailComponent implements OnInit {
 

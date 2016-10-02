@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  template: require('./cheyou-hub.html'),
-  styles: [require('./cheyou-hub.css')],
+  templateUrl: './cheyou-hub.html',
+  styleUrls: ['./cheyou-hub.css'],
 })
 export class CheyouHubComponent {
 

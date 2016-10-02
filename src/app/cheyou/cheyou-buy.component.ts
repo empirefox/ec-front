@@ -10,8 +10,8 @@ import {
 } from '../core';
 
 @Component({
-  template: require('./cheyou-buy.html'),
-  styles: [require('./cheyou-buy.css')],
+  templateUrl: './cheyou-buy.html',
+  styleUrls: ['./cheyou-buy.css'],
 })
 export class CheyouBuyComponent {
   profile: IProfile;

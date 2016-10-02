@@ -3,8 +3,8 @@ import { Invoice } from '../../core';
 
 @Component({
   selector: 'invoice',
-  template: require('./invoice.html'),
-  styles: [require('./invoice.css')],
+  templateUrl: './invoice.html',
+  styleUrls: ['./invoice.css'],
 })
 export class InvoiceComponent implements OnInit {
 

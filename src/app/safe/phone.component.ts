@@ -4,8 +4,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ICaptcha, CaptchaService, UserService, IBindPhonePayload, CountdownService } from '../core';
 
 @Component({
-  template: require('./phone.html'),
-  styles: [require('./phone.css')],
+  templateUrl: './phone.html',
+  styleUrls: ['./phone.css'],
 })
 export class BindPhoneComponent {
 

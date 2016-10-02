@@ -5,8 +5,8 @@ import { ProductPageComponent } from './product-page.component';
 
 @Component({
   selector: 'product-detail',
-  template: require('./product-detail.html'),
-  styles: [require('./product-detail.css')],
+  templateUrl: './product-detail.html',
+  styleUrls: ['./product-detail.css'],
 })
 export class ProductDetailComponent {
 

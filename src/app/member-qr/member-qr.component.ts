@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { QrService } from '../core';
 
 @Component({
-  template: require('./member-qr.html'),
-  styles: [require('./member-qr.css')],
+  templateUrl: './member-qr.html',
+  styleUrls: ['./member-qr.css'],
 })
 export class MemberQrComponent {
 

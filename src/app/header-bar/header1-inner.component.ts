@@ -4,8 +4,8 @@ import { HeaderBarInnerComponent } from './header-bar.component';
 
 @Component({
   selector: 'header1-inner',
-  template: require('./header1-inner.html'),
-  styles: [require('./header1-inner.css')],
+  templateUrl: './header1-inner.html',
+  styleUrls: ['./header1-inner.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class Header1InnerComponent {

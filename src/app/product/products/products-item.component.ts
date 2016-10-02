@@ -4,8 +4,8 @@ import { IProduct } from '../../core';
 
 @Component({
   selector: 'products-item',
-  template: require('./products-item.html'),
-  styles: [require('./products-item.css')],
+  templateUrl: './products-item.html',
+  styleUrls: ['./products-item.css'],
 })
 export class ProductsItemComponent {
 

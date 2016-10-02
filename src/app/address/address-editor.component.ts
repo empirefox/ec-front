@@ -6,8 +6,8 @@ import { ChinaRegionService, RegionPair } from './china-region.service';
 
 @Component({
   selector: 'address-editor',
-  template: require('./address-editor.html'),
-  styles: [require('./address-editor.css')],
+  templateUrl: './address-editor.html',
+  styleUrls: ['./address-editor.css'],
   viewProviders: [ChinaRegionService],
 })
 export class AddressEditorComponent {

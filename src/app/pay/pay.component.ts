@@ -9,8 +9,8 @@ enum PayType { none, wx, cash, points }
 
 @Component({
   selector: 'order-pay',
-  template: require('./pay.html'),
-  styles: [require('./pay.css')],
+  templateUrl: './pay.html',
+  styleUrls: ['./pay.css'],
 })
 export class OrderPayComponent {
 

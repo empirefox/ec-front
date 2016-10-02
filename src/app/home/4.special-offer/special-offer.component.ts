@@ -4,8 +4,8 @@ import { IProduct, ProductService } from '../../core';
 
 @Component({
   selector: 'home-special-offer',
-  template: require('./special-offer.html'),
-  styles: [require('./special-offer.css')],
+  templateUrl: './special-offer.html',
+  styleUrls: ['./special-offer.css'],
 })
 export class HomeSpecialOfferComponent {
 

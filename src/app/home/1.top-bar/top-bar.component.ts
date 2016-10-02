@@ -5,8 +5,8 @@ import { constMap, ICarouselItem, CarouselService } from '../../core';
 
 @Component({
   selector: 'home-top-bar',
-  template: require('./top-bar.html'),
-  styles: [require('./top-bar.css')],
+  templateUrl: './top-bar.html',
+  styleUrls: ['./top-bar.css'],
 })
 export class HomeTopBarComponent {
 

@@ -4,8 +4,8 @@ import { IGroupBuyItem, GroupBuyService } from '../../core';
 
 @Component({
   selector: 'home-group-buy',
-  template: require('./group.html'),
-  styles: [require('./group.css')],
+  templateUrl: './group.html',
+  styleUrls: ['./group.css'],
 })
 export class HomeGroupBuyComponent {
 

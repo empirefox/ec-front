@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { IGroupBuyItem, GroupBuy, GroupBuyService } from '../core';
 
 @Component({
-  template: require('./group-buy-page.html'),
-  styles: [require('./group-buy-page.css')],
+  templateUrl: './group-buy-page.html',
+  styleUrls: ['./group-buy-page.css'],
 })
 export class GroupBuyPageComponent {
 

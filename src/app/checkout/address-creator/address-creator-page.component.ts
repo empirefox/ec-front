@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { IAddress, ICheckout, LocalCheckoutBase } from '../../core';
 
 @Component({
-  template: require('./address-creator-page.html'),
-  styles: [require('./address-creator-page.css')],
+  templateUrl: './address-creator-page.html',
+  styleUrls: ['./address-creator-page.css'],
 })
 export class CheckoutAddrCreatorComponent {
 
