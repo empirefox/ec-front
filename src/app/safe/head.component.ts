@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { IQiniuItem, IProfile, IUserInfo } from '../core';
+import { IQiniuItem, IProfile, IUserInfo, UserService } from '../core';
 
 const ng2UploaderOptions: any = {
   url: 'https://up.qbox.me',
@@ -26,7 +26,8 @@ export class SetHeadComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private userService: UserService) { }
 
   get uploadActive() { return !this.requesting && this.hasFile && this.fileChanged; }
 

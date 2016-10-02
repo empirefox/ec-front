@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { IProfile, IUserInfo } from '../core';
+import { IProfile, IUserInfo, UserService } from '../core';
 
 @Component({
   templateUrl: './safe.html',
@@ -13,7 +13,8 @@ export class SafeComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private userService: UserService) { }
 
   ngOnInit() {
     let data = <{ profile: IProfile, user: IUserInfo }>this.route.snapshot.data;

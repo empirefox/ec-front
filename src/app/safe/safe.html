@@ -4,7 +4,7 @@
     <li>
       <a (click)="gotoHead()">
         <h4>头像</h4>
-        <h5><img [default]="profile.DefaultHeadImage" [src]="user.HeadImageURL" width="50"></h5>
+        <h5><img [default]="profile.DefaultHeadImage" [src]="userService.headSrc$|async" width="50"></h5>
         <span class="arrow-r"></span>
       </a>
     </li>

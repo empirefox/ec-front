@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { IProfile, ProfileService, IVipIntro, VipService, userTrans} from '../core';
+import { IProfile, ProfileService, IVipIntro, VipService, UserService, userTrans } from '../core';
 
 const simpleCols = 'Nickname, Sex, City, Province, Birthday, CarInsurance, InsuranceFee, CarIntro, Hobby, Career'.split(', ');
 const descCols = 'Demand, Intro'.split(', ');
@@ -24,7 +24,8 @@ export class CheyouDetailComponent {
     private route: ActivatedRoute,
     private router: Router,
     private vipService: VipService,
-    private profileService: ProfileService) { }
+    private profileService: ProfileService,
+    private userService: UserService) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];

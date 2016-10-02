@@ -3,7 +3,7 @@
     <li class="user-item myself">
       <a (click)="gotoMy()">
         <span class="user-pic">
-            <img [default]="profile.DefaultHeadImage" [src]="user.HeadImageURL" valign="middle">
+            <img [default]="profile.DefaultHeadImage" [src]="userService.headSrc$|async" valign="middle">
 				  </span>我
       </a>
     </li>
