@@ -9,7 +9,7 @@
 <router-outlet></router-outlet>
 
 <div class="bottom-mask" [class.up]="showSkus">
-  <product-skus *ngIf="product" [sku]="sku" [product]="product" (skuChange)="onSkuChange($event)" (dismiss)="onCloseSkus()"></product-skus>
+  <product-skus *ngIf="product" [product]="product" (dismiss)="closeSkus()"></product-skus>
 </div>
 
 <div class="goods-detail-foot" *ngIf="product">
@@ -20,8 +20,8 @@
   </div>
   <div class="buy-handle ">
 
-    <a (click)="onOpenSkus(0)" class="animation-up add-cart">加入购物车</a>
+    <a (click)="openSkus(0)" class="animation-up add-cart">加入购物车</a>
 
-    <a (click)="onOpenSkus(1)" class="animation-up buy-now">立即购买</a>
+    <a (click)="openSkus(1)" class="animation-up buy-now">立即购买</a>
   </div>
 </div>

@@ -24,6 +24,10 @@ export class WishlistService {
     return this._items;
   }
 
+  has(productId: number): Observable<boolean> {
+    return this.getItems().map(items => items.some(item => item.ProductID === productId));
+  }
+
   add(product: IProduct, price: number): Observable<void> {
     let {Name, Img, ID: ProductID} = product;
     let payload: IWishlistSavePayload = { ProductID, Name, Img, Price: price };

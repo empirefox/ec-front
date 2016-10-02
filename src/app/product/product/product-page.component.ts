@@ -1,8 +1,9 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
+import { Observable } from "rxjs/Rx";
 import {
   constMap,
+  ICartItem,
   CartService,
   IWishItem,
   WishlistService,
@@ -14,35 +15,34 @@ import {
   ISku,
   ProductAttrGroup,
   ProductService,
-  LocalSkuService,
-  ProductContextService,
+  LocalProductBase,
   HistoryService,
 } from '../../core';
 
+const provideParent = (component: any, parentType?: any) => {
+  return { provide: parentType || ProductPageComponent, useExisting: forwardRef(() => component) };
+};
+
 @Component({
-  selector: 'product-page',
   template: require('./product-page.html'),
   styles: [require('./product-page.css')],
-  providers: [ProductContextService, LocalSkuService],
+  providers: [provideParent(ProductPageComponent)],
 })
 export class ProductPageComponent implements OnInit {
 
+  product$: Observable<IProduct>;
   product: IProduct;
 
   inWishlist: boolean;
   canOpertaeWishlist: boolean = true;
 
-  private subProduct: Subscription;
   private cartLen: number;
   private showSkus: boolean;
   private groups: ProductAttrGroup[];
   private skus: ISku[];
-
-  private _sku: ISku;
   private groupBuyItem: IGroupBuyItem;
 
   constructor(
-    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
@@ -51,31 +51,47 @@ export class ProductPageComponent implements OnInit {
     private wishlistService: WishlistService,
     private historyService: HistoryService,
     private productService: ProductService,
-    private productContextService: ProductContextService,
-    private localSkuService: LocalSkuService) { }
+    private base: LocalProductBase) { }
 
   ngOnInit() {
-    this.localSkuService.src$.subscribe();
-    this.localSkuService.openSkus$.subscribe(_ => this.onOpenSkus(1));
-    this.subProduct = this.productContextService.asObservable().
-      flatMap(p => this.initSkus(p)).flatMap(_ => this.refreshWishlist()).flatMap(_ => this.setCartLen()).
-      subscribe(_ => {
-        this.historyService.add(this.product);
-        this.cd.markForCheck();
-      }, _ => this.cd.markForCheck());
-  }
+    if (!this.product$) {
+      let id = +this.route.snapshot.data['id'];
+      let skuId = +this.route.snapshot.queryParams['SkuID'];
+      this.product$ = Observable.forkJoin(
+        this.base.local.getItem(id).
+          flatMap(product => this.productService.proccessSkus(product)),
+        this.groupBuyService.getItem(skuId),
+        this.cartService.getItems(),
+        this.wishlistService.has(id),
+      ).map(([p, groupbuy, cart, inWishlist]: [IProduct, IGroupBuyItem, ICartItem[], boolean]) => {
+        this.product = p;
+        this.historyService.add(p);
 
-  ngOnDestroy() {
-    if (this.subProduct) { this.subProduct.unsubscribe(); }
-  }
+        this.groups = p.groups;
+        this.skus = p.skus;
+        this.sku = this.skus[0];
 
-  get sku() { return this._sku; }
-  set sku(sku: ISku) {
-    if (this._sku !== sku) {
-      this._sku = sku;
-      this.localSkuService.publish(sku);
+        if (groupbuy) {
+          this.groupBuyItem = groupbuy;
+          let sku = this.skus.find(sku => sku.ID === groupbuy.sku.ID);
+          if (sku) {
+            this.sku = sku;
+            this.showSkus = true;
+          }
+        }
+
+        this.setCartLen(cart);
+        this.inWishlist = inWishlist;
+
+        return p;
+      }).publishReplay(1).refCount();
     }
+
+    this.product$.subscribe();
   }
+
+  get sku() { return this.product.sku; }
+  set sku(sku: ISku) { this.product.sku = sku; }
 
   get snapshotPice() {
     return (this.sku || this.product.skus[0]).SalePrice;
@@ -87,8 +103,8 @@ export class ProductPageComponent implements OnInit {
       (this.inWishlist ? this.wishlistService.delete(this.product.ID) : this.wishlistService.add(this.product, this.snapshotPice)).
         flatMap(_ => this.refreshWishlist()).subscribe(
         _ => this.canOpertaeWishlist = true,
-        _ => this.canOpertaeWishlist = true
-        );
+        _ => this.canOpertaeWishlist = true,
+      );
     }
   }
 
@@ -96,12 +112,11 @@ export class ProductPageComponent implements OnInit {
   gotoChat() { this.router.navigateByUrl('/chat'); }
   gotoCart() { this.router.navigateByUrl('/cart'); }
 
-  onSkuChange(sku: ISku) { this.sku = sku; }
-
-  onOpenSkus(isBuy) {
+  openSkus(isBuy) {
     // opened
     if (this.showSkus) {
       if (this.sku) {
+        this.sku.quantity = this.sku.quantity < 1 ? 1 : this.sku.quantity;
         if (isBuy) {
           let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.quantity };
           if (this.groupBuyItem) {
@@ -110,8 +125,9 @@ export class ProductPageComponent implements OnInit {
           }
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
-        } else if (this.sku && this.sku.quantity && this.sku.product.Vpn === constMap.VpnType.TVpnNormal) {
-          this.cartService.add(this.sku, this.sku.quantity).take(1).map(_ => this.setCartLen()).subscribe();
+        } else if (this.sku && this.product.Vpn === constMap.VpnType.TVpnNormal) {
+          this.cartService.add(this.sku).flatMap(_ => this.cartService.getItems()).take(1).
+            subscribe(items => this.setCartLen(items));
         }
       }
     } else {
@@ -119,32 +135,14 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-  onCloseSkus() { this.showSkus = false; }
+  closeSkus() { this.showSkus = false; }
 
   private refreshWishlist() {
-    return this.wishlistService.getItems().
-      map(items => this.inWishlist = items.some(item => item.ProductID === this.product.ID));
+    return this.wishlistService.has(this.product.ID).map(has => this.inWishlist);
   }
 
-  private initSkus(product: IProduct) {
-    return this.productService.proccessSkus(product).take(1).flatMap(p => {
-      this.groups = p.groups;
-      this.skus = p.skus;
-      this.sku = this.skus[0];
-      this.product = p;
-      let skuId = +this.route.snapshot.queryParams['SkuID'];
-      return this.groupBuyService.getItem(skuId).map(item => {
-        if (item) {
-          this.groupBuyItem = item;
-          this.sku = this.skus.find(sku => sku.ID === item.sku.ID);
-          this.showSkus = true;
-        }
-      });
-    });
-  }
-
-  private setCartLen() {
-    return this.cartService.getItems().take(1).map(items => this.cartLen = items ? items.length : 0);
+  private setCartLen(items: ICartItem[]) {
+    return this.cartLen = items ? items.length : 0;
   }
 
 }

@@ -28,13 +28,13 @@ export class CartService {
     return this._items;
   }
 
-  add(sku: ISku, quantity: number): Observable<ICartItem> {
+  add(sku: ISku): Observable<ICartItem> {
     let payload: ICartItemContent = {
       Img: sku.Img || sku.product.Img,
       Name: sku.product.Name,
       Type: sku.attrs.map(attr => attr.Value).join(' '),
       Price: sku.SalePrice,
-      Quantity: quantity,
+      Quantity: sku.quantity < 1 ? 1 : sku.quantity,
       SkuID: sku.ID,
     };
     return this._save(payload);

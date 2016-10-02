@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs/Rx";
-import { IProduct, ProductService, IProductQuery, LocalProductBase } from '../../core';
+import { IProduct, ProductService, LocalProductBase } from '../../core';
 
 const SEARCH_COLS = ['Name', 'Intro', 'Detail'];
 
@@ -19,17 +19,13 @@ export class ProductsPageComponent {
   private _products: IProduct[] = [];
 
   constructor(
-    private _location: Location,
-    private route: ActivatedRoute,
+    private location: Location,
     private router: Router,
     private base: LocalProductBase,
     private productService: ProductService) { }
 
   ngOnInit() {
-    let query = <IProductQuery>this.route.snapshot.queryParams;
-    this.productService.query(query).subscribe(items => {
-      this.products = items;
-    });
+    this.base.local.exist().subscribe(items => this.products = items);
   }
 
   get togglerClass() { return this.grid ? 'browse-grid' : 'browse-list'; }
@@ -51,11 +47,17 @@ export class ProductsPageComponent {
     }
   }
 
-  onGotoProduct(product: IProduct) {
+  onScroll() {
+    this.base.local.nextItems().subscribe(items => this.products = items);
+  }
+
+  trackByItems(index: number, item: IProduct) { return item.ID; }
+
+  gotoProduct(product: IProduct) {
     this.productService.current = Observable.of(product);
     this.router.navigate(['/product/1', product.ID]);
   }
 
-  onGoBack() { this._location.back(); }
+  goBack() { this.location.back(); }
 
 }

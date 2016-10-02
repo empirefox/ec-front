@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { APP_CORE_PIPES, APP_CORE_PROVIDERS } from './core';
 import { APP_DIRECTIVES } from './directives';
 
+// TODO add components
 @NgModule({
   declarations: [
     ...APP_CORE_PIPES,

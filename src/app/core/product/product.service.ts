@@ -98,8 +98,8 @@ export class ProductService {
   }
 
   getEvals(product: IProduct): Observable<IProductEval> {
-    if (!product.evals) {
-      product.evals = this.http.get(URLS.ProductEvals(product.ID)).map(res => {
+    if (!product.evals$) {
+      product.evals$ = this.http.get(URLS.ProductEvals(product.ID)).map(res => {
         let items = (<IEvalItem[]>res.json() || []).sort((b, a) => a.EvalAt - b.EvalAt);
 
         let good: IEvalItem[] = [];
@@ -128,7 +128,7 @@ export class ProductService {
         };
       }).publishReplay(1).refCount();
     }
-    return product.evals;
+    return product.evals$;
   }
 
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {

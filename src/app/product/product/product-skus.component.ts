@@ -13,10 +13,9 @@ export class ProductSkusComponent implements OnInit {
   @Input() product: IProduct;
 
   @Output() dismiss = new EventEmitter<any>();
-  @Output() skuChange = new EventEmitter<ISku>();
+  // @Output() skuChange = new EventEmitter<ISku>();
 
   private gbItem: IGroupBuyItem;
-  private _sku: ISku;
   private current: Dict<ProductAttr> = {};
 
   constructor(
@@ -26,16 +25,14 @@ export class ProductSkusComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
-    if (!this.sku) {
-      this.sku = this.product.skus[0];
-    }
+    this.sku = this.sku || this.product.skus[0];
     this.findGroupBuyItem();
   }
 
-  @Input() get sku(): ISku { return this._sku; }
+  get sku(): ISku { return this.product.sku; }
   set sku(sku: ISku) {
-    if (this._sku !== sku) {
-      this._sku = sku;
+    if (this.product.sku !== sku) {
+      this.product.sku = sku;
       if (sku) {
         sku.attrs.forEach(attr => this.current[attr.Group.ID] = attr);
       } else {
@@ -75,7 +72,7 @@ export class ProductSkusComponent implements OnInit {
     if (sku !== this.sku) {
       this.sku = sku;
       this.findGroupBuyItem();
-      this.skuChange.next(sku);
+      // this.skuChange.next(sku);
     }
   }
 

@@ -116,7 +116,7 @@ export interface IProduct {
   SpecialID: number;
 
   skus?: ISku[];
-  evals?: Observable<IProductEval>;
+  evals$?: Observable<IProductEval>;
 
   // {
   //   Groups: [{
@@ -150,6 +150,7 @@ export interface IProduct {
   groups?: ProductAttrGroup[];
   proccessed?: boolean;
   raw?: IProductRawInfo;
+  sku?: ISku; // for local sku save
 }
 
 export interface IProductsBundleResponse {

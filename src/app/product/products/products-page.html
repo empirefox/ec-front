@@ -1,7 +1,7 @@
 <header class="product-header fixed">
   <div class="header-wrap">
     <div class="header-l">
-      <a (click)="onGoBack()"> <i class="back"></i> </a>
+      <a (click)="goBack()"> <i class="back"></i> </a>
     </div>
     <div class="header-inp">
       <i class="icon"></i>
@@ -19,9 +19,10 @@
   </ul>
 </div> -->
 <div class="main-layout mt40 mb20">
-  <div [ngClass]="containerClass">-->
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()" 
+    infinite-scroll [ngClass]="containerClass">
     <ul class="goods-secrch-list">
-      <li class="goods-item" *ngFor="let item of filtered" (click)="onGotoProduct(item)">
+      <li class="goods-item" *ngFor="let item of filtered; trackBy:trackByItems" (click)="gotoProduct(item)">
         <products-item [product]="item"></products-item>
       </li>
     </ul>

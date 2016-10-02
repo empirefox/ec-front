@@ -7,7 +7,20 @@ import { IProduct, ISku, IProductQuery } from './product';
 import { ProductService } from './product.service';
 
 export abstract class LocalProductBase {
-  items: Observable<IProduct[]>;
+  local: LocalProductService;
+}
+
+@Injectable()
+export class LocalProductServiceFactory {
+  constructor(
+    private rawHttp: Http,
+    private productService: ProductService) { }
+
+  from(query: CommonQuery): LocalProductService {
+    let local = new LocalProductService(this.rawHttp, this.productService);
+    local.query = query;
+    return local;
+  }
 }
 
 export class LocalProductService {
@@ -26,21 +39,28 @@ export class LocalProductService {
     this._items = null;
   }
 
-  getItems(next: boolean): Observable<IProduct[]> {
+  exist(): Observable<IProduct[]> {
     if (!this._items) {
-      this._items = this._query({ st: 0 });
-      return this._items;
+      this._items = this._query(this._page = 0).publishReplay(1).refCount();
+    }
+    return this._items;
+  }
+
+  nextItems(): Observable<IProduct[]> {
+    if (!this._items) {
+      this._items = this._query(this._page = 0);
+    } else {
+      this._items = this._items.flatMap(exist => {
+        if (exist && exist.length) {
+          return this._query(++this._page).
+            flatMap(items => Observable.of(items.length ? [...exist, ...items] : exist));
+        } else {
+          return this._query(this._page = 0);
+        }
+      });
     }
 
-    return this._items.flatMap(exist => {
-      if (exist && exist.length) {
-        this._items = this._query({ st:10}).
-          flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
-      } else {
-        this._items = this._query({ st: 0 });
-      }
-      return this._items;
-    }).publishReplay(1).refCount();
+    return this._items.publishReplay(1).refCount();
   }
 
   getItem(id: number): Observable<IProduct> {
@@ -50,7 +70,7 @@ export class LocalProductService {
     }).publishReplay(1).refCount();
   }
 
-  private _query(page: PageQuery): Observable<IProduct[]> {
+  private _query(page: number): Observable<IProduct[]> {
     if (this._items && this._querying) {
       return this._items;
     }
