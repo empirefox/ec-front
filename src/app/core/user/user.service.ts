@@ -57,13 +57,14 @@ export class UserService {
   }
 
   setUserinfo(writable: ISetUserInfoPayload): Observable<IUserInfo> {
-    return this.http.post(URLS.USER_SET_INFO, JSON.stringify(writable)).flatMap(res => {
+    let user$ = this.http.post(URLS.USER_SET_INFO, JSON.stringify(writable)).flatMap(res => {
       return this.getUserinfo().flatMap(info => {
         let data = <ISetUserInfoResponse>res.json();
         info.UpdatedAt = data.UpdatedAt;
-        return this._userinfo = Observable.of(Object.assign({}, info)).publishReplay(1).refCount();
+        return Observable.of(Object.assign({}, info));
       });
-    });
+    }).publishReplay(1).refCount();
+    return this._userinfo = user$;
   }
 
   // return times can be sent

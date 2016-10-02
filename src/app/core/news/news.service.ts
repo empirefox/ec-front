@@ -21,22 +21,28 @@ export class NewsService {
 
   getItems(next: boolean): Observable<INewsItem[]> {
     if (!this._items) {
-      this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
+      this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' }).publishReplay(1).refCount();
       return this._items;
     }
 
-    return this._items.flatMap(exist => {
+    if (this._querying) {
+      return this._items;
+    }
+
+    this._items = this._items.flatMap(exist => {
       if (exist && exist.length) {
         let filter = next ?
           `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}` :
           `CreatedAt:gt:${exist[0].CreatedAt}`;
-        this._items = this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
+        return this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
           flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
       } else {
-        this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
+        return this._query({ sz: 30, ob: 'CreatedAt:desc' });
       }
-      return this._items;
-    }).publishReplay(1).refCount();
+    });
+
+    this._items = this._items.publishReplay(1).refCount();
+    return this._items;
   }
 
   getItem(id: number): Observable<INewsItem> {
@@ -54,9 +60,6 @@ export class NewsService {
   }
 
   private _query(query: INewsQuery): Observable<INewsItem[]> {
-    if (this._items && this._querying) {
-      return this._items;
-    }
     this._querying = true;
     return this.rawHttp.get(URLS.NEWS, { search: stringify(query) }).map(res => {
       this._querying = false;

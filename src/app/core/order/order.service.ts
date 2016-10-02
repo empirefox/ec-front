@@ -90,22 +90,28 @@ export class OrderService {
 
   getOrders(next: boolean): Observable<IOrder[]> {
     if (!this._items) {
-      this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
+      this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' }).publishReplay(1).refCount();
       return this._items;
     }
 
-    return this._items.flatMap(exist => {
+    if (this._querying) {
+      return this._items;
+    }
+
+    this._items = this._items.flatMap(exist => {
       if (exist && exist.length) {
         let filter = next ?
           `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}` :
           `CreatedAt:gt:${exist[0].CreatedAt}`;
-        this._items = this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
+        return this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
           flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
       } else {
-        this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' });
+        return this._query({ sz: 30, ob: 'CreatedAt:desc' });
       }
-      return this._items;
     });
+
+    this._items = this._items.publishReplay(1).refCount();
+    return this._items;
   }
 
   getOrder(id: number): Observable<IOrder> {
@@ -121,16 +127,15 @@ export class OrderService {
   }
 
   private _queryOne(id: number): Observable<IOrder> {
-    return this._current = (this._current || Observable.of(<IOrder>{ ID: 0 })).flatMap(current => {
+    this._current = (this._current || Observable.of(<IOrder>{ ID: 0 })).flatMap(current => {
       return current && current.ID === id ? Observable.of(current) :
-        this.http.get(URLS.Order(id)).map(res => <IOrder>res.json()).publishReplay(1).refCount();
+        this.http.get(URLS.Order(id)).map(res => <IOrder>res.json());
     });
+    this._current = this._current.publishReplay(1).refCount();
+    return this._current;
   }
 
   private _query(query: CommonQuery): Observable<IOrder[]> {
-    if (this._items && this._querying) {
-      return this._items;
-    }
     this._querying = true;
     return this.http.get(URLS.ORDER_LIST, { search: stringify(query) }).map(res => {
       this._querying = false;

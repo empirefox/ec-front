@@ -48,19 +48,25 @@ export class LocalProductService {
 
   nextItems(): Observable<IProduct[]> {
     if (!this._items) {
-      this._items = this._query(this._page = 0);
-    } else {
-      this._items = this._items.flatMap(exist => {
-        if (exist && exist.length) {
-          return this._query(++this._page).
-            flatMap(items => Observable.of(items.length ? [...exist, ...items] : exist));
-        } else {
-          return this._query(this._page = 0);
-        }
-      });
+      this._items = this._query(this._page = 0).publishReplay(1).refCount();
+      return this._items;
     }
 
-    return this._items.publishReplay(1).refCount();
+    if (this._querying) {
+      return this._items;
+    }
+
+    this._items = this._items.flatMap(exist => {
+      if (exist && exist.length) {
+        return this._query(++this._page).
+          flatMap(items => Observable.of(items.length ? [...exist, ...items] : exist));
+      } else {
+        return this._query(this._page = 0);
+      }
+    });
+
+    this._items = this._items.publishReplay(1).refCount();
+    return this._items;
   }
 
   getItem(id: number): Observable<IProduct> {
@@ -71,9 +77,6 @@ export class LocalProductService {
   }
 
   private _query(page: number): Observable<IProduct[]> {
-    if (this._items && this._querying) {
-      return this._items;
-    }
     this._querying = true;
     return this.productService.query(Object.assign({}, this.query, page)).map(items => {
       this._querying = false;
