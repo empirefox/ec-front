@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
 import { addressRouting } from './routes';
 
 import { AddressShortComponent } from './address-short.component';
@@ -23,8 +22,7 @@ import { AddressEditorPageComponent } from './address-editor-page.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    HeaderBarModule,
+    CoreModule,
     addressRouting,
   ],
   exports: [

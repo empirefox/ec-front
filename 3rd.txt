@@ -4,6 +4,9 @@ npm i -S angular2-infinite-scroll angular2-jwt angular2-modal angular2-swiper \
 
 npm i -S -D stringify-object
 
+    "ng2-fancy-image-uploader": "^1.1.0",
+    "ng2-uploader": "^1.2.0",
+    
 //  promised-xhr angular2-moment angular2-validators ng2-bootstrap crypto-js jwt-simple @types/jwt-simple
 // registry:dt/crypto-js
 

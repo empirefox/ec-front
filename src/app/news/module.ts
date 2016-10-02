@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
 import { newsRouting } from './routes';
 
 import { NewsComponent } from './news.component';
@@ -16,7 +15,6 @@ import { NewsDetailComponent } from './news-detail.component';
   imports: [
     CommonModule,
     CoreModule,
-    HeaderBarModule,
     newsRouting,
   ],
   exports: [

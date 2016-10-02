@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
-import { RatingModule } from '../rating'; // https://github.com/pleerock/ng2-rating
-import { PayModule } from '../pay';
 import { orderRouting } from './routes';
 
 import { OrderListComponent } from './order-list';
@@ -27,13 +23,7 @@ import { OrderListItemComponent } from './order-list/order-list-item.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     CoreModule,
-
-    HeaderBarModule,
-    RatingModule,
-    PayModule,
     orderRouting,
   ],
   exports: [

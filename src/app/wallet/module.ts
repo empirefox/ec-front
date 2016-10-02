@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
 import { walletRouting } from './routes';
 
 import { WalletRouteComponent } from './wallet-route.component';
@@ -28,7 +28,7 @@ import { RewardComponent } from './reward';
   ],
   imports: [
     CommonModule,
-    HeaderBarModule,
+    CoreModule,
     walletRouting,
   ],
   exports: [

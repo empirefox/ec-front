@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
-import { HeaderBarModule } from '../header-bar';
+import { CoreModule } from '../core.module';
 
 import { CategoryPageComponent } from './category-page.component';
 import { CategoryColComponent } from './category-col.component';
@@ -13,7 +12,7 @@ import { CategoryColComponent } from './category-col.component';
   ],
   imports: [
     CommonModule,
-    HeaderBarModule,
+    CoreModule,
   ],
   exports: [
     CategoryPageComponent,

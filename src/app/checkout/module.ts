@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
-import { QuantityInputModule } from '../quantity-input';
 import { AddressModule } from '../address';
 import { checkoutRouting } from './routes';
 
@@ -26,12 +23,7 @@ import { CheckoutItemsResolver } from '../checkout.resolver';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     CoreModule,
-
-    HeaderBarModule,
-    QuantityInputModule,
     AddressModule,
     checkoutRouting,
   ],
