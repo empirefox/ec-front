@@ -21,6 +21,9 @@ export const routes: Routes = [
       {
         path: '1/:id',
         component: ProductPageComponent,
+        resolve: {
+          profile: ProfileResolver,
+        },
         children: [
           {
             path: '',

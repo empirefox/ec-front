@@ -12,6 +12,7 @@ import { GROUPBUY_PROVIDERS } from './groupbuy';
 import { HISTORY_PROVIDERS } from './history';
 import { JWT_PROVIDERS } from './jwt';
 import { LOCALDB_PROVIDERS } from './localdb';
+import { MODALS_PROVIDERS } from './modal';
 import { MONEY_PROVIDERS } from './money';
 import { NEWS_PROVIDERS } from './news';
 import { ORDER_PROVIDERS } from './order';
@@ -39,6 +40,7 @@ export * from './groupbuy';
 export * from './history';
 export * from './jwt';
 export * from './localdb';
+export * from './modal';
 export * from './money';
 export * from './news';
 export * from './order';
@@ -69,8 +71,8 @@ export const APP_CORE_PROVIDERS = [
   ...GROUPBUY_PROVIDERS,
   ...HISTORY_PROVIDERS,
   ...JWT_PROVIDERS,
-  //  LocalPublishService,
   ...LOCALDB_PROVIDERS,
+  ...MODALS_PROVIDERS,
   ...MONEY_PROVIDERS,
   ...NEWS_PROVIDERS,
   ...ORDER_PROVIDERS,

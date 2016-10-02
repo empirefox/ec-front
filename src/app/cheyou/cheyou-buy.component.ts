@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { overlayConfigFactory } from "angular2-modal";
-import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
-import { config, constMap, IProfile, ProfileService, ISku, IProduct, ProductAttrs, ProductService } from '../core';
+import {
+  config, constMap,
+  IProfile, ProfileService,
+  ISku, IProduct, ProductAttrs, ProductService,
+  ModalService,
+} from '../core';
 
 @Component({
   template: require('./cheyou-buy.html'),
@@ -17,7 +20,7 @@ export class CheyouBuyComponent {
 
   constructor(
     private router: Router,
-    public modal: Modal,
+    public modal: ModalService,
     private profileService: ProfileService,
     private productService: ProductService) { }
 
@@ -41,14 +44,6 @@ export class CheyouBuyComponent {
   gotoBuy(sku: ISku) {
     this.productService.setCurrent(sku.product);
     this.router.navigate(['/product/1', sku.product.ID], { queryParams: { SkuID: sku.ID } });
-  }
-
-  onModal(content: string, title: string) {
-    this.modal.alert()
-      .size('lg')
-      .showClose(true)
-      .title(title)
-      .body(content).open();
   }
 
 }

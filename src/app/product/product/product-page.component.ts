@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs/Rx";
 import {
   constMap,
+  IProfile,
+  ModalService,
   ICartItem,
   CartService,
   IWishItem,
@@ -30,6 +32,7 @@ const provideParent = (component: any, parentType?: any) => {
 })
 export class ProductPageComponent implements OnInit {
 
+  profile: IProfile;
   product$: Observable<IProduct>;
   product: IProduct;
 
@@ -45,6 +48,7 @@ export class ProductPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private modal: ModalService,
     private orderService: OrderService,
     private groupBuyService: GroupBuyService,
     private cartService: CartService,
@@ -54,8 +58,11 @@ export class ProductPageComponent implements OnInit {
     private base: LocalProductBase) { }
 
   ngOnInit() {
+    let data = <{ profile: IProfile }>this.route.snapshot.data;
+    this.profile = data.profile;
+
     if (!this.product$) {
-      let id = +this.route.snapshot.data['id'];
+      let id = +this.route.snapshot.params['id'];
       let skuId = +this.route.snapshot.queryParams['SkuID'];
       this.product$ = Observable.forkJoin(
         this.base.local.getItem(id).
@@ -108,8 +115,7 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-
-  gotoChat() { this.router.navigateByUrl('/chat'); }
+  gotoChat() { this.modal.alert(this.profile.WxMpName, '请进入微信公众号'); }
   gotoCart() { this.router.navigateByUrl('/cart'); }
 
   openSkus(isBuy) {

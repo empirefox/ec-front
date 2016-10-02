@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from '@angular/router';
-import { CheckoutItemsResolver } from './app.resolver';
 import { HomePageComponent } from './home';
 import { NoContent } from './no-content';
 import { CartListPageComponent } from './cart';
@@ -13,7 +12,7 @@ import { QualificationComponent } from './qualification';
 import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
-import { URLS } from './core';
+import { URLS, ProfileResolver } from './core';
 
 export const ROUTES: Routes = [
 
