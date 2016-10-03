@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import groupBy from 'lodash/groupBy';
+import groupBy = require('lodash/groupBy');
 import { URLS } from '../profile';
 import { IDelivery, IDeliveryItem } from './delivery';
 

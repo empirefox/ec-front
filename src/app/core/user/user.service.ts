@@ -51,7 +51,7 @@ export class UserService {
     if (!this._userinfo) {
       this.jwt.accessToken = '';
       this.jwt.refreshToken = '';
-      this.mustUpdateToken();
+      return this.mustUpdateToken().flatMap(_ => Observable.throw('Login'));
     }
     return this._userinfo;
   }

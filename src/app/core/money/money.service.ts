@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import sumBy from 'lodash/sumBy';
+import sumBy = require('lodash/sumBy');
 import { URLS } from '../profile';
 import { one2manyRelate } from '../util';
 import { IUserCash, IWallet, IWxPayArgs, WithdrawPayload, VipRebatePayload } from './money';

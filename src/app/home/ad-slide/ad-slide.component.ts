@@ -9,12 +9,12 @@ import { ICarouselItem, CarouselService } from '../../core';
 })
 export class HomeAdSlideComponent {
 
-  @Input() slide: ICarouselItem;
+  @Input() item: ICarouselItem;
 
   constructor(
     private router: Router,
     private carouselService: CarouselService) { }
 
-  gotoSlide() { this.carouselService.gotoSlide(this.slide); }
+  gotoSlide() { this.carouselService.gotoSlide(this.item); }
 
 }

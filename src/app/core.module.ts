@@ -7,7 +7,7 @@ import { KSSwiperModule } from 'angular2-swiper';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { MyDatePickerModule } from 'mydatepicker/src/my-date-picker/my-date-picker.module';
 
-import { CommonsModule } from './commons';
+import { RatingModule, NavMenuListComponent, COMMONS_COMPONENTS } from './commons';
 
 import { APP_CORE_PIPES, APP_CORE_PROVIDERS } from './core';
 import { APP_DIRECTIVES } from './directives';
@@ -17,6 +17,8 @@ import { APP_DIRECTIVES } from './directives';
   declarations: [
     ...APP_CORE_PIPES,
     ...APP_DIRECTIVES,
+    NavMenuListComponent,
+    ...COMMONS_COMPONENTS,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import { APP_DIRECTIVES } from './directives';
     KSSwiperModule,
     InfiniteScrollModule,
     MyDatePickerModule,
-    CommonsModule,
+    RatingModule,
   ],
   exports: [
     FormsModule,
@@ -37,8 +39,10 @@ import { APP_DIRECTIVES } from './directives';
     KSSwiperModule,
     InfiniteScrollModule,
     MyDatePickerModule,
-    CommonsModule,
+    RatingModule,
     ...APP_CORE_PIPES,
+    ...APP_DIRECTIVES,
+    ...COMMONS_COMPONENTS,
   ],
   providers: [
     ...APP_CORE_PROVIDERS,

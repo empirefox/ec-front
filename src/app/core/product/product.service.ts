@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import groupBy from 'lodash/groupBy';
-import keyBy from 'lodash/keyBy';
-import isEqual from 'lodash/isEqual';
-import uniq from 'lodash/uniq';
+import groupBy = require('lodash/groupBy');
+import keyBy = require('lodash/keyBy');
+import isEqual = require('lodash/isEqual');
+import uniq = require('lodash/uniq');
 import { stringify } from 'querystringify';
 import { URLS } from '../profile';
 import { one2manyRelate, posSortor } from '../util';
@@ -54,7 +54,11 @@ export class ProductService {
 
   getProduct(id: number): Observable<IProduct> {
     return this.http.get(URLS.Product(id)).map(res => {
-      let {Products: [product], Skus: skus = [], Attrs: attrs = []} = <IProductsResponse>res.json();
+      let r = <IProductsResponse>res.json();
+      let {Products: [product]} = r;
+      let skus = r.Skus || [];
+      let attrs = r.Attrs || [];
+
       one2manyRelate([product], skus, O2M_PRODUCT_SKUS_OPTION);
       product.raw = { skus, attrs };
       return product;
@@ -78,7 +82,8 @@ export class ProductService {
       return Observable.of(product);
     }
 
-    let { skus = [], attrs = []} = product.raw;
+    let skus = product.raw.skus || [];
+    let attrs = product.raw.attrs || [];
     return this.getAttrs().map(attrAndGroupMap => {
       attrs = attrs.filter(attrId => attrId.AttrID in attrAndGroupMap.attrs);
 
@@ -138,8 +143,10 @@ export class ProductService {
   }
 
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {
-    // tslint:disable-next-line:variable-name
-    let {Groups = [], Attrs = [], Specials = []} = res;
+    let Groups = res.Groups || []; // tslint:disable-line:variable-name
+    let Attrs = res.Attrs || []; // tslint:disable-line:variable-name
+    let Specials = res.Specials || []; // tslint:disable-line:variable-name
+
     one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
     let specials = <Dict<string>>{};
     specialPresets.forEach(item => specials[item] = '');
@@ -153,8 +160,9 @@ export class ProductService {
   }
 
   private initProducts(res: IProductsResponse): IProduct[] {
-    // tslint:disable-next-line:variable-name
-    let {Products = [], Skus = [], Attrs = []} = res;
+    let Products = res.Products || []; // tslint:disable-line:variable-name
+    let Skus = res.Skus || []; // tslint:disable-line:variable-name
+    let Attrs = res.Attrs || []; // tslint:disable-line:variable-name
     one2manyRelate(Products, Skus, O2M_PRODUCT_SKUS_OPTION);
     let attrIdsBySku = groupBy(Attrs, item => item.SkuID);
     Products.forEach(product => {

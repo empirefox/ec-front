@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { isNumber } from '@angular/core/src/facade/lang';
-import Timeago from 'timeago.js';
+import Timeago = require('timeago.js');
 
 @Pipe({ name: 'ago' })
 export class AgoPipe implements PipeTransform {

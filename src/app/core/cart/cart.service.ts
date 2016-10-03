@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
-import keyBy from 'lodash/keyBy';
+import keyBy = require('lodash/keyBy');
 import { updateAfterSave, createdAtSortor } from '../util';
 import { constMap } from '../consts';
 import { URLS } from '../profile';
@@ -66,7 +66,10 @@ export class CartService {
   }
 
   private parseResponse(res: ICartResponse): ICartItem[] {
-    let {Items: items = [], Skus: skus = [], Products: products = []} = res;
+    let items = res.Items || [];
+    let skus = res.Skus || [];
+    let products = res.Products || [];
+
     let skuMap = keyBy(skus, item => item.ID);
     let productMap = keyBy(products, item => item.ID);
     items.forEach(item => {

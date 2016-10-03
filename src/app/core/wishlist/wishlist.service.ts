@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { URLS } from '../profile';
 import { Observable } from 'rxjs/Observable';
-import keyBy from 'lodash/keyBy';
+import keyBy = require('lodash/keyBy');
 import { IProduct } from '../product';
 import { IWishItem, IWishListResponse, IWishlistSavePayload } from './wishlist';
 
@@ -59,7 +59,8 @@ export class WishlistService {
   }
 
   private parseResponse(res: IWishListResponse): IWishItem[] {
-    let {Items: items = [], Products: products = []} = res;
+    let items = res.Items || [];
+    let products = res.Products || [];
     let productMap = keyBy(products, item => item.ID);
 
     return items.map(item => this.initItem(item, productMap[item.ProductID])).sort((b, a) => a.CreatedAt - b.CreatedAt);

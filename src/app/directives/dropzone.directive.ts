@@ -1,5 +1,5 @@
 import { Directive, Input, Output, ElementRef, OnInit, OnDestroy, EventEmitter } from '@angular/core';
-import Dropzone from 'dropzone';
+import Dropzone = require('dropzone');
 import { CdnService, HeadUptoken } from '../core';
 
 Dropzone.autoDiscover = false;

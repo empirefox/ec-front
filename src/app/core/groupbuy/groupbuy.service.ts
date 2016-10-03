@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import keyBy from 'lodash/keyBy';
+import keyBy = require('lodash/keyBy');
 import { URLS } from '../profile';
 import { IGroupBuyItem, GroupBuy, IGroupBuyResponse } from './groupbuy';
 
@@ -26,7 +26,9 @@ export class GroupBuyService {
   clearCache() { this._gb = null; }
 
   private parseResponse(res: IGroupBuyResponse): GroupBuy {
-    let {Items: items = [], Skus: skus = []} = res;
+    let items = res.Items || [];
+    let skus = res.Skus || [];
+
     let skuMap = keyBy(skus, item => item.ID);
     let map: Dict<IGroupBuyItem> = {};
     let active: IGroupBuyItem[] = [];

@@ -25,9 +25,7 @@ export class ProductRouteComponent implements LocalProductBase {
 
   ngOnInit() {
     let query = <CommonQuery>this.route.snapshot.queryParams;
-    query.st = 0;
-    query.sz = 30;
-    query.tl = 0;
+    query = Object.assign({}, query, { st: 0, sz: 30, tl: 0 });
     this.local = this.localFactory.from(query);
   }
 

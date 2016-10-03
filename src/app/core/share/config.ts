@@ -28,6 +28,12 @@ export class Config {
 
   constructor(args: ModeArgs, jwt?: JwtConfig) {
     Object.assign(this, args);
+    // this.apiOrigin = args.apiOrigin;
+    // this.cdnImgOrigin = args.cdnImgOrigin;
+    // this.publicOrigin = args.publicOrigin;
+    // this.qrLogoUrl = args.qrLogoUrl;
+    // this.vbuysSpecialName = args.vbuysSpecialName;
+
     this.qrLogoUrl = this.qrLogoUrl || '';
     this.vbuysSpecialName = this.vbuysSpecialName || 'vbuys';
     this.xstorageHubUrl = `${args.publicOrigin}/xstorage/public-hub.html`;

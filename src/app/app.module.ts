@@ -75,6 +75,7 @@ type StoreType = {
     CategoryModule,
     CheckoutModule,
     CheyouModule,
+    GroupbuyModule,
     HomeModule,
     MemberModule,
     NewsModule,

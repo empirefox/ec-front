@@ -154,7 +154,9 @@ export class OrderService {
   }
 
   private equipOrders(res: IOrdersResponse): IOrder[] {
-    let {Orders: orders = [], Items: items = []} = res;
+    let orders = res.Orders || [];
+    let items = res.Items || [];
+
     splitToParents(orders, items, splitOrdersOptions);
     return orders.sort(createdAtSortor);
   }
