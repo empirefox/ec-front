@@ -4,7 +4,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import { stringify } from 'querystringify';
 import { URLS, CommonQuery } from '../profile';
-import { createdAtSortor } from '../util';
+import { createdAtSortor, splitToParents } from '../util';
 import { IWxPayArgs, MoneyService } from '../money';
 import { ISku, IEvalItem } from '../product';
 import {
@@ -12,8 +12,11 @@ import {
   ICheckoutPayload, IOrderPayPayload,
   IOrderWxPayPayload,
   IOrderChangeStatePayload,
+  IOrdersResponse,
 } from './order';
 import { ICheckout, ICheckoutItem, toPayload, toOnePayload } from './checkout';
+
+const splitOrdersOptions = { idInParent: 'ID', parentIdInArray: 'OrderID', childrenInParent: 'Items' };
 
 @Injectable()
 export class OrderService {
@@ -139,7 +142,7 @@ export class OrderService {
     this._querying = true;
     return this.http.get(URLS.ORDER_LIST, { search: stringify(query) }).map(res => {
       this._querying = false;
-      return (<IOrder[]>res.json() || []).sort(createdAtSortor);
+      return this.equipOrders(res.json() || {});
     }).catch((err, caught) => {
       this._querying = false;
       return caught;
@@ -148,6 +151,12 @@ export class OrderService {
 
   private _assign(dest: IOrder, src: IOrder): IOrder {
     return Object.assign(dest, src, { Items: dest.Items });
+  }
+
+  private equipOrders(res: IOrdersResponse): IOrder[] {
+    let {Orders: orders = [], Items: items = []} = res;
+    splitToParents(orders, items, splitOrdersOptions);
+    return orders.sort(createdAtSortor);
   }
 
 }

@@ -1,4 +1,4 @@
-<input type="number" [formControl]="amount">单位(元)
+<input type="number" [formControl]="amount">单位(分)
 <button (click)="onWithdraw()" type="submit" class="btn" [class.valid]="amount.valid&&!requesting">确认提现</button>
 <div *ngIf="error">{{error|json}}</div>
 

@@ -122,3 +122,8 @@ export interface IEvalResponse {
   EvalAt: number;
   EvalName: string;
 }
+
+export interface IOrdersResponse {
+  Orders: IOrder[];
+  Items: IOrderItem[];
+}
