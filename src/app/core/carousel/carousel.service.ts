@@ -49,11 +49,11 @@ export class CarouselService {
       return;
     }
     if (item.SpecialID) {
-      this.router.navigateByUrl('/product/list', { queryParams: { ft: `SpecialID:eq:${item.SpecialID}` } });
+      this.router.navigateByUrl('/product/list', { queryParams: { ft: `SpecialID.eq.${item.SpecialID}` } });
       return;
     }
     if (item.CategoryID) {
-      this.router.navigateByUrl('/product/list', { queryParams: { ft: `CategoryID:eq:${item.CategoryID}` } });
+      this.router.navigateByUrl('/product/list', { queryParams: { ft: `CategoryID.eq.${item.CategoryID}` } });
       return;
     }
   }

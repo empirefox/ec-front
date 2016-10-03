@@ -21,7 +21,7 @@ export class NewsService {
 
   getItems(next: boolean): Observable<INewsItem[]> {
     if (!this._items) {
-      this._items = this._query({ sz: 30, ob: 'CreatedAt:desc' }).publishReplay(1).refCount();
+      this._items = this._query({ sz: 30, ob: 'CreatedAt.desc' }).publishReplay(1).refCount();
       return this._items;
     }
 
@@ -32,12 +32,12 @@ export class NewsService {
     this._items = this._items.flatMap(exist => {
       if (exist && exist.length) {
         let filter = next ?
-          `CreatedAt:lt:${exist[exist.length - 1].CreatedAt}` :
-          `CreatedAt:gt:${exist[0].CreatedAt}`;
-        return this._query({ sz: 30, ob: 'CreatedAt:desc', ft: filter }).
+          `CreatedAt.lt.${exist[exist.length - 1].CreatedAt}` :
+          `CreatedAt.gt.${exist[0].CreatedAt}`;
+        return this._query({ sz: 30, ob: 'CreatedAt.desc', ft: filter }).
           flatMap(items => Observable.of(items.length ? (next ? [...exist, ...items] : [...items, ...exist]) : exist));
       } else {
-        return this._query({ sz: 30, ob: 'CreatedAt:desc' });
+        return this._query({ sz: 30, ob: 'CreatedAt.desc' });
       }
     });
 

@@ -14,7 +14,7 @@ export class CategoryColComponent {
   constructor(private router: Router) { }
 
   onGotoProducts(leaf: ICategory) {
-    this.router.navigate(['/product/list'], { queryParams: { ft: `CategoryID:eq:${leaf.ID}` } });
+    this.router.navigate(['/product/list'], { queryParams: { ft: `CategoryID.eq.${leaf.ID}` } });
   }
 
 }
