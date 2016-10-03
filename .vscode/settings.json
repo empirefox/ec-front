@@ -1,5 +1,5 @@
 {
   "editor.tabSize": 2,
-  "tslint.enable": true,
+  "tslint.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib/"
 }
