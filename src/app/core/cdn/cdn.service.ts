@@ -11,12 +11,12 @@ export class CdnService {
 
   constructor(private http: AuthHttp) { }
 
-  getHeadUptoken(): Observable<string> {
+  getHeadUptoken(): Observable<HeadUptoken> {
     this.headUptoken = (this.headUptoken || Observable.of(<HeadUptoken>{})).flatMap(head => {
       return head.valid() ? Observable.of(head) :
         this.http.get(URLS.HEAD_UPTOKEN).map(res => new HeadUptoken(<IHeadUptokenResponse>res.json()));
     }).publishReplay(1).refCount();
-    return this.headUptoken.map(head => head.token);
+    return this.headUptoken;
   }
 
 }

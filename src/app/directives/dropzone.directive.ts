@@ -1,6 +1,6 @@
 import { Directive, Input, Output, ElementRef, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import Dropzone from 'dropzone';
-import { CdnService } from '../core';
+import { CdnService, HeadUptoken } from '../core';
 
 Dropzone.autoDiscover = false;
 require('!!style!css!dropzone/dist/basic.css');
@@ -30,6 +30,7 @@ export class DropzoneDirective implements OnInit, OnDestroy {
   dropzone: Dropzone;
   uptoken: string;
   key: string;
+  uphost: string;
 
   constructor(
     private elementRef: ElementRef,
@@ -38,12 +39,12 @@ export class DropzoneDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this.config = this.config || {};
     this.config.options = this.config.options || {
-      url: 'https://up-z2.qbox.me', // equidna
+      url: _ => this.uphost,
       acceptedFiles: 'image/*',
       autoProcessQueue: false,
       parallelUploads: 1,
       maxFilesize: 10,
-      addRemoveLinks: true
+      addRemoveLinks: true,
     };
     this.config.handlers = this.config.handlers || {};
 
@@ -75,7 +76,8 @@ export class DropzoneDirective implements OnInit, OnDestroy {
 
   upload(key: string) {
     this.cdnService.getHeadUptoken().subscribe(uptoken => {
-      this.uptoken = uptoken;
+      this.uptoken = uptoken.token;
+      this.uphost = uptoken.uphost;
       this.key = key;
       this.dropzone.processQueue();
     });
