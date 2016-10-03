@@ -90,6 +90,7 @@ export class AddressEditorComponent {
   get submitDisabled() { return !this.form.valid || this.failed; }
 
   onSubmit() {
+    // tslint:disable-next-line:all
     let {Contact, Phone, House, province: [, Province], city: [, City], district: [, District]} = this.form.value;
     let value = <IAddress>{ Contact, Phone, House, Province, City, District };
     if (this.addr.ID) { value.ID = this.addr.ID; }

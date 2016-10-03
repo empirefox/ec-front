@@ -47,7 +47,7 @@ export class NewsService {
 
   getItem(id: number): Observable<INewsItem> {
     return (this._items || Observable.of([])).flatMap(items => {
-      let item = items.find(item => item.ID === id);
+      let item = items.find(i => i.ID === id);
       return item ? Observable.of(item) : this._queryOne(id);
     }).publishReplay(1).refCount();
   }

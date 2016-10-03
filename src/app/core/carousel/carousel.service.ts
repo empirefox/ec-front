@@ -26,7 +26,7 @@ export class CarouselService {
     if (!this._boards) {
       this._boards = this.http.get(URLS.CAROUSEL).map(res => {
         let boards = groupBy(<ICarouselItem[]>res.json() || [], (item: ICarouselItem) => item.Billboard) as Dict<ICarouselItem[]>;
-        values(boards).forEach(board => board.sort(posSortor));
+        values(boards).forEach(item => item.sort(posSortor));
         return boards;
       }).publishReplay(1).refCount();
     }

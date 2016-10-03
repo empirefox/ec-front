@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Observable';
 import {
   IProduct,
   ISku,

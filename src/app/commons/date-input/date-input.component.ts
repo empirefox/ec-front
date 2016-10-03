@@ -17,7 +17,7 @@ export function createDateRangeValidator(maxValue, minValue) {
     };
 
     return (c.value > +maxValue || c.value < +minValue) ? err : null;
-  }
+  };
 }
 
 const myDatePickerNormalOptions = {

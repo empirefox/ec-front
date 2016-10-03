@@ -1,6 +1,6 @@
 import { Injectable }   from '@angular/core';
 import { Resolve }  from '@angular/router';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Observable';
 
 import { IStore } from './store';
 import { StoreService } from './store.service';

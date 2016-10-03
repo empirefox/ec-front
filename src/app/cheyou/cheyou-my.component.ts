@@ -42,6 +42,7 @@ export class CheyouMyComponent {
     ).subscribe(([profile, user]: [IProfile, IUserInfo]) => {
       this.profile = profile;
       this.user = user;
+      // tslint:disable-next-line:all
       let {Nickname = '', Sex = 0, City = '', Province = '', Birthday = 0, CarInsurance = '', InsuranceFee = 0, CarIntro = '', Hobby = '', Career = '', Demand = '', Intro = ''} = user.Writable;
       this.form = this.fb.group({ Nickname, Sex, City, Province, Birthday, CarInsurance, InsuranceFee: [InsuranceFee, minValidator(0)], CarIntro, Hobby, Career, Demand, Intro });
     });

@@ -59,6 +59,7 @@ export class CartService {
   }
 
   save(item: ICartItem) {
+    // tslint:disable-next-line:variable-name
     let {ID, Img, Name, Type, Price, Quantity, SkuID} = item;
     let payload: ICartItemContent = { ID, Img, Name, Type, Price, Quantity, SkuID };
     return this._save(payload);

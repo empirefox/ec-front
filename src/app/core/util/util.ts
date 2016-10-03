@@ -37,7 +37,7 @@ export function nonce(length) {
 
 // http://stackoverflow.com/a/1634841/2778814
 export function removeURLParameter(url: string, parameter: string) {
-  //prefer to use l.search if you have a location/link object
+  // prefer to use l.search if you have a location/link object
   let urlparts = url.split('?');
   let value: string;
   if (urlparts.length >= 2) {
@@ -45,17 +45,17 @@ export function removeURLParameter(url: string, parameter: string) {
     let prefix = encodeURIComponent(parameter) + '=';
     let pars = urlparts[1].split(/[&;]/g);
 
-    //reverse iteration as may be destructive
+    // reverse iteration as may be destructive
     let i;
     for (i = pars.length; i-- > 0;) {
-      //idiom for string.startsWith
+      // idiom for string.startsWith
       if (pars[i].lastIndexOf(prefix, 0) !== -1) {
         value = pars[i].slice(prefix.length);
         pars.splice(i, 1);
       }
     }
 
-    url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+    url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
   }
   return { url, value };
 }

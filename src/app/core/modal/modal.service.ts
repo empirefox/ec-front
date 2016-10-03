@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { overlayConfigFactory } from "angular2-modal";
+import { overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { IProfile } from '../profile';
 

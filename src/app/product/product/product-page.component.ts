@@ -1,6 +1,6 @@
 import { Component, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Observable';
 import {
   constMap,
   IProfile,

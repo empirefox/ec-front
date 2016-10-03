@@ -13,7 +13,7 @@ function repeatValidator(o: AbstractControl) {
     };
 
     return (r.value === o.value) ? err : null;
-  }
+  };
 }
 
 @Component({
@@ -23,7 +23,7 @@ function repeatValidator(o: AbstractControl) {
 export class SetPaykeyComponent {
 
   form: FormGroup;
-  KeyCheckControl: FormControl;
+  keyCheckControl: FormControl;
   captcha: ICaptcha;
   sending: boolean;
   captchaing: boolean;
@@ -46,7 +46,7 @@ export class SetPaykeyComponent {
       Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
       Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
     });
-    this.KeyCheckControl = new FormControl('', repeatValidator(this.form.controls['Key']));
+    this.keyCheckControl = new FormControl('', repeatValidator(this.form.controls['Key']));
   }
 
   get colding() { return this.countdownService.isSmsColding(); }

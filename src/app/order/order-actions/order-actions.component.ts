@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ChangeDetectionStrategy, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Optional, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { constMap, IOrder, OrderService } from '../../core';
 
@@ -45,6 +45,9 @@ export class OrderActionsComponent {
       case states.TOrderStateRejectBack, states.TOrderStateRejectRefound,
         states.TOrderStateReturnStarted, states.TOrderStateReturning, states.TOrderStateReturned:
         return states.TOrderStateRejecting;
+
+      default:
+        return this.order.State;
     }
   }
 

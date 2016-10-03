@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ModalModule } from 'ng2-bootstrap/components/modal';
+import { ModalModule } from 'angular2-modal';
 import { KSSwiperModule } from 'angular2-swiper';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { MyDatePickerModule } from 'mydatepicker/src/my-date-picker/my-date-picker.module';

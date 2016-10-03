@@ -83,9 +83,9 @@ export class ProductService {
       attrs = attrs.filter(attrId => attrId.AttrID in attrAndGroupMap.attrs);
 
       let flattenAttrs = attrs.map(attrId => attrAndGroupMap.attrs[attrId.AttrID]);
-      let AttrsByGroup = groupBy(uniq(flattenAttrs), item => item.GroupID);
-      product.groups = Object.keys(AttrsByGroup).filter(groupId => groupId in attrAndGroupMap.groups).
-        map(groupId => new ProductAttrGroup(attrAndGroupMap.groups[groupId], AttrsByGroup[groupId].sort(posSortor))).
+      let attrsByGroup = groupBy(uniq(flattenAttrs), item => item.GroupID);
+      product.groups = Object.keys(attrsByGroup).filter(groupId => groupId in attrAndGroupMap.groups).
+        map(groupId => new ProductAttrGroup(attrAndGroupMap.groups[groupId], attrsByGroup[groupId].sort(posSortor))).
         sort(posSortor);
 
       let attrIdsBySku = groupBy(attrs, item => item.SkuID);
@@ -138,6 +138,7 @@ export class ProductService {
   }
 
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {
+    // tslint:disable-next-line:variable-name
     let {Groups = [], Attrs = [], Specials = []} = res;
     one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
     let specials = <Dict<string>>{};
@@ -152,6 +153,7 @@ export class ProductService {
   }
 
   private initProducts(res: IProductsResponse): IProduct[] {
+    // tslint:disable-next-line:variable-name
     let {Products = [], Skus = [], Attrs = []} = res;
     one2manyRelate(Products, Skus, O2M_PRODUCT_SKUS_OPTION);
     let attrIdsBySku = groupBy(Attrs, item => item.SkuID);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Observable';
 import { stringify } from 'querystringify';
 import { URLS, CommonQuery } from '../profile';
 import { IProduct, ISku, IProductQuery } from './product';
@@ -70,8 +70,8 @@ export class LocalProductService {
   }
 
   getItem(id: number): Observable<IProduct> {
-    return (this._items || Observable.of([])).flatMap(items => {
-      let item = items.find(item => item.ID === id);
+    return (this._items || Observable.of([])).flatMap((items) => {
+      let item = items.find(i => i.ID === id);
       return item ? this.productService.current = Observable.of(item) : this.productService.getCurrent(id);
     }).publishReplay(1).refCount();
   }

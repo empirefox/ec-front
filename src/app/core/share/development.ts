@@ -6,4 +6,4 @@ export const modeArgs: ModeArgs = {
   cdnImgOrigin: 'http://127.0.0.1:9999',
   qrLogoUrl: '',
   vbuysSpecialName: 'vbuys',
-}
+};

@@ -120,7 +120,7 @@ export class OrderService {
   getOrder(id: number): Observable<IOrder> {
     return !id ? Observable.of(null) :
       (this._items || Observable.of([])).flatMap(items => {
-        let item = items.find(item => item.ID === id);
+        let item = items.find(i => i.ID === id);
         return item ? Observable.of(item) : this._queryOne(id);
       });
   }

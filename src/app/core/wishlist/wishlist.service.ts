@@ -29,6 +29,7 @@ export class WishlistService {
   }
 
   add(product: IProduct, price: number): Observable<void> {
+    // tslint:disable-next-line:variable-name
     let {Name, Img, ID: ProductID} = product;
     let payload: IWishlistSavePayload = { ProductID, Name, Img, Price: price };
     return this.http.post(URLS.WISH_LIST_ADD, JSON.stringify(payload)).flatMap(res => {

@@ -15,7 +15,7 @@ export function createRangeValidator(wallet: IWallet, minValue: number) {
     };
 
     return (c.value > wallet.cash || c.value < minValue) ? err : null;
-  }
+  };
 }
 
 @Component({

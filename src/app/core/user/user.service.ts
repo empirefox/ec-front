@@ -68,6 +68,7 @@ export class UserService {
   }
 
   // return times can be sent
+  // tslint:disable-next-line:variable-name
   preBindPhone(Phone: string): Observable<number> {
     let payload: IPreBindPhonePayload = { Phone };
     return this.http.post(URLS.USER_PREBIND_PHONE, JSON.stringify(payload)).map(res => <number>res.json());

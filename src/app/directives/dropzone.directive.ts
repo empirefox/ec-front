@@ -1,8 +1,7 @@
-import {Directive, Input, Output, ElementRef, OnInit, OnDestroy, EventEmitter} from '@angular/core';
-
+import { Directive, Input, Output, ElementRef, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import Dropzone from 'dropzone';
 import { CdnService } from '../core';
 
-let Dropzone = require("dropzone");
 Dropzone.autoDiscover = false;
 require('!!style!css!dropzone/dist/basic.css');
 require('!!style!css!dropzone/dist/dropzone.css');
@@ -16,8 +15,8 @@ export interface DropzoneConfig {
   selector: '[dropzone]',
   exportAs: 'dropzone',
   host: {
-    '[class.dropzone]': 'true'
-  }
+    '[class.dropzone]': 'true',
+  },
 })
 export class DropzoneDirective implements OnInit, OnDestroy {
   @Input('dropzone') config: DropzoneConfig;

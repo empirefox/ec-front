@@ -2,7 +2,7 @@
 interface Dict<T> {
   [key: string]: T;
   [key: number]: T;
-  //[key: symbol]: T;
+  // [key: symbol]: T;
 }
 
 declare module 'querystringify' {
@@ -43,4 +43,15 @@ declare module 'url-parse' {
   const URL: ParsedUrl;
 
   export = URL;
+}
+
+declare module 'timeago.js' {
+  interface Timeago {
+    new (nowDate: string, defaultLocale: string): Timeago;
+    format(value: Date | number, locale?: string): string;
+  }
+
+  const Timeago: Timeago;
+
+  export = Timeago;
 }

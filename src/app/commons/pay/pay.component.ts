@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { constMap, removeURLParameter, IUserInfo, UserService, IWallet, MoneyService, IOrder, OrderService } from '../core';
+import { constMap, removeURLParameter, IUserInfo, UserService, IWallet, MoneyService, IOrder, OrderService } from '../../core';
 
 enum PayType { none, wx, cash, points }
 
@@ -19,6 +19,7 @@ export class OrderPayComponent {
   @Input() show: boolean;
   @Output() showChange = new EventEmitter<boolean>();
 
+  // tslint:disable-next-line:variable-name
   PayType = PayType;
   payType = PayType.none;
   user: IUserInfo;
@@ -44,8 +45,9 @@ export class OrderPayComponent {
         return !this.order.PayPoints && this.wallet.cash >= this.order.PayAmount && this.keyControl.valid;
       case PayType.points:
         return this.order.PayPoints && this.wallet.points >= this.order.PayPoints && this.keyControl.valid;
+      default:
+        return false;
     }
-    return false;
   }
 
   ngOnInit() {
@@ -90,6 +92,7 @@ export class OrderPayComponent {
             _ => this.error = true,
           );
           break;
+        default:
       }
     }
   }

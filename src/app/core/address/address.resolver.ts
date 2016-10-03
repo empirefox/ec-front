@@ -12,5 +12,5 @@ export class AddressResolver implements Resolve<IAddress> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.addressService.getDefault();
   }
-  
+
 }

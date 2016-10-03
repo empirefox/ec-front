@@ -3,7 +3,7 @@ export interface ModeArgs {
   apiOrigin: string;
   cdnImgOrigin: string;
   qrLogoUrl?: string;
-  vbuysSpecialName?: string
+  vbuysSpecialName?: string;
 }
 
 export interface JwtConfig {

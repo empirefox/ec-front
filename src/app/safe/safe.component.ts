@@ -26,7 +26,7 @@ export class SafeComponent {
   gotoBindPhone() { this.router.navigateByUrl('/safe/phone'); }
   gotoPaykey() { this.router.navigateByUrl('/safe/paykey'); }
 
-  get phone() { return this.user.Phone ? this.user.Phone : '未设置' }
-  get paykey() { return this.user.HasPayKey ? '更改' : '未设置' }
+  get phone() { return this.user.Phone ? this.user.Phone : '未设置'; }
+  get paykey() { return this.user.HasPayKey ? '更改' : '未设置'; }
 
 }
