@@ -2,7 +2,7 @@ import { ModuleWithProviders }   from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 
 import { ProfileResolver, AddressResolver } from '../core';
-import { CheckoutItemsResolver } from '../checkout.resolver';
+import { CheckoutItemsResolver } from './checkout.resolver';
 import { CheckoutRouteComponent } from './checkout-route.component';
 import { CheckoutContentComponent } from './content';
 import { CheckoutAddrsComponent } from './address-selector';

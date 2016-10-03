@@ -13,7 +13,6 @@ import { HomeModule } from './home';
 import { MemberModule } from './member';
 import { NewsModule } from './news';
 import { OrderModule } from './order';
-import { PayModule } from './pay';
 import { ProductModule } from './product';
 import { SafeModule } from './safe';
 import { WalletModule } from './wallet';
@@ -80,7 +79,6 @@ type StoreType = {
     MemberModule,
     NewsModule,
     OrderModule,
-    PayModule,
     ProductModule,
     SafeModule,
     WalletModule,
