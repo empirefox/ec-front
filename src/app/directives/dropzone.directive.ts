@@ -38,7 +38,7 @@ export class DropzoneDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this.config = this.config || {};
     this.config.options = this.config.options || {
-      url: 'https://up.qbox.me',
+      url: 'https://up-z2.qbox.me', // equidna
       acceptedFiles: 'image/*',
       autoProcessQueue: false,
       parallelUploads: 1,

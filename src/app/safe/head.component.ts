@@ -4,11 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { IQiniuItem, IProfile, IUserInfo, UserService } from '../core';
 
-const ng2UploaderOptions: any = {
-  url: 'https://up.qbox.me',
-  maxUploads: 1,
-};
-
 @Component({
   templateUrl: './head.html',
   styleUrls: ['./head.css'],
