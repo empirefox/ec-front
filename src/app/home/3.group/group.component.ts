@@ -4,8 +4,8 @@ import { IGroupBuyItem, GroupBuyService } from '../../core';
 
 @Component({
   selector: 'home-group-buy',
-  template: require('./group.html'),
-  styles: [require('./group.css')],
+  templateUrl: './group.html',
+  styleUrls: ['./group.css'],
 })
 export class HomeGroupBuyComponent {
 
@@ -22,9 +22,9 @@ export class HomeGroupBuyComponent {
   onGotoGroupBuy() { this.router.navigateByUrl('/groupbuy'); }
 
   onGotoProduct(item: IGroupBuyItem) {
-    this.router.navigate(['./home/1', item.Sku.ProductID]);
+    this.router.navigate(['./home/1', item.sku.ProductID]);
   }
 
-  img(item: IGroupBuyItem) { return item.Img || item.Sku.Img; }
+  img(item: IGroupBuyItem) { return item.Img || item.sku.Img; }
 
 }

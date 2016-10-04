@@ -4,8 +4,8 @@ import { ICategory } from '../core';
 
 @Component({
   selector: 'category-col',
-  template: require('./category-col.html'),
-  styles: [require('./category-col.css')],
+  templateUrl: './category-col.html',
+  styleUrls: ['./category-col.css'],
 })
 export class CategoryColComponent {
 
@@ -14,7 +14,7 @@ export class CategoryColComponent {
   constructor(private router: Router) { }
 
   onGotoProducts(leaf: ICategory) {
-    this.router.navigate(['/product/list'], { queryParams: { CategoryID: leaf.ID } });
+    this.router.navigate(['/product/list'], { queryParams: { ft: `CategoryID.eq.${leaf.ID}` } });
   }
 
 }

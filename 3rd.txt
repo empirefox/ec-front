@@ -1,7 +1,13 @@
-npm i -S angular2-jwt angular2-swiper cross-storage jsqrgen list-to-tree-lite lodash timeago.js
-npm i -S @types/cross-storage @types/lodash jwt-simple @types/jwt-simple
+npm i -S angular2-infinite-scroll angular2-jwt angular2-modal angular2-swiper \
+ countdown cross-storage dropzone jsqrgen list-to-tree-lite lodash mydatepicker querystringify url-parse timeago.js \
+ @types/countdown @types/dropzone @types/cross-storage @types/lodash
 
-//  promised-xhr angular2-moment ng2-bootstrap crypto-js jwt-simple @types/jwt-simple
+npm i -S -D stringify-object
+
+    "ng2-fancy-image-uploader": "^1.1.0",
+    "ng2-uploader": "^1.2.0",
+    
+//  promised-xhr angular2-moment angular2-validators ng2-bootstrap crypto-js jwt-simple @types/jwt-simple
 // registry:dt/crypto-js
 
 // no tsconfig.json see https://github.com/TypeStrong/atom-typescript/issues/833

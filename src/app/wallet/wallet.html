@@ -3,23 +3,25 @@
   <div class="asset-top w33h">
     <ul>
       <li>
-        <a (click)="onViewBalance()">
-          <span>{{wallet.Deposit}}</span>
+        <a (click)="gotoBalance()">
+          <span>{{base.wallet.cash}}</span>
           <p>账户余额</p>
         </a>
       </li>
       <li>
-        <div>
-          <span>0</span>
-          <p>优惠券</p>
-        </div>
+        <a (click)="gotoPoints()">
+          <span>{{base.wallet.points}}</span>
+          <p>积分</p>
+        </a>
       </li>
       <li>
-        <a (click)="onViewPoints()">
-          <span>{{wallet.Points}}</span>
-          <p>积分</p>
+        <a (click)="gotoReward()">
+          <span>{{base.wallet.unrebated+base.wallet.frozen}}</span>
+          <p>返利</p>
         </a>
       </li>
     </ul>
   </div>
 </div>
+
+<footer-bar></footer-bar>

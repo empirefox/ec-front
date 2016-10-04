@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IUserCashRebate, IWallet, MoneyService, LocalWalletBase } from '../../core';
 
 @Component({
-  template: require('./reward.html'),
-  styles: [require('./reward.css')],
+  templateUrl: './reward.html',
+  styleUrls: ['./reward.css'],
 })
 export class RewardComponent {
+  rebates: IUserCashRebate[];
+  unrebated: number;
+  frozen: number;
 
-  constructor(private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private moneyService: MoneyService,
+    private base: LocalWalletBase) { }
+
+  ngOnInit() {
+    this.rebates = this.base.wallet.Rebates;
+    this.unrebated = this.base.wallet.unrebated;
+    this.frozen = this.base.wallet.frozen;
+  }
 
 }

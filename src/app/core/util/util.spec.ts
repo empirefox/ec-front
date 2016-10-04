@@ -1,12 +1,5 @@
-import {
-  beforeEachProviders,
-  inject,
-  it
-} from '@angular/core/testing';
-import { TestComponentBuilder } from '@angular/compiler/testing';
+import { inject } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { BaseRequestOptions, Http } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
 
 import { updateAfterSave, one2manyRelate } from './util';
 
@@ -54,7 +47,7 @@ describe('util.updateAfterSave', () => {
     ];
     let copy = { ID: 1, Pos: 3 }
     let item = { ID: 3, Pos: 3 };
-    items = updateAfterSave(items, item, copy);
+    items = updateAfterSave(items, item, copy.ID);
     expect(items.length).toBe(2);
     expect(items[0]).toBe(item);
   });
@@ -66,7 +59,7 @@ describe('util.updateAfterSave', () => {
     ];
     let copy = { ID: 0, Pos: 3 }
     let item = { ID: 3, Pos: 3 };
-    items = updateAfterSave(items, item, copy);
+    items = updateAfterSave(items, item, copy.ID);
     expect(items.length).toBe(3);
     expect(items).toContain(item);
   });

@@ -1,12 +1,11 @@
 import { Observable } from 'rxjs/Observable';
+import { CommonQuery } from '../profile';
 import { IProductEval } from './eval';
+import { ISpecial } from './special';
 
-export interface IProductQuery {
-  q?: string; // query
-  sp?: string; // scope
-  ft?: string; // filter
-  // gp?: boolean; // group by scopes
+export interface IProductQuery extends CommonQuery {
   CategoryID?: string;
+  SpecialID?: number;
 }
 
 // Product Attrs
@@ -16,24 +15,29 @@ export interface IProductAttr {
   Value: string;
   GroupID: number;
   Pos: number;
-  Group?: IProductAttrGroup;
+
+  group: IProductAttrGroup;
 }
 
 export interface IProductAttrGroup {
   ID: number;
   Name: string;
   Pos: number;
-  Attrs?: IProductAttr[];
+
+  attrs: IProductAttr[];
 }
 
 export interface IProductAttrsResponse {
   Groups: IProductAttrGroup[];
   Attrs: IProductAttr[];
+  Specials: ISpecial[];
 }
 
-export class ProductAttrs {
-  Groups: Dict<IProductAttrGroup>;
-  Attrs: Dict<IProductAttr>;
+export interface ProductAttrs {
+  groups: Dict<IProductAttrGroup>;
+  attrs: Dict<IProductAttr>;
+  specials: Dict<string>;
+  specialList: ISpecial[];
 }
 
 // Product skus
@@ -46,18 +50,18 @@ export interface IProductAttrId {
 
 export interface ISku {
   ID: number;
-  ProductID: number;
   Stock: number;
   Img: string;
   SalePrice: number;
   MarketPrice: number;
   Freight: number;
+  ProductID: number;
 
   // ProductAttr[] sorted by Group Pos:
   // [1, 3] of {ID:1, Value:'红色'} {ID:3, Value:'XL'}
-  Attrs?: ProductAttr[];
-  Product?: IProduct;
-  Quantity?: number;
+  attrs: ProductAttr[];
+  product: IProduct;
+  quantity: number;
 }
 
 // ProductAttr and ProductAttrGroup are copies of interface
@@ -103,14 +107,16 @@ export interface IProduct {
   Intro: string;
   Detail: string;
   Saled: number;
-  ForSale: boolean;
-  TimeCreated: number;
-  TimeSale: number;
-  TimeShelf: number;
+  CreatedAt: number;
+  SaledAt: number;
+  ShelfOffAt: number;
   CategoryID: number;
+  StoreID: number;
+  Vpn: number;
+  SpecialID: number;
 
-  Skus?: ISku[];
-  evals?: Observable<IProductEval>;
+  skus?: ISku[];
+  evals$?: Observable<IProductEval>;
 
   // {
   //   Groups: [{
@@ -141,13 +147,14 @@ export interface IProduct {
   //     }]
   //   }]
   // }
-  Groups?: ProductAttrGroup[];
+  groups?: ProductAttrGroup[];
   proccessed?: boolean;
   raw?: IProductRawInfo;
+  sku?: ISku; // for local sku save
 }
 
-export interface IProductResponse {
-  Product: IProduct;
+export interface IProductsBundleResponse {
+  Bundle: Dict<IProduct[]>;
   Skus: ISku[];
   Attrs: IProductAttrId[];
 }

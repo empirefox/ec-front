@@ -1,0 +1,15 @@
+<header1>修改头像</header1>
+
+<div class="main-layout" *ngIf="profile&&user">
+  <h5><img [default]="profile.DefaultHeadImage" [src]="userService.headSrc$|async" width="50"></h5>
+
+  <div dropzone (success)="onSuccess($event)" (fail)="onFail($event)" (added)="onAdded()" (removed)="onRemoved()"
+      #uploader="dropzone"></div>
+  <a (click)="upload(uploader)" [class.active]="uploadActive">确认修改</a>
+
+  <pre *ngIf="error">
+  Debug error = {{error|json}}
+  </pre>
+</div>
+
+<footer-bar></footer-bar>

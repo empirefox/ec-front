@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs/Subject';
 import { QuantityInputComponent } from '../quantity-input';
-import { CartService, ICartItem } from '../core';
+import { CartService, ICartItem, ProductService } from '../core';
 
 @Component({
   selector: 'cart-item',
-  template: require('./cart-item.html'),
+  templateUrl: './cart-item.html',
   styles: ['./cart-item.css'],
 })
 export class CartItemComponent implements OnInit, OnDestroy {
@@ -23,7 +23,8 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private service: CartService) { }
+    private service: CartService,
+    private productService: ProductService) { }
 
   @Input() get checked(): boolean { return this._checked; };
   set checked(checked: boolean) {
@@ -38,7 +39,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.quantity$.debounceTime(300).distinctUntilChanged().subscribe(_ => {
-      this.service.saveQuantity(this.item);
+      this.service.save(this.item);
     });
   }
 
@@ -54,7 +55,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    this.service.delete(this.item.ID).subscribe(_ => this.deleted.next(0));
+    this.service.delete([this.item.SkuID]).subscribe(_ => this.deleted.next(0));
   }
 
   // TODO get stock
@@ -64,6 +65,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
   }
 
   onViewProduct() {
-    this.router.navigate(['/product/1', this.item.Sku.ProductID]);
+    this.productService.setCurrent(this.item.sku.product);
+    this.router.navigate(['/product/1', this.item.sku.ProductID]);
   }
 }

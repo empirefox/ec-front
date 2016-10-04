@@ -1,11 +1,12 @@
 <header1>确认订单</header1>
-<div class="main-layout mb20">
+<div *ngIf="!checkout.valid" class="main-layout mb20">非法结算项目</div>
+<div *ngIf="checkout.valid" class="main-layout mb20">
   <div class="cart-block">
     <!--正在使用的默认地址Begin-->
     <div class="cart-add-default">
       <a (click)="onShowSelecteAddress()">
         <i class="icon-add"></i>
-        <address-item [addr]="address"></address-item>
+        <address-item [addr]="checkout.Address"></address-item>
         <i class="icon-arrow"></i>
       </a>
     </div>
@@ -13,35 +14,31 @@
   </div>
   <!--商品列表Begin-->
   <div class="mt5">
-    <div>
-      <div class="cart-container">
+    <div class="cart-container">
 
-        <ul class="cart-item">
-          <li class="buy-item" *ngFor="let item of checkout.Items">
-            <checkout-item [item]="item"></checkout-item>
-          </li>
-        </ul>
-        <div *ngIf="!checkout.Items.length">无结算项目</div>
+      <ul class="cart-item">
+        <li class="buy-item" *ngFor="let item of checkout.Items">
+          <checkout-item [item]="item"></checkout-item>
+        </li>
+      </ul>
 
-        <div class="cart-subtotal">
-
-          <dl>
-            <dt>物流配送</dt>
-            <dd>运费<em>{{checkout.DeliverFee|money}}</em>元</dd>
-          </dl>
-          <div class="message">
-            <input type="text" placeholder="店铺订单留言：">
-          </div>
-          <div class="store-total">
-            合计<span><em>{{total|money}}</em></span>元
-          </div>
+      <div class="cart-subtotal">
+        <dl *ngIf="checkout.normal">
+          <dt>物流配送</dt>
+          <dd>运费<em>{{checkout.DeliverFee|money}}</em>元</dd>
+        </dl>
+        <div class="message">
+          <input type="text" placeholder="店铺订单留言：">
+        </div>
+        <div class="store-total">
+          合计 <span><em>{{total|price:checkout.vpn}}</em></span>
         </div>
       </div>
     </div>
   </div>
   <!--商品列表End-->
   <!--付款方式Begin-->
-  <div class="cart-block mt5">
+  <div class="cart-block mt5" *ngIf="!checkout.isPoints">
     <a (click)="onChangePayMethod()" class="posr">
       <h3><i class="pay"></i>支付方式：</h3>
       <div class="current-con">{{payMethod}}</div>
@@ -50,7 +47,7 @@
   <!--付款方式End-->
 
   <!--发票信息Begin-->
-  <div class="cart-block mt5">
+  <div class="cart-block mt5" *ngIf="!checkout.isPoints">
     <a (click)="onViewInvoice()" class="posr">
       <h3><i class="invoice"></i>发票信息：</h3>
       <div class="current-con"> {{invoice}} </div>
@@ -72,9 +69,11 @@
     <div class="total">
       <dl class="total-money">
         <dt>实付款：</dt>
-        <dd>￥<em>{{checkout.Total|money}}</em></dd>
+        <dd><em>{{checkout.Total|price:checkout.vpn}}</em></dd>
       </dl>
     </div>
     <div class="check-out ok"><a (click)="onCheckout()">提交订单</a></div>
   </div>
 </div>
+
+<footer-bar></footer-bar>

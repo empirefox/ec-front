@@ -6,10 +6,10 @@
   <dd class="goods-type"></dd>
 </dl>
 <div class="goods-subtotal">
-  <span class="goods-price">￥<em>{{price|money}}</em></span>
+  <span class="goods-price">￥<em>{{price|price:item.Sku.Product}}</em></span>
 </div>
 <div class="goods-num">
-  <em>{{item.Quantity}}</em>件
+  <em>{{item.quantity}}</em>件
 </div>
 <div class="notransport transportId0" style="display:none;">
   <p>该商品不支持配送</p>

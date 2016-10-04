@@ -1,31 +1,68 @@
-export interface ICapitalFlow {
+export interface IUserCash {
   ID: number;
+  OrderID: number;
   CreatedAt: number;
-  Type: string;
-  Reason: string;
+  Type: number;
   Amount: number;
+  Remark: string;
   Balance: number;
+}
+
+export interface IUserCashFrozen {
+  ID: number;
+  OrderID: number;
+  CreatedAt: number;
+  Type: number;
+  Amount: number;
+  Remark: string;
+  ThawedAt: number;
+}
+
+export interface IUserCashRebateItem {
+  ID: number;
+  RebateID: number;
+  CreatedAt: number;
+  Amount: number;
+
+  rebate: IUserCashRebate; // one2manyRelate
+}
+
+export interface IUserCashRebate {
+  ID: number;
+  OrderID1: number;
+  OrderID2: number;
+  CreatedAt: number;
+  Type: number;
+  Amount: number;
+  Remark: string;
+  Stages: number;
+  DoneAt: number;
+
+  items: IUserCashRebateItem[]; // one2manyRelate
 }
 
 export interface IPointsItem {
   ID: number;
   CreatedAt: number;
-  Reason: string;
   Amount: number;
   Balance: number;
+  OrderID: number;
 }
 
 export interface IWallet {
-  Deposit: number;
-  HasPayKey: boolean;
-  Points: number;
-  CapitalFlows: ICapitalFlow[];
-  PointsList: IPointsItem[];
+  Cashes: IUserCash[]; // can be null
+  Frozen: IUserCashFrozen[]; // can be null
+  Rebates: IUserCashRebate[]; // can be null
+  RebateItems: IUserCashRebateItem[]; // can be null
+  Points: IPointsItem[]; // can be null
+
+  cash: number;
+  frozen: number;
+  unrebated: number;
+  points: number;
 }
 
-export interface IPayArgs {
-  OrderID: string;
-
+export interface IWxPayArgs {
   appId: string; // 公众号名称，由商户传入
   timeStamp: string; // 时间戳，自1970年以来的秒数
   nonceStr: string; // 随机串
@@ -34,8 +71,12 @@ export interface IPayArgs {
   paySign: string; // 微信签名
 }
 
-// Deprecated
-export interface ITradeState {
-  // SUCCESS REFUND NOTPAY CLOSED REVOKED USERPAYING PAYERROR
-  TradeState: string;
+export interface WithdrawPayload {
+  Amount: number;
+}
+
+// from user-vip
+export interface VipRebatePayload {
+  Type: number;
+  SubIDs: number[];
 }

@@ -1,5 +1,7 @@
 # @AngularClass
 
+.stfolder
+
 # Logs
 logs
 *.log

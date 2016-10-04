@@ -1,20 +1,16 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractWalletComponent } from '../abstract-wallet.component';
-import { MoneyService, LocalWalletService } from '../../core';
+import { IPointsItem, LocalWalletBase } from '../../core';
 
 @Component({
-  selector: 'points',
-  template: require('./points.html'),
+  templateUrl: './points.html',
+  styleUrls: ['./points.css'],
 })
-export class PointsComponent extends AbstractWalletComponent {
+export class PointsComponent {
 
-    constructor(
-      route: ActivatedRoute,
-      router: Router,
-      moneyService: MoneyService,
-      localWalletService: LocalWalletService) {
-      super(route, router, moneyService, localWalletService);
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private base: LocalWalletBase) { }
 
 }

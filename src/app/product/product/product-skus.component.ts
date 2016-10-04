@@ -1,22 +1,21 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { values } from 'lodash';
+import values = require('lodash/values');
 import { OrderService, IGroupBuyItem, GroupBuyService, ISku, ProductAttr, IProduct, ProductService } from '../../core';
 
 @Component({
   selector: 'product-skus',
-  template: require('./product-skus.html'),
-  styles: [require('./product-skus.css')],
+  templateUrl: './product-skus.html',
+  styleUrls: ['./product-skus.css'],
 })
 export class ProductSkusComponent implements OnInit {
 
   @Input() product: IProduct;
 
   @Output() dismiss = new EventEmitter<any>();
-  @Output() skuChange = new EventEmitter<ISku>();
+  // @Output() skuChange = new EventEmitter<ISku>();
 
   private gbItem: IGroupBuyItem;
-  private _sku: ISku;
   private current: Dict<ProductAttr> = {};
 
   constructor(
@@ -26,21 +25,15 @@ export class ProductSkusComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
-    if (!this.sku) {
-      this.sku = this.product.Skus[0];
-    }
+    this.sku = this.sku || this.product.skus[0];
     this.findGroupBuyItem();
   }
 
-  @Input() get sku(): ISku { return this._sku; }
+  get sku(): ISku { return this.product.sku || this.product.skus[0]; }
   set sku(sku: ISku) {
-    if (this._sku !== sku) {
-      this._sku = sku;
-      if (sku) {
-        sku.Attrs.forEach(attr => this.current[attr.Group.ID] = attr);
-      } else {
-        this.current = {};
-      }
+    this.product.sku = sku;
+    if (sku) {
+      sku.attrs.forEach(attr => this.current[attr.Group.ID] = attr);
     }
   }
 
@@ -49,7 +42,7 @@ export class ProductSkusComponent implements OnInit {
   }
 
   get price() {
-    return this.gbItem && this.gbItem.Sku.ID === this.sku.ID ? this.gbItem.Price : this.sku.SalePrice;
+    return this.gbItem && this.gbItem.sku.ID === this.sku.ID ? this.gbItem.Price : this.sku.SalePrice;
   }
 
   get stock() {
@@ -61,11 +54,11 @@ export class ProductSkusComponent implements OnInit {
   }
 
   get quantity() {
-    return this.sku.Quantity;
+    return this.sku.quantity;
   }
   set quantity(q: number) {
     if (this.sku) {
-      this.sku.Quantity = q;
+      this.sku.quantity = q;
     }
   }
 
@@ -75,7 +68,7 @@ export class ProductSkusComponent implements OnInit {
     if (sku !== this.sku) {
       this.sku = sku;
       this.findGroupBuyItem();
-      this.skuChange.next(sku);
+      // this.skuChange.next(sku);
     }
   }
 

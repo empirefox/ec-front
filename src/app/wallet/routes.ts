@@ -1,51 +1,56 @@
-import { ModuleWithProviders }   from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { WalletResolver } from '../core';
 
 import { WalletRouteComponent } from './wallet-route.component';
 import { WalletComponent } from './wallet.component';
 import {
   BalanceComponent,
-  BalanceDepositComponent,
-  BalanceRefillComponent,
-  BalanceWithdrawComponent
+  BalanceCashComponent,
+  BalanceFrozenComponent,
+  BalanceWithdrawComponent,
 } from './balance';
 import { PointsComponent } from './points';
 import { RewardComponent } from './reward';
 
-export const routes :Routes= [
+export const routes: Routes = [
   {
     path: 'wallet',
     component: WalletRouteComponent,
+    resolve: {
+      wallet: WalletResolver,
+    },
     children: [
       {
         path: '', // wallet
-        component: WalletComponent
+        component: WalletComponent,
       },
       {
-        path: 'balance', // balance
+        path: 'balance',
         component: BalanceComponent,
         children: [
           {
-            path: '', // deposit
-            component: BalanceDepositComponent
+            path: 'cash',
+            component: BalanceCashComponent,
           },
           {
-            path: 'refill',
-            component: BalanceRefillComponent
+            path: 'frozen',
+            component: BalanceFrozenComponent,
           },
           {
             path: 'withdraw',
-            component: BalanceWithdrawComponent
+            component: BalanceWithdrawComponent,
           }
         ]
       },
       {
         path: 'points',
-        component: PointsComponent
+        component: PointsComponent,
       },
       {
         path: 'reward',
-        component: RewardComponent
+        component: RewardComponent,
       },
     ]
   },

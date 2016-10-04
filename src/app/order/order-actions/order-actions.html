@@ -1,16 +1,16 @@
 <div [ngSwitch]="order.State">
 
-  <template [ngSwitchCase]="'checkout'">
+  <template [ngSwitchCase]="states.TOrderStateNopay">
     <a (click)="showOrderPay=true" class="btn">去付款</a>
     <a (click)="onCancel()" class="btn key">取消订单</a>
-    <order-pay [orderId]="order.ID" [amount]="order.PaymentAmount" [(show)]="showOrderPay"></order-pay>
+    <order-pay [order]="order" [(show)]="showOrderPay"></order-pay>
   </template>
 
-  <template [ngSwitchCase]="'paid'">
+  <template [ngSwitchCase]="states.TOrderStatePaid">
     <a (click)="onCancel()" class="btn key">取消订单</a>
   </template>
 
-  <template [ngSwitchCase]="'delivered'">
+  <template [ngSwitchCase]="states.TOrderStateDelivered">
     <a (click)="gotoDelivery()" class="btn">查看物流</a>
     <a (click)="showEnsureDialog=true" class="btn key">确认收货</a>
     <div class="simple-dialog-wrapper" [class.hide]="!showEnsureDialog">
@@ -23,16 +23,25 @@
         </div>
       </div>
     </div>
+    <a (click)="onReturn()" class="btn">退款</a>
   </template>
 
-  <template [ngSwitchCase]="'reciepted'">
+  <template [ngSwitchCase]="states.TOrderStateCompleted">
     <a (click)="gotoDelivery()" class="btn">查看物流</a>
     <a (click)="gotoEval()" class="btn key">去评价</a>
   </template>
 
-  <template [ngSwitchCase]="'returned'">
+  <template [ngSwitchCase]="states.TOrderStateEvaled">
     <a (click)="gotoDelivery()" class="btn">查看物流</a>
-    <a (click)="gotoEval()" class="btn key">去评价</a>
+    <a (click)="gotoEval()" class="btn key">查看评价</a>
+  </template>
+
+  <template [ngSwitchCase]="states.TOrderStateHistory">
+    <a (click)="gotoEval()" class="btn key">查看评价</a>
+  </template>
+
+  <template [ngSwitchCase]="states.TOrderStateRejecting">
+    <a (click)="gotoDelivery()" class="btn">查看物流</a>
   </template>
 
 </div>

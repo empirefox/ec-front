@@ -1,0 +1,47 @@
+<div class="bottom-mask" [class.up]="show">
+  <div class="bottom-mask-bg"></div>
+  <div class="bottom-mask-block">
+    <div class="bottom-mask-top">
+      <p *ngIf="error">付款失败，请稍后再试</p>
+      <p class="cart-num">本次交易需在线支付<em>{{amount|priceNo:vpn}}</em>{{order.PayPoints?'积分':'元'}}</p>
+      <a (click)="onDismiss()" class="bottom-mask-close"><i></i></a>
+    </div>
+    <div class="inp-con inp-cart" *ngIf="wallet&&user">
+      <ul class="form-box">
+        <template [ngIf]="!order.PayPoints">
+          <li class="form-item">
+            <div class="input-box pl5">
+              <label [class.checked]="payType===PayType.wx">
+                微信支付<span (click)="payType=PayType.wx" class="power"><i></i></span>
+              </label>
+            </div>
+          </li>
+          <li class="form-item">
+            <div class="input-box pl5">
+              <label [class.checked]="payType===PayType.cash">
+                余额支付<span (click)="payType=PayType.cash" class="power"><i></i></span>
+              </label>
+              <p>可用余额 <em>{{wallet.cash|price:vpn}}</em></p>
+            </div>
+          </li>
+        </template>
+        <li class="form-item" *ngIf="order.PayPoints">
+          <div class="input-box pl5">
+            <label [class.checked]="payType===PayType.points">
+              积分支付<span (click)="payType=PayType.points" class="power"><i></i></span>
+            </label>
+            <p>可用余额 <em>{{wallet.points|price:vpn}}</em></p>
+          </div>
+        </li>
+        <li class="form-item" *ngIf="payType===PayType.cash||payType===PayType.points">
+          <div class="input-box"> <span class="txt">输入支付密码</span>
+            <input [formControl]="keyControl" [(ngModel)]="key" type="password" class="inp" autocomplete="off" [disabled]="!user.HasPayKey">
+            <span class="input-del"></span>
+          </div>
+          <button (click)="gotoSetPayKey()" class="input-box-help" *ngIf="!user.HasPayKey"><i>i</i>尚未设置</button>
+        </li>
+      </ul>
+      <div class="pay-btn"> <a (click)="onPay()" class="btn-l" [class.valid]="valid">确认支付</a> </div>
+    </div>
+  </div>
+</div>

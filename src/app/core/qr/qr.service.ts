@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { IProfile, ProfileService } from '../profile';
-import { IUserInfo, UserService } from '../user';
+import { config } from '../profile';
+import { UserService } from '../user';
 import { QrConfig } from './qr.config';
 
 const qrgen = require('jsqrgen');
@@ -12,16 +12,11 @@ export class QrService {
 
   private _qr: Observable<string>;
 
-  constructor(
-    private profileService: ProfileService,
-    private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   getMyQrDataURL(): Observable<string> {
     if (!this._qr) {
-      this._qr = Observable.forkJoin(
-        this.profileService.getProfile().take(1),
-        this.userService.getUserinfo().take(1),
-      ).map(([profile, info]: [IProfile, IUserInfo]) => {
+      this.userService.getUserinfo().take(1).map(info => {
         let config: any = this.getConfig();
         let { ColorOut: colorOut, ColorIn: colorIn} = config;
 
@@ -43,9 +38,9 @@ export class QrService {
           background: config.ColorBack,
           typeNumber: config.TypeNumber,
         };
-        if (profile.QrLogoUrl) {
+        if (config.QrLogoUrl) {
           let image = new Image();
-          image.src = profile.QrLogoUrl;
+          image.src = config.QrLogoUrl;
           options.logo = {
             image,
             size: config.LogoSize,

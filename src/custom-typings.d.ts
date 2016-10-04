@@ -51,11 +51,7 @@ declare var ENV: string;
 declare var HMR: boolean;
 declare var System: SystemJS;
 
-interface Dict<T> {
-    [key: string]: T;
-    [key: number]: T;
-    //[key: symbol]: T;
-}
+/// <reference path="./custom-typings-add.d,ts" />
 
 interface SystemJS {
   import: (path?: string) => Promise<any>;

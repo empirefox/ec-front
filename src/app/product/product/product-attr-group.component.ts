@@ -3,8 +3,8 @@ import { ProductAttrGroup, ProductAttr } from '../../core';
 
 @Component({
   selector: 'product-attr-group',
-  template: require('./product-attr-group.html'),
-  styles: [require('./product-attr-group.css')],
+  templateUrl: './product-attr-group.html',
+  styleUrls: ['./product-attr-group.css'],
 })
 export class ProductAttrGroupComponent {
 

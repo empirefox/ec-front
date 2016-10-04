@@ -1,11 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
 import { AddressModule } from '../address';
-import { QuantityInputModule } from '../quantity-input';
 import { productRouting } from './routes';
 
 import { ProductRouteComponent } from './product-route.component';
@@ -44,13 +41,8 @@ import { ProductsItemComponent } from './products/products-item.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     CoreModule,
-
-    HeaderBarModule,
     AddressModule,
-    QuantityInputModule,
     productRouting,
   ],
   exports: [

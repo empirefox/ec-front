@@ -1,28 +1,29 @@
 <header1>安全设置</header1>
-<div class="main-layout">
+<div class="main-layout" *ngIf="profile&&user">
   <ul class="default-list">
     <li>
-      <a (click)="onGotoPassword()">
-        <h4>登录密码</h4>
-        <h6>建议您定期更改密码以保护账户安全</h6>
+      <a (click)="gotoHead()">
+        <h4>头像</h4>
+        <h5><img [default]="profile.DefaultHeadImage" [src]="userService.headSrc$|async" width="50"></h5>
         <span class="arrow-r"></span>
       </a>
     </li>
     <li>
-      <a (click)="onGotoBindPhone()">
+      <a (click)="gotoBindPhone()">
         <h4>手机验证</h4>
         <h6>若您的手机已丢失或停用，请立即修改更换</h6>
-        <span class="tip"></span>
+        <span class="tip">{{phone}}</span>
         <span class="arrow-r"></span>
       </a>
     </li>
     <li>
-      <a (click)="onGotoPaypsd()">
+      <a (click)="gotoPaykey()">
         <h4>支付密码</h4>
         <h6>建议您设置复杂的支付密码保护账户金额安全</h6>
-        <span class="tip">未设置</span>
+        <span class="tip">{{paykey}}</span>
         <span class="arrow-r"></span>
       </a>
     </li>
   </ul>
 </div>
+<footer-bar></footer-bar>

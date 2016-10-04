@@ -1,7 +1,7 @@
 <div class="home-block item-goods">
   <div class="title-wrap">
     <h2 class="seckill-title">为你推荐</h2>
-    <a class="seckill-more-link" (click)="onGotoProducts()">
+    <a class="seckill-more-link" (click)="gotoProducts()">
       <span class="seckill-more">更多
         <i class="arrow-r"></i>
       </span>
@@ -9,13 +9,13 @@
   </div>
   <ul class="goods-list">
     <li *ngFor="let item of items">
-      <a (click)="onGotoProduct(item)">
+      <a (click)="gotoProduct(item)">
         <div class="goods-pic">
           <img [src]="getImg(item)">
         </div>
         <dl class="goods-info">
           <dt class="goods-name">{{item.Name}}</dt>
-          <dd class="goods-price">￥<em>{{item.Skus[0].SalePrice|money}}</em></dd>
+          <dd class="goods-price">￥<em>{{item.Skus[0].SalePrice|price:item}}</em></dd>
         </dl>
       </a>
     </li>

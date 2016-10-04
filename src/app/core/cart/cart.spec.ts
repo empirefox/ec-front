@@ -1,11 +1,6 @@
-import {
-  beforeEachProviders,
-  inject,
-  it
-} from '@angular/core/testing';
-import { TestComponentBuilder } from '@angular/compiler/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { BaseRequestOptions, Http } from '@angular/http';
+import { BaseRequestOptions, ConnectionBackend, Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/publishReplay';
@@ -27,12 +22,12 @@ let createProduct = (
   Img: string,
   Saled: number,
   saleUserId: number,
-  TimeCreated: number,
+  CreatedAt: number,
   status: number,
-  TimeSale: number,
-  TimeShelf: number,
+  SaledAt: number,
+  ShelfOffAt: number,
   CategoryID: number): IProduct => {
-  return { ID, Name, Img, Intro, Detail, Saled, ForSale: !!status, TimeCreated, TimeSale, TimeShelf, CategoryID };
+  return { ID, Name, Img, Intro, Detail, Saled, ForSale: !!status, CreatedAt, SaledAt, ShelfOffAt, CategoryID };
 };
 let getProduct = (): IProduct =>
   createProduct(
@@ -51,23 +46,25 @@ let getCartItem = (sku: ISku): ICartItem => ({
   Price: 100000,
   Quantity: 10,
   CreatedAt: 123456,
-  Sku: sku,
+  SkuID: sku.ID,
+  sku: null,
 });
 
 describe('CartService', () => {
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [
+      BaseRequestOptions,
+      MockBackend,
+      {
+        provide: Http,
+        useFactory: function(backend: ConnectionBackend, defaultOptions: BaseRequestOptions) {
+          return new Http(backend, defaultOptions);
+        },
+        deps: [MockBackend, BaseRequestOptions]
       },
-      deps: [MockBackend, BaseRequestOptions]
-    },
-
-    CartService
-  ]);
+      CartService
+    ]
+  }));
 
 
   it('should init cart item without sku', inject([CartService], (service) => {

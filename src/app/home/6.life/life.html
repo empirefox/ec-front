@@ -5,10 +5,10 @@
     </div>
     <ul class="item-pic-l2-r1">
       <li *ngFor="let item of first; let i=index">
-        <a (click)="onGotoProduct(item)">
+        <a (click)="gotoProduct(item)">
           <div class="wz">
             <h2 [ngClass]="colors[i]">{{item.Name}}</h2>
-            <h3>低至{{prices[item.ID]|money}}元</h3>
+            <h3>低至{{prices[item.ID]|price:product}}元</h3>
           </div>
           <div class="pic">
             <img [src]="getImg(item)">
@@ -18,10 +18,10 @@
     </ul>
     <ul class="item-pic-12">
       <li *ngFor="let item of items; let i=index">
-        <a (click)="onGotoProduct(item)">
+        <a (click)="gotoProduct(item)">
           <div class="wz">
             <h2 class="text-blue">{{item.Name}}</h2>
-            <h3>低至{{prices[item.ID]|money}}元</h3>
+            <h3>低至{{prices[item.ID]|price:product}}元</h3>
           </div>
           <div class="pic">
             <img [src]="getImg(item)">

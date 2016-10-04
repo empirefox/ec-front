@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IAddress, IProduct, LocalProductService } from '../../core';
-import { Header1Component } from '../../header-bar';
+import { IAddress, IProduct, LocalProductBase } from '../../core';
 
 @Component({
-  template: require('./address-creator-page.html'),
-  styles: [require('./address-creator-page.css')],
+  templateUrl: './address-creator-page.html',
+  styleUrls: ['./address-creator-page.css'],
 })
 export class AddressCreatorPageComponent {
 
@@ -14,10 +13,11 @@ export class AddressCreatorPageComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private localProductService: LocalProductService) { }
+    private base: LocalProductBase) { }
 
   ngOnInit() {
-    this.localProductService.src$.subscribe(product => this.product = product);
+    let id = +this.route.snapshot.data['id'];
+    this.base.local.getItem(id).subscribe(product => this.product = product);
   }
 
   onSaved(addr: IAddress) {

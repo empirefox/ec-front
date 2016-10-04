@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { KSSwiperModule } from 'angular2-swiper';
 import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
-import { SearchModule } from '../search';
 import { homeRouting } from './routes';
 
 import { HomePageComponent } from './home-page.component';
@@ -31,11 +28,8 @@ import { HomeAdSlideComponent } from './ad-slide';
   ],
   imports: [
     CommonModule,
-    KSSwiperModule,
     CoreModule,
 
-    HeaderBarModule,
-    SearchModule,
     homeRouting,
   ],
   exports: [

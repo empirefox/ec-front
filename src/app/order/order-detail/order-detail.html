@@ -1,7 +1,8 @@
+<header1>订单详情</header1>
 <div class="main-layout mb20" *ngIf="order">
   <div class="order-list">
     <div class="oredr-detail-block h3">
-      <h3>订单号：{{order.TrackingNumber}}</h3>
+      <h3>订单号：{{order.CreatedAt}}-{{order.ID}}</h3>
       <div class="order-state">{{order.State|orderState}}</div>
     </div>
     <div class="oredr-detail-block mt5">
@@ -12,13 +13,10 @@
         </dl>
       </div>
     </div>
+    <order-detail-item [item]="item" *ngFor="let item of order.Items"></order-detail-item>
     <div class="order-item mt5">
-      <div class="order-item-head">
-        <a class="store"><i class="icon"></i>车友会</a>
-      </div>
-      <order-detail-item [item]="item" *ngFor="let item of order.Items"></order-detail-item>
       <div class="order-item-bottom">
-        <span><a (click)="onGotoChat()"><i class="im"></i>联系客服</a></span>
+        <span><a (click)="gotoChat()"><i class="im"></i>联系客服</a></span>
         <span><a [href]="phone"><i class="tel"></i>拨打电话</a></span>
       </div>
     </div>
@@ -39,17 +37,17 @@
       <div class="goods-subtotle">
         <dl>
           <dt>运费</dt>
-          <dd>￥<em>{{order.DeliverFee|money}}</em></dd>
+          <dd><em>{{order.DeliverFee|price:order.Items[0].Vpn}}</em></dd>
         </dl>
         <dl class="t">
           <dt>实付款（含运费）</dt>
-          <dd>￥<em>{{order.PaymentAmount|money}}</em></dd>
+          <dd><em>{{order.PayAmount|price:order.Items[0].Vpn}}</em></dd>
         </dl>
       </div>
     </div>
     <div class="oredr-detail-block mt5">
       <ul class="order-log">
-        <li>创建时间：{{order.CreatedAt|date:'yyyy.MM.dd HH:mm:ss'}}</li>
+        <li>创建时间：{{order.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</li>
       </ul>
     </div>
   </div>
@@ -57,3 +55,5 @@
 <div class="order-bottom" *ngIf="order">
   <order-actions [order]="order" (stateChange)="onStateChanged()"></order-actions>
 </div>
+
+<footer-bar></footer-bar>

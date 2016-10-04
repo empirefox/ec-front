@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }   from 'rxjs/Subscription';
-import { IOrder, OrderService, LocalOrderService, LocalOrdersService } from '../../core';
+import { constMap, IOrder, OrderService } from '../../core';
 
 const views = {
   all: 1,
@@ -10,9 +10,11 @@ const views = {
   returned: 1,
 };
 
+const state = constMap.OrderState;
+
 @Component({
-  styles: [require('./order-list.css')],
-  template: require('./order-list.html'),
+  styleUrls: ['./order-list.css'],
+  templateUrl: './order-list.html',
 })
 export class OrderListComponent implements OnInit {
 
@@ -30,16 +32,13 @@ export class OrderListComponent implements OnInit {
   private sub: Subscription;
 
   constructor(
-    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService,
-    private localOrdersService: LocalOrdersService) { }
+    private orderService: OrderService) { }
 
   ngOnInit() {
     this.view = this.route.snapshot.queryParams['view'];
-    this.sub = this.localOrdersService.src$.subscribe(orders => this.setOrders(orders));
-    this.orderService.getOrders().take(1).subscribe(orders => this.localOrdersService.publish(orders));
+    this.orderService.getOrders(false).take(1).subscribe(orders => this.orders = orders);
   }
 
   get view() { return this._view; }
@@ -65,18 +64,27 @@ export class OrderListComponent implements OnInit {
     }
   }
 
+  onScroll(next: boolean) {
+    this.orderService.getOrders(next).subscribe(orders => this.orders = orders);
+  }
+
+  trackByItems(index: number, item: IOrder) { return item.ID; }
+
   private setOrders(orders: IOrder[]) {
     this.all = orders;
-    this.checkout = orders.filter(order => order.State === 'checkout');
-    this.receipted = orders.filter(order => order.State === 'receipted');
-    this.returned = orders.filter(order => order.State === 'returned');
+    this.checkout = orders.filter(order => order.State === state.TOrderStateNopay);
+    this.receipted = orders.filter(order => order.State === state.TOrderStateCompleted);
+    this.returned = orders.filter(order =>
+      order.State === state.TOrderStateReturnStarted ||
+      order.State === state.TOrderStateReturning ||
+      order.State === state.TOrderStateReturned,
+    );
     this.setCurrent(this[this.view]);
   }
 
   private doFilter(filter: string) {
     this.filtered = !filter ? this.orders : this.orders.filter(order => {
-      return (filter.length > 5 && !!order.TrackingNumber.match(filter)) || order.Items.some(item => !!item.Name.match(filter));
+      return (filter.length > 5 && !!order.CreatedAt.toString().match(filter)) || order.Items.some(item => !!item.Name.match(filter));
     });
   }
-
 }

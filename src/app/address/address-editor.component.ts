@@ -6,8 +6,8 @@ import { ChinaRegionService, RegionPair } from './china-region.service';
 
 @Component({
   selector: 'address-editor',
-  template: require('./address-editor.html'),
-  styles: [require('./address-editor.css')],
+  templateUrl: './address-editor.html',
+  styleUrls: ['./address-editor.css'],
   viewProviders: [ChinaRegionService],
 })
 export class AddressEditorComponent {
@@ -90,6 +90,7 @@ export class AddressEditorComponent {
   get submitDisabled() { return !this.form.valid || this.failed; }
 
   onSubmit() {
+    // tslint:disable-next-line:all
     let {Contact, Phone, House, province: [, Province], city: [, City], district: [, District]} = this.form.value;
     let value = <IAddress>{ Contact, Phone, House, Province, City, District };
     if (this.addr.ID) { value.ID = this.addr.ID; }

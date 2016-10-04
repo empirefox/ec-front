@@ -1,33 +1,25 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Subscription }   from 'rxjs/Subscription';
-import { IProduct, LocalProductService } from '../../core';
+import { IProduct } from '../../core';
+import { ProductPageComponent } from './product-page.component';
 
 @Component({
   selector: 'product-detail',
-  template: require('./product-detail.html'),
-  styles: [require('./product-detail.css')],
+  templateUrl: './product-detail.html',
+  styleUrls: ['./product-detail.css'],
 })
 export class ProductDetailComponent {
 
   html: SafeHtml;
 
-  private subProduct: Subscription;
-
   constructor(
-    private cd: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
-    private localProductService: LocalProductService) { }
+    private parent: ProductPageComponent) { }
 
   ngOnInit() {
-    this.subProduct = this.localProductService.src$.subscribe(product => {
+    this.parent.product$.subscribe(product => {
       this.html = this.sanitizer.bypassSecurityTrustHtml(product.Detail);
-      this.cd.markForCheck();
     });
-  }
-
-  ngOnDestroy() {
-    if (this.subProduct) { this.subProduct.unsubscribe(); }
   }
 
 }

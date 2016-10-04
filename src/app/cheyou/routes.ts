@@ -10,26 +10,28 @@ import { CheyouMyComponent } from './cheyou-my.component';
 export const routes: Routes = [
   {
     path: 'cheyou',
+    component: CheyouHubComponent,
     children: [
       {
-        path: '', // content
-        component: CheyouHubComponent
-      },
-      {
-        path: 'detail',
-        component: CheyouDetailComponent,
-      },
-      {
-        path: 'buy',
-        component: CheyouBuyComponent,
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full',
       },
       {
         path: 'list',
         component: CheyouListComponent,
       },
       {
+        path: 'buy',
+        component: CheyouBuyComponent,
+      },
+      {
         path: 'my',
         component: CheyouMyComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: CheyouDetailComponent,
       },
     ]
   }

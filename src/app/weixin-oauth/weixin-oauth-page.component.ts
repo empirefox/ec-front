@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { WxExchangeCode, WxCodeResult, Jwt, UserService } from '../core';
+import { WxCodeResult, Jwt, UserService } from '../core';
 
 enum State { Init, Failed, Ok }
 
 @Component({
-  template: require('./weixin-oauth-page.html'),
-  styles: [require('./weixin-oauth-page.css')],
+  templateUrl: './weixin-oauth-page.html',
+  styleUrls: ['./weixin-oauth-page.css'],
 })
 export class WeixinOauthPageComponent {
 
@@ -20,6 +20,7 @@ export class WeixinOauthPageComponent {
     private userService: UserService) { }
 
   ngOnInit() {
+    // redirect_uri/?code=CODE&state=STATE
     this.userService.exchange(<WxCodeResult>this.route.snapshot.queryParams).
       map(_ => this.state = State.Ok).subscribe(
       _ => this.router.navigateByUrl(this.jwt.getCurrentUrl()),

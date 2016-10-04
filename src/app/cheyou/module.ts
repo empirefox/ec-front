@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
 import { cheyouRouting } from './routes';
 
 import { CheyouHubComponent } from './cheyou-hub.component';
@@ -20,7 +20,7 @@ import { CheyouMyComponent } from './cheyou-my.component';
   ],
   imports: [
     CommonModule,
-    HeaderBarModule,
+    CoreModule,
     cheyouRouting,
   ],
   exports: [

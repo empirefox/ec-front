@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IProduct, ProductService, IProductQuery, LocalProductsService, LocalProductService } from '../../core';
+import { Observable } from 'rxjs/Observable';
+import { IProduct, ProductService, LocalProductBase } from '../../core';
 
 const SEARCH_COLS = ['Name', 'Intro', 'Detail'];
 
 @Component({
-  selector: 'products-page',
-  template: require('./products-page.html'),
-  styles: [require('./products-page.css')],
+  templateUrl: './products-page.html',
+  styleUrls: ['./products-page.css'],
 })
 export class ProductsPageComponent {
 
@@ -19,19 +19,13 @@ export class ProductsPageComponent {
   private _products: IProduct[] = [];
 
   constructor(
-    private _location: Location,
-    private route: ActivatedRoute,
+    private location: Location,
     private router: Router,
-    private productService: ProductService,
-    private localProductService: LocalProductService,
-    private localProductsService: LocalProductsService) { }
+    private base: LocalProductBase,
+    private productService: ProductService) { }
 
   ngOnInit() {
-    let query = <IProductQuery>this.route.snapshot.queryParams;
-    this.productService.query(query).subscribe(items => {
-      this.products = items;
-      this.localProductsService.publish(items);
-    });
+    this.base.local.exist().subscribe(items => this.products = items);
   }
 
   get togglerClass() { return this.grid ? 'browse-grid' : 'browse-list'; }
@@ -53,11 +47,17 @@ export class ProductsPageComponent {
     }
   }
 
-  onGotoProduct(product: IProduct) {
-    this.localProductService.publish(product);
+  onScroll() {
+    this.base.local.nextItems().subscribe(items => this.products = items);
+  }
+
+  trackByItems(index: number, item: IProduct) { return item.ID; }
+
+  gotoProduct(product: IProduct) {
+    this.productService.setCurrent(product);
     this.router.navigate(['/product/1', product.ID]);
   }
 
-  onGoBack() { this._location.back(); }
+  goBack() { this.location.back(); }
 
 }

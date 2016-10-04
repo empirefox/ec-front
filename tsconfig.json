@@ -10,15 +10,17 @@
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "baseUrl": "./src",
-    "paths": [
-    ],
+    "paths": {
+    },
     "lib": [
       "dom",
       "es6"
     ],
     "types": [
+      "countdown",
       "hammerjs",
       "jasmine",
+      "lodash",
       "node",
       "protractor",
       "selenium-webdriver",

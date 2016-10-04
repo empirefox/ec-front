@@ -5,8 +5,8 @@ import { IAddress, AddressService } from '../core';
 
 @Component({
   selector: 'address-manage-page',
-  template: require('./address-manage-page.html'),
-  styles: [require('./address-manage-page.css')],
+  templateUrl: './address-manage-page.html',
+  styleUrls: ['./address-manage-page.css'],
 })
 export class AddressManagePageComponent implements OnInit {
 

@@ -1,12 +1,12 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { KSSwiperContainer, KSSwiperSlide } from 'angular2-swiper';
-import { ICarouselItem, CarouselService } from '../../core';
+import { constMap, ICarouselItem, CarouselService } from '../../core';
 
 @Component({
   selector: 'home-top-bar',
-  template: require('./top-bar.html'),
-  styles: [require('./top-bar.css')],
+  templateUrl: './top-bar.html',
+  styleUrls: ['./top-bar.css'],
 })
 export class HomeTopBarComponent {
 
@@ -20,7 +20,7 @@ export class HomeTopBarComponent {
     private carouselService: CarouselService) { }
 
   ngOnInit() {
-    this.carouselService.getItems().subscribe(items => this.items = items);
+    this.carouselService.getItems(constMap.BillboardType.TBillboardHome).subscribe(items => this.items = items);
     this.swipeOptions = {
       slidesPerView: 1,
       loop: false,
@@ -39,6 +39,6 @@ export class HomeTopBarComponent {
     setTimeout(() => this.swiperContainer.swiper.startAutoplay());
   }
 
-  onGotoSearch() { this.router.navigateByUrl('/search'); }
-
+  gotoSearch() { this.router.navigateByUrl('/search'); }
+  gotoSlide(item: ICarouselItem) { this.carouselService.gotoSlide(item); }
 }

@@ -1,5 +1,7 @@
-import { ModuleWithProviders }   from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { ProfileResolver, AddressResolver } from '../core';
 
 import { ProductRouteComponent } from './product-route.component';
 import { ProductsPageComponent } from './products';
@@ -14,11 +16,14 @@ export const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: ProductsPageComponent
+        component: ProductsPageComponent,
       },
       {
         path: '1/:id',
         component: ProductPageComponent,
+        resolve: {
+          profile: ProfileResolver,
+        },
         children: [
           {
             path: '',
@@ -26,27 +31,30 @@ export const routes: Routes = [
             pathMatch: 'full'
           },
           {
-            path: 'info', // info
-            component: ProductInfoComponent
+            path: 'info',
+            component: ProductInfoComponent,
+            resolve: {
+              address: AddressResolver,
+            },
           },
           {
             path: 'detail',
-            component: ProductDetailComponent
+            component: ProductDetailComponent,
           },
           {
             path: 'eval',
-            component: ProductEvalComponent
+            component: ProductEvalComponent,
           }
         ]
       },
       {
         path: 'addrs',
-        component: AddressSelectorPageComponent
+        component: AddressSelectorPageComponent,
       },
       {
         path: 'addr-creator',
-        component: AddressCreatorPageComponent
-      }
+        component: AddressCreatorPageComponent,
+      },
     ]
   },
 ];

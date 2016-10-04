@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
-import { JWT_CONFIG } from '../profile';
+import { config } from '../profile';
 import { removeURLParameter } from '../util';
 // import { XstorageService } from '../xstorage';
 
@@ -13,33 +13,36 @@ export class Jwt extends JwtHelper {
     // private xstorageService: XstorageService,
   ) { super(); }
 
-  get refreshToken() { return localStorage.getItem(JWT_CONFIG.refreshTokenKey); }
-  set refreshToken(token: string) { localStorage.setItem(JWT_CONFIG.refreshTokenKey, token); }
+  get refreshToken() { return localStorage.getItem(config.jwt.refreshTokenKey); }
+  set refreshToken(token: string) { localStorage.setItem(config.jwt.refreshTokenKey, token); }
 
-  get accessToken() { return localStorage.getItem(JWT_CONFIG.accessTokenKey); }
-  set accessToken(token: string) { localStorage.setItem(JWT_CONFIG.accessTokenKey, token); }
+  get accessToken() { return localStorage.getItem(config.jwt.accessTokenKey); }
+  set accessToken(token: string) { localStorage.setItem(config.jwt.accessTokenKey, token); }
 
-  // setOauth2State(state: string) { return this.xstorageService.setItem(JWT_CONFIG.oauth2StateKey, state); }
-  // setCurrentUrl() { return this.xstorageService.setItem(JWT_CONFIG.currentUrlKey, this.router.url); }
-  // getAuthResult() { return this.xstorageService.getDelItem(JWT_CONFIG.authResult); }
+  // setOauth2State(state: string) { return this.xstorageService.setItem(config.jwt.oauth2StateKey, state); }
+  // setCurrentUrl() { return this.xstorageService.setItem(config.jwt.currentUrlKey, this.router.url); }
+  // getAuthResult() { return this.xstorageService.getDelItem(config.jwt.authResult); }
 
-  setOauth2State(state: string) { localStorage.setItem(JWT_CONFIG.oauth2StateKey, state); }
+  setOauth2State(state: string) { localStorage.setItem(config.jwt.oauth2StateKey, state); }
   getOauth2State() {
-    let state = localStorage.getItem(JWT_CONFIG.oauth2StateKey);
-    localStorage.removeItem(JWT_CONFIG.oauth2StateKey);
+    let state = localStorage.getItem(config.jwt.oauth2StateKey);
+    localStorage.removeItem(config.jwt.oauth2StateKey);
     return state;
   }
 
-  setCurrentUrl(u: string) { localStorage.setItem(JWT_CONFIG.currentUrlKey, u); }
+  setCurrentUrl(u: string) { localStorage.setItem(config.jwt.currentUrlKey, u); }
   getCurrentUrl() {
-    let u = localStorage.getItem(JWT_CONFIG.currentUrlKey);
-    localStorage.removeItem(JWT_CONFIG.currentUrlKey);
+    let u = localStorage.getItem(config.jwt.currentUrlKey);
+    localStorage.removeItem(config.jwt.currentUrlKey);
     return u;
   }
 
+  tokenExpired(token: string, offsetSeconds?: number) {
+    return !token || this.isTokenExpired(token, offsetSeconds);
+  }
 
-  notExpired() { return !this.isTokenExpired(this.accessToken, 10); }
-  needUpdate() { return !this.isTokenExpired(this.accessToken, 120); }
-  canUpdate() { return !this.isTokenExpired(this.refreshToken, 10); }
+  notExpired() { return !this.tokenExpired(this.accessToken, 10); }
+  needUpdate() { return !this.tokenExpired(this.accessToken, 120); }
+  canUpdate() { return !this.tokenExpired(this.refreshToken, 10); }
 
 }

@@ -1,21 +1,21 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import { IInvoice } from '../../core';
+import { Invoice } from '../../core';
 
 @Component({
   selector: 'invoice',
-  template: require('./invoice.html'),
-  styles: [require('./invoice.css')],
+  templateUrl: './invoice.html',
+  styleUrls: ['./invoice.css'],
 })
 export class InvoiceComponent implements OnInit {
 
-  @Input() origin: IInvoice;
-  @Output() edited = new EventEmitter<IInvoice>();
+  @Input() origin: Invoice;
+  @Output() edited = new EventEmitter<Invoice>();
 
   need: boolean;
-  invoice: IInvoice;
+  invoice: Invoice;
 
   ngOnInit() {
-    this.invoice = <IInvoice>JSON.parse(JSON.stringify(this.origin || {}));
+    this.invoice = <Invoice>JSON.parse(JSON.stringify(this.origin || {}));
   }
 
   onOk() {

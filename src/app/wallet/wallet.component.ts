@@ -1,23 +1,20 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractWalletComponent } from './abstract-wallet.component';
-import { MoneyService, LocalWalletService } from '../core';
+import { IWallet, MoneyService, LocalWalletBase } from '../core';
 
 @Component({
-  template: require('./wallet.html'),
-  providers: [LocalWalletService],
+  templateUrl: './wallet.html',
+  styleUrls: ['./wallet.css'],
 })
-export class WalletComponent extends AbstractWalletComponent {
+export class WalletComponent {
 
   constructor(
-    route: ActivatedRoute,
-    router: Router,
-    moneyService: MoneyService,
-    localWalletService: LocalWalletService) {
-    super(route, router, moneyService, localWalletService);
-  }
+    private route: ActivatedRoute,
+    private router: Router,
+    private base: LocalWalletBase) { }
 
-  onViewBalance() { this.router.navigate(['../balance'], { relativeTo: this.route }); }
-
-  onViewPoints() { this.router.navigate(['../points'], { relativeTo: this.route }); }
+  gotoBalance() { this.router.navigate(['../balance'], { relativeTo: this.route }); }
+  gotoPoints() { this.router.navigate(['../points'], { relativeTo: this.route }); }
+  gotoReward() { this.router.navigate(['../reward'], { relativeTo: this.route }); }
 }

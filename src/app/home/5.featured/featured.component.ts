@@ -1,33 +1,38 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProduct, ProductService, LocalProductService } from '../../core';
-import { HomeSectionBaseComponent } from '../section-base.component';
+import { IProduct, ProductService } from '../../core';
 
 @Component({
   selector: 'home-featured',
-  template: require('./featured.html'),
-  styles: [require('./featured.css')],
+  templateUrl: './featured.html',
+  styleUrls: ['./featured.css'],
 })
-export class HomeFeaturedComponent extends HomeSectionBaseComponent {
+export class HomeFeaturedComponent {
 
   first: IProduct[]; // first item
   items: IProduct[];
   prices: Dict<number> = {};
 
   constructor(
-    router: Router,
-    productService: ProductService,
-    localProductService: LocalProductService) {
-    super(router, productService, localProductService);
-  }
+    private router: Router,
+    private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.query({ sp: 'Featured' }).subscribe(items => {
-      items.forEach(item => this.prices[item.ID] = item.Skus.map(sku => sku.SalePrice).sort().shift());
-      this.first = items.slice(0, 2);
-      items = items.slice(2);
-      this.items = items.slice(0, Math.floor(items.length / 4) * 4);
-    });
+    this.productService.getAttrs().
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['featured'], sz: 2 + 4 })).
+      take(1).subscribe(items => {
+        items.forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
+        this.first = items.slice(0, 2);
+        items = items.slice(2);
+        this.items = items.slice(0, Math.floor(items.length / 4) * 4);
+      });
   }
+
+  gotoProduct(product: IProduct) {
+    this.productService.setCurrent(product);
+    this.router.navigate(['./home/1', product.ID]); // SkuID
+  }
+
+  getImg(product: IProduct) { return product.Img || product.skus[0].Img; }
 
 }

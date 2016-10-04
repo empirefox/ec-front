@@ -1,0 +1,10 @@
+<ul *ngFor="let item of items">
+  <li>
+    <span>类型:{{item.Type|cashType}}</span>
+    <span>时间:{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</span>
+    <span>金额:{{item.Amount|money}}</span>
+    <span>余额:{{item.Balance|money}}</span>
+    <span>{{item.Remark}}</span>
+  </li>
+</ul>
+<footer-bar></footer-bar>

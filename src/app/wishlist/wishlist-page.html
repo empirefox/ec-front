@@ -9,7 +9,7 @@
           <dl class="goods-info"><dt class="goods-name"><h4>{{item.Name}}</h4></dt>
           </dl>
           <dd class="goods-sale">
-            <span class="goods-price">￥<em>{{item.Price|money}}</em></span>
+            <span class="goods-price">￥<em>{{item.Price|price:item.product}}</em></span>
           </dd>
         </a>
         <a (click)="onDel(item)" class="fav-del"></a>
@@ -18,3 +18,5 @@
     </ul>
   </div>
 </div>
+
+<footer-bar></footer-bar>

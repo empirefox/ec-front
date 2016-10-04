@@ -1,8 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 import { AddressModule } from './address';
@@ -10,26 +8,21 @@ import { CartModule } from './cart';
 import { CategoryModule } from './category';
 import { CheckoutModule } from './checkout';
 import { CheyouModule } from './cheyou';
-import { FooterBarModule } from './footer-bar';
 import { GroupbuyModule } from './group-buy';
-import { HeaderBarModule } from './header-bar';
 import { HomeModule } from './home';
 import { MemberModule } from './member';
-import { NavMenuListModule } from './nav-menu-list';
+import { NewsModule } from './news';
 import { OrderModule } from './order';
-import { PayModule } from './pay';
 import { ProductModule } from './product';
-import { QuantityInputModule } from './quantity-input';
-import { RatingModule } from './rating';
 import { SafeModule } from './safe';
-import { SearchModule } from './search';
 import { WalletModule } from './wallet';
 
-import { AccountPageComponent } from './account';
 import { FansComponent } from './fans';
 import { HistoryComponent } from './history';
 import { MemberQrComponent } from './member-qr';
 import { NoContent } from './no-content';
+import { QualificationComponent } from './qualification';
+import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
 
@@ -63,19 +56,17 @@ type StoreType = {
   bootstrap: [App],
   declarations: [
     App,
-    AccountPageComponent,
     FansComponent,
     HistoryComponent,
     MemberQrComponent,
     NoContent,
+    QualificationComponent,
+    SearchPageComponent,
     WeixinOauthPageComponent,
     WishlistPageComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
     RouterModule.forRoot(ROUTES),
     CoreModule,
 
@@ -84,19 +75,13 @@ type StoreType = {
     CategoryModule,
     CheckoutModule,
     CheyouModule,
-    FooterBarModule,
     GroupbuyModule,
-    HeaderBarModule,
     HomeModule,
     MemberModule,
-    NavMenuListModule,
+    NewsModule,
     OrderModule,
-    PayModule,
     ProductModule,
-    QuantityInputModule,
-    RatingModule,
     SafeModule,
-    SearchModule,
     WalletModule,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

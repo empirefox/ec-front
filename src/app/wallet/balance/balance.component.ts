@@ -1,20 +1,16 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractWalletComponent } from '../abstract-wallet.component';
-import { MoneyService, LocalWalletService } from '../../core';
+import { LocalWalletBase } from '../../core';
 
 @Component({
-  template: require('./balance.html'),
-  styles: [require('./balance.css')],
+  templateUrl: './balance.html',
+  styleUrls: ['./balance.css'],
 })
-export class BalanceComponent extends AbstractWalletComponent {
+export class BalanceComponent {
 
   constructor(
-    route: ActivatedRoute,
-    router: Router,
-    moneyService: MoneyService,
-    localWalletService: LocalWalletService) {
-    super(route, router, moneyService, localWalletService);
-  }
+    private route: ActivatedRoute,
+    private router: Router,
+    private base: LocalWalletBase) { }
 
 }

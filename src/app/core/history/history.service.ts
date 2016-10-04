@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { keyBy } from 'lodash';
+import keyBy = require('lodash/keyBy');
 import { IProduct } from '../product';
 import { HistoryItem } from './history';
 import { LocaldbService } from '../localdb';
@@ -34,8 +34,9 @@ export class HistoryService {
       ID: 0,
       ProductID: product.ID,
       Name: product.Name,
-      Img: product.Img || product.Skus[0].Img,
-      Price: product.Skus[0].SalePrice,
+      Img: product.Img || product.skus[0].Img,
+      Price: product.skus[0].SalePrice,
+      Vpn: product.Vpn,
     };
     this.localdbService.getDB().insert('history', item);
     this.getItems().unshift(item);

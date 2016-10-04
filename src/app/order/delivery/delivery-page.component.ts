@@ -1,36 +1,27 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Subscription }   from 'rxjs/Subscription';
-import { IDelivery, IDeliveryDay, DeliveryService, OrderService, OrderContextService, IOrder } from '../../core';
-import { kuaidi100map } from './kuaidi100';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IDelivery, IDeliveryDay, DeliveryService, OrderService, IOrder } from '../../core';
+import { KuaidiItem, kuaidi100map } from './kuaidi100';
 
 @Component({
-  template: require('./delivery-page.html'),
-  styles: [require('./delivery-page.css')],
-  providers: [OrderContextService],
+  templateUrl: './delivery-page.html',
+  styleUrls: ['./delivery-page.css'],
 })
 export class DeliveryPageComponent {
 
   order: IOrder;
-
   delivery: IDelivery;
-  company: string;
-
-  private sub: Subscription;
+  company: KuaidiItem;
 
   constructor(
-    private deliveryService: DeliveryService,
-    private orderContextService: OrderContextService) { }
+    private route: ActivatedRoute,
+    private deliveryService: DeliveryService) { }
 
   ngOnInit() {
-    this.sub = this.orderContextService.asObservable().subscribe(order => {
-      this.order = order;
-      this.company = kuaidi100map[this.order.DeliverCom].name;
-      this.deliveryService.query(this.order.ID).subscribe(delivery => this.delivery = delivery);
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.sub) { this.sub.unsubscribe(); }
+    let data = <{ order: IOrder }>this.route.snapshot.data;
+    this.order = data.order;
+    this.company = kuaidi100map[this.order.DeliverCom];
+    this.deliveryService.query(this.order.ID).subscribe(delivery => this.delivery = delivery);
   }
 
 }

@@ -1,130 +1,15 @@
-<header id="header" class="fixed">
-  <div class="header-wrap">
-    <div class="header-l"><a href="../index.html"><i class="back"></i></a></div>
-    <span class="header-tab"><a (click)="gotoCheyouList()">车友们</a><a (click)="gotoDetail()" class="cur">车宝宝</a><a (click)="gotoMy()">我的信息</a></span>
-  </div>
-</header>
-<div class="main-layout mb25">
-  <div class="cheyouhui-tc">
-    <div class="cheyouhui-tc-item">
-      <a (click)="gotoBuy()"> <img src="http://127.0.0.1:9999/img/che1.jpg" width="100%"></a>
-    </div>
-    <div class="cheyouhui-tc-item">
-      <img src="http://127.0.0.1:9999/img/che2.jpg" width="100%">
-    </div>
-    <div class="cheyouhui-tc-item">
-      <img src="http://127.0.0.1:9999/img/che3.jpg" width="100%">
-    </div>
-  </div>
-  <div class="cheyouhui-xcq">
-    <div class="tit"><img src="http://127.0.0.1:9999/img/xcq.jpg" width="100%"> </div>
-    <div class="grid">
-      <ul class="goods-secrch-list">
-        <li class="goods-item">
-            <span class="goods-pic">
-					<a href="product_detail.html">
-            <img src="http://127.0.0.1:9999/img/c1.jpg">
-          </a>
-				</span>
-          <dl class="goods-info">
-            <dt class="goods-name">
-              <a>
-                <h4>洗车券</h4><h6></h6>
-              </a>
-            </dt>
-            <dd class="goods-sale">
-              <a href="product_detail.html">
-                <span class="goods-price">￥<em>4100.00</em></span>
-              </a>
-            </dd>
-            <dd class="goods-assist">
-              <a class="btn">
-                点击兑换
-              </a>
-            </dd>
-          </dl>
-        </li>
-        <li class="goods-item">
-            <span class="goods-pic">
-					<a href="product_detail.html">
-            <img src="http://127.0.0.1:9999/img/c1.jpg">
-          </a>
-				</span>
-          <dl class="goods-info">
-            <dt class="goods-name">
-              <a>
-                <h4>洗车券</h4><h6></h6>
-              </a>
-            </dt>
-            <dd class="goods-sale">
-              <a href="product_detail.html">
-                <span class="goods-price">￥<em>4100.00</em></span>
-              </a>
-            </dd>
-            <dd class="goods-assist">
-              <a class="btn">
-                点击兑换
-              </a>
-            </dd>
-          </dl>
-        </li>
-        <li class="goods-item">
-            <span class="goods-pic">
-					<a href="product_detail.html">
-            <img src="http://127.0.0.1:9999/img/c1.jpg">
-          </a>
-				</span>
-          <dl class="goods-info">
-            <dt class="goods-name">
-              <a>
-                <h4>洗车券</h4><h6></h6>
-              </a>
-            </dt>
-            <dd class="goods-sale">
-              <a href="product_detail.html">
-                <span class="goods-price">￥<em>4100.00</em></span>
-              </a>
-            </dd>
-            <dd class="goods-assist">
-              <a class="btn">
-                点击兑换
-              </a>
-            </dd>
-          </dl>
-        </li>
-        <li class="goods-item">
-            <span class="goods-pic">
-					<a href="product_detail.html">
-            <img src="http://127.0.0.1:9999/img/c1.jpg">
-          </a>
-				</span>
-          <dl class="goods-info">
-            <dt class="goods-name">
-              <a>
-                <h4>洗车券</h4><h6></h6>
-              </a>
-            </dt>
-            <dd class="goods-sale">
-              <a href="product_detail.html">
-                <span class="goods-price">￥<em>4100.00</em></span>
-              </a>
-            </dd>
-            <dd class="goods-assist">
-              <a class="btn">
-                点击兑换
-              </a>
-            </dd>
-          </dl>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-<div class="cheyouhui-bottom fixed-width">
-  <ul>
-    <li><a id="store_intro" href="cheyouhui_info.html">会员活动说明</a></li>
-    <li><a id="store_voucher" href="javascript: void(0);">会员权限说明</a></li>
-    <li><a id="store_kefu" href="javascript: void(0);">车险说明</a></li>
-  </ul>
-</div>
+<ul class="default-list" *ngIf="profile&&vip">
+  <li>
+    <h4>{{trans.HeadImageURL}}</h4>
+    <h5><img [default]="profile.DefaultHeadImage" [src]="userService.headSrc$|async" width="50"></h5>
+  </li>
+  <li *ngFor="let col of simpleCols">
+    <h4>{{trans[col]}}</h4>
+    <h5>{{vip[col]}}</h5>
+  </li>
+  <li *ngFor="let col of descCols">
+    <h4>{{trans[col]}}</h4>
+    <p class="desc">{{vip[col]}}</p>
+  </li>
+</ul>
+<footer-bar></footer-bar>

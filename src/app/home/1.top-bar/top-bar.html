@@ -2,7 +2,7 @@
   <header class="transparent">
     <div class="logo"></div>
     <div class="header-wrap">
-      <a (click)="onGotoSearch()" class="header-inp">
+      <a (click)="gotoSearch()" class="header-inp">
         <i class="icon"></i>
         <span class="search-input">请输入关键词</span>
       </a>
@@ -11,7 +11,7 @@
   <div class="adv_list myslides">
     <ks-swiper-container [options]="swipeOptions" style="height: 8rem;">
       <ks-swiper-slide *ngFor="let s of items">
-        <a [href]="s.Link">
+        <a (click)="gotoSlide(s)">
           <img class="slide-img" [src]="s.Img">
         </a>
       </ks-swiper-slide>

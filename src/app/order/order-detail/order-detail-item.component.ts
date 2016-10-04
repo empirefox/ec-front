@@ -4,8 +4,8 @@ import { IOrderItem } from '../../core';
 
 @Component({
   selector: 'order-detail-item',
-  template: require('./order-detail-item.html'),
-  styles: [require('./order-detail-item.css')],
+  templateUrl: './order-detail-item.html',
+  styleUrls: ['./order-detail-item.css'],
 })
 export class OrderDetailItemComponent {
 
@@ -13,7 +13,7 @@ export class OrderDetailItemComponent {
 
   constructor(private router: Router) { }
 
-  onGotoProduct() {
+  gotoProduct() {
     this.router.navigate(['/product/1', this.item.ProductID]);
   }
 

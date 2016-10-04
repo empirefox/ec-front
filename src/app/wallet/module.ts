@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
 import { walletRouting } from './routes';
 
 import { WalletRouteComponent } from './wallet-route.component';
 import { WalletComponent } from './wallet.component';
 import {
   BalanceComponent,
-  BalanceDepositComponent,
-  BalanceRefillComponent,
+  BalanceCashComponent,
+  BalanceFrozenComponent,
   BalanceWithdrawComponent,
 } from './balance';
 import { PointsComponent } from './points';
@@ -20,23 +20,23 @@ import { RewardComponent } from './reward';
     WalletRouteComponent,
     WalletComponent,
     BalanceComponent,
-    BalanceDepositComponent,
-    BalanceRefillComponent,
+    BalanceCashComponent,
+    BalanceFrozenComponent,
     BalanceWithdrawComponent,
     PointsComponent,
     RewardComponent,
   ],
   imports: [
     CommonModule,
-    HeaderBarModule,
+    CoreModule,
     walletRouting,
   ],
   exports: [
     WalletRouteComponent,
     WalletComponent,
     BalanceComponent,
-    BalanceDepositComponent,
-    BalanceRefillComponent,
+    BalanceCashComponent,
+    BalanceFrozenComponent,
     BalanceWithdrawComponent,
     PointsComponent,
     RewardComponent,

@@ -23,7 +23,7 @@
             <h4>{{item.Name}}</h4>
           </dt>
           <dd class="goods-sale">
-            <span class="goods-price">￥<em>{{item.Price|money}}</em></span>
+            <span class="goods-price">￥<em>{{item.Price|money:item.Vpn}}</em></span>
           </dd>
         </dl>
       </li>
@@ -31,3 +31,5 @@
   </div>
 
 </div>
+
+<footer-bar></footer-bar>

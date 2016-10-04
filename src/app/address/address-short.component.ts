@@ -4,8 +4,8 @@ import { IAddress } from '../core';
 
 @Component({
   selector: 'address-short',
-  template: require('./address-short.html'),
-  styles: [require('./address-short.css')],
+  templateUrl: './address-short.html',
+  styleUrls: ['./address-short.css'],
 })
 export class AddressShortComponent {
 

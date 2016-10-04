@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IInvoice, ICheckout, LocalCheckoutService } from '../../core';
+import { Invoice, ICheckout, LocalCheckoutBase } from '../../core';
 
 @Component({
-  template: require('./invoice-page.html'),
-  styles: [require('./invoice-page.css')],
+  templateUrl: './invoice-page.html',
+  styleUrls: ['./invoice-page.css'],
 })
 export class InvoicePageComponent {
 
@@ -12,13 +12,13 @@ export class InvoicePageComponent {
 
   constructor(
     private router: Router,
-    private localCheckoutService: LocalCheckoutService) { }
+    private base: LocalCheckoutBase) { }
 
   ngOnInit() {
-    this.localCheckoutService.src$.subscribe(checkout => this.checkout = checkout);
+    this.checkout = this.base.checkout;
   }
 
-  onEdited(invoice: IInvoice) {
+  onEdited(invoice: Invoice) {
     this.checkout.Invoice = invoice;
     this.router.navigate(['/checkout']);
   }

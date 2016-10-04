@@ -1,23 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-
-declare var countdown: any;
-
-export interface Timespan {
-  millennia?: number;
-  centuries?: number;
-  decades?: number;
-  years?: number;
-  months?: number;
-  weeks?: number;
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
-  milliseconds?: number;
-  toString(emptyLabel?: string): string;
-}
+import countdown from 'countdown';
 
 @Injectable()
 export class CountdownService {
@@ -35,12 +19,13 @@ export class CountdownService {
       this.sms = new Subject<number>();
 
       let timerId = countdown(
-        (ts: Timespan) => this.sms.next(ts.seconds),
+        (ts) => this.sms.next(ts.seconds),
         new Date(Date.now() + sec * 1000),
-        countdown.SECONDS);
+        countdown.SECONDS,
+      );
 
       setTimeout(() => {
-        clearInterval(timerId);
+        clearInterval(<number>timerId);
         this.sms.complete();
         this.sms = null;
       }, sec * 1000);

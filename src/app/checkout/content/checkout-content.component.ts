@@ -1,36 +1,26 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProfileService, CartService, ICheckout, LocalCheckoutService, OrderService } from '../../core';
+import { Observable } from 'rxjs/Observable';
+import { constMap, CartService, ICheckout, LocalCheckoutBase, OrderService } from '../../core';
 
 @Component({
   selector: 'checkout-content',
-  template: require('./checkout-content.html'),
-  styles: [require('./checkout-content.css')],
+  templateUrl: './checkout-content.html',
+  styleUrls: ['./checkout-content.css'],
 })
 export class CheckoutContentComponent {
 
   checkout: ICheckout;
 
-  _total: number;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService,
     private orderService: OrderService,
     private cartService: CartService,
-    private localCheckoutService: LocalCheckoutService) { }
+    private base: LocalCheckoutBase) { }
 
   ngOnInit() {
-    this.localCheckoutService.src$.subscribe(checkout => {
-      this.checkout = checkout;
-      this._total = this.checkout.Items.map(item => (item.GroupBuyPrice || item.Sku.SalePrice) * item.Quantity).reduce((a, b) => a + b, 0);
-      let highest = this.checkout.Items.map(item => item.Sku.Freight).sort((b, a) => a - b)[0];
-      this.profileService.getProfile().subscribe(profile => {
-        this.checkout.DeliverFee = this._total < profile.FreeDeliverLine ? highest : 0;
-        this.checkout.Total = this._total + this.checkout.DeliverFee;
-      });
-    });
+    this.checkout = this.base.checkout;
   }
 
   get payMethod() {
@@ -42,15 +32,18 @@ export class CheckoutContentComponent {
   }
 
   onCheckout() {
-    this.orderService.checkout(this.checkout).subscribe(orderId => {
-      let src = this.route.snapshot.queryParams['src'];
-      if (src === 'cache') {
-        this.orderService.clearCheckoutItemCache();
-      } else {
-        this.cartService.clear().subscribe();
-      }
-      this.router.navigate(['/order/detail', orderId], { queryParams: { pay: 'show' } });
-    });
+    if (this.checkout.Address && this.checkout.valid) {
+      this.orderService.checkout(this.checkout).subscribe(order => {
+        // from GroupBuyItemComponent, ProductPageComponent
+        let src = this.route.snapshot.queryParams['src'];
+        if (src === 'cache') {
+          this.orderService.clearCheckoutItemCache();
+        } else {
+          this.cartService.delete(this.checkout.Items.map(item => item.Sku.ID)).subscribe();
+        }
+        this.router.navigate(['/order/detail', order.ID], { queryParams: { paying: order.ID } });
+      });
+    }
   }
 
   onChangePayMethod() {

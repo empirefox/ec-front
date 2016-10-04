@@ -1,18 +1,55 @@
-<header1>支付密码</header1>
+<header1>设置支付密码</header1>
 <div class="main-layout">
-  <ul class="default-list">
-    <li>
-      <a (click)="gotoPaykeyForget()">
-        <h4>忘记支付密码</h4>
-        <span class="arrow-r"></span>
-      </a>
-    </li>
-    <li>
-      <a (click)="gotoPaykeySet()">
-        <h4>修改支付密码</h4>
-        <span class="tip"></span>
-        <span class="arrow-r"></span>
-      </a>
-    </li>
-  </ul>
+  <div class="inp-con">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <ul class="form-box">
+        <li class="form-item">
+          <h4>支付密码</h4>
+          <div class="input-box">
+            <input type="text" class="inp" formControlName="Key" placeholder="输入密码">
+            <span class="input-del"></span>
+          </div>
+        </li>
+        <li class="form-item">
+          <h4>重复支付密码</h4>
+          <div class="input-box">
+            <input type="text" class="inp" [formControl]="keyCheckControl" placeholder="输入密码">
+            <span class="input-del"></span>
+          </div>
+        </li>
+        <li class="form-item">
+          <h4>验 证 码</h4>
+          <div class="input-box">
+            <input type="text" class="inp" formControlName="Captcha" placeholder="输入图形验证码">
+            <span class="input-del code"></span>
+            <a (click)="onChangeCaptcha()" class="code-img">
+              <img border="0" [src]="captcha?.data">
+            </a>
+          </div>
+        </li>
+      </ul>
+      <ul class="form-box mt5">
+        <li class="form-item">
+          <h4>动 态 码</h4>
+          <div class="input-box write">
+            <input type="number" class="inp" formControlName="Code" placeholder="输入短信动态验证码">
+            <span class="input-del"></span>
+            <span class="code-again">
+              {{secondsLeft}}
+              <a (click)="onSendSms()" *ngIf="!colding">获取短信验证</a>
+            </span>
+          </div>
+        </li>
+      </ul>
+      <div class="error-tips"></div>
+      <div class="form-btn">
+        <button type="submit" class="btn" [disabled]="!keyCheckControl.valid||!form.dirty||!form.valid||submitting||!captcha">下一步</button>
+      </div>
+    </form>
+    <pre *ngIf="error">
+      {{error|json}}
+    </pre>
+  </div>
 </div>
+
+<footer-bar></footer-bar>

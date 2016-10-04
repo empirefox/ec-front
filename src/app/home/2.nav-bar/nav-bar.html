@@ -1,5 +1,5 @@
 <div class="home-nav fixed-width">
-  <ul>
+  <ul *ngIf="specials">
     <li>
       <a (click)="gotoHot()">
         <span>
@@ -9,7 +9,7 @@
       </a>
     </li>
     <li>
-      <a (click)="gotoRecommend()">
+      <a (click)="gotoNews()">
         <span>
           <i></i>
         </span>
@@ -28,7 +28,7 @@
         <p>新品</p>
       </a>
     </li>
-    <li><a href="积分商城.html"><span><i></i></span>
+    <li><a (click)="gotoPoints()"><span><i></i></span>
       <p>积分商城</p>
     </a></li>
   </ul>

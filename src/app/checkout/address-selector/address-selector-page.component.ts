@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IAddress, ICheckout, LocalCheckoutService } from '../../core';
-import { Header1Component } from '../../header-bar';
+import { IAddress, ICheckout, LocalCheckoutBase } from '../../core';
 
 @Component({
-  template: require('./address-selector-page.html'),
-  styles: [require('./address-selector-page.css')],
+  templateUrl: './address-selector-page.html',
+  styleUrls: ['./address-selector-page.css'],
 })
 export class CheckoutAddrsComponent {
 
@@ -13,10 +12,10 @@ export class CheckoutAddrsComponent {
 
   constructor(
     private router: Router,
-    private localCheckoutService: LocalCheckoutService) { }
+    private base: LocalCheckoutBase) { }
 
   ngOnInit() {
-    this.localCheckoutService.src$.subscribe(checkout => this.checkout = checkout);
+    this.checkout = this.base.checkout;
   }
 
   onSelected(addr: IAddress) {

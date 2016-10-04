@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { HistoryItem, HistoryService } from '../core';
 
 @Component({
-  template: require('./history-page.html'),
-  styles: [require('./history-page.css')],
+  templateUrl: './history-page.html',
+  styleUrls: ['./history-page.css'],
 })
 export class HistoryComponent {
 

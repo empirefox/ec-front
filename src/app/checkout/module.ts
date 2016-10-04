@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core.module';
 
-import { HeaderBarModule } from '../header-bar';
-import { QuantityInputModule } from '../quantity-input';
 import { AddressModule } from '../address';
 import { checkoutRouting } from './routes';
 
@@ -13,6 +10,8 @@ import { CheckoutContentComponent, CheckoutItemComponent } from './content';
 import { CheckoutAddrsComponent } from './address-selector';
 import { CheckoutAddrCreatorComponent } from './address-creator';
 import { InvoicePageComponent, InvoiceComponent } from './invoice';
+
+import { CheckoutItemsResolver } from './checkout.resolver';
 
 @NgModule({
   declarations: [
@@ -24,12 +23,7 @@ import { InvoicePageComponent, InvoiceComponent } from './invoice';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     CoreModule,
-
-    HeaderBarModule,
-    QuantityInputModule,
     AddressModule,
     checkoutRouting,
   ],
@@ -39,6 +33,9 @@ import { InvoicePageComponent, InvoiceComponent } from './invoice';
     CheckoutAddrsComponent,
     CheckoutAddrCreatorComponent,
     InvoicePageComponent,
+  ],
+  providers: [
+    CheckoutItemsResolver,
   ],
 })
 export class CheckoutModule { }

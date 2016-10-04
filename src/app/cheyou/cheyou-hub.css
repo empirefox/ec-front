@@ -1,0 +1,7 @@
+a.active-show, a.hidden {
+  display: none;
+}
+
+a.active.active-show {
+  display: inline-block;
+}

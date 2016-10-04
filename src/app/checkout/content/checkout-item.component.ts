@@ -3,15 +3,15 @@ import { ICheckout, ICheckoutItem } from '../../core';
 
 @Component({
   selector: 'checkout-item',
-  template: require('./checkout-item.html'),
-  styles: [require('./checkout-item.css')],
+  templateUrl: './checkout-item.html',
+  styleUrls: ['./checkout-item.css'],
 })
 export class CheckoutItemComponent {
 
   @Input() item: ICheckoutItem;
 
   get img() {
-    return this.item.Sku.Img ? this.item.Sku.Img : this.item.Sku.Product.Img;
+    return this.item.Sku.Img ? this.item.Sku.Img : this.item.Sku.product.Img;
   }
 
   get price() {

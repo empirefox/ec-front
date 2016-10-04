@@ -13,8 +13,8 @@ import {
 } from '../core';
 
 @Component({
-  template: require('./member-page.html'),
-  styles: [require('./member-page.css')],
+  templateUrl: './member-page.html',
+  styleUrls: ['./member-page.css'],
 })
 export class MemberPageComponent {
 
@@ -47,7 +47,8 @@ export class MemberPageComponent {
   onGotoWishlist() { this.router.navigateByUrl('/wishlist'); }
   onGotoHistory() { this.router.navigateByUrl('/history'); }
   onGotoAddressManage() { this.router.navigateByUrl('/addr'); }
-  onGotoAccount() { this.router.navigateByUrl('/account'); }
+  onGotoSafe() { this.router.navigateByUrl('/safe'); }
+  gotoQualification() { this.router.navigateByUrl('/qualification'); }
   gotoQr() { this.router.navigateByUrl('/member-qr'); }
   gotoFans() { this.router.navigateByUrl('/fans'); }
 

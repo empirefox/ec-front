@@ -1,7 +1,7 @@
 import { Http } from '@angular/http';
 import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 
-import { JWT_CONFIG } from '../share';
+import { config } from '../share';
 import { Jwt } from './jwt';
 
 export * from './jwt';
@@ -15,12 +15,12 @@ export const JWT_PROVIDERS = [
       return new AuthHttp(new AuthConfig({
         headerName: 'Authorization',
         headerPrefix: 'Bearer',
-        tokenName: JWT_CONFIG.accessTokenKey,
-        tokenGetter: key => localStorage.getItem(key),
+        tokenName: config.jwt.accessTokenKey,
+        tokenGetter: key => localStorage.getItem(config.jwt.accessTokenKey),
         globalHeaders: [{ 'Content-Type': 'application/json' }],
-        noJwtError: true
+        noJwtError: true,
       }), http);
     },
-    deps: [Http]
+    deps: [Http],
   }
 ];
