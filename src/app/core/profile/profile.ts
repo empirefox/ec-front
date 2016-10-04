@@ -30,6 +30,7 @@ export interface IProfile {
 export const URLS = {
   PROFILE: `${config.apiOrigin}/profile`, // get
 
+  FAKE_TOKEN: `${config.apiOrigin}/faketoken`, // get
   HEAD_UPTOKEN: `${config.apiOrigin}/headtoken`, // get
 
   CAPTHCA: `${config.apiOrigin}/captcha`, // get

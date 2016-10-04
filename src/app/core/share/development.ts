@@ -1,9 +1,9 @@
 import { ModeArgs } from './config';
 
 export const modeArgs: ModeArgs = {
-  publicOrigin: 'http://127.0.0.1:3000',
-  apiOrigin: 'http://127.0.0.1:9999',
-  cdnImgOrigin: 'http://127.0.0.1:9999',
+  publicOrigin: 'http://192.168.1.113:3000',
+  apiOrigin: 'http://192.168.1.108:9999',
+  cdnImgOrigin: 'http://oegt06nh8.bkt.clouddn.com',
   qrLogoUrl: '',
   vbuysSpecialName: 'vbuys',
 };

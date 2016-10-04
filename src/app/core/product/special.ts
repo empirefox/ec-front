@@ -5,7 +5,6 @@ export const specialPresets = [
   'featured',
   'life',
   'recommend',
-  'adSlide',
 ];
 
 export interface ISpecial {

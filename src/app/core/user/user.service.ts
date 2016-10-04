@@ -107,16 +107,16 @@ export class UserService {
   }
 
   _parseAuthResult(res: IUserTokenResponse) {
-    let claims = this.jwt.decodeToken(res.accessToken);
-    let user = res.user;
+    let claims = this.jwt.decodeToken(res.AccessToken);
+    let user = res.User;
     user.ID = +claims.uid;
     user.OpenId = claims.oid;
     user.Phone = claims.mob;
     user.User1 = +claims.us1;
-    this.jwt.accessToken = res.accessToken;
-    this.jwt.refreshToken = res.refreshToken;
+    this.jwt.accessToken = res.AccessToken;
+    this.jwt.refreshToken = res.RefreshToken;
     this._userinfo = Observable.of(user).publishReplay(1).refCount();
-    return res.accessToken;
+    return res.AccessToken;
   }
 
   // parseAuthResult(): Observable<string> {
@@ -126,6 +126,10 @@ export class UserService {
   // used to update token after bootstrap, will trigger login
   mustUpdateToken(): Observable<string> {
     return this.updateToken().catch((err, caught) => {
+      // TODO remove
+      if(ENV==='development'){
+        return this.rawHttp.get(URLS.FAKE_TOKEN).map(res => this._parseAuthResult(<IUserTokenResponse>res.json()));
+      }
       return this.profileService.getProfile().flatMap(profile => {
         // clean url
         let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');

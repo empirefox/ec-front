@@ -124,6 +124,7 @@ export class ProductPageComponent implements OnInit {
       if (this.sku) {
         this.sku.quantity = this.sku.quantity < 1 ? 1 : this.sku.quantity;
         if (isBuy) {
+          console.log('buy')
           let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.quantity };
           if (this.groupBuyItem) {
             cache.GroupBuyID = this.groupBuyItem.ID;
@@ -134,7 +135,9 @@ export class ProductPageComponent implements OnInit {
         } else if (this.sku && this.product.Vpn === constMap.VpnType.TVpnNormal) {
           this.cartService.add(this.sku).flatMap(_ => this.cartService.getItems()).take(1).
             subscribe(items => this.setCartLen(items));
+          console.log('cart')
         }
+        this.showSkus = false;
       }
     } else {
       this.showSkus = true;

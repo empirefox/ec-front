@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { KSSwiperModule } from 'angular2-swiper';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { MyDatePickerModule } from 'mydatepicker/src/my-date-picker/my-date-picker.module';
@@ -25,7 +26,8 @@ import { APP_DIRECTIVES } from './directives';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ModalModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
     KSSwiperModule,
     InfiniteScrollModule,
     MyDatePickerModule,
@@ -35,7 +37,7 @@ import { APP_DIRECTIVES } from './directives';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ModalModule,
+    BootstrapModalModule,
     KSSwiperModule,
     InfiniteScrollModule,
     MyDatePickerModule,

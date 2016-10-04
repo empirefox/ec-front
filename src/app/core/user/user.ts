@@ -35,9 +35,9 @@ export interface ISetUserInfoResponse {
 }
 
 export interface IUserTokenResponse {
-  accessToken: string;
-  refreshToken: string;
-  user: IUserInfo;
+  AccessToken: string;
+  RefreshToken: string;
+  User: IUserInfo;
 }
 
 export interface IPreBindPhonePayload {

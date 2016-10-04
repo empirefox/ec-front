@@ -29,15 +29,11 @@ export class ProductSkusComponent implements OnInit {
     this.findGroupBuyItem();
   }
 
-  get sku(): ISku { return this.product.sku; }
+  get sku(): ISku { return this.product.sku || this.product.skus[0]; }
   set sku(sku: ISku) {
-    if (this.product.sku !== sku) {
-      this.product.sku = sku;
-      if (sku) {
-        sku.attrs.forEach(attr => this.current[attr.Group.ID] = attr);
-      } else {
-        this.current = {};
-      }
+    this.product.sku = sku;
+    if (sku) {
+      sku.attrs.forEach(attr => this.current[attr.Group.ID] = attr);
     }
   }
 

@@ -16,9 +16,9 @@ export const JWT_PROVIDERS = [
         headerName: 'Authorization',
         headerPrefix: 'Bearer',
         tokenName: config.jwt.accessTokenKey,
-        tokenGetter: key => localStorage.getItem(key),
+        tokenGetter: key => localStorage.getItem(config.jwt.accessTokenKey),
         globalHeaders: [{ 'Content-Type': 'application/json' }],
-        noJwtError: true
+        noJwtError: true,
       }), http);
     },
     deps: [Http],
