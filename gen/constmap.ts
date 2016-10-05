@@ -1,9 +1,19 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { format } from './format';
+import { translate } from './translate';
+import * as typsTrans from './trans-values';
 
 const stringifyObject = require('stringify-object');
 const consts = require('./esecend_consts.json');
+
+const transTargets = 'OrderState,UserCashType'.split(',');
+
+const stringifyOpts = {
+  indent: ' ',
+  singleQuotes: true,
+  inlineCharacterLimit: 12,
+};
 
 interface Typer {
   [index: string]: number;
@@ -20,17 +30,50 @@ Object.keys(consts).forEach(typ => {
   constMap[typ] = typer;
 });
 
-let prettyConstMap = stringifyObject(constMap, {
-  indent: ' ',
-  singleQuotes: false,
-  inlineCharacterLimit: 12,
+let tsConstsEntries = Object.keys(consts).map(typ => `${typ}: Object.keys(constMap.${typ}),`).join('\n');
+
+let constsTransMap = {};
+transTargets.forEach(typ => {
+  constsTransMap[typ] = translate(typ);
 });
 
-let constsEntries = Object.keys(consts).map(typ => `${typ}: Object.keys(constMap.${typ}),`).join('\n');
+let tsResult = format(`
+  export const constMap = ${stringifyObject(constMap, stringifyOpts)};
 
-let result = format(`
-  export const constMap = ${prettyConstMap};
-  export const consts = {${constsEntries}};
+  export const consts = {${tsConstsEntries}};
+
+  export const constTransMap = ${stringifyObject(constsTransMap, stringifyOpts).replace(/\s*'([0-9]+)'\s*:\s*/g, '$1 :')};
 `);
 
-writeFileSync(join(__dirname, '../src/app/core/consts/const-map.ts'), result);
+writeFileSync(join(__dirname, '../src/app/core/consts/const-map.ts'), tsResult);
+
+// java
+let javaConstTyps = Object.keys(consts).map(typ => {
+  let fields = (<string[]>consts[typ]).map((value, index) => `public static int ${value} = ${index};`).join('\n');
+  return `
+  public final static class ${typ} {
+		${fields}
+	}
+  `
+});
+
+let javaTransTyps = transTargets.map(typ => {
+  let typTrans = typsTrans[typ];
+  let fields = Object.keys(typTrans).map(field => `public static String ${field} = "${typTrans[field]}";`).join('\n');
+  return `
+  public final static class ${typ} {
+		${fields}
+	}
+  `
+});
+
+let javaConst = `public final class BackendConst {
+	${javaConstTyps.join('')}
+}`;
+
+let javaConstTrans = `public final class BackendConstTrans {
+	${javaTransTyps.join('')}
+}`;
+
+writeFileSync(join(__dirname, './BackendConst.java'), javaConst);
+writeFileSync(join(__dirname, './BackendConstTrans.java'), javaConstTrans);

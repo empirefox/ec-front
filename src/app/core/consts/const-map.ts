@@ -139,6 +139,7 @@ export const constMap = {
     TVpnVip: 2
   }
 };
+
 export const consts = {
   BillboardType: Object.keys(constMap.BillboardType),
   CodedError: Object.keys(constMap.CodedError),
@@ -147,4 +148,13 @@ export const consts = {
   UserCashType: Object.keys(constMap.UserCashType),
   VipRebateType: Object.keys(constMap.VipRebateType),
   VpnType: Object.keys(constMap.VpnType),
+};
+
+export const constTransMap = {
+  OrderState: {
+    0: '未知状态', 1: '待付款', 2: '支付中', 3: '待发货', 4: '已关闭', 5: '发货中', 6: '已发货', 7: '已申请退款', 8: '退货中', 9: '已退款', 10: '拒收货', 11: '拒收已退回', 12: '拒收已退款', 13: '待评价', 14: '评价中', 15: '已评价', 16: '已评价'
+  },
+  UserCashType: {
+    0: '未知类型', 1: '预付款', 2: '预付款退回', 3: '交易', 4: '退款', 5: '预提现', 6: '提现', 7: '奖励', 8: '返利', 9: '返利(店铺推荐)'
+  }
 };
