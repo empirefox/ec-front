@@ -33,6 +33,9 @@ export const routes: Routes = [
       {
         path: '1/:id',
         component: ProductPageComponent,
+        resolve: {
+          profile: ProfileResolver,
+        },
         children: [
           {
             path: '',
@@ -57,11 +60,11 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'addrs',
+        path: 'addrs/:id',
         component: AddressSelectorPageComponent,
       },
       {
-        path: 'addr-creator',
+        path: 'addr-new/:id',
         component: AddressCreatorPageComponent,
       },
       {

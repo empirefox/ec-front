@@ -45,15 +45,15 @@ export class CarouselService {
       }
     }
     if (item.ProductID) {
-      this.router.navigateByUrl(`/product/1${item.ProductID}`);
+      this.router.navigateByUrl(`/product/1/${item.ProductID}`);
       return;
     }
     if (item.SpecialID) {
-      this.router.navigateByUrl('/product/list', { queryParams: { ft: `SpecialID.eq.${item.SpecialID}` } });
+      this.router.navigate(['/product/list'], { queryParams: { ft: `SpecialID.eq.${item.SpecialID}` } });
       return;
     }
     if (item.CategoryID) {
-      this.router.navigateByUrl('/product/list', { queryParams: { ft: `CategoryID.eq.${item.CategoryID}` } });
+      this.router.navigate(['/product/list'], { queryParams: { ft: `CategoryID.eq.${item.CategoryID}` } });
       return;
     }
   }

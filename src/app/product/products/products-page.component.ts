@@ -20,11 +20,14 @@ export class ProductsPageComponent {
 
   constructor(
     private location: Location,
+    private route: ActivatedRoute,
     private router: Router,
     private base: LocalProductBase,
     private productService: ProductService) { }
 
   ngOnInit() {
+    let query = this.route.snapshot.queryParams;
+    console.log('ProductsPageComponent', query)
     this.base.local.exist().subscribe(items => this.products = items);
   }
 
