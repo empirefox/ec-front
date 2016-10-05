@@ -12,7 +12,7 @@ export class HeadUptoken {
     let putPolicy = JSON.parse(atob(res.HeadToken.split(':', 3)[2]));
     this.deadline = (putPolicy.deadline - 10) * 1000;
     this.uphost = putPolicy.uphosts && putPolicy.uphosts[0];
-    this.uphost = this.uphost || 'https://up-z2.qbox.me';
+    this.uphost = this.uphost || 'https://up.qbox.me';
   }
 
   valid(): boolean {
