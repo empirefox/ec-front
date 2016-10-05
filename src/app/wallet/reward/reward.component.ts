@@ -23,4 +23,10 @@ export class RewardComponent {
     this.frozen = this.base.wallet.frozen;
   }
 
+  moneyClass(item: IUserCashRebate) {
+    return ['money', item.Amount < 0 ? 'reduce' : 'add'];
+  }
+
+  moneyPre(item: IUserCashRebate) { return item.Amount > 0 ? '+' : ''; }
+
 }

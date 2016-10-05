@@ -16,16 +16,16 @@ export class AddressSelectorPageComponent {
     private base: LocalProductBase) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.data['id'];
+    let id = +this.route.snapshot.params['id'];
     this.base.local.getItem(id).subscribe(product => this.product = product);
   }
 
   onSelected(addr: IAddress) {
-    this.router.navigate(['../1', this.product.ID], { relativeTo: this.route });
+    this.router.navigate(['../../1', this.product.ID], { relativeTo: this.route });
   }
 
   gotoCreator() {
-    this.router.navigate(['../new'], { relativeTo: this.route });
+    this.router.navigate(['../../addr-new', this.product.ID], { relativeTo: this.route });
   }
 
 }

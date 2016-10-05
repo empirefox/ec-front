@@ -12,7 +12,7 @@ import { QualificationComponent } from './qualification';
 import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
-import { URLS, ProfileResolver, UserResolver, WalletResolver } from './core';
+import { URLS, ProfileResolver, UserResolver, WalletResolver, FansResolver } from './core';
 
 export const ROUTES: Routes = [
 
@@ -20,7 +20,14 @@ export const ROUTES: Routes = [
   { path: 'cart', component: CartListPageComponent },
   { path: 'category', component: CategoryPageComponent },
 
-  { path: 'fans', component: FansComponent },
+  {
+    path: 'fans',
+    component: FansComponent,
+    resolve: {
+      profile: ProfileResolver,
+      fans: FansResolver,
+    },
+  },
   { path: 'groupbuy', component: GroupBuyPageComponent },
   { path: 'history', component: HistoryComponent },
   {
@@ -36,7 +43,13 @@ export const ROUTES: Routes = [
 
   { path: 'search', component: SearchPageComponent },
 
-  { path: 'qualification', component: QualificationComponent },
+  {
+    path: 'qualification',
+    component: QualificationComponent,
+    resolve: {
+      profile: ProfileResolver,
+    },
+  },
 
   { path: URLS.WX_OAUTH2_LOCAL_PATH, component: WeixinOauthPageComponent },
   { path: 'wishlist', component: WishlistPageComponent },

@@ -2,8 +2,13 @@
 .tips_reward p{background: #ff9900; border-radius: 100%; width: 3.4rem; height: 2.4rem; color: #fff; font-size: 0.4rem; text-align: center;margin: 0 auto; padding-top:1rem;}
 .tips_reward p.dj{background: #ff0000}
 .tips_reward p span{font-size: 0.8rem;}
-.tips_btn_group{display: flex; margin-top:0.6rem;}
 .tips_info{margin-top:0.8rem;}
 .tips_info h3{text-align: center; font-size: 0.5rem; color: #666; position: relative;}
 .tips_info h3:before{content: ""; height: 1px; background: #888; position: absolute; top:50%;left: 0; width: 40%}
 .tips_info h3:after{content: ""; height: 1px; background: #888; position: absolute; top:50%;right: 0; width: 40%}
+.reward-item>ul>li{border-bottom:1px solid #ccc; background: #fff; padding: 0.5rem; margin-top:0.5rem; font-size: 1rem; position: relative;}
+.reward-item>ul>li .remark{padding:0.5rem 0;font-size: 0.8rem;}
+.reward-item>ul>li i{color: #ff0000; font-size: 0.8rem;}
+.reward-item>ul>li span{ position: absolute; right:0.5rem; top:0.6rem; font-size: 0.7rem; color: #666}
+.reward-item .log-list{border: 1px solid #ccc; margin: 0 0.4rem;}
+.reward-item .log-list li .money{position: static;}

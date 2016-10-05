@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { IProfile, ProfileService, IFan, FansService } from '../core';
 
@@ -12,16 +12,15 @@ export class FansComponent {
   fans: IFan[];
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService,
     private fansService: FansService) { }
 
   ngOnInit() {
-    this.profileService.getProfile().subscribe(profile => this.profile = profile);
-    this.fansService.getItems().subscribe(fans => this.fans = fans);
+    let data = <{ profile: IProfile, fans: IFan[] }>this.route.snapshot.data;
+    this.profile = data.profile;
+    this.fans = data.fans;
   }
 
-  getFanImg(fan: IFan): string {
-    return fan.HeadImageURL || this.profile.DefaultHeadImage;
-  }
 }

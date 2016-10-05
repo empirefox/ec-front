@@ -20,6 +20,7 @@ import 'lodash/keyBy';
 import 'lodash/sumBy';
 import 'lodash/uniq';
 import 'lodash/values';
+import 'lodash/unescape';
 
 import 'angular2-infinite-scroll';
 import 'angular2-jwt'; // user

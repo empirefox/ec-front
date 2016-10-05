@@ -54,7 +54,7 @@ export class ProductInfoComponent {
 
   onOpenSkus(isBuy) { this.parent.openSkus(isBuy); }
 
-  gotoAddressSelector() { this.router.navigate(['../../addrs'], { relativeTo: this.route }); }
+  gotoAddressSelector() { this.router.navigate(['../../../addrs', this.product.ID], { relativeTo: this.route }); }
 
   gotoProductDetail() { this.router.navigate(['../detail'], { relativeTo: this.route }); }
 

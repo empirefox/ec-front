@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 import { constMap, IProfile, ProfileService, IVipRebateOrigin, MyVips, VipService, VipRebatePayload, MoneyService } from '../core';
 
@@ -28,12 +28,12 @@ export class QualificationComponent {
     private moneyService: MoneyService) { }
 
   ngOnInit() {
+    let data = <{ profile: IProfile }>this.route.snapshot.data;
+    this.profile = data.profile;
     this.sub = Observable.forkJoin(
-      this.profileService.getProfile().take(1),
       this.vipService.getMyVips().take(1),
       this.vipService.getQualifications().take(1),
-    ).subscribe(([profile, myvips, qs]: [IProfile, MyVips, IVipRebateOrigin[]]) => {
-      this.profile = profile;
+    ).subscribe(([myvips, qs]: [MyVips, IVipRebateOrigin[]]) => {
       this.qualifications = qs;
       this.current = myvips.current;
       this.vips = myvips.items;

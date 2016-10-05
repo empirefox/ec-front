@@ -4,17 +4,24 @@
     <p class="dj">冻结中<br><span>￥{{frozen|money}}</span></p>
     <p>返利中<br><span>￥{{unrebated|money}}</span></p>
   </div>
-  <div class="tips_info" *ngFor="let rebate of rebates">
-    <h3>￥{{rebate.Amount|money}} : {{rebate.DoneAt?'已完成':'进行中'}}</h3>
-    <h3 *ngIf="rebate.Remark">{{rebate.Remark}}</h3>
-    <h3>完成{{rebate.items.length}}/{{rebate.Stages}}期</h3>
-    <ul class="log-list">
-      <li *ngFor="let item of rebate.items">
-        <div class="money add">+{{item.Amount|money}}</div>
-        <time class="date">{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</time>
+  <div class="tips_info">
+    <h3>返利明细</h3>
+  </div>
+  <div class="reward-item">
+    <ul *ngFor="let rebate of rebates">
+      <li>
+        <p>￥{{rebate.Amount|money}}:<i>{{rebate.DoneAt?'已完成':'进行中'}}</i>
+          <span>完成{{rebate.items.length}}期</span>
+        </p>
+        <p class="remark">{{rebate.Remark}}</p>
+        <ul class="log-list">
+          <li *ngFor="let item of rebate.items">
+            <div [ngClass]="moneyClass(item)">{{moneyPre(item)}}{{item.Amount|money}}</div>
+            <time class="date">{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</time>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
 </div>
-
 <footer-bar></footer-bar>

@@ -1,30 +1,43 @@
 <header1>全返资格</header1>
 
-<p>我购买的VIP套餐列表:</p>
-<div *ngIf="vips">
-  <div [class.current]="item.ID===current?.ID" *ngFor="let item of vips">
-    <p>VIP.ID:{{item.ID}}</p>
-    <p>VIP金额:{{item.Amount|money}}</p>
-    <p>VIP已返金额:{{(item.Amount-item.Balance)|money}}</p>
-    <p>VIP未返金额:{{item.Balance|money}}</p>
-    <p>VIP效用时间:{{item.NotBefore|date:'y.MM.dd HH:mm:ss'}} - {{item.ExpiresAt|date:'y.MM.dd HH:mm:ss'}}</p>
+<div about="main-layout">
+  <div class="rebate-center">
+    <dl>
+      <dt>
+        <h3>我购买的vip套餐列表</h3>
+      </dt>
+      <dd>
+        <ul [class.current]="item.ID===current?.ID" *ngFor="let item of vips">
+          <li>VIP金额：{{item.Amount|money}}</li>
+          <li>VIP已返金额：{{(item.Amount-item.Balance)|money}}</li>
+          <li>VIP未返金额：{{item.Balance|money}}</li>
+          <li>VIP效用时间：{{item.NotBefore|date:'y.MM.dd HH:mm:ss'}} - {{item.ExpiresAt|date:'y.MM.dd HH:mm:ss'}}</li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+  <div class="rebate-center mt5 rebate-item">
+    <dl>
+      <dt>
+        <h3>选择下列资格进行返利</h3>
+      </dt>
+      <dd>
+        <p class="tips">如果您不是vip，奖励将被冻结至成为vip;分期返利只能vip享用</p>
+        <a (click)="onRebate()" [class.active]="canRebate">
+          分期进行返利<span *ngIf="canRebate">，预计￥{{current?.Amount/2|money}}</span>
+        </a>
+        <a (click)="onReward()" [class.active]="canReward">
+          兑换奖励<span *ngIf="canReward">为￥{{selected.length}}x{{profile.RewardFromVipCent|money}}</span>
+        </a>
+      </dd>
+      <dd>
+        <h3 class="mb5">我的可用的全返资格：</h3>
+        <div class="qualify" [class.selected]="isSelected(item)" *ngFor="let item of qualifications" (click)="onSelect(item)">
+          <p>来源: {{item.name}}</p>
+          <p>VIP金额：{{item.Amount|money}}</p>
+        </div>
+      </dd>
+    </dl>
   </div>
 </div>
-
-
-<p>选择下列资格进行返利:</p>
-<a (click)="onRebate()" [class.active]="canRebate">分期进行返利，预计{{current?.Amount/2|money}}</a>
-<p>如果您不是vip，奖励将被冻结至成为vip；分期返利只能vip享用。</p>
-<a (click)="onReward()" [class.active]="canReward">
-  兑换奖励<span *ngIf="canReward">为{{selected.length}}x{{profile.RewardFromVipCent|money}}</span>
-</a>
-
-
-<p>我的可用全返资格:</p>
-<div [class.selected]="isSelected(item)" *ngFor="let item of qualifications" (click)="onSelect(item)">
-  <p>VIP.ID:{{item.ID}}</p>
-  <p>VIP昵称:{{item.name}}</p>
-  <p>VIP金额:{{item.Amount|money}}</p>
-</div>
-
 <footer-bar></footer-bar>
