@@ -11,7 +11,7 @@ import { IUserInfo, IUserTokenResponse, IRefreshTokenResponse } from './user';
 @Injectable()
 export class TokenService {
 
-  private _userinfo: Observable<IUserInfo>;
+  _userinfo: Observable<IUserInfo>;
   private headSrc: Observable<string>;
   private headNonce: string = nonce(8);
 
@@ -21,6 +21,15 @@ export class TokenService {
     private http: AuthHttp,
     private profileService: ProfileService,
     private jwt: Jwt) { }
+
+  getUserinfo(): Observable<IUserInfo> {
+    if (!this._userinfo) {
+      this.jwt.accessToken = '';
+      this.jwt.refreshToken = '';
+      return this.mustUpdateToken().flatMap(_ => this._userinfo);
+    }
+    return this._userinfo;
+  }
 
   isLoggedIn(): boolean {
     return this.jwt.notExpired();
@@ -41,7 +50,7 @@ export class TokenService {
     user.User1 = +claims.us1;
     this.jwt.accessToken = res.AccessToken;
     this.jwt.refreshToken = res.RefreshToken;
-    this._userinfo = Observable.of(user).publishReplay(1).refCount();
+    this._userinfo = Observable.of(user);
     return res.AccessToken;
   }
 

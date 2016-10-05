@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import {
+  IProfile,
   IUserInfo,
   UserService,
   IWishItem,
@@ -18,13 +19,14 @@ import {
 })
 export class MemberPageComponent {
 
-  defaultHeadImage: string;
+  profile: IProfile;
   user: IUserInfo;
   wishlistLen: number;
   wallet: IWallet;
   historyLen: number;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService,
     private historyService: HistoryService,
@@ -33,15 +35,12 @@ export class MemberPageComponent {
     private moneyService: MoneyService) { }
 
   ngOnInit() {
+    let data = <{ profile: IProfile, user: IUserInfo, wallet: IWallet }>this.route.snapshot.data;
+    this.profile = data.profile;
+    this.user = data.user;
+    this.wallet = data.wallet;
     this.historyLen = this.historyService.getItems().length;
-    this.profileService.getProfile().take(1).subscribe(profile => this.defaultHeadImage = profile.DefaultHeadImage);
-    this.userService.getUserinfo().take(1).subscribe(user => this.user = user);
     this.wishlistService.getItems().take(1).subscribe(items => this.wishlistLen = items.length);
-    this.moneyService.getWallet().take(1).subscribe(wallet => this.wallet = wallet);
-  }
-
-  get headImage(): string {
-    return (this.user && this.user.HeadImageURL) || this.defaultHeadImage;
   }
 
   onGotoWishlist() { this.router.navigateByUrl('/wishlist'); }

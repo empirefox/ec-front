@@ -12,7 +12,7 @@ import { QualificationComponent } from './qualification';
 import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
-import { URLS, ProfileResolver } from './core';
+import { URLS, ProfileResolver, UserResolver, WalletResolver } from './core';
 
 export const ROUTES: Routes = [
 
@@ -23,7 +23,15 @@ export const ROUTES: Routes = [
   { path: 'fans', component: FansComponent },
   { path: 'groupbuy', component: GroupBuyPageComponent },
   { path: 'history', component: HistoryComponent },
-  { path: 'member', component: MemberPageComponent },
+  {
+    path: 'member',
+    component: MemberPageComponent,
+    resolve: {
+      profile: ProfileResolver,
+      user: UserResolver,
+      wallet: WalletResolver,
+    },
+  },
   { path: 'member-qr', component: MemberQrComponent },
 
   { path: 'search', component: SearchPageComponent },

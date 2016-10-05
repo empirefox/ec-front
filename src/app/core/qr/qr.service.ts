@@ -16,7 +16,7 @@ export class QrService {
 
   getMyQrDataURL(): Observable<string> {
     if (!this._qr) {
-      this.userService.getUserinfo().take(1).map(info => {
+      this._qr = this.userService.getUserinfo().take(1).map(info => {
         let config: any = this.getConfig();
         let { ColorOut: colorOut, ColorIn: colorIn} = config;
 
@@ -49,7 +49,7 @@ export class QrService {
           };
         }
         return <string>qrgen.canvas(options).toDataURL();
-      }).publishReplay(1).refCount();
+      });
     }
     return this._qr;
   }

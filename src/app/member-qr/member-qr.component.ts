@@ -11,6 +11,6 @@ export class MemberQrComponent {
 
   constructor(
     private router: Router,
-    private qrService: QrService) { }
+    public qrService: QrService) { }
 
 }

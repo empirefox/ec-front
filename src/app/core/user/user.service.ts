@@ -21,7 +21,6 @@ import { RetryHttp } from './retry-http';
 @Injectable()
 export class UserService {
 
-  private _userinfo: Observable<IUserInfo>;
   private headSrc: Observable<string>;
   private headNonce: string = nonce(8);
 
@@ -51,12 +50,7 @@ export class UserService {
   }
 
   getUserinfo(): Observable<IUserInfo> {
-    if (!this._userinfo) {
-      this.jwt.accessToken = '';
-      this.jwt.refreshToken = '';
-      return this.tokenService.mustUpdateToken().flatMap(_ => Observable.throw('Login'));
-    }
-    return this._userinfo;
+    return this.tokenService.getUserinfo();
   }
 
   setUserinfo(writable: ISetUserInfoPayload): Observable<IUserInfo> {
@@ -67,7 +61,7 @@ export class UserService {
         return Observable.of(Object.assign({}, info));
       });
     }).publishReplay(1).refCount();
-    return this._userinfo = user$;
+    return this.tokenService._userinfo = user$;
   }
 
   // return times can be sent
@@ -99,7 +93,7 @@ export class UserService {
       }
       return this.http.post(URLS.USER_PAYKEY_SET, JSON.stringify(payload)).flatMap(_ => {
         info.HasPayKey = true;
-        return this._userinfo = Observable.of(Object.assign({}, info)).publishReplay(1).refCount();
+        return this.tokenService._userinfo = Observable.of(Object.assign({}, info)).publishReplay(1).refCount();
       });
     });
   }
