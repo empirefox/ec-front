@@ -153,7 +153,7 @@ export class ProductService {
     one2manyRelate(Groups, Attrs, O2M_GROUP_ATTRS_OPTION);
     let specials = <Dict<string>>{};
     specialPresets.forEach(item => specials[item] = '');
-    Specials.forEach(item => specials[item.Name] = `SpecialID:eq:${item.ID}`);
+    Specials.forEach(item => specials[item.Name] = `SpecialID.eq.${item.ID}`);
     return {
       groups: keyBy(Groups, item => item.ID),
       attrs: keyBy(Attrs, item => item.ID),
