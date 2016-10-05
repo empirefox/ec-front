@@ -5,7 +5,7 @@
 
   <div dropzone (success)="onSuccess($event)" (fail)="onFail($event)" (added)="onAdded()" (removed)="onRemoved()"
       #uploader="dropzone"></div>
-  <a (click)="upload(uploader)" [class.active]="uploadActive">确认修改</a>
+  <button (click)="upload(uploader)" [class.active]="uploadActive">确认修改</button>
 
   <pre *ngIf="error">
   Debug error = {{error|json}}
