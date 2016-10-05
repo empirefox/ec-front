@@ -1,5 +1,6 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
+import toPairs = require('lodash/toPairs');
 import { format } from './format';
 import { translate } from './translate';
 import * as typsTrans from './trans-values';
@@ -67,6 +68,18 @@ let javaTransTyps = transTargets.map(typ => {
   `
 });
 
+let javaTransArr = Object.keys(constsTransMap).map(typ => {
+  let typTrans = constsTransMap[typ];
+  let arr = toPairs(typTrans).sort((a, b) => a[0] - b[0]).map(item => item[1]);
+  return `public final static String[] ${typ} = ${JSON.stringify(arr)};`;
+});
+
+let javaTransArrClass = `
+  public final class BackendConstTransArrs {
+		${javaTransArr.join('\n')}
+	}
+  `;
+
 let javaConst = `public final class BackendConst {
 	${javaConstTyps.join('')}
 }`;
@@ -77,3 +90,4 @@ let javaConstTrans = `public final class BackendConstTrans {
 
 writeFileSync(join(__dirname, './BackendConst.java'), javaConst);
 writeFileSync(join(__dirname, './BackendConstTrans.java'), javaConstTrans);
+writeFileSync(join(__dirname, './BackendConstTransArrs.java'), javaTransArrClass);
