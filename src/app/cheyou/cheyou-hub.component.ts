@@ -9,8 +9,4 @@ export class CheyouHubComponent {
 
   constructor(private router: Router) { }
 
-  get isDetailActive() {
-    return this.router.isActive('cheyou/detail', false);
-  }
-
 }

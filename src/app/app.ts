@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Overlay } from 'angular2-modal';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   selector: 'app',
@@ -8,7 +10,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class App {
 
-  constructor() { }
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal) {
+    overlay.defaultViewContainer = vcRef;
+  }
 
   ngOnInit() { }
 

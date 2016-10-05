@@ -31,6 +31,10 @@ export class CheyouListComponent {
     });
   }
 
+  get show() {
+    return this.profile && this.user && this.items;
+  }
+
   gotoDetail() { this.router.navigateByUrl('/cheyou/detail'); }
   gotoMy() { this.router.navigateByUrl('/cheyou/my'); }
 
