@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import keyBy = require('lodash/keyBy');
 import { URLS } from '../profile';
 import { createdAtSortor } from '../util';
 import { RetryHttp } from '../user';
-import { IVipIntro, IVipRebateOrigin, MyVips } from './vip';
+import { IVipIntro, IVipRebateOrigin, MyVips, IVipRebateOriginResponse } from './vip';
 
 @Injectable()
 export class VipService {
@@ -42,8 +43,13 @@ export class VipService {
   }
 
   getQualifications(): Observable<IVipRebateOrigin[]> {
-    return this.http.get(URLS.QUALIFICATIONS).
-      map(res => (<IVipRebateOrigin[]>res.json() || []).filter(item => !item.User1Used).sort(createdAtSortor));
+    return this.http.get(URLS.QUALIFICATIONS).map(res => {
+      let r = <IVipRebateOriginResponse>res.json();
+      let items = r.Items || [];
+      let names = keyBy(r.Names, item => item.ID);
+      items.forEach(item => item.name = names[item.UserID] && names[item.Amount].Nickname);
+      return items.filter(item => !item.User1Used).sort(createdAtSortor);
+    })
   }
 
 }

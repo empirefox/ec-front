@@ -19,6 +19,7 @@ export interface IVipIntro {
 
 export interface IVipRebateOrigin {
   ID: number;
+  UserID: number;
   CreatedAt: number;
   NotBefore: number;
   ExpiresAt: number;
@@ -28,9 +29,21 @@ export interface IVipRebateOrigin {
   Balance: number;
   User1: number;
   User1Used: boolean;
+
+  name: string;
 }
 
 export interface MyVips {
   current?: IVipRebateOrigin;
   items: IVipRebateOrigin[];
+}
+
+export interface IVipName {
+  ID: number;
+  Nickname: string;
+}
+
+export interface IVipRebateOriginResponse {
+  Items: IVipRebateOrigin[];
+  Names: IVipName[];
 }
