@@ -104,6 +104,8 @@ export class ProductPageComponent implements OnInit {
     return (this.sku || this.product.skus[0]).SalePrice;
   }
 
+  get canAddToCart() { return this.sku && this.product.Vpn === constMap.VpnType.TVpnNormal; }
+
   onGuanzhu() {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
@@ -124,7 +126,6 @@ export class ProductPageComponent implements OnInit {
       if (this.sku) {
         this.sku.quantity = this.sku.quantity < 1 ? 1 : this.sku.quantity;
         if (isBuy) {
-          console.log('buy')
           let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.quantity };
           if (this.groupBuyItem) {
             cache.GroupBuyID = this.groupBuyItem.ID;
@@ -132,12 +133,12 @@ export class ProductPageComponent implements OnInit {
           }
           this.orderService.setCheckoutItemCache(cache);
           this.router.navigate(['/checkout'], { queryParams: { src: 'cache' } });
-        } else if (this.sku && this.product.Vpn === constMap.VpnType.TVpnNormal) {
+          this.showSkus = false;
+        } else if (this.canAddToCart) {
           this.cartService.add(this.sku).flatMap(_ => this.cartService.getItems()).take(1).
             subscribe(items => this.setCartLen(items));
-          console.log('cart')
+          this.showSkus = false;
         }
-        this.showSkus = false;
       }
     } else {
       this.showSkus = true;
