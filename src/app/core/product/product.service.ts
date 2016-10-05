@@ -40,8 +40,6 @@ export class ProductService {
   }
 
   findSku(product: IProduct, attrs: ProductAttr[]): ISku {
-    console.log('a',product.skus[0].attrs.map(attr => attr.ID).sort())
-    console.log('b',attrs.map(attr => attr.ID).sort())
     return product.skus.find(sku => isEqual(
         sku.attrs.map(attr => attr.ID).sort(), 
         attrs.map(attr => attr.ID).sort(),

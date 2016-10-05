@@ -5,7 +5,7 @@
     <p>返利中<br><span>￥{{unrebated|money}}</span></p>
   </div>
   <div class="tips_info" *ngFor="let rebate of rebates">
-    <h3>￥{{rebate.Amount|money}} : {{reabte.DoneAt?'已完成':'进行中'}}</h3>
+    <h3>￥{{rebate.Amount|money}} : {{rebate.DoneAt?'已完成':'进行中'}}</h3>
     <h3 *ngIf="rebate.Remark">{{rebate.Remark}}</h3>
     <h3>完成{{rebate.items.length}}/{{rebate.Stages}}期</h3>
     <ul class="log-list">

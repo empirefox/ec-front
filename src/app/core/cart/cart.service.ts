@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import keyBy = require('lodash/keyBy');
 import { updateAfterSave, createdAtSortor } from '../util';
 import { constMap } from '../consts';
 import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { ISku } from '../product';
 import { ICartItemContent, ICartItem, ICartResponse } from './cart-item';
 
@@ -13,7 +13,7 @@ export class CartService {
 
   private _items: Observable<ICartItem[]> = null;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   clearCache() {
     this._items = null;

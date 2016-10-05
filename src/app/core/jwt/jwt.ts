@@ -38,7 +38,11 @@ export class Jwt extends JwtHelper {
   }
 
   tokenExpired(token: string, offsetSeconds?: number) {
-    return !token || this.isTokenExpired(token, offsetSeconds);
+    try {
+      return !token || this.isTokenExpired(token, offsetSeconds);
+    } catch (error) {
+      return false;
+    }
   }
 
   notExpired() { return !this.tokenExpired(this.accessToken, 10); }

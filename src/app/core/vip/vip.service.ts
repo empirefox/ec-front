@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import { URLS } from '../profile';
 import { createdAtSortor } from '../util';
+import { RetryHttp } from '../user';
 import { IVipIntro, IVipRebateOrigin, MyVips } from './vip';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class VipService {
 
   constructor(
     private rawHttp: Http,
-    private http: AuthHttp) { }
+    private http: RetryHttp) { }
 
   clearCache() {
     this._items = null;

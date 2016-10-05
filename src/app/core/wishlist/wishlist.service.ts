@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AuthHttp } from 'angular2-jwt';
-import { URLS } from '../profile';
 import { Observable } from 'rxjs/Observable';
 import keyBy = require('lodash/keyBy');
+import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { IProduct } from '../product';
 import { IWishItem, IWishListResponse, IWishlistSavePayload } from './wishlist';
 
@@ -11,7 +11,7 @@ export class WishlistService {
 
   private _items: Observable<IWishItem[]> = null;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   clearCache() {
     this._items = null;
@@ -19,7 +19,8 @@ export class WishlistService {
 
   getItems(): Observable<IWishItem[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.WISH_LIST).map(res => this.parseResponse(res.json() || {})).publishReplay(1).refCount();
+      this._items = this.http.get(URLS.WISH_LIST).
+        map(res => this.parseResponse(res.json() || {})).publishReplay(1).refCount();
     }
     return this._items;
   }

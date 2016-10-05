@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import groupBy = require('lodash/groupBy');
 import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { IDelivery, IDeliveryItem } from './delivery';
 
 @Injectable()
 export class DeliveryService {
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   query(orderId: number): Observable<IDelivery> {
     return this.http.get(URLS.Delivery(orderId)).map(res => this.initItems(<IDelivery>res.json()));

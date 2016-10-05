@@ -12,6 +12,7 @@ import { RatingModule, NavMenuListComponent, COMMONS_COMPONENTS } from './common
 
 import { APP_CORE_PIPES, APP_CORE_PROVIDERS } from './core';
 import { APP_DIRECTIVES } from './directives';
+import { APP_CORE_INTERFACES } from './interfaces';
 
 // TODO add components
 @NgModule({
@@ -48,6 +49,7 @@ import { APP_DIRECTIVES } from './directives';
   ],
   providers: [
     ...APP_CORE_PROVIDERS,
+    ...APP_CORE_INTERFACES,
   ],
 })
 export class CoreModule { }

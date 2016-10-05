@@ -23,13 +23,23 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: '', // wallet
+        path: '',
+        redirectTo: 'center',
+        pathMatch: 'full',
+      },
+      {
+        path: 'center',
         component: WalletComponent,
       },
       {
         path: 'balance',
         component: BalanceComponent,
         children: [
+          {
+            path: '',
+            redirectTo: 'cash',
+            pathMatch: 'full',
+          },
           {
             path: 'cash',
             component: BalanceCashComponent,

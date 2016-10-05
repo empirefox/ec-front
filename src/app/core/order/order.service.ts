@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import { stringify } from 'querystringify';
 import { URLS, CommonQuery } from '../profile';
 import { createdAtSortor, splitToParents } from '../util';
+import { RetryHttp } from '../user';
 import { IWxPayArgs, MoneyService } from '../money';
 import { ISku, IEvalItem } from '../product';
 import {
@@ -29,7 +29,7 @@ export class OrderService {
   private _orderFromCheckoutCache: IOrder;
 
   constructor(
-    private http: AuthHttp,
+    private http: RetryHttp,
     private moneyService: MoneyService) { }
 
   getCheckoutItemCache() { return this._checkoutItemCache; }
@@ -140,13 +140,14 @@ export class OrderService {
 
   private _query(query: CommonQuery): Observable<IOrder[]> {
     this._querying = true;
-    return this.http.get(URLS.ORDER_LIST, { search: stringify(query) }).map(res => {
-      this._querying = false;
-      return this.equipOrders(res.json() || {});
-    }).catch((err, caught) => {
-      this._querying = false;
-      return caught;
-    }).publishReplay(1).refCount();
+    return this.http.get(URLS.ORDER_LIST, { search: stringify(query) }).
+      map(res => {
+        this._querying = false;
+        return this.equipOrders(res.json() || {});
+      }).catch((err, caught) => {
+        this._querying = false;
+        return caught;
+      }).publishReplay(1).refCount();
   }
 
   private _assign(dest: IOrder, src: IOrder): IOrder {

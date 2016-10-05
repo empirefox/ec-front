@@ -19,9 +19,9 @@ export class HomeNavBarComponent {
     this.productService.getAttrs().take(1).subscribe(attrs => this.specials = attrs.specials);
   }
 
-  gotoHot() { this.router.navigate(['./product/list'], { queryParams: { ft: this.specials['hot'] } }); }
+  gotoHot() { this.router.navigate(['./product/list'], { queryParams: { ft: this.specials['爆品'] } }); }
   gotoNews() { this.router.navigateByUrl('/news'); }
-  gotoNew() { this.router.navigate(['./product/list'], { queryParams: { ft: this.specials['new'] } }); }
+  gotoNew() { this.router.navigate(['./product/list'], { queryParams: { ft: this.specials['新品'] } }); }
   gotoCheyou() { this.router.navigateByUrl('/cheyou'); }
   gotoPoints() { this.router.navigate(['./product/list'], { queryParams: { ft: `Vpn.eq.${constMap.VpnType.TVpnPoints}` } }); }
 

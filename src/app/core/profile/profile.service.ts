@@ -16,6 +16,7 @@ export class ProfileService {
 
   getProfile(): Observable<IProfile> {
     if (!this._item) {
+      // no retry
       this._item = this.http.get(URLS.PROFILE).map(res => <IProfile>(res.json() || {})).publishReplay(1).refCount();
     }
     return this._item;

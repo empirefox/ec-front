@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthHttp } from 'angular2-jwt';
 import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { ICaptcha } from './captcha';
 
 @Injectable()
 export class CaptchaService {
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   getCaptcha(): Observable<ICaptcha> {
     return this.http.get(URLS.CAPTHCA).map(res => {

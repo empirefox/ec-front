@@ -14,7 +14,7 @@ export class WalletComponent {
     private router: Router,
     private base: LocalWalletBase) { }
 
-  gotoBalance() { this.router.navigate(['../balance'], { relativeTo: this.route }); }
-  gotoPoints() { this.router.navigate(['../points'], { relativeTo: this.route }); }
-  gotoReward() { this.router.navigate(['../reward'], { relativeTo: this.route }); }
+  gotoBalance() { this.router.navigateByUrl('/wallet/balance'); }
+  gotoPoints() { this.router.navigateByUrl('/wallet/points'); }
+  gotoReward() { this.router.navigateByUrl('/wallet/reward'); }
 }

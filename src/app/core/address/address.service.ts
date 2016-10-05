@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthHttp } from 'angular2-jwt';
 import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { updateAfterSave, posSortor } from '../util';
 import { IAddress } from './address';
 
@@ -10,7 +10,7 @@ export class AddressService {
 
   private _items: Observable<IAddress[]> = null;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   clearCache() {
     this._items = null;

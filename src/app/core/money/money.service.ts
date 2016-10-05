@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import sumBy = require('lodash/sumBy');
 import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { one2manyRelate } from '../util';
 import { IUserCash, IWallet, IWxPayArgs, WithdrawPayload, VipRebatePayload } from './money';
 
@@ -14,7 +14,7 @@ const O2M_REBATE_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'rebate', many
 @Injectable()
 export class MoneyService {
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   getWallet(): Observable<IWallet> {
     return this.http.get(URLS.WALLET).map(res => {

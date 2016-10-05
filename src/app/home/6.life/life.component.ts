@@ -22,7 +22,7 @@ export class HomeLifeComponent {
 
   ngOnInit() {
     this.productService.getAttrs().
-      flatMap(attrs => this.productService.query({ ft: attrs.specials['life'], sz: 2 * 3 })).
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['爱生活'], sz: 2 * 3 })).
       take(1).subscribe(items => {
         items.forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
         this.first = items.slice(0, 3);

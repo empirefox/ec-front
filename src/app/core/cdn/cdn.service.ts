@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthHttp } from 'angular2-jwt';
 import { URLS } from '../profile';
+import { RetryHttp } from '../user';
 import { IHeadUptokenResponse, HeadUptoken } from './cdn';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class CdnService {
 
   headUptoken: Observable<HeadUptoken>;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: RetryHttp) { }
 
   getHeadUptoken(): Observable<HeadUptoken> {
     this.headUptoken = (this.headUptoken || Observable.of(<HeadUptoken>{})).flatMap(head => {
