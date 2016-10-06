@@ -148,7 +148,8 @@ export class ProductPageComponent implements OnInit {
   closeSkus() { this.showSkus = false; }
 
   private refreshWishlist() {
-    return this.wishlistService.has(this.product.ID).map(has => this.inWishlist);
+    this.wishlistService.clearCache();
+    return this.wishlistService.has(this.product.ID).map(has => this.inWishlist = has);
   }
 
   private setCartLen(items: ICartItem[]) {

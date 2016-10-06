@@ -15,7 +15,7 @@
 <div class="goods-detail-foot" *ngIf="product">
   <div class="otreh-handle">
     <a (click)="gotoChat()" class="kefu"><i></i><p>客服</p></a>
-    <a (click)="onGuanzhu()" class="guanzhu" [style.color]="inWishlist?'red':'#333'"><i></i>cart<p>关注</p></a>
+    <a (click)="onGuanzhu()" class="guanzhu"><i [class.active]="inWishlist"></i>cart<p>关注</p></a>
     <a (click)="gotoCart()" class="cart"><i></i><p>购物车</p><span *ngIf="cartLen"><sup>{{cartLen}}</sup></span></a>
   </div>
   <div class="buy-handle ">

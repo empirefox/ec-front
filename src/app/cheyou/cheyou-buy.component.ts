@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import unescape = require('lodash/unescape');
 
 import {
   config, constMap,
@@ -44,6 +45,10 @@ export class CheyouBuyComponent {
   gotoBuy(sku: ISku) {
     this.productService.setCurrent(sku.product);
     this.router.navigate(['/product/1', sku.product.ID], { queryParams: { SkuID: sku.ID } });
+  }
+
+  alert(content: string, title: string) {
+    this.alert(unescape(content), title);
   }
 
 }
