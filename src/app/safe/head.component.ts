@@ -30,7 +30,7 @@ export class SetHeadComponent {
     let data = <{ profile: IProfile, user: IUserInfo }>this.route.snapshot.data;
     this.profile = data.profile;
     this.user = data.user;
-    this.key = `${this.profile.HeadPrefix}/${this.user.ID}`;
+    this.key = `${this.profile.HeadPrefix}${this.user.ID}`;
   }
 
   onSuccess(res: IQiniuItem) {
