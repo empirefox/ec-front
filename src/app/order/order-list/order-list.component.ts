@@ -81,7 +81,6 @@ export class OrderListComponent implements OnInit {
     );
 
     this.setFiltered();
-    this.view = this.view;
   }
 
   private setFiltered() {
@@ -89,6 +88,7 @@ export class OrderListComponent implements OnInit {
     this.checkoutFiltered = this.doFilter(this.checkout);
     this.receiptedFiltered = this.doFilter(this.receipted);
     this.returnedFiltered = this.doFilter(this.returned);
+    this.view = this.view;
   }
 
   private doFilter(src: IOrder[]): IOrder[] {
