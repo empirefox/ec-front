@@ -273,7 +273,7 @@ i.cc-09 { background-image: url(../img/mcc_09_b.png); background-size: cover;}
 .address-list li .handle span a i {display: inline-block; width: 0.8rem; height: 0.9rem; vertical-align: top; background-position: 50% 50%; background-repeat: no-repeat; background-size: 60%; margin-right: 0.05rem;}
 .address-list li .handle span a i.del { background-image: url(../img/del_b.png);}
 .address-list li .handle span a i.edit { background-image: url(../img/edit_b.png);}
-.add-address-footer{position: fixed;z-index: 1;top: auto;left: 0;right: 0;bottom: 0;height: 2.6rem;background-color: rgba(255,255,255,0.85);border-top: solid 0.05rem #EEE;}
+.add-address-footer{position: fixed;z-index: 1;top: auto;left: 0;right: 0;bottom: 2.2rem;height: 2.6rem;background-color: rgba(255,255,255,0.85);border-top: solid 0.05rem #EEE;}
 /* 我的积分 */
 .asset-info { display: block;}
 .asset-info .container { position: relative; z-index: 1; height: 3rem;}

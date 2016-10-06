@@ -18,7 +18,7 @@ export class AddressEditorPageComponent {
 
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
-    this.addressService.getItem(id).take(1).subscribe(addr => this.addr = addr);
+    this.addressService.getItem(id).take(1).subscribe(addr => this.addr = addr || <IAddress>{});
   }
 
   onSaved() { this.router.navigate(['/addr']); }

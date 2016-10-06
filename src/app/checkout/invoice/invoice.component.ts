@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Invoice } from '../../core';
 
 @Component({
@@ -10,6 +11,8 @@ export class InvoiceComponent implements OnInit {
 
   @Input() origin: Invoice;
   @Output() edited = new EventEmitter<Invoice>();
+
+  to = new FormControl('', Validators.required);
 
   need: boolean;
   invoice: Invoice;
