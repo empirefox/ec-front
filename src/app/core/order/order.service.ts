@@ -101,7 +101,7 @@ export class OrderService {
       return this._items;
     }
 
-    this._items = this._items.flatMap(exist => {
+    let items = this._items.flatMap(exist => {
       if (exist && exist.length) {
         let filter = next ?
           `CreatedAt.lt.${exist[exist.length - 1].CreatedAt}` :
@@ -113,16 +113,17 @@ export class OrderService {
       }
     });
 
-    this._items = this._items.publishReplay(1).refCount();
+    this._items = items.publishReplay(1).refCount();
     return this._items;
   }
 
   getOrder(id: number): Observable<IOrder> {
-    return !id ? Observable.of(null) :
+    let order = !id ? Observable.of(null) :
       (this._items || Observable.of([])).flatMap(items => {
         let item = items.find(i => i.ID === id);
         return item ? Observable.of(item) : this._queryOne(id);
       });
+    return order.publishReplay(1).refCount();
   }
 
   setCurrent(order: IOrder) {

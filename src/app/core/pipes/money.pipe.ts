@@ -21,6 +21,7 @@ export class PriceNoPipe implements PipeTransform {
     product = (!isVpn && product) || value.product || (value.sku && value.sku.product);
     let price = (isNumber(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
       (product && product.skus && product.skus[0] && product.skus[0].SalePrice);
+    price = price || 0;
     let isPoints = (isVpn && product as any as number) || (product && product.Vpn) === constMap.VpnType.TVpnPoints;
     return isPoints ? `${price}` : `${this.base.transform(price / 100, '1.2-2')}`;
   }
@@ -35,6 +36,7 @@ export class PricePipe implements PipeTransform {
     product = (!isVpn && product) || value.product || (value.sku && value.sku.product);
     let price = (isNumber(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
       (product && product.skus && product.skus[0] && product.skus[0].SalePrice);
+    price = price || 0;
     let isPoints = (isVpn && product as any as number) || (product && product.Vpn) === constMap.VpnType.TVpnPoints;
     return isPoints ? `${price}积分` : `￥${this.base.transform(price / 100, '1.2-2')}`;
   }

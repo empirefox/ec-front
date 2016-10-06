@@ -1,7 +1,7 @@
-import { ModuleWithProviders }   from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { OrderResolver, ProfileResolver } from '../core';
+import { OrderResolver, ProfileResolver, StoreResolver } from '../core';
 import { OrderListComponent } from './order-list';
 import { OrderDetailComponent } from './order-detail';
 import { OrderEvalComponent } from './eval';
@@ -33,6 +33,7 @@ export const routes: Routes = [
         resolve: {
           profile: ProfileResolver,
           order: OrderResolver,
+          sotres: StoreResolver,
         },
       },
       {

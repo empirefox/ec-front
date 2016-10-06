@@ -1,5 +1,5 @@
 .goods-detail-cnt { background: #F5F5F5; position: relative; z-index: 0; margin-top: 16rem;}
-.goods-detail-top { background-color: #FFF; display: block; position: fixed; z-index: -1; left: 0; right: 0; top: 0;}
+.goods-detail-top { background-color: #FFF; display: block; position: fixed; z-index: -1; left: 0; right: 0; top: 2rem;}
 .goods-detail-pic { position: relative; overflow: hidden; z-index: 1; width: 16rem; margin: 0 auto;}
 .goods-detail-pic ul { overflow: hidden; position: relative; font-size: 0; white-space: nowrap;}
 .goods-detail-pic ul li { display: inline-block; position: relative; z-index: auto;}

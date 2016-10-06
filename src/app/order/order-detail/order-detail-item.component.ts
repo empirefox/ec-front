@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { IOrderItem } from '../../core';
+import { IOrderItem, IStore } from '../../core';
 
 @Component({
   selector: 'order-detail-item',
@@ -10,6 +10,7 @@ import { IOrderItem } from '../../core';
 export class OrderDetailItemComponent {
 
   @Input() item: IOrderItem;
+  @Input() stores: IStore[];
 
   constructor(private router: Router) { }
 

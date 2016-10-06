@@ -9,6 +9,7 @@ export const UserCashType = {
   TUserCashReward: '奖励',
   TUserCashRebate: '返利',
   TUserCashStoreRebate: '返利(店铺推荐)',
+  TUserCashRecharge: '充值',
 };
 
 // TODO study http://help.vipshop.com/themelist.php?type=detail&id=330

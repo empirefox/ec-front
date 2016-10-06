@@ -15,7 +15,7 @@ export class OrderResolver implements Resolve<IOrder> {
   resolve(route: ActivatedRouteSnapshot): Observable<IOrder | boolean> {
     let id = +route.params['id'];
     return this.orderService.getOrder(id).map(order => {
-      if (order) {
+      if (!order) {
         this.router.navigateByUrl('/order');
       }
       return order;

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IOrder, IProfile, ModalService } from '../../core';
+import { IOrder, IProfile, ModalService, IStore } from '../../core';
 
 @Component({
   templateUrl: './order-detail.html',
@@ -10,6 +10,7 @@ export class OrderDetailComponent implements OnInit {
 
   order: IOrder;
   profile: IProfile;
+  stores: IStore[];
   phone: string;
   payMethod: string;
 
@@ -19,8 +20,9 @@ export class OrderDetailComponent implements OnInit {
     private modal: ModalService) { }
 
   ngOnInit() {
-    let data = <{ profile: IProfile, order: IOrder }>this.route.snapshot.data;
+    let data = <{ profile: IProfile, order: IOrder, stores: IStore[] }>this.route.snapshot.data;
     this.profile = data.profile;
+    this.stores = data.stores;
     this.phone = `tel:${data.profile.Phone}`;
     this.order = data.order;
     this.payMethod = this.order.IsDeliverPay ? '货到付款' : '在线付款';

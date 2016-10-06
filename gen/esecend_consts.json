@@ -125,7 +125,8 @@
     "TUserCashWithdraw",
     "TUserCashReward",
     "TUserCashRebate",
-    "TUserCashStoreRebate"
+    "TUserCashStoreRebate",
+    "TUserCashRecharge"
   ],
   "VipRebateType": [
     "TVipRebateUnknown",
