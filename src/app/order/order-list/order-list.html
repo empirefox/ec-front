@@ -5,16 +5,16 @@
   </div>
   <div class="single-nav">
     <ul class="w33h">
-      <li [class.selected]="all&&orders===all"><a (click)="setCurrent(all)">全部</a></li>
-      <li [class.selected]="all&&orders===checkout"><a (click)="setCurrent(checkout)">待付款</a></li>
-      <li [class.selected]="all&&orders===receipted"><a (click)="setCurrent(receipted)">待评价</a></li>
-      <li [class.selected]="all&&orders===returned"><a (click)="setCurrent(returned)">退款/退货</a></li>
+      <li [class.selected]="view==='all'"><a (click)="view='all'">全部</a></li>
+      <li [class.selected]="view==='checkout'"><a (click)="view='checkout'">待付款</a></li>
+      <li [class.selected]="view==='receipted'"><a (click)="view='receipted'">待评价</a></li>
+      <li [class.selected]="view==='returned'"><a (click)="view='returned'">退款/退货</a></li>
     </ul>
   </div>
   <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll(true)" (scrolledUp)="onScroll(false)"
       infinite-scroll class="order-list">
     <ul>
-      <li *ngFor="let order of orders; trackBy:trackByItems" class="green-order-skin">
+      <li *ngFor="let order of current; trackBy:trackByItems" class="green-order-skin">
         <order-list-item [order]="order"></order-list-item>
       </li>
     </ul>

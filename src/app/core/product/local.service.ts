@@ -26,7 +26,6 @@ export class LocalProductServiceFactory {
 export class LocalProductService {
 
   query: CommonQuery;
-  private _page: number;
 
   private _items: Observable<IProduct[]>;
   private _querying = false;
@@ -41,14 +40,15 @@ export class LocalProductService {
 
   exist(): Observable<IProduct[]> {
     if (!this._items) {
-      this._items = this._query(this._page = 0).publishReplay(1).refCount();
+      this._items = this._query().publishReplay(1).refCount();
     }
     return this._items;
   }
 
   nextItems(): Observable<IProduct[]> {
     if (!this._items) {
-      this._items = this._query(this._page = 0).publishReplay(1).refCount();
+      console.log('init items')
+      this._items = this._query().publishReplay(1).refCount();
       return this._items;
     }
 
@@ -58,10 +58,12 @@ export class LocalProductService {
 
     this._items = this._items.flatMap(exist => {
       if (exist && exist.length) {
-        return this._query(++this._page).
+        console.log('fetch next items')
+        return this._query(exist.length).
           flatMap(items => Observable.of(items.length ? [...exist, ...items] : exist));
       } else {
-        return this._query(this._page = 0);
+        console.log('try first page items')
+        return this._query();
       }
     });
 
@@ -76,9 +78,9 @@ export class LocalProductService {
     }).publishReplay(1).refCount();
   }
 
-  private _query(page: number): Observable<IProduct[]> {
+  private _query(start: number = 0): Observable<IProduct[]> {
     this._querying = true;
-    return this.productService.query(Object.assign({}, this.query, page)).map(items => {
+    return this.productService.query(Object.assign({}, this.query, { st: start })).map(items => {
       this._querying = false;
       return items;
     }).catch((err, caught) => {
