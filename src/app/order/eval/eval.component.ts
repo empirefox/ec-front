@@ -42,7 +42,7 @@ export class OrderEvalComponent implements OnInit {
 
   onSubmit() {
     this.orderService.evalOrder(this.order, this.form.value, this.allControl.value && this.current.ID).
-      subscribe(_ => this.router.navigate(['../../list']));
+      subscribe(_ => this.router.navigate(['../../list'], { relativeTo: this.route }));
   }
 
   setCurrent(item: IOrderItem) {

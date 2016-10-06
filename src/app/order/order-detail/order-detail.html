@@ -41,7 +41,7 @@
         </dl>
         <dl class="t">
           <dt>实付款（含运费）</dt>
-          <dd><em>{{order.PayAmount|price:order.Items[0].Vpn}}</em></dd>
+          <dd><em>{{order.PayPoints||order.PayAmount|price:order.Items[0].Vpn}}</em></dd>
         </dl>
       </div>
     </div>

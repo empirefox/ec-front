@@ -72,14 +72,20 @@ export class CartService {
 
     let skuMap = keyBy(skus, item => item.ID);
     let productMap = keyBy(products, item => item.ID);
+    let valid: ICartItem[] = [];
+    let invalid: ICartItem[] = [];
     items.forEach(item => {
       let sku = skuMap[item.SkuID];
       if (sku) {
         sku.product = productMap[sku.ProductID];
         item.sku = sku;
+        valid.push(item);
+      } else {
+        invalid.push(item);
       }
     });
-    return items;
+    this.delete(invalid.map(i => i.SkuID)).subscribe();
+    return valid;
   }
 
   private initItem(item: ICartItem) {

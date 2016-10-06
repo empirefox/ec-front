@@ -12,17 +12,20 @@ interface Pricer {
   product?: IProduct;
 }
 
+// Cannot read property 'product' of undefined: value is null!!!
 @Pipe({ name: 'priceNo' })
 export class PriceNoPipe implements PipeTransform {
   base = new DecimalPipe('zh-CN');
   // accept number, sku or any object which has Price
   transform(value: Pricer, product?: IProduct) {
     let isVpn = isNumber(product);
+    let vpn = (isVpn && product as any as number);
     product = (!isVpn && product) || value.product || (value.sku && value.sku.product);
     let price = (isNumber(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
       (product && product.skus && product.skus[0] && product.skus[0].SalePrice);
     price = price || 0;
-    let isPoints = (isVpn && product as any as number) || (product && product.Vpn) === constMap.VpnType.TVpnPoints;
+    vpn = vpn || (product && product.Vpn);
+    let isPoints = vpn === constMap.VpnType.TVpnPoints;
     return isPoints ? `${price}` : `${this.base.transform(price / 100, '1.2-2')}`;
   }
 }
@@ -33,11 +36,13 @@ export class PricePipe implements PipeTransform {
   // accept number, sku or any object which has Price
   transform(value: Pricer, product?: IProduct) {
     let isVpn = isNumber(product);
+    let vpn = (isVpn && product as any as number);
     product = (!isVpn && product) || value.product || (value.sku && value.sku.product);
     let price = (isNumber(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
       (product && product.skus && product.skus[0] && product.skus[0].SalePrice);
     price = price || 0;
-    let isPoints = (isVpn && product as any as number) || (product && product.Vpn) === constMap.VpnType.TVpnPoints;
+    vpn = vpn || (product && product.Vpn);
+    let isPoints = vpn === constMap.VpnType.TVpnPoints;
     return isPoints ? `${price}积分` : `￥${this.base.transform(price / 100, '1.2-2')}`;
   }
 }

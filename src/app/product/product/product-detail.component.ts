@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import unescape = require('lodash/unescape');
 import { IProduct } from '../../core';
@@ -8,6 +8,7 @@ import { ProductPageComponent } from './product-page.component';
   selector: 'product-detail',
   templateUrl: './product-detail.html',
   styleUrls: ['./product-detail.css'],
+  encapsulation: ViewEncapsulation.Native,
 })
 export class ProductDetailComponent {
 

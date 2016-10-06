@@ -29,8 +29,8 @@ export class BindPhoneComponent {
     this.onChangeCaptcha();
     this.form = this.fb.group({
       Phone: ['', Validators.compose([Validators.required, Validators.pattern(`1[3|4|5|7|8]\\d{9}`)])],
-      Captcha: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
-      Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
+      Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
+      Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
     });
   }
 
@@ -65,6 +65,7 @@ export class BindPhoneComponent {
     this.submitting = true;
     let data = <IBindPhonePayload>this.form.value;
     data.CaptchaID = this.captcha.ID;
+    data.Code = data.Code.toString();
     this.userService.bindPhone(data).subscribe(
       _ => this.location.back(),
       errRes => {

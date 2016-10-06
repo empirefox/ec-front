@@ -3,19 +3,6 @@ import { Location } from '@angular/common';
 import { FormGroup, FormControl, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { ICaptcha, CaptchaService, UserService, ISetPaykeyPayload, CountdownService } from '../core';
 
-function repeatValidator(o: AbstractControl) {
-  return (r: AbstractControl) => {
-    let err = {
-      repeatError: {
-        given: o.value,
-        repeat: r.value,
-      }
-    };
-
-    return (r.value === o.value) ? err : null;
-  };
-}
-
 @Component({
   templateUrl: './paykey.html',
   styleUrls: ['./paykey.css'],
@@ -43,10 +30,10 @@ export class SetPaykeyComponent {
     this.onChangeCaptcha();
     this.form = this.fb.group({
       Key: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
-      Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
+      Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
+      Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
     });
-    this.keyCheckControl = new FormControl('', repeatValidator(this.form.controls['Key']));
+    this.keyCheckControl = new FormControl('');
   }
 
   get colding() { return this.countdownService.isSmsColding(); }
@@ -79,6 +66,7 @@ export class SetPaykeyComponent {
     this.submitting = true;
     let data = <ISetPaykeyPayload>this.form.value;
     data.CaptchaID = this.captcha.ID;
+    data.Code = data.Code.toString();
     this.userService.setPaykey(data).subscribe(
       // need back when paying
       _ => this.location.back(),

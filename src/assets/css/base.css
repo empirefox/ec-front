@@ -22,7 +22,7 @@ table{border-collapse: collapse; border-spacing: 0 }
 ol,ul{ list-style: none }
 h1, h2, h3, h4, h5, h6{font-size: 100%; font-weight: normal }
 .posr{position: relative !important;}
-.posf { position: fixed;}
+.posf { position: fixed; z-index: 9999;}
 .w20h li { width: 20%;}
 .w33h li { width: 33.33%;}
 .w50h li { width: 50%;}

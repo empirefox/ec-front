@@ -127,6 +127,7 @@ export class ProductPageComponent implements OnInit {
     // opened
     if (this.showSkus) {
       if (this.sku) {
+        console.log(this.sku)
         this.sku.quantity = this.sku.quantity < 1 ? 1 : this.sku.quantity;
         if (isBuy) {
           let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.quantity };

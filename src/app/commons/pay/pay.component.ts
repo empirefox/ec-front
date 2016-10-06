@@ -82,13 +82,14 @@ export class OrderPayComponent {
       switch (this.payType) {
         case PayType.wx:
           this.orderService.wxPay(this.order).subscribe(
-            this.payOk,
+            _ => this.payOk(),
             _ => this.error = true,
           );
           break;
-        case PayType.cash, PayType.points:
+        case PayType.cash:
+        case PayType.points:
           this.orderService.pay(this.order, this.key).subscribe(
-            this.payOk,
+            _ => this.payOk(),
             _ => this.error = true,
           );
           break;
