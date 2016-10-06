@@ -157,7 +157,7 @@ i.cc-09 { background-image: url(../img/mcc_09_b.png); background-size: cover;}
 .order-item-head .state { dispaly: blcok; float: right; font-size: 0.6rem; color: #ED5564;}
 
 .order-item-con {}
-.order-item-con .goods-block { position: relative; z-index: 1; border-bottom: solid #EEE 0.05rem;}
+.order-item-con .goods-block { position: relative; z-index: 0; border-bottom: solid #EEE 0.05rem;}
 .order-item-con .goods-block:nth-last-child(1) { border: none;}
 .order-item-con .goods-block.detail { height:5rem;}
 .order-item-con .goods-block a { display: block; color: #111;}

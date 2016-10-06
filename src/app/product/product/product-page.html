@@ -20,8 +20,8 @@
   </div>
   <div class="buy-handle ">
 
-    <a (click)="openSkus(0)" class="animation-up add-cart" [class.invalid]="!canAddToCart&&showSkus">加入购物车</a>
+    <a (click)="openSkus(0)" class="animation-up add-cart" [style.background-color]="!canAddToCart&&showSkus?'#ccc':'#FB6E52'">加入购物车</a>
 
-    <a (click)="openSkus(1)" class="animation-up buy-now" [class.invalid]="!sku&&showSkus">立即购买</a>
+    <a (click)="openSkus(1)" class="animation-up buy-now" [style.background-color]="!sku&&showSkus?'#ccc':'#ED5564'">立即购买</a>
   </div>
 </div>

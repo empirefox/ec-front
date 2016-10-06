@@ -11,6 +11,8 @@ export class OrderListItemComponent {
 
   @Input() order: IOrder;
 
+  handleZindex: number = 1;
+
   constructor(
     private router: Router,
     private orderService: OrderService) { }
@@ -20,5 +22,9 @@ export class OrderListItemComponent {
   }
 
   onStateChanged() { }
+
+  onPayChange(showPay: boolean) {
+    this.handleZindex = showPay ? 2 : 1;
+  }
 
 }

@@ -14,8 +14,9 @@ export class OrderActionsComponent {
   @Input() order: IOrder;
 
   @Output() stateChange = new EventEmitter<any>();
+  @Output() payChange = new EventEmitter<boolean>();
 
-  showOrderPay: boolean;
+  _showOrderPay: boolean;
   showEnsureDialog: boolean;
 
   states = states;
@@ -29,6 +30,12 @@ export class OrderActionsComponent {
     let showPay = this.route.snapshot.queryParams['pay'] === 'show';
     let showCurrentPay = (+this.route.snapshot.params['id']) === this.order.ID;
     this.showOrderPay = showPay && showCurrentPay;
+  }
+
+  get showOrderPay() { return this._showOrderPay; }
+  set showOrderPay(show: boolean) {
+    this._showOrderPay = show;
+    this.payChange.next(show);
   }
 
   get state() {

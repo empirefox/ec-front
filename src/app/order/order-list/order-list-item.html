@@ -22,8 +22,8 @@
     </div>
   </div>
   <div class="order-item-footer">
-    <div class="handle">
-      <order-actions [order]="order" (stateChange)="onStateChanged()"></order-actions>
+    <div class="handle" [style.z-index]="handleZindex">
+      <order-actions [order]="order" (payChange)="onPayChange($event)" (stateChange)="onStateChanged()"></order-actions>
     </div>
   </div>
 </div>

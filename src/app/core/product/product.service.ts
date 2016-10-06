@@ -7,6 +7,7 @@ import isEqual = require('lodash/isEqual');
 import uniq = require('lodash/uniq');
 import { stringify } from 'querystringify';
 import { URLS } from '../profile';
+import { constMap } from '../consts';
 import { one2manyRelate, posSortor } from '../util';
 import {
   IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
@@ -41,9 +42,9 @@ export class ProductService {
 
   findSku(product: IProduct, attrs: ProductAttr[]): ISku {
     return product.skus.find(sku => isEqual(
-        sku.attrs.map(attr => attr.ID).sort(), 
-        attrs.map(attr => attr.ID).sort(),
-      ));
+      sku.attrs.map(attr => attr.ID).sort(),
+      attrs.map(attr => attr.ID).sort(),
+    ));
   }
 
   query(query: IProductQuery): Observable<IProduct[]> {
@@ -171,9 +172,10 @@ export class ProductService {
     Products.forEach(product => {
       let attrs = product.skus.map(sku => attrIdsBySku[sku.ID]).reduce((a, b) => [...a, ...b], []);
       let skus = product.skus;
+      product.Vpn = product.Vpn || constMap.VpnType.TVpnNormal;
       product.raw = { skus, attrs };
     });
-    return Products;
+    return Products.filter(item => item.skus && item.skus.length);
   }
 
 }

@@ -98,7 +98,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   get sku() { return this.product.sku; }
-  set sku(sku: ISku) { this.product.sku = sku; }
+  set sku(sku: ISku) {
+    sku.quantity = sku.quantity || 1;
+    this.product.sku = sku;
+  }
 
   get snapshotPice() {
     return (this.sku || this.product.skus[0]).SalePrice;

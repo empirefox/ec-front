@@ -1,4 +1,4 @@
-import { Component, Optional, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Optional, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
