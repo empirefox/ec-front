@@ -28,8 +28,8 @@ export class BindPhoneComponent {
   ngOnInit() {
     this.onChangeCaptcha();
     this.form = this.fb.group({
-      Phone: ['', Validators.compose([Validators.required, Validators.pattern(`1[3|4|5|7|8]\d{9}`)])],
-      Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
+      Phone: ['', Validators.compose([Validators.required, Validators.pattern(`1[3|4|5|7|8]\\d{9}`)])],
+      Captcha: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
       Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
     });
   }

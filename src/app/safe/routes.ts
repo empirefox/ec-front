@@ -1,7 +1,8 @@
-import { ModuleWithProviders }   from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileResolver, UserResolver } from '../core';
+import { PhoneRequiredGuard } from '../interfaces';
 
 import { SafeComponent } from './safe.component';
 import { SetHeadComponent } from './head.component';
@@ -35,6 +36,7 @@ export const routes: Routes = [
       {
         path: 'paykey',
         component: SetPaykeyComponent,
+        canActivate: [PhoneRequiredGuard],
       },
     ]
   },

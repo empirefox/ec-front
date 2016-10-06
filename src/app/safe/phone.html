@@ -10,7 +10,7 @@
             <span class="input-del"></span>
             <span class="code-again">
               {{secondsLeft}}
-              <a (click)="onSendSms()" *ngIf="!colding">获取短信验证</a>
+              <a (click)="onSendSms()" [class.phone-invalid]="!form.get('Phone').valid" *ngIf="!colding">获取短信验证</a>
             </span>
           </div>
         </li>
