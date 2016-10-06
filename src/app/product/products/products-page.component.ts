@@ -26,8 +26,6 @@ export class ProductsPageComponent {
     private productService: ProductService) { }
 
   ngOnInit() {
-    let query = this.route.snapshot.queryParams;
-    console.log('ProductsPageComponent', query)
     this.base.local.exist().subscribe(items => this.products = items);
   }
 

@@ -36,7 +36,7 @@ export class BalanceWithdrawComponent {
     private moneyService: MoneyService) { }
 
   ngOnInit() {
-    this.amount = new FormControl('', [Validators.required, createRangeValidator(this.base.wallet, 1)]);
+    this.amount = new FormControl('', [Validators.required, createRangeValidator(this.base.wallet, 100)]);
   }
 
   onWithdraw() {
