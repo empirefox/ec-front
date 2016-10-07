@@ -19,7 +19,7 @@ export class WishlistService {
 
   getItems(): Observable<IWishItem[]> {
     if (!this._items) {
-      this._items = this.http.get(URLS.WISH_LIST).
+      this._items = this.http.get(URLS.WISH_LIST_ALL).
         map(res => this.parseResponse(res.json() || {})).publishReplay(1).refCount();
     }
     return this._items;
@@ -33,7 +33,7 @@ export class WishlistService {
     // tslint:disable-next-line:variable-name
     let {Name, Img, ID: ProductID} = product;
     let payload: IWishlistSavePayload = { ProductID, Name, Img, Price: price };
-    return this.http.post(URLS.WISH_LIST_ADD, JSON.stringify(payload)).flatMap(res => {
+    return this.http.post(URLS.WISH_LIST_ALL, JSON.stringify(payload)).flatMap(res => {
       return this._items ? this._items.map(items => {
         let item = this.initItem(res.json(), product);
         let index = items.findIndex(i => i.ID === item.ID);
@@ -48,13 +48,12 @@ export class WishlistService {
     });
   }
 
-  delete(id: number): Observable<void> {
-    // DELETE /wishlist/:id
-    return this.http.delete(URLS.WishItem(id)).flatMap(res => {
+  delete(productIds: number[]): Observable<void> {
+    // DELETE /cart/:id
+    return this.http.delete(URLS.WISH_LIST_ALL, { search: productIds.map(id => `s=${id}`).join('&') }).flatMap(res => {
       return this._items ? this._items.map(items => {
-        let i = items.findIndex(item => item.ID === id);
-        if (~i) { items.splice(i, 1); }
-        this._items = Observable.of([...items]);
+        items = items.filter(item => !~productIds.indexOf(item.ProductID));
+        this._items = Observable.of(items);
       }) : Observable.of<void>(null);
     });
   }

@@ -53,9 +53,7 @@ export const URLS = {
   USER_REBATE: `${config.apiOrigin}/rebate`, // post
   USER_WITHDRAW: `${config.apiOrigin}/withdraw`, // post
 
-  WISH_LIST: `${config.apiOrigin}/wishlist`, // get
-  WISH_LIST_ADD: `${config.apiOrigin}/wishlist_add`, // post
-  WishItem: (id: number) => `${config.apiOrigin}/wishlist/${id}`, // get delete
+  WISH_LIST_ALL: `${config.apiOrigin}/wishlist`, // get
 
   WALLET: `${config.apiOrigin}/wallet`,
   // TradeState: (id: string) => `${config.apiOrigin}/prepay/${id}`,

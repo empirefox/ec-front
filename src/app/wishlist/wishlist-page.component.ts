@@ -25,7 +25,7 @@ export class WishlistPageComponent {
   }
 
   onDel(item: IWishItem) {
-    this.wishlistService.delete(item.ID).subscribe(_ => this.reset());
+    this.wishlistService.delete([item.ProductID]).subscribe(_ => this.reset());
   }
 
   private reset() {
