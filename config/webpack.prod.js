@@ -16,6 +16,14 @@ const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const OutputBabelPlugin = require('./custom-plugin');
+console.log(OutputBabelPlugin)
+
+const babelOptions = {
+  "presets":["es2015"],
+    plugins: [],
+    compact: true
+};
 
 /**
  * Webpack Constants
@@ -132,6 +140,8 @@ module.exports = function(env) {
           'HMR': METADATA.HMR,
         }
       }),
+
+      new OutputBabelPlugin(babelOptions),
 
       /**
        * Plugin: UglifyJsPlugin
