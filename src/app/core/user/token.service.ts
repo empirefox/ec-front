@@ -37,7 +37,7 @@ export class TokenService {
 
   exchange(query: WxCodeResult): Observable<string> {
     return query.code && query.state && query.state === this.jwt.getOauth2State() ?
-      this.rawHttp.get(config.wxExchangeCode(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+      this.rawHttp.post(config.wxExchangeCode(),JSON.stringify(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 
@@ -61,11 +61,13 @@ export class TokenService {
   // used to update token after bootstrap, will trigger login
   mustUpdateToken(): Observable<string> {
     return this.updateToken().catch((err, caught) => {
+      console.log('mustUpdateToken1111111111')
       // TODO remove
-      if (ENV === 'development') {
-        return this.rawHttp.get(URLS.FAKE_TOKEN).map(res => this._parseAuthResult(<IUserTokenResponse>res.json()));
-      }
-      return this.profileService.getProfile().flatMap(profile => {
+      // if (ENV === 'development') {
+      //   return this.rawHttp.get(URLS.FAKE_TOKEN).map(res => this._parseAuthResult(<IUserTokenResponse>res.json()));
+      // }
+      return this.profileService.getProfile().delay(500).flatMap(profile => {
+      console.log('mustUpdateToken22222222')
         // clean url
         let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
         let query = (+user1) ? `?user1=${user1}` : '';

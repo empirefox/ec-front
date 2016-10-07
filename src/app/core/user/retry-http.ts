@@ -55,10 +55,7 @@ export class RetryHttp {
   }
 
   public options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.http.options(url, options).catch((error) =>
-      error.status === 401 ?
-        this.tokenService.mustUpdateToken().flatMap((data: any) => this.options(url, options)) :
-        Observable.throw(error));
+    return this.http.options(url, options);
   }
 
   public request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {

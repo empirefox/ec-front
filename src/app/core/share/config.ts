@@ -47,7 +47,7 @@ export class Config {
     };
   }
 
-  wxExchangeCode(code: string): string {
-    return `${this.apiOrigin}/oauth/wechat?code=${code}`;
+  wxExchangeCode(): string {
+    return `${this.apiOrigin}/oauth/wechat`;
   }
 }
