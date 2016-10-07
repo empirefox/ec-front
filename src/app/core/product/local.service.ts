@@ -14,11 +14,12 @@ export abstract class LocalProductBase {
 @Injectable()
 export class LocalProductServiceFactory {
   constructor(
+    private router: Router,
     private rawHttp: Http,
     private productService: ProductService) { }
 
   from(query: CommonQuery): LocalProductService {
-    let local = new LocalProductService(this.rawHttp, this.productService);
+    let local = new LocalProductService(this.router, this.rawHttp, this.productService);
     local.query = query;
     return local;
   }

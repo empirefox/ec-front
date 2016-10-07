@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { stringify } from 'querystringify';
@@ -13,7 +14,9 @@ export class NewsService {
   private _current: Observable<INewsItem> = null;
   private _querying = false;
 
-  constructor(private rawHttp: Http) { }
+  constructor(
+    private router: Router,
+    private rawHttp: Http) { }
 
   clearCache() {
     this._items = null;
@@ -49,7 +52,10 @@ export class NewsService {
     return (this._items || Observable.of([])).flatMap(items => {
       let item = items.find(i => i.ID === id);
       return item ? Observable.of(item) : this._queryOne(id);
-    }).publishReplay(1).refCount();
+    }).publishReplay(1).refCount().catch((err, caught) => {
+      this.router.navigateByUrl('/news');
+      return caught;
+    });
   }
 
   private _queryOne(id: number): Observable<INewsItem> {
