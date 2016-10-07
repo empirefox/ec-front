@@ -37,7 +37,7 @@ export class TokenService {
 
   exchange(query: WxCodeResult): Observable<string> {
     return query.code && query.state && query.state === this.jwt.getOauth2State() ?
-      this.rawHttp.post(config.wxExchangeCode(),JSON.stringify(query.code)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+      this.rawHttp.post(config.wxExchangeCode(),JSON.stringify(query)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 
@@ -61,13 +61,11 @@ export class TokenService {
   // used to update token after bootstrap, will trigger login
   mustUpdateToken(): Observable<string> {
     return this.updateToken().catch((err, caught) => {
-      console.log('mustUpdateToken1111111111')
       // TODO remove
       // if (ENV === 'development') {
       //   return this.rawHttp.get(URLS.FAKE_TOKEN).map(res => this._parseAuthResult(<IUserTokenResponse>res.json()));
       // }
-      return this.profileService.getProfile().delay(500).flatMap(profile => {
-      console.log('mustUpdateToken22222222')
+      return this.profileService.getProfile().delay(600).flatMap(profile => {
         // clean url
         let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
         let query = (+user1) ? `?user1=${user1}` : '';
@@ -75,7 +73,7 @@ export class TokenService {
         this.jwt.setOauth2State(state);
         this.jwt.setCurrentUrl(u);
         // return this.jwt.setOauth2State(state).flatMap(_ => this.jwt.setCurrentUrl()).flatMap(_ => {
-        let codeEndpoint = 'https://open.weixin.qq.com/connect/oauth2/authorize';
+        let codeEndpoint = 'http://open.weixin.qq.com/connect/oauth2/authorize';
         let {WxAppId: appId, WxScope: scope} = profile;
         let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
         location.href = `${codeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;

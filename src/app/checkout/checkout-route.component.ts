@@ -49,6 +49,7 @@ export class CheckoutRouteComponent implements LocalCheckoutBase {
         this.checkout.Total = this.checkout.Items[0].Sku.SalePrice;
       }
     }
+    console.log(this.checkout)
   }
 
 }

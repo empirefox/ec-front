@@ -1,5 +1,6 @@
 <header1>查看物流</header1>
 <div class="main-layout">
+  <div class="J_oper_plugin">
   <div class="order-item-con">
     <div class="logis-order">订单商品</div>
     <div class="goods-block" *ngFor="let item of order.Items">
@@ -22,6 +23,7 @@
         <delivery-day [day]="day"></delivery-day>
       </li>
     </ul>
+  </div>
   </div>
 </div>
 

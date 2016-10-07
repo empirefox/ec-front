@@ -41,6 +41,7 @@ export class CartService {
   }
 
   computeTotal(items: ICartItem[]): number {
+    console.log(items)
     return items ? items.map(item => !item.checked ? 0 : item.Price * item.Quantity).reduce((a, b) => a + b, 0) : 0;
   }
 
@@ -84,7 +85,9 @@ export class CartService {
         invalid.push(item);
       }
     });
-    this.delete(invalid.map(i => i.SkuID)).subscribe();
+    if (invalid.length) {
+      this.delete(invalid.map(i => i.SkuID)).subscribe();
+    }
     return valid;
   }
 
