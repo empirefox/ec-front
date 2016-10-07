@@ -112,7 +112,7 @@ export class ProductPageComponent implements OnInit {
   onGuanzhu() {
     if (this.canOpertaeWishlist) {
       this.canOpertaeWishlist = false;
-      (this.inWishlist ? this.wishlistService.delete(this.product.ID) : this.wishlistService.add(this.product, this.snapshotPice)).
+      (this.inWishlist ? this.wishlistService.delete([this.product.ID]) : this.wishlistService.add(this.product, this.snapshotPice)).
         flatMap(_ => this.refreshWishlist()).subscribe(
         _ => this.canOpertaeWishlist = true,
         _ => this.canOpertaeWishlist = true,
