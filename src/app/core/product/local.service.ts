@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { stringify } from 'querystringify';
@@ -31,6 +32,7 @@ export class LocalProductService {
   private _querying = false;
 
   constructor(
+    private router: Router,
     private rawHttp: Http,
     private productService: ProductService) { }
 
@@ -75,7 +77,12 @@ export class LocalProductService {
     return (this._items || Observable.of([])).flatMap((items) => {
       let item = items.find(i => i.ID === id);
       return item ? this.productService.current = Observable.of(item) : this.productService.getCurrent(id);
-    }).publishReplay(1).refCount();
+    }).publishReplay(1).refCount().catch((err, caught) => {
+      return this.productService.getAttrs().flatMap(attrs => {
+        this.router.navigate(['/product/list'], { queryParams: { ft: attrs.specials['爆品'] } });
+        return caught;
+      })
+    });
   }
 
   private _query(start: number = 0): Observable<IProduct[]> {
