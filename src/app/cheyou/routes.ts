@@ -1,5 +1,5 @@
-import { ModuleWithProviders }   from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { CheyouHubComponent } from './cheyou-hub.component';
 import { CheyouDetailComponent } from './cheyou-detail.component';
@@ -28,6 +28,11 @@ export const routes: Routes = [
       {
         path: 'my',
         component: CheyouMyComponent,
+      },
+      {
+        path: 'detail',
+        redirectTo: 'list',
+        pathMatch: 'full',
       },
       {
         path: 'detail/:id',
