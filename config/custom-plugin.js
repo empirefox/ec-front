@@ -16,7 +16,6 @@ module.exports = class OutputBabelPlugin {
                 for (let chunk of chunks) {
                     for (let file of chunk.files) {
                         let source = compilation.assets[file].source();
-                      console.log('OutputBabelPlugin',source)
                         let transformed = babel.transform(source, options).code;
                         compilation.assets[file] = new sources.RawSource(transformed);
                     }
