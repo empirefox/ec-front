@@ -7,7 +7,7 @@
         <h3>我购买的vip套餐列表</h3>
       </dt>
       <dd>
-        <ul [class.current]="item.ID===current?.ID" *ngFor="let item of vips">
+        <ul [class.current]="item.ID===current?.ID" *ngFor="let item of vips" class="item">
           <li>VIP金额：{{item.Amount|money}}</li>
           <li>VIP已返金额：{{(item.Amount-item.Balance)|money}}</li>
           <li>VIP未返金额：{{item.Balance|money}}</li>
@@ -40,4 +40,4 @@
     </dl>
   </div>
 </div>
-<footer-bar></footer-bar>
+<!--<footer-bar></footer-bar>-->

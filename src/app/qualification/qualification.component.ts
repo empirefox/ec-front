@@ -48,7 +48,7 @@ export class QualificationComponent {
 
   get canRebate() {
     return this.current && this.selected.length === 2 &&
-      this.selected[0].Amount + this.selected[1].Amount > this.current.Amount * 2;
+      this.selected[0].Amount + this.selected[1].Amount >= this.current.Amount * 2;
   }
 
   onReward() {
