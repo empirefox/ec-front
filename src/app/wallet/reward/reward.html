@@ -11,7 +11,7 @@
     <ul *ngFor="let rebate of rebates">
       <li>
         <p>￥{{rebate.Amount|money}}:<i>{{rebate.DoneAt?'已完成':'进行中'}}</i>
-          <span>完成{{rebate.items.length}}期</span>
+          <span>完成{{rebate.items.length}}/{{rebate.Stages}}期</span>
         </p>
         <p class="remark">{{rebate.Remark}}</p>
         <ul class="log-list">

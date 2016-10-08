@@ -48,7 +48,8 @@ export class VipService {
       let items = r.Items || [];
       let names = keyBy(r.Names, item => item.ID);
       items.forEach(item => item.name = names[item.UserID] && names[item.Amount].Nickname);
-      return items.filter(item => !item.User1Used).sort(createdAtSortor);
+      let now = Date.now() / 1000;
+      return items.filter(item => !item.User1Used && item.NotBefore <= now).sort(createdAtSortor);
     })
   }
 
