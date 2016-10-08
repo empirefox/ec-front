@@ -63,3 +63,9 @@ export interface ISetPaykeyPayload {
   CaptchaID: string;
   Captcha: string;
 }
+
+export interface ExchangePayload {
+  code: string;
+  state: string;
+  user1?: number;
+}

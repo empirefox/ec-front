@@ -6,3 +6,5 @@
   border-right: 5px solid #a94442;
   /* red */
 }
+.inp-con ul li .input-box.address_select{height:auto; }
+.inp-con .form-btn .btn.ok { color: #FFF !important; background: #ED5564;}

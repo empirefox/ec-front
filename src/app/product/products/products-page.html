@@ -18,8 +18,8 @@
     <li><a (click)="">价格<i></i></a></li>
   </ul>
 </div> -->
-<div class="main-layout mt40 mb20">
-  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()" 
+<div class="main-layout">
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
     infinite-scroll [ngClass]="containerClass">
     <ul class="goods-secrch-list">
       <li class="goods-item" *ngFor="let item of filtered; trackBy:trackByItems" (click)="gotoProduct(item)">
@@ -28,4 +28,4 @@
     </ul>
   </div>
 </div>
-<footer-bar></footer-bar>
+<!--<footer-bar></footer-bar>-->

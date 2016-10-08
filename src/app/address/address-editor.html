@@ -5,20 +5,18 @@
         <li class="form-item">
           <h4>收货人姓名</h4>
           <div class="input-box">
-            <input type="text" formControlName="Contact">
-            <span class="input-del"></span>
+            <input type="text" formControlName="Contact" class="inp">
           </div>
         </li>
         <li class="form-item">
           <h4>联系手机</h4>
           <div class="input-box">
-            <input type="text" formControlName="Phone">
-            <span class="input-del"></span>
+            <input type="text" formControlName="Phone" class="inp">
           </div>
         </li>
         <li class="form-item">
           <h4>地区选择</h4>
-          <div class="input-box">
+          <div class="input-box address_select">
             <select formControlName="province" [(ngModel)]="province">
               <option value="">请选择</option>
               <option *ngFor="let item of provinces" [ngValue]="item">{{item[1]}}</option>
@@ -36,14 +34,13 @@
         <li class="form-item">
           <h4>详细地址</h4>
           <div class="input-box write">
-            <input type="text" formControlName="House">
-            <span class="input-del"></span>
+            <input type="text" formControlName="House" class="inp">
           </div>
         </li>
       </ul>
       <div *ngIf="failed" class="error-tips">保存失败</div>
       <div class="form-btn">
-        <button type="submit" class="btn" [class.valid]="form.valid" [disabled]="submitDisabled">保存地址</button>
+        <button type="submit" class="btn" [class.ok]="form.valid" [disabled]="submitDisabled">保存地址</button>
       </div>
     </form>
   </div>

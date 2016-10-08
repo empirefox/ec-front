@@ -6,7 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { config, URLS, IProfile, ProfileService, WxCodeResult } from '../profile';
 import { Jwt } from '../jwt';
 import { nonce, removeURLParameter } from '../util';
-import { IUserInfo, IUserTokenResponse, IRefreshTokenResponse } from './user';
+import { IUserInfo, IUserTokenResponse, IRefreshTokenResponse, ExchangePayload } from './user';
 
 @Injectable()
 export class TokenService {
@@ -36,8 +36,14 @@ export class TokenService {
   }
 
   exchange(query: WxCodeResult): Observable<string> {
-    return query.code && query.state && query.state === this.jwt.getOauth2State() ?
-      this.rawHttp.post(config.wxExchangeCode(), JSON.stringify(query)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+    let {code, state} = query;
+    let payload = <ExchangePayload>{ code, state };
+    if (+query.user1) {
+      payload.user1 = +query.user1;
+    }
+    return code && state && state === this.jwt.getOauth2State() ?
+      this.rawHttp.post(config.wxExchangeCode(), JSON.stringify(payload)).
+        map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 

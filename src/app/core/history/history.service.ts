@@ -7,6 +7,7 @@ import { HistoryItem } from './history';
 import { LocaldbService } from '../localdb';
 
 const MAX = 20;
+const historyKey = 'cheyou_local_history';
 
 @Injectable()
 export class HistoryService {
@@ -17,8 +18,11 @@ export class HistoryService {
 
   getItems() {
     if (!this._items) {
-      this._items = this.localdbService.getDB().queryAll('history', null).
-        map(row => <HistoryItem>row).sort((b, a) => a.ID - b.ID);
+      try {
+        this._items = JSON.parse(localStorage.getItem(historyKey)).sort((b, a) => a.ID - b.ID);
+      } catch (e) {
+        this._items = [];
+      }
     }
     return this._items;
   }
@@ -27,7 +31,6 @@ export class HistoryService {
     let index = this.getItems().findIndex(item => item.ProductID === product.ID);
     if (~index) {
       let id = this.getItems()[index].ID;
-      this.localdbService.getDB().deleteRows('history', row => row.ID === id);
       this.getItems().splice(index, 1);
     }
     let item = {
@@ -38,19 +41,16 @@ export class HistoryService {
       Price: product.skus[0].SalePrice,
       Vpn: product.Vpn,
     };
-    this.localdbService.getDB().insert('history', item);
     this.getItems().unshift(item);
     if (this.getItems().length > MAX) {
       let map = keyBy(this._items.splice(MAX));
-      this.localdbService.getDB().deleteRows('history', row => row.ID in map);
     }
-    this.localdbService.getDB().commit();
+    localStorage.setItem(historyKey, JSON.stringify(this._items));
   }
 
   clear() {
     this._items = [];
-    this.localdbService.getDB().truncate('history');
-    this.localdbService.getDB().commit();
+    localStorage.setItem(historyKey, '[]');
   }
 
 }
