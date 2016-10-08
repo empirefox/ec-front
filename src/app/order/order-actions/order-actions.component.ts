@@ -49,8 +49,11 @@ export class OrderActionsComponent {
       case states.TOrderStateEvalStarted:
         return states.TOrderStateCompleted;
 
-      case states.TOrderStateRejectBack, states.TOrderStateRejectRefound,
-        states.TOrderStateReturnStarted, states.TOrderStateReturning, states.TOrderStateReturned:
+      case states.TOrderStateRejectBack:
+      case states.TOrderStateRejectRefound:
+      case states.TOrderStateReturnStarted:
+      case states.TOrderStateReturning:
+      case states.TOrderStateReturned:
         return states.TOrderStateRejecting;
 
       default:

@@ -1,4 +1,4 @@
-<dl>
+<dl *ngIf="addr">
   <dt>收货人：<span>{{addr.Contact}}</span><span>{{addr.Phone}}</span></dt>
   <dd><span>{{addr.Province}} {{addr.City}} {{addr.District}} {{addr.House}}</span></dd>
 </dl>
