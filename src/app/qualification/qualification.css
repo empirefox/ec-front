@@ -1,3 +1,4 @@
+
 .rebate-center dl{background-color: #FFF;
     box-shadow: 0 1px 0 rgba(0,0,0,0.05);}
 .rebate-center dt{line-height: 0.9rem;
@@ -18,4 +19,4 @@
 .rebate-item a.active{background: #FB6E52; border-color: #ED5564; color: #fff;}
         .qualify{border-bottom:1px solid #ccc; padding: 0.5rem 0.5rem; position: relative}
 .qualify p{line-height: 20px;}
-.qualify.selected:after{content: ""; position: absolute; right: 0; top:0.6rem; background:url("/asserts/img/ok.png") no-repeat; background-size: 100%; width: 30px; height: 30px;}
+.qualify.selected:after{content: ""; position: absolute; right: 0; top:0.6rem; background:url("/assets/img/ok.png") no-repeat; background-size: 100%; width: 30px; height: 30px;}

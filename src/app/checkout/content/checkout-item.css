@@ -2,3 +2,11 @@
   width: 100%;
   height: 100%;
 }
+.goods-name {
+  display: block;
+  height: 1.4rem;
+  font-size: 0.6rem;
+  color: #111;
+  line-height: 0.7rem;
+  overflow: hidden;
+}

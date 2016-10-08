@@ -5,3 +5,19 @@
 .myself{background: #FB6E52; color: #fff;}
 .myself a{color:#fff;}
 .cheyouhui-info{padding:0.5rem; font-size: 0.7rem; line-height: 1.6rem;}
+
+.cheyouhui-bottom{position: fixed;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  height: 2rem;
+  background-color: #F5F5F5;
+  border-top: solid 0.05rem #CCC;
+}
+
+.cheyouhui-bottom ul { font-size: 0;}
+.cheyouhui-bottom li { display: inline-block; width: 33%; height: 2rem; text-align: center; font-size: 0.7rem; line-height: 2rem; border-left: solid #CCC 0.05rem;}
+.cheyouhui-bottom li:nth-child(1) { border-left: 0;}
+.cheyouhui-bottom li a { display: block; color: #333;}

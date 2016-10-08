@@ -2,6 +2,7 @@
 .userlist a{color: #333; display: block;}
 .userlist .user-pic{width:2rem; height:2rem; display: inline-block;}
 .userlist .user-pic img{width: 100%;height:100%;}
-.user-item{padding: 0.5rem; border-bottom: 1px solid #ddd}
+.user-item{padding: 0.5rem; border-bottom: 1px solid #ddd; background: #fff; margin-bottom: 0.3rem;}
 .myself{background: #FB6E52; color: #fff;}
 .myself a{color:#fff;}
+.user-pic{margin-right:0.5rem;}

@@ -1,5 +1,6 @@
 <header1>我要评价</header1>
 <div class="main-layout" *ngIf="order">
+  <div class="order_pj">
   <div class="order-item-con" [style.opacity]="current===item?1:0.8" (click)="setCurrent(item)" *ngFor="let item of order.Items">
     <div class="goods-block">
       <div class="goods-pic">
@@ -13,7 +14,10 @@
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="current">
     <div class="oc-text">
+      <span class="c-f-textarea">
+
       <textarea placeholder="请输入评论内容(2-500)" formControlName="Eval"></textarea>
+      </span>
     </div>
     <section class="oc-star">
       <div class="oc-star-f">
@@ -42,6 +46,7 @@
       </div>
     </section>
   </form>
+  </div>
 </div>
 
-<footer-bar></footer-bar>
+<!--<footer-bar></footer-bar>-->

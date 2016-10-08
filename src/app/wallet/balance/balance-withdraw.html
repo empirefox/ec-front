@@ -1,7 +1,22 @@
-<input type="number" [formControl]="amount">单位(分)
-<button (click)="onWithdraw()" type="submit" class="btn" [class.valid]="amount.valid&&!requesting">
-  确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信
+<div class="inp-con">
+  <ul>
+    <li class="form-item">
+      <h4>金额（分）</h4>
+      <div class="input-box">
+        <input type="number" class="inp" placeholder="请输入金额" [formControl]="amount">
+      </div>
+    </li>
+  </ul>
+  <div class="form-btn"><button (click)="onWithdraw()" type="submit" class="btn" [class.ok]="amount.valid&&!requesting">
+    确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信
   </button>
-<div *ngIf="error">{{error|json}}</div>
+    <div *ngIf="error">{{error|json}}</div>
+  </div>
+</div>
+<!--<input type="number" [formControl]="amount">单位(分)-->
+<!--<button (click)="onWithdraw()" type="submit" class="btn" [class.valid]="amount.valid&&!requesting">-->
+  <!--确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信-->
+  <!--</button>-->
+<!--<div *ngIf="error">{{error|json}}</div>-->
 
-<footer-bar></footer-bar>
+<!--<footer-bar></footer-bar>-->

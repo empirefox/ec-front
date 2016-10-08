@@ -47,7 +47,7 @@
     </div>
     <div class="oredr-detail-block mt5">
       <ul class="order-log">
-        <li>创建时间：{{order.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</li>
+        <li>创建时间：{{order.CreatedAt*1000|date:'y.MM.dd HH:mm:ss'}}</li>
       </ul>
     </div>
   </div>
@@ -56,4 +56,4 @@
   <order-actions [order]="order" (stateChange)="onStateChanged()"></order-actions>
 </div>
 
-<footer-bar></footer-bar>
+<!--<footer-bar></footer-bar>-->

@@ -17,7 +17,7 @@
         <ul class="log-list">
           <li *ngFor="let item of rebate.items">
             <div [ngClass]="moneyClass(item)">{{moneyPre(item)}}{{item.Amount|money}}</div>
-            <time class="date">{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</time>
+            <time class="date">{{item.CreatedAt*1000|date:'y.MM.dd HH:mm:ss'}}</time>
           </li>
         </ul>
       </li>

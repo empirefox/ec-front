@@ -1,7 +1,7 @@
 <div class="cheyouhui-tc" *ngIf="abcs">
   <div *ngFor="let abc of abcs">
     <div class="cheyouhui-tc-item" *ngFor="let item of abc.skus">
-      <a (click)="gotoBuy(item)"> <img [src]="item.Img" width="100%"></a>
+      <a (click)="gotoBuy(item)"> <img [src]="getImg(item)" width="100%"></a>
     </div>
   </div>
 </div>
@@ -45,4 +45,4 @@
   </ul>
 </div>
 
-<footer-bar></footer-bar>
+<!--<footer-bar></footer-bar>-->

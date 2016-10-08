@@ -1,6 +1,6 @@
 <div class="userlist" *ngIf="show">
   <ul>
-    <li class="user-item myself">
+    <li class="user-item">
       <a (click)="gotoMy()">
         <span class="user-pic">
             <img [default]="profile.DefaultHeadImage" [src]="userService.headSrc$|async" valign="middle">

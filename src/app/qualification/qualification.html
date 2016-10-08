@@ -1,6 +1,6 @@
 <header1>全返资格</header1>
 
-<div about="main-layout">
+<div class="main-layout">
   <div class="rebate-center">
     <dl>
       <dt>
@@ -11,7 +11,7 @@
           <li>VIP金额：{{item.Amount|money}}</li>
           <li>VIP已返金额：{{(item.Amount-item.Balance)|money}}</li>
           <li>VIP未返金额：{{item.Balance|money}}</li>
-          <li>VIP效用时间：{{item.NotBefore|date:'y.MM.dd HH:mm:ss'}} - {{item.ExpiresAt|date:'y.MM.dd HH:mm:ss'}}</li>
+          <li>VIP效用时间：{{item.NotBefore*1000|date:'y.MM.dd HH:mm:ss'}} - {{item.ExpiresAt*1000|date:'y.MM.dd HH:mm:ss'}}</li>
         </ul>
       </dd>
     </dl>

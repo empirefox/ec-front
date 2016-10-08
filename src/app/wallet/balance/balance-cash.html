@@ -2,7 +2,7 @@
   <li *ngFor="let item of items">
     <dl>
       <dt>{{item.Type|cashType}}</dt>
-      <dd>{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</dd>
+      <dd>{{item.CreatedAt*1000|date:'y.MM.dd HH:mm:ss'}}</dd>
     </dl>
     <div class="money add">{{item.Amount|money}}</div>
   </li>

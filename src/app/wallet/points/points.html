@@ -13,7 +13,7 @@
     <li *ngFor="let item of base.wallet.PointsList">
       <dl><dd>奖励</dd></dl>
       <div class="money add">{{item.Amount}}</div>
-      <time class="date">{{item.CreatedAt|date:'y.MM.dd HH:mm:ss'}}</time>
+      <time class="date">{{item.CreatedAt*1000|date:'y.MM.dd HH:mm:ss'}}</time>
     </li>
   </ul>
 </div>

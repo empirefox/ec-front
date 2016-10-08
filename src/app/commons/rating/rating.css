@@ -17,8 +17,9 @@ span.rating i {
 
 .star-icon {
   color: #ddd;
-  font-size: 2em;
+  font-size: 1.6em;
   position: relative;
+  top:-0.4rem;
 }
 
 .star-icon:before {
