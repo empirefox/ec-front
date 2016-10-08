@@ -13,13 +13,12 @@ export function idSortor<T extends IDer>(b: T, a: T) { return a.ID - b.ID; }
 // save => replace/push => copy items
 export function updateAfterSave<T extends IDer>(items: T[], item: T, id: number): T[] {
   if (!id) {
-    items = [item, ...items];
+    items.unshift(item);
   } else {
     let i = items.findIndex(i => i.ID === id);
     if (~i) {
-      items[i] = item;
+      Object.assign(items[i], item);
     }
-    items = [...items];
   }
   return items;
 }

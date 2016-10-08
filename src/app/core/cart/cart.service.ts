@@ -37,11 +37,13 @@ export class CartService {
       Quantity: sku.quantity < 1 ? 1 : sku.quantity,
       SkuID: sku.ID,
     };
-    return this._save(payload);
+    return this._save(payload).map(i => {
+      i.sku = sku;
+      return this.initItem(i);
+    });
   }
 
   computeTotal(items: ICartItem[]): number {
-    console.log(items)
     return items ? items.map(item => !item.checked ? 0 : item.Price * item.Quantity).reduce((a, b) => a + b, 0) : 0;
   }
 
@@ -63,7 +65,11 @@ export class CartService {
     // tslint:disable-next-line:variable-name
     let {ID, Img, Name, Type, Price, Quantity, SkuID} = item;
     let payload: ICartItemContent = { ID, Img, Name, Type, Price, Quantity, SkuID };
-    return this._save(payload);
+    let sku = item.sku;
+    return this._save(payload).map(i => {
+      i.sku = sku;
+      return this.initItem(i);
+    });
   }
 
   private parseResponse(res: ICartResponse): ICartItem[] {
@@ -104,7 +110,7 @@ export class CartService {
 
     item.Name = product ? (product.Name ? product.Name : item.Name) : item.Name;
     item.Price = sku ? sku.SalePrice : item.Price;
-    item.Quantity = sku ? sku.quantity : item.Quantity;
+    item.Quantity = (sku && sku.quantity) || item.Quantity;
 
     // TODO add sku attrs
 
