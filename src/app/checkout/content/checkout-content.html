@@ -72,6 +72,6 @@
         <dd><em>{{checkout.Total|price:checkout.vpn}}</em></dd>
       </dl>
     </div>
-    <div class="check-out ok"><a (click)="onCheckout()">提交订单</a></div>
+    <div class="check-out" [class.ok]="valid"><a (click)="onCheckout()">提交订单</a></div>
   </div>
 </div>

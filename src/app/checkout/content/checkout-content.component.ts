@@ -31,8 +31,10 @@ export class CheckoutContentComponent {
     return this.checkout.Invoice ? this.checkout.Invoice.To : '不需要发票';
   }
 
+  get valid() { return this.checkout.Address && this.checkout.valid; }
+
   onCheckout() {
-    if (this.checkout.Address && this.checkout.valid) {
+    if (this.valid) {
       this.orderService.checkout(this.checkout).subscribe(order => {
         // from GroupBuyItemComponent, ProductPageComponent
         let src = this.route.snapshot.queryParams['src'];
