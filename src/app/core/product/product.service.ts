@@ -89,7 +89,8 @@ export class ProductService {
     return product.raw ? this._proccessSkus(product) :
       this.getSkus(product.ID).flatMap(({Skus: skus, Attrs: attrs}) => {
         product.raw = { skus, attrs };
-        console.log(product)
+        product.skus = skus;
+        skus.forEach(item => item.product = product);
         return this._proccessSkus(product);
       });
   }
