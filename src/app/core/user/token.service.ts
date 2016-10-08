@@ -37,7 +37,7 @@ export class TokenService {
 
   exchange(query: WxCodeResult): Observable<string> {
     return query.code && query.state && query.state === this.jwt.getOauth2State() ?
-      this.rawHttp.post(config.wxExchangeCode(),JSON.stringify(query)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+      this.rawHttp.post(config.wxExchangeCode(), JSON.stringify(query)).map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 
@@ -86,18 +86,27 @@ export class TokenService {
   updateToken(): Observable<string> {
     // return this.parseAuthResult().catch((err, caught) => {
     return this.jwt.canUpdate() ?
-      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).map(res => this._updateToken(res.json())) :
+      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).flatMap(res => this._updateToken(res.json())) :
       new Observable<string>((obs: any) => {
         obs.error(new Error('Refresh token expired'));
       });
     // });
   }
 
-  _updateToken(res: IRefreshTokenResponse): string {
+  _updateToken(res: IRefreshTokenResponse): Observable<string> {
     if (res.OK) {
       this.jwt.accessToken = res.AccessToken;
+      return Observable.of(res.AccessToken);
     }
-    return this.jwt.accessToken;
+    let token = this.jwt.accessToken;
+    return this.getUserinfo().map(user => {
+      let claims = this.jwt.decodeToken(token);
+      user.ID = +claims.uid;
+      user.OpenId = claims.oid;
+      user.Phone = claims.mob;
+      user.User1 = +claims.us1;
+      return token;
+    });
   }
 
 }

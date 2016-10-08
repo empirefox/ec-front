@@ -74,6 +74,7 @@ export const URLS = {
 
   CATEGORY_LIST: `${config.apiOrigin}/category`, // get
 
+  ProductSkus: (id: number) => `${config.apiOrigin}/product/skus/${id}`, // get
   PRODUCT_LIST: `${config.apiOrigin}/product/ls`, // get
   // PRODUCT_GROUP_LIST: `${config.apiOrigin}/products/groups`, // get
   Product: (id: number) => `${config.apiOrigin}/product/1/${id}`, // get

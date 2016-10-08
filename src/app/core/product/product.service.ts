@@ -11,8 +11,8 @@ import { constMap } from '../consts';
 import { one2manyRelate, posSortor } from '../util';
 import {
   IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
-  ISku, ProductAttrGroup, IProduct, IProductsResponse,
-  IProductQuery
+  ISku, ISkusResponse, ProductAttrGroup, IProduct, IProductsResponse,
+  IProductQuery,
 } from './product';
 import { IProductEval, IEvalItem } from './eval';
 import { specialPresets, ISpecial } from './special';
@@ -38,6 +38,10 @@ export class ProductService {
         publishReplay(1).refCount();
     }
     return this._attrs;
+  }
+
+  getSkus(id: number) {
+    return this.http.get(URLS.ProductSkus(id)).map(res => <ISkusResponse>res.json());
   }
 
   findSku(product: IProduct, attrs: ProductAttr[]): ISku {
@@ -71,7 +75,7 @@ export class ProductService {
 
   setCurrent(product: IProduct) {
     if (product) {
-      this.current = Observable.of(product);
+      this.current = this.proccessSkus(product).publishReplay(1).refCount();
     }
   }
 
@@ -82,34 +86,12 @@ export class ProductService {
   }
 
   proccessSkus(product: IProduct): Observable<IProduct> {
-    if (product.proccessed) {
-      return Observable.of(product);
-    }
-
-    let skus = product.raw.skus || [];
-    let attrs = product.raw.attrs || [];
-    return this.getAttrs().map(attrAndGroupMap => {
-      attrs = attrs.filter(attrId => attrId.AttrID in attrAndGroupMap.attrs);
-
-      let flattenAttrs = attrs.map(attrId => attrAndGroupMap.attrs[attrId.AttrID]);
-      let attrsByGroup = groupBy(uniq(flattenAttrs), item => item.GroupID);
-      product.groups = Object.keys(attrsByGroup).filter(groupId => groupId in attrAndGroupMap.groups).
-        map(groupId => new ProductAttrGroup(attrAndGroupMap.groups[groupId], attrsByGroup[groupId].sort(posSortor))).
-        sort(posSortor);
-
-      let attrIdsBySku = groupBy(attrs, item => item.SkuID);
-      let skuMap = keyBy(skus, item => item.ID);
-      // join all Attrs
-      let attrMap = keyBy(product.groups.map(group => group.Attrs).reduce((a, b) => [...a, ...b], []), item => item.ID);
-      Object.keys(attrIdsBySku).filter(id => id in skuMap).forEach(skuId => {
-        // add Attrs to sku
-        skuMap[skuId].attrs = attrIdsBySku[skuId].filter(attrId => attrId.AttrID in attrMap).map(attrId => attrMap[attrId.AttrID]);
+    return product.raw ? this._proccessSkus(product) :
+      this.getSkus(product.ID).flatMap(({Skus: skus, Attrs: attrs}) => {
+        product.raw = { skus, attrs };
+        console.log(product)
+        return this._proccessSkus(product);
       });
-
-      product.proccessed = true;
-
-      return product;
-    });
   }
 
   getEvals(product: IProduct): Observable<IProductEval> {
@@ -144,6 +126,37 @@ export class ProductService {
       }).publishReplay(1).refCount();
     }
     return product.evals$;
+  }
+
+  private _proccessSkus(product: IProduct): Observable<IProduct> {
+    if (product.proccessed) {
+      return Observable.of(product);
+    }
+
+    let skus = product.raw.skus || [];
+    let attrs = product.raw.attrs || [];
+    return this.getAttrs().map(attrAndGroupMap => {
+      attrs = attrs.filter(attrId => attrId.AttrID in attrAndGroupMap.attrs);
+
+      let flattenAttrs = attrs.map(attrId => attrAndGroupMap.attrs[attrId.AttrID]);
+      let attrsByGroup = groupBy(uniq(flattenAttrs), item => item.GroupID);
+      product.groups = Object.keys(attrsByGroup).filter(groupId => groupId in attrAndGroupMap.groups).
+        map(groupId => new ProductAttrGroup(attrAndGroupMap.groups[groupId], attrsByGroup[groupId].sort(posSortor))).
+        sort(posSortor);
+
+      let attrIdsBySku = groupBy(attrs, item => item.SkuID);
+      let skuMap = keyBy(skus, item => item.ID);
+      // join all Attrs
+      let attrMap = keyBy(product.groups.map(group => group.Attrs).reduce((a, b) => [...a, ...b], []), item => item.ID);
+      Object.keys(attrIdsBySku).filter(id => id in skuMap).forEach(skuId => {
+        // add Attrs to sku
+        skuMap[skuId].attrs = attrIdsBySku[skuId].filter(attrId => attrId.AttrID in attrMap).map(attrId => attrMap[attrId.AttrID]);
+      });
+
+      product.proccessed = true;
+
+      return product;
+    });
   }
 
   private initAttrs(res: IProductAttrsResponse): ProductAttrs {

@@ -164,3 +164,8 @@ export interface IProductsResponse {
   Skus: ISku[];
   Attrs: IProductAttrId[];
 }
+
+export interface ISkusResponse {
+  Skus: ISku[];
+  Attrs: IProductAttrId[];
+}

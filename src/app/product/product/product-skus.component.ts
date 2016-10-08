@@ -25,6 +25,7 @@ export class ProductSkusComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
+        console.log(this.product)
     this.sku = this.sku || this.product.skus[0];
     this.findGroupBuyItem();
   }

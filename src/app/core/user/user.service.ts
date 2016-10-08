@@ -74,7 +74,7 @@ export class UserService {
   bindPhone(payload: IBindPhonePayload): Observable<string> {
     payload.RefreshToken = this.jwt.refreshToken;
     return this.http.post(URLS.USER_BIND_PHONE, JSON.stringify(payload)).
-      map(res => this.tokenService._updateToken(res.json()));
+      flatMap(res => this.tokenService._updateToken(res.json()));
   }
 
   preSetPaykey() {
