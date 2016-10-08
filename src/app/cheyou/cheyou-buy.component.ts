@@ -48,7 +48,7 @@ export class CheyouBuyComponent {
   }
 
   alert(content: string, title: string) {
-    this.alert(unescape(content), title);
+    this.modal.alert(unescape(content), title);
   }
 
 }
