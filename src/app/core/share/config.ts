@@ -1,6 +1,7 @@
 export interface ModeArgs {
   publicOrigin: string;
   apiOrigin: string;
+  wxCodeEndpoint: string;
   cdnImgOrigin: string;
   qrLogoUrl?: string;
   vbuysSpecialName?: string;
@@ -17,6 +18,7 @@ export interface JwtConfig {
 export class Config {
   publicOrigin: string;
   apiOrigin: string;
+  wxCodeEndpoint: string;
   cdnImgOrigin: string;
   qrLogoUrl: string;
   vbuysSpecialName: string;

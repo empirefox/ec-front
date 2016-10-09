@@ -132,10 +132,9 @@ export class TokenService {
       this.jwt.setOauth2State(state);
       this.jwt.setCurrentUrl(u);
 
-      let codeEndpoint = 'http://open.weixin.qq.com/connect/oauth2/authorize';
       let {WxAppId: appId, WxScope: scope} = profile;
       let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
-      location.href = `${codeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
+      location.href = `${config.wxCodeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
       return Observable.throw('LOGIN');
     });
   }
