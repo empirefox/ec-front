@@ -20,9 +20,9 @@ const OutputBabelPlugin = require('./custom-plugin');
 console.log(OutputBabelPlugin)
 
 const babelOptions = {
-  "presets":["es2015"],
-    plugins: [],
-    compact: true
+  "presets": ["es2015"],
+  plugins: [],
+  compact: true
 };
 
 /**
@@ -31,15 +31,15 @@ const babelOptions = {
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
+const METADATA = webpackMerge(commonConfig({ env: ENV }).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
   HMR: false
 });
 
-module.exports = function(env) {
-  return webpackMerge(commonConfig({env: ENV}), {
+module.exports = function (env) {
+  return webpackMerge(commonConfig({ env: ENV }), {
 
     /**
      * Switch loaders to debug mode.
@@ -141,7 +141,7 @@ module.exports = function(env) {
         }
       }),
 
-      new OutputBabelPlugin(babelOptions),
+      new OutputBabelPlugin(babelOptions, /vendor.*\.js($|\?)/i),
 
       /**
        * Plugin: UglifyJsPlugin
@@ -168,7 +168,7 @@ module.exports = function(env) {
 
 
         beautify: false, //prod
-        mangle: { screw_ie8 : true, keep_fnames: true }, //prod
+        mangle: { screw_ie8: true, keep_fnames: true }, //prod
         compress: { screw_ie8: true }, //prod
         comments: false //prod
       }),
