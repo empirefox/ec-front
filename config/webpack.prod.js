@@ -173,6 +173,12 @@ module.exports = function (env) {
         comments: false //prod
       }),
 
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        filename: 'errno-404',
+        chunksSortMode: 'dependency'
+      }),
+
       /**
        * Plugin: NormalModuleReplacementPlugin
        * Description: Replace resources that matches resourceRegExp with newResource
