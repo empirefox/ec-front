@@ -84,7 +84,7 @@ export class OrderPayComponent {
         case PayType.wx:
           this.orderService.wxPay(this.order).subscribe(
             _ => this.payOk(),
-            (err:Response) => this.error = err.text(),
+            (err) => this.error = err,
           );
           break;
         case PayType.cash:
