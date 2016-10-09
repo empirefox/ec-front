@@ -1,5 +1,6 @@
 import { Component, Optional, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
+import {Response}from '@angular/http';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -25,7 +26,7 @@ export class OrderPayComponent {
   user: IUserInfo;
   wallet: IWallet;
   vpn: number;
-  error: boolean;
+  error: string;
   key: string;
   keyControl: FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
@@ -67,7 +68,7 @@ export class OrderPayComponent {
   }
 
   onDismiss() {
-    this.error = false;
+    this.error = '';
     this.show = false;
     this.showChange.next(false);
   }
@@ -83,14 +84,14 @@ export class OrderPayComponent {
         case PayType.wx:
           this.orderService.wxPay(this.order).subscribe(
             _ => this.payOk(),
-            _ => this.error = true,
+            (err:Response) => this.error = err.text(),
           );
           break;
         case PayType.cash:
         case PayType.points:
           this.orderService.pay(this.order, this.key).subscribe(
             _ => this.payOk(),
-            _ => this.error = true,
+            (err:Response) => this.error = err.text(),
           );
           break;
         default:
