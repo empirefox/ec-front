@@ -1,4 +1,4 @@
-<div [ngSwitch]="order.State">
+<div [ngSwitch]="state">
 
   <template [ngSwitchCase]="states.TOrderStateNopay">
     <a (click)="showOrderPay=true" class="btn">去付款</a>
