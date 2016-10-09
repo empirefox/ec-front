@@ -70,7 +70,7 @@ export class MoneyService {
             if (res.err_msg === 'get_brand_wcpay_request：ok') {
               resolve();
             } else {
-              reject();
+              reject(res);
             }
           }
         );
