@@ -20,9 +20,9 @@ const OutputBabelPlugin = require('./custom-plugin');
 console.log(OutputBabelPlugin)
 
 const babelOptions = {
-  "presets": ["es2015"],
-  plugins: [],
-  compact: true
+  "presets": ["es2015", {modules:false}],
+  // plugins: ['transform-es2015-arrow-functions'],
+  minified:false,
 };
 
 /**
@@ -141,7 +141,7 @@ module.exports = function (env) {
         }
       }),
 
-      new OutputBabelPlugin(babelOptions),
+      // new OutputBabelPlugin(babelOptions),
 
       /**
        * Plugin: UglifyJsPlugin
