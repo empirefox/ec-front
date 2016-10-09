@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WxCodeResult, Jwt, TokenService } from '../core';
 
@@ -14,6 +15,7 @@ export class WeixinOauthPageComponent {
   state: State = State.Init;
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private jwt: Jwt,
@@ -23,7 +25,10 @@ export class WeixinOauthPageComponent {
     // redirect_uri/?code=CODE&state=STATE
     this.tokenService.exchange(<WxCodeResult>this.route.snapshot.queryParams).
       map(_ => this.state = State.Ok).subscribe(
-      _ => this.router.navigateByUrl(this.jwt.getCurrentUrl()),
+      _ => {
+        this.location.replaceState('/');
+        this.router.navigateByUrl(this.jwt.getCurrentUrl());
+      },
       _ => this.state = State.Failed
       );
   }

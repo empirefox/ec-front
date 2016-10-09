@@ -47,6 +47,6 @@ export class Jwt extends JwtHelper {
 
   notExpired() { return !this.tokenExpired(this.accessToken, 10); }
   needUpdate() { return !this.tokenExpired(this.accessToken, 120); }
-  canUpdate() { return !this.tokenExpired(this.refreshToken, 10); }
+  canUpdate() { return !!this.refreshToken; }
 
 }

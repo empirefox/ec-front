@@ -81,10 +81,11 @@ export class ProductPageComponent implements OnInit {
         if (groupbuy) {
           this.groupBuyItem = groupbuy;
           let sku = this.skus.find(sku => sku.ID === groupbuy.sku.ID);
-          if (sku) {
-            this.sku = sku;
-            this.showSkus = true;
-          }
+          this.sku = sku;
+        }
+
+        if (skuId && this.sku) {
+          this.showSkus = true;
         }
 
         this.setCartLen(cart);

@@ -8,12 +8,11 @@ import { Jwt } from '../jwt';
 import { nonce, removeURLParameter } from '../util';
 import { IUserInfo, IUserTokenResponse, IRefreshTokenResponse, ExchangePayload } from './user';
 
+const localUserKey = 'local_user_key';
 @Injectable()
 export class TokenService {
 
   _userinfo: Observable<IUserInfo>;
-  private headSrc: Observable<string>;
-  private headNonce: string = nonce(8);
 
   constructor(
     private router: Router,
@@ -22,11 +21,23 @@ export class TokenService {
     private profileService: ProfileService,
     private jwt: Jwt) { }
 
+  loadUserFromLocal(): IUserInfo {
+    try {
+      return JSON.parse(localStorage.getItem(localUserKey));
+    } catch (e) {
+      return null;
+    }
+  }
+
   getUserinfo(): Observable<IUserInfo> {
     if (!this._userinfo) {
+      let local = this.loadUserFromLocal();
+      if (local) {
+        return this._userinfo = Observable.of(local);
+      }
       this.jwt.accessToken = '';
       this.jwt.refreshToken = '';
-      return this.mustUpdateToken().flatMap(_ => this._userinfo);
+      return this.redirectLogin().map(_ => this.loadUserFromLocal());
     }
     return this._userinfo;
   }
@@ -43,21 +54,13 @@ export class TokenService {
     }
     return code && state && state === this.jwt.getOauth2State() ?
       this.rawHttp.post(config.wxExchangeCode(), JSON.stringify(payload)).
-        map(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
+        flatMap(res => this._parseAuthResult(<IUserTokenResponse>res.json())) :
       new Observable<string>((obs: any) => { obs.error(new Error()); });
   }
 
   _parseAuthResult(res: IUserTokenResponse) {
-    let claims = this.jwt.decodeToken(res.AccessToken);
-    let user = res.User;
-    user.ID = +claims.uid;
-    user.OpenId = claims.oid;
-    user.Phone = claims.mob;
-    user.User1 = +claims.us1;
-    this.jwt.accessToken = res.AccessToken;
     this.jwt.refreshToken = res.RefreshToken;
-    this._userinfo = Observable.of(user);
-    return res.AccessToken;
+    return this._setAccessToken(res.AccessToken, res.User);
   }
 
   // parseAuthResult(): Observable<string> {
@@ -71,28 +74,20 @@ export class TokenService {
       // if (ENV === 'development') {
       //   return this.rawHttp.get(URLS.FAKE_TOKEN).map(res => this._parseAuthResult(<IUserTokenResponse>res.json()));
       // }
-      return this.profileService.getProfile().delay(600).flatMap(profile => {
-        // clean url
-        let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
-        let query = (+user1) ? `?user1=${user1}` : '';
-        let state = nonce(8);
-        this.jwt.setOauth2State(state);
-        this.jwt.setCurrentUrl(u);
-        // return this.jwt.setOauth2State(state).flatMap(_ => this.jwt.setCurrentUrl()).flatMap(_ => {
-        let codeEndpoint = 'http://open.weixin.qq.com/connect/oauth2/authorize';
-        let {WxAppId: appId, WxScope: scope} = profile;
-        let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
-        location.href = `${codeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
-        return caught;
-        // });
-      });
+      console.log(err)
+      return this.redirectLogin();
     });
   }
 
   updateToken(): Observable<string> {
     // return this.parseAuthResult().catch((err, caught) => {
     return this.jwt.canUpdate() ?
-      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).flatMap(res => this._updateToken(res.json())) :
+      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).
+        flatMap(res => this._updateToken(res.json())).catch((err, caught) => {
+          this.jwt.refreshToken = '';
+          console.log('Refresh failed');
+          return caught;
+        }) :
       new Observable<string>((obs: any) => {
         obs.error(new Error('Refresh token expired'));
       });
@@ -101,17 +96,47 @@ export class TokenService {
 
   _updateToken(res: IRefreshTokenResponse): Observable<string> {
     if (res.OK) {
-      this.jwt.accessToken = res.AccessToken;
-      return Observable.of(res.AccessToken);
+      return this._setAccessToken(res.AccessToken);
     }
-    let token = this.jwt.accessToken;
-    return this.getUserinfo().map(user => {
+    return Observable.of(this.jwt.accessToken);
+  }
+
+  _setAccessToken(token: string, user?: IUserInfo) {
+    this.jwt.accessToken = token;
+    let local = user || this.loadUserFromLocal();
+    if (local) {
       let claims = this.jwt.decodeToken(token);
-      user.ID = +claims.uid;
-      user.OpenId = claims.oid;
-      user.Phone = claims.mob;
-      user.User1 = +claims.us1;
-      return token;
+      local.ID = +claims.uid;
+      local.OpenId = claims.oid;
+      local.Phone = claims.mob;
+      local.User1 = +claims.us1;
+      localStorage.setItem(localUserKey, JSON.stringify(local));
+      return Observable.of(token);
+    } else {
+      return this.redirectLogin();
+    }
+  }
+
+  redirectLogin() {
+    return this.profileService.getProfile().map(profile => {
+      console.log('login..................................')
+      console.log(this.loadUserFromLocal())
+      console.log(this.jwt.accessToken);
+      console.log(this.jwt.refreshToken);
+      return profile;
+    }).delay(600).flatMap(profile => {
+      // clean url
+      let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
+      let query = (+user1) ? `?user1=${user1}` : '';
+      let state = nonce(8);
+      this.jwt.setOauth2State(state);
+      this.jwt.setCurrentUrl(u);
+
+      let codeEndpoint = 'http://open.weixin.qq.com/connect/oauth2/authorize';
+      let {WxAppId: appId, WxScope: scope} = profile;
+      let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
+      location.href = `${codeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
+      return Observable.throw('LOGIN');
     });
   }
 
