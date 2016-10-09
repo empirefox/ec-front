@@ -141,7 +141,7 @@ module.exports = function (env) {
         }
       }),
 
-      new OutputBabelPlugin(babelOptions, /vendor.*\.js($|\?)/i),
+      new OutputBabelPlugin(babelOptions),
 
       /**
        * Plugin: UglifyJsPlugin
