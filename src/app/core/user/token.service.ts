@@ -82,15 +82,13 @@ export class TokenService {
   updateToken(): Observable<string> {
     // return this.parseAuthResult().catch((err, caught) => {
     return this.jwt.canUpdate() ?
-      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).delay(500).
+      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).
         flatMap(res => this._updateToken(res.json())).catch((err, caught) => {
           this.jwt.refreshToken = '';
           console.log('Refresh failed');
-          return caught;
+          return this.redirectLogin();
         }) :
-      new Observable<string>((obs: any) => {
-        obs.error(new Error('Refresh token expired'));
-      });
+      this.redirectLogin();
     // });
   }
 
