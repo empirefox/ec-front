@@ -82,7 +82,7 @@ export class TokenService {
   updateToken(): Observable<string> {
     // return this.parseAuthResult().catch((err, caught) => {
     return this.jwt.canUpdate() ?
-      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).
+      this.http.get(URLS.UserRefreshToken(this.jwt.refreshToken)).delay(500).
         flatMap(res => this._updateToken(res.json())).catch((err, caught) => {
           this.jwt.refreshToken = '';
           console.log('Refresh failed');

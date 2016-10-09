@@ -8,7 +8,7 @@
       </a>
     </li>
     <li class="user-item" *ngFor="let item of items">
-      <a (click)="gotoDetail()">
+      <a (click)="gotoDetail(item)">
         <span class="user-pic">
             <img [default]="profile.DefaultHeadImage" [src]="item.HeadImageURL" valign="middle">
 				  </span>{{item.Nickname}}

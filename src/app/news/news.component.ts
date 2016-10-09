@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 import { KSSwiperContainer, KSSwiperSlide } from 'angular2-swiper';
 import { constMap, ICarouselItem, CarouselService } from '../core';
 
@@ -13,10 +13,11 @@ import { INewsItem, NewsService } from '../core';
 export class NewsComponent {
   slides: ICarouselItem[];
   swipeOptions: any;
+  infiniteScrollDisabled: boolean;
 
   @ViewChild(KSSwiperContainer) swiperContainer: KSSwiperContainer;
 
-  items: INewsItem[];
+  items: INewsItem[] = [];
 
   constructor(
     private router: Router,
@@ -43,6 +44,13 @@ export class NewsComponent {
 
   ngAfterViewInit() {
     setTimeout(() => this.swiperContainer.swiper.startAutoplay());
+  }
+
+  setItems(items: INewsItem[]) {
+    if (this.items.length === (items ? items.length : 0)) {
+      this.infiniteScrollDisabled = true;
+    }
+    this.items = items;
   }
 
   onScroll(next: boolean) {

@@ -19,7 +19,7 @@
   </ul>
 </div> -->
 <div class="main-layout">
-  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()" [infiniteScrollDisabled]="infiniteScrollDisabled"
     infinite-scroll [ngClass]="containerClass">
     <ul class="goods-secrch-list">
       <li class="goods-item" *ngFor="let item of filtered; trackBy:trackByItems" (click)="gotoProduct(item)">

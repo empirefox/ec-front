@@ -35,7 +35,7 @@ export class CheyouListComponent {
     return this.profile && this.user && this.items;
   }
 
-  gotoDetail() { this.router.navigateByUrl('/cheyou/detail'); }
+  gotoDetail(item: IVipIntro) { this.router.navigate(['/cheyou/detail', item.ID]); }
   gotoMy() { this.router.navigateByUrl('/cheyou/my'); }
 
 }

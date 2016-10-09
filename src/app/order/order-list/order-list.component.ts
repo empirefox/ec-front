@@ -18,7 +18,7 @@ const state = constMap.OrderState;
 })
 export class OrderListComponent implements OnInit {
 
-  all: IOrder[];
+  all: IOrder[] = [];
   checkout: IOrder[];
   receipted: IOrder[];
   returned: IOrder[];
@@ -30,6 +30,7 @@ export class OrderListComponent implements OnInit {
 
   current: IOrder[];
 
+  infiniteScrollDisabled: boolean;
   _filter: string;
   _view: string = 'all';
 
@@ -70,6 +71,9 @@ export class OrderListComponent implements OnInit {
   private setOrders(orders: IOrder[]) {
     if (!orders) {
       return;
+    }
+    if (this.all.length === orders.length) {
+      this.infiniteScrollDisabled = true;
     }
     this.all = orders;
     this.checkout = orders.filter(order => order.State === state.TOrderStateNopay);

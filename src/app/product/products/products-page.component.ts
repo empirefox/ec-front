@@ -14,6 +14,7 @@ export class ProductsPageComponent {
 
   filtered: IProduct[];
   grid: boolean;
+  infiniteScrollDisabled: boolean;
 
   private _filter: string;
   private _products: IProduct[] = [];
@@ -34,6 +35,9 @@ export class ProductsPageComponent {
 
   get products() { return this._products; }
   set products(items: IProduct[]) {
+    if (this._products.length === (items ? items.length : 0)) {
+      this.infiniteScrollDisabled = true;
+    }
     this.filtered = this._products = items;
     this.filter = '';
   }
