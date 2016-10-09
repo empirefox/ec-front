@@ -2,7 +2,7 @@
   <div class="bottom-mask-bg"></div>
   <div class="bottom-mask-block">
     <div class="bottom-mask-top">
-      <pre>{{error|json}}</pre>
+      <pre>{{error}}</pre>
       <p *ngIf="error">付款失败，请稍后再试</p>
       <p class="cart-num">本次金额<em>{{order.PayPoints||order.PayAmount|price:order.Items[0]}}</em></p>
       <a (click)="onDismiss()" class="bottom-mask-close"><i></i></a>
