@@ -4,7 +4,7 @@
     <ul>
       <li>
         <a (click)="gotoBalance()">
-          <span>{{base.wallet.cash}}</span>
+          <span>{{base.wallet.cash|money}}</span>
           <p>账户余额</p>
         </a>
       </li>
@@ -16,7 +16,7 @@
       </li>
       <li>
         <a (click)="gotoReward()">
-          <span>{{base.wallet.unrebated+base.wallet.frozen}}</span>
+          <span>{{(base.wallet.unrebated+base.wallet.frozen)|money}}</span>
           <p>返利</p>
         </a>
       </li>
