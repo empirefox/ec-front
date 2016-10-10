@@ -62,7 +62,7 @@ export class MoneyService {
   private _requestPay(payargs: IWxPayArgs) {
     return new Promise((resolve, reject) => {
       let onBridgeReady = () => {
-        console.log('onBridgeReady')
+        console.log('onBridgeReady 1')
         WeixinJSBridge.invoke(
           'getBrandWCPayRequest',
           payargs,
@@ -79,8 +79,10 @@ export class MoneyService {
       };
 
       if (typeof WeixinJSBridge === 'undefined') {
-        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        console.log('WeixinJSBridgeReady')
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, true);
       } else {
+        console.log('WeixinJSBridgeReady 0')
         onBridgeReady();
       }
     });
