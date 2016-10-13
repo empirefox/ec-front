@@ -1,24 +1,24 @@
 <ul>
   <li>
-    <a (click)="onGotoHome()">
+    <a [routerLink]="['/home']" routerLinkActive="active">
       <i class="home"></i>
       <p>首页</p>
     </a>
   </li>
   <li>
-    <a (click)="onGotoCategory()">
+    <a [routerLink]="['/category']" routerLinkActive="active">
       <i class="categroy"></i>
       <p>分类</p>
     </a>
   </li>
   <li>
-    <a (click)="onGotoCart()">
+    <a [routerLink]="['/cart']" routerLinkActive="active">
       <i class="cart"></i>
       <p>购物车</p>
     </a>
   </li>
   <li>
-    <a (click)="onGotoMenber()">
+    <a [routerLink]="['/member']" routerLinkActive="active">
       <i class="member"></i>
       <p>我的</p>
     </a>
