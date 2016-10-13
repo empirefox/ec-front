@@ -36,7 +36,7 @@
       </ul>
       <div class="error-tips"></div>
       <div class="form-btn">
-        <button type="submit" class="btn" [disabled]="!form.dirty||!form.valid||submitting||!captcha">下一步</button>
+        <button type="submit" class="btn" [class.valid]="!submitting&&captcha&&form.valid">下一步</button>
       </div>
     </form>
     <div class="register-mobile-tip"> 小提示：通过手机验证后，可用于快速找回登录密码及支付密码，接收账户资产变更等提醒。</div>

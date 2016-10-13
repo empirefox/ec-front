@@ -40,7 +40,7 @@
       </ul>
       <div *ngIf="failed" class="error-tips">保存失败</div>
       <div class="form-btn">
-        <button type="submit" class="btn" [class.ok]="form.valid" [disabled]="submitDisabled">保存地址</button>
+        <button type="submit" class="btn" [class.ok]="valid">保存地址</button>
       </div>
     </form>
   </div>

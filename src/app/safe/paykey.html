@@ -43,7 +43,7 @@
       </ul>
       <div class="error-tips"></div>
       <div class="form-btn">
-        <button type="submit" class="btn" [disabled]="keyCheckControl.value!==form.get('Key').value||!form.dirty||!form.valid||submitting||!captcha">下一步</button>
+        <button type="submit" class="btn" [class.valid]="valid">下一步</button>
       </div>
     </form>
   </div>

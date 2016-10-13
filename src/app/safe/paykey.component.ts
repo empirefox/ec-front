@@ -31,7 +31,7 @@ export class SetPaykeyComponent {
     this.form = this.fb.group({
       Key: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
-      Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
+      Code: ['', Validators.compose([Validators.required, Validators.pattern(`\\d{4}`)])],
     });
     this.keyCheckControl = new FormControl('');
   }
@@ -39,6 +39,10 @@ export class SetPaykeyComponent {
   get colding() { return this.countdownService.isSmsColding(); }
 
   get secondsLeft() { return this.colding ? `(${this._secondsLeft || 0}s)` : ''; }
+
+  get valid() {
+    return this.form.valid && !this.submitting && this.captcha && this.keyCheckControl.value === this.form.get('Key').value;
+  }
 
   onSendSms() {
     if (!this.sending) {

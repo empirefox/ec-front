@@ -24,5 +24,5 @@
       </li>
     </ul>
   </div>
-  <button (click)="onOk()" class="btn-l mt10" [disabled]="need&&!to.valid">确定</button>
+  <button (click)="onOk()" class="btn-l mt10" [class.valid]="to.valid||!need">确定</button>
 </div>

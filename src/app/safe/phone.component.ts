@@ -30,7 +30,7 @@ export class BindPhoneComponent {
     this.form = this.fb.group({
       Phone: ['', Validators.compose([Validators.required, Validators.pattern(`1[3|4|5|7|8]\\d{9}`)])],
       Captcha: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
-      Code: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
+      Code: ['', Validators.compose([Validators.required, Validators.pattern(`\\d{4}`)])],
     });
   }
 
@@ -39,7 +39,7 @@ export class BindPhoneComponent {
   get secondsLeft() { return this.colding ? `(${this._secondsLeft || 0}s)` : ''; }
 
   onSendSms() {
-    let phone = this.form.controls['Phone'];
+    let phone = this.form.get('Phone');
     if (phone.valid && !this.sending) {
       this.sending = true;
       this.userService.preBindPhone(phone.value).subscribe(

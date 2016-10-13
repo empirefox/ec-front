@@ -87,7 +87,7 @@ export class AddressEditorComponent {
     }
   }
 
-  get submitDisabled() { return !this.form.valid || this.failed; }
+  get valid() { return this.form.valid && !this.failed; }
 
   onSubmit() {
     // tslint:disable-next-line:all

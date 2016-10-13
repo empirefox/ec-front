@@ -58,5 +58,5 @@ export class CheyouMyComponent {
     );
   }
 
-  get submitDisabled() { return !this.form.valid || this.failed; }
+  get valid() { return this.form.valid && !this.failed; }
 }

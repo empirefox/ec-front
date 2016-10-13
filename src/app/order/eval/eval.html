@@ -42,7 +42,7 @@
         <input type="checkbox" [formControl]="allControl">
       </label>
       <div class="oc-star-b">
-        <button type="submit" class="btn btn-red" [disabled]="!form.valid">发表评价</button>
+        <button type="submit" class="btn btn-red" [class.valid]="form.valid">发表评价</button>
       </div>
     </section>
   </form>
