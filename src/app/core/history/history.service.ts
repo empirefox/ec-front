@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import keyBy = require('lodash/keyBy');
 import { IProduct } from '../product';
 import { HistoryItem } from './history';
-import { LocaldbService } from '../localdb';
 
 const MAX = 20;
 const historyKey = 'cheyou_local_history';
@@ -14,7 +13,7 @@ export class HistoryService {
 
   private _items: HistoryItem[];
 
-  constructor(private localdbService: LocaldbService) { }
+  constructor() { }
 
   getItems() {
     if (!this._items) {

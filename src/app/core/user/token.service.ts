@@ -122,7 +122,7 @@ export class TokenService {
       console.log(this.jwt.accessToken);
       console.log(this.jwt.refreshToken);
       return profile;
-    }).delay(600).flatMap(profile => {
+    }).flatMap(profile => {
       // clean url
       let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
       let query = (+user1) ? `?user1=${user1}` : '';

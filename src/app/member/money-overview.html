@@ -8,7 +8,7 @@
   <dd>
     <ul>
       <li>
-        <a (click)="onViewBalance()">{{wallet.cash}}
+        <a (click)="onViewBalance()">{{wallet.cash|money}}
           <p>余额</p>
         </a>
       </li>
@@ -18,7 +18,7 @@
         </a>
       </li>
       <li>
-        <a (click)="gotoReward()">{{wallet.unrebated+wallet.frozen}}
+        <a (click)="gotoReward()">{{(wallet.unrebated+wallet.frozen)|money}}
           <p>返利</p>
         </a>
       </li>
