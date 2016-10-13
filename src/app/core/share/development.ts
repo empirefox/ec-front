@@ -1,10 +1,10 @@
 import { ModeArgs } from './config';
 
 export const modeArgs: ModeArgs = {
-  publicOrigin: 'http://192.168.10.187:3000',
-  apiOrigin: 'http://192.168.10.110:9999',
-  wxCodeEndpoint: 'http://open.weixin.qq.com/connect/oauth2/authorize',
-  cdnImgOrigin: 'http://oekvngvwp.bkt.clouddn.com',
+  publicOrigin: 'http://www.silu333.com',
+  apiOrigin: 'https://api.silu333.com',
+  wxCodeEndpoint: 'https://open.weixin.qq.com/connect/oauth2/authorize',
+  cdnImgOrigin: 'https://head.silu333.com',
   qrLogoUrl: '',
   vbuysSpecialName: 'vbuys',
 };
