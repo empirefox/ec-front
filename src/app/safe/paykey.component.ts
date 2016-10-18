@@ -12,7 +12,6 @@ export class SetPaykeyComponent {
   form: FormGroup;
   keyCheckControl: FormControl;
   captcha: ICaptcha;
-  sending: boolean;
   captchaing: boolean;
   submitting: boolean;
   error: any;
@@ -47,12 +46,9 @@ export class SetPaykeyComponent {
   }
 
   onSendSms() {
-    if (!this.sending) {
-      this.sending = true;
+    if (!this.colding) {
       this.userService.preSetPaykey().subscribe(
         retry => this.countdownService.coldSms().subscribe(sec => this._secondsLeft = sec),
-        _ => this.sending = false,
-        () => this.sending = false
       );
     }
   }
@@ -77,6 +73,7 @@ export class SetPaykeyComponent {
       // need back when paying
       _ => this.location.back(),
       errRes => {
+        this.onChangeCaptcha();
         this.submitting = false;
         this.error = errRes.json();
       });

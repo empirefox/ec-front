@@ -11,7 +11,6 @@ export class BindPhoneComponent {
 
   form: FormGroup;
   captcha: ICaptcha;
-  sending: boolean;
   captchaing: boolean;
   submitting: boolean;
   error: any;
@@ -42,12 +41,9 @@ export class BindPhoneComponent {
 
   onSendSms() {
     let phone = this.form.get('Phone');
-    if (phone.valid && !this.sending) {
-      this.sending = true;
+    if (phone.valid && !this.colding) {
       this.userService.preBindPhone(phone.value).subscribe(
         retry => this.countdownService.coldSms().subscribe(sec => this._secondsLeft = sec),
-        _ => this.sending = false,
-        () => this.sending = false
       );
     }
   }
@@ -71,6 +67,7 @@ export class BindPhoneComponent {
     this.userService.bindPhone(data).subscribe(
       _ => this.location.back(),
       errRes => {
+        this.onChangeCaptcha();
         this.submitting = false;
         this.error = errRes.json();
       });
