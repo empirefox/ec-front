@@ -49,4 +49,16 @@
   </div>
 </div>
 
+  <pre *ngIf="showErr">
+Key.errors={{form.get('Key').errors|json}}
+keyCheckControl.errors={{keyCheckControl.errors|json}}
+Captcha.errors={{form.get('Captcha').errors|json}}
+Code.errors={{form.get('Code').errors|json}}
+submitting={{submitting}}
+keyCheckControl.value={{keyCheckControl.value}}
+form.get('Key').value={{form.get('Key').value}}
+error:
+{{error|json}}
+  </pre>
+
 <footer-bar></footer-bar>

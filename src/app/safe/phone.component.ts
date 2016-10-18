@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ICaptcha, CaptchaService, UserService, IBindPhonePayload, CountdownService } from '../core';
+import { config, ICaptcha, CaptchaService, UserService, IBindPhonePayload, CountdownService } from '../core';
 
 @Component({
   templateUrl: './phone.html',
@@ -15,6 +15,8 @@ export class BindPhoneComponent {
   captchaing: boolean;
   submitting: boolean;
   error: any;
+
+  showErr = config.showErr;
 
   private _secondsLeft = 0;
 

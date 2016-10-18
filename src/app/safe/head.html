@@ -7,8 +7,9 @@
       #uploader="dropzone"></div>
   <button (click)="upload(uploader)" [class.active]="uploadActive">确认修改</button>
 
-  <pre *ngIf="error">
-  Debug error = {{error|json}}
+  <pre *ngIf="showErr">
+error:
+{{error|json}}
   </pre>
 </div>
 

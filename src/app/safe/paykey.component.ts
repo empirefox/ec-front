@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, AbstractControl, Validators, FormBuilder } from '@angular/forms';
-import { ICaptcha, CaptchaService, UserService, ISetPaykeyPayload, CountdownService } from '../core';
+import { config, ICaptcha, CaptchaService, UserService, ISetPaykeyPayload, CountdownService } from '../core';
 
 @Component({
   templateUrl: './paykey.html',
@@ -16,6 +16,8 @@ export class SetPaykeyComponent {
   captchaing: boolean;
   submitting: boolean;
   error: any;
+  
+  showErr = config.showErr;
 
   private _secondsLeft = 0;
 

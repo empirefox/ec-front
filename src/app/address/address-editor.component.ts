@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { IAddress, AddressService } from '../core';
+import { config, IAddress, AddressService } from '../core';
 import { ChinaRegionService, RegionPair } from './china-region.service';
 
 @Component({
@@ -20,6 +20,8 @@ export class AddressEditorComponent {
   provinceControl: FormControl;
   cityControl: FormControl;
   districtControl: FormControl;
+
+  showErr = config.showErr;
 
   private provinces: RegionPair[];
   private _province: RegionPair;

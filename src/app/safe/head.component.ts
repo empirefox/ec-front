@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { IQiniuItem, IProfile, IUserInfo, UserService } from '../core';
+import { config, IQiniuItem, IProfile, IUserInfo, UserService } from '../core';
 
 @Component({
   templateUrl: './head.html',
@@ -14,8 +14,10 @@ export class SetHeadComponent {
   user: IUserInfo;
   key: string;
 
+  error: string;
+  showErr = config.showErr;
+
   private requesting: boolean;
-  private error: string;
   private hasFile: boolean;
   private fileChanged: boolean;
 

@@ -43,5 +43,10 @@
         <button type="submit" class="btn" [class.ok]="valid">保存地址</button>
       </div>
     </form>
+  <pre *ngIf="showErr">
+Contact.errors={{form.get('Contact').errors|json}}
+Phone.errors={{form.get('Phone').errors|json}}
+House.errors={{form.get('House').errors|json}}
+  </pre>
   </div>
 </div>
