@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { stringify } from 'querystringify';
 import { URLS } from '../profile';
-import { createdAtSortor } from '../util';
+import { toURLSearchParams, createdAtSortor } from '../util';
 import { INewsItem, INewsQuery } from './news';
 
 @Injectable()
@@ -67,7 +66,7 @@ export class NewsService {
 
   private _query(query: INewsQuery): Observable<INewsItem[]> {
     this._querying = true;
-    return this.rawHttp.get(URLS.NEWS, { search: stringify(query) }).map(res => {
+    return this.rawHttp.get(URLS.NEWS, { search: toURLSearchParams(query) }).map(res => {
       this._querying = false;
       return (<INewsItem[]>res.json() || []).sort(createdAtSortor);
     }).catch((err, caught) => {

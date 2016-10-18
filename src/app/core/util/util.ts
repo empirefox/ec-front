@@ -1,3 +1,4 @@
+import { URLSearchParams } from '@angular/http';
 import { isPrimitive } from '@angular/core/src/facade/lang';
 import { Observable } from 'rxjs/Observable';
 
@@ -32,6 +33,16 @@ export function nonce(length) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
+}
+
+export function toURLSearchParams(obj): URLSearchParams {
+  let params = new URLSearchParams();
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      params.set(key, obj[key])
+    }
+  }
+  return params;
 }
 
 // http://stackoverflow.com/a/1634841/2778814

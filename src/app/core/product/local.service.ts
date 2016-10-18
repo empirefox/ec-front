@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { stringify } from 'querystringify';
 import { URLS, CommonQuery } from '../profile';
 import { IProduct, ISku, IProductQuery } from './product';
 import { ProductService } from './product.service';

@@ -5,10 +5,9 @@ import groupBy = require('lodash/groupBy');
 import keyBy = require('lodash/keyBy');
 import isEqual = require('lodash/isEqual');
 import uniq = require('lodash/uniq');
-import { stringify } from 'querystringify';
 import { URLS } from '../profile';
 import { constMap } from '../consts';
-import { one2manyRelate, posSortor } from '../util';
+import { toURLSearchParams, one2manyRelate, posSortor } from '../util';
 import {
   IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
   ISku, ISkusResponse, ProductAttrGroup, IProduct, IProductsResponse,
@@ -52,7 +51,7 @@ export class ProductService {
   }
 
   query(query: IProductQuery): Observable<IProduct[]> {
-    return this.getProducts(new URLSearchParams(stringify(query)));
+    return this.getProducts(toURLSearchParams(query));
   }
 
   // ?CategoryID=111

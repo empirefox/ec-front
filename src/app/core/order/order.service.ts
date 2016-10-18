@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { stringify } from 'querystringify';
 import { URLS, CommonQuery } from '../profile';
-import { createdAtSortor, splitToParents } from '../util';
+import { toURLSearchParams, createdAtSortor, splitToParents } from '../util';
 import { RetryHttp } from '../user';
 import { IWxPayArgs, MoneyService } from '../money';
 import { ISku, IEvalItem } from '../product';
@@ -142,7 +141,7 @@ export class OrderService {
 
   private _query(query: CommonQuery): Observable<IOrder[]> {
     this._querying = true;
-    return this.http.get(URLS.ORDER_LIST, { search: stringify(query) }).
+    return this.http.get(URLS.ORDER_LIST, { search: toURLSearchParams(query) }).
       map(res => {
         this._querying = false;
         return this.equipOrders(res.json() || {});
