@@ -17,10 +17,6 @@ export class HomePageComponent {
     private carouselService: CarouselService) { }
 
   ngOnInit() {
-    let u = this.route.snapshot.queryParams['u'];
-    if (u) {
-      this.tokenService.redirectLogin().subscribe();
-    }
     this.carouselService.getItems(constMap.BillboardType.TBillboardAdSlide).subscribe(items => this.items = items);
   }
 

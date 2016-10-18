@@ -28,6 +28,8 @@ export class Config {
 
   jwt: JwtConfig;
 
+  showErr: boolean;
+
   constructor(args: ModeArgs, jwt?: JwtConfig) {
     Object.assign(this, args);
     // this.apiOrigin = args.apiOrigin;
