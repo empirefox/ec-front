@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { constMap, CartService, ICheckout, LocalCheckoutBase, OrderService } from '../../core';
@@ -13,6 +14,7 @@ export class CheckoutContentComponent {
   checkout: ICheckout;
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
@@ -21,6 +23,9 @@ export class CheckoutContentComponent {
 
   ngOnInit() {
     this.checkout = this.base.checkout;
+    if (!this.checkout.valid) {
+      this.location.back();
+    }
   }
 
   get payMethod() {
