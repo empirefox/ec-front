@@ -34,9 +34,12 @@ export class GroupBuyService {
     let active: IGroupBuyItem[] = [];
     let inactive: IGroupBuyItem[] = [];
     items.sort((a, b) => a.Start - b.Start).forEach(item => {
-      item.sku = skuMap[item.SkuID];
-      (item.End > Date.now() / 1000 ? active : inactive).push(item);
-      map[item.ID] = item;
+      let sku = skuMap[item.SkuID];
+      if (sku) {
+        item.sku = sku;
+        (item.End > Date.now() / 1000 ? active : inactive).push(item);
+        map[item.ID] = item;
+      }
     });
     return { items, map, active, inactive };
   }
