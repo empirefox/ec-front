@@ -28,6 +28,7 @@ export class OrderPayComponent {
   error: boolean;
   key: string;
   keyControl: FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  paying: boolean;
 
   constructor(
     private location: Location,
@@ -78,28 +79,36 @@ export class OrderPayComponent {
   }
 
   onPay() {
-    if (this.valid) {
+    if (this.valid && !this.paying) {
+      this.paying = true;
       switch (this.payType) {
         case PayType.wx:
           this.orderService.wxPay(this.order).subscribe(
             _ => this.payOk(),
-            err => this.error = true,
+            err => this.payFailed(err),
           );
           break;
         case PayType.cash:
         case PayType.points:
           this.orderService.pay(this.order, this.key).subscribe(
             _ => this.payOk(),
-            _ => this.error = true,
+            err => this.payFailed(err),
           );
           break;
         default:
+          this.payFailed(null);
       }
     }
   }
 
   private payOk() {
     this.router.navigate(['/order/detail', this.order.ID]);
+    this.paying = false;
+  }
+
+  private payFailed(err) {
+    this.error = true;
+    this.paying = false;
   }
 
 }
