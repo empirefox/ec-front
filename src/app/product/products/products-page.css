@@ -5,3 +5,7 @@
 .newslist .pic{width: 2.8rem;  height:2.2rem; margin-right: 0.3rem;}
 .newslist .pic img{width: 100%; height: 100%}
 .newslist .info{ }
+
+.search-results {
+  height: 100%;
+}
