@@ -38,7 +38,7 @@ export class GroupBuyService {
       if (sku) {
         item.sku = sku;
         (item.End > Date.now() / 1000 ? active : inactive).push(item);
-        map[item.ID] = item;
+        map[item.SkuID] = item;
       }
     });
     return { items, map, active, inactive };
