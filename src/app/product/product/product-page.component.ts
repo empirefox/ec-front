@@ -127,9 +127,10 @@ export class ProductPageComponent implements OnInit {
   openSkus(isBuy) {
     // opened
     if (this.showSkus) {
-      if (this.sku) {
+      if (this.sku && this.sku.Stock) {
         console.log(this.sku)
         this.sku.quantity = this.sku.quantity > 1 ? this.sku.quantity : 1;
+        this.sku.quantity = this.sku.quantity > this.sku.Stock ? this.sku.Stock : this.sku.quantity;
         if (isBuy) {
           let cache: ICheckoutItem = { Sku: this.sku, Quantity: this.sku.quantity };
           if (this.groupBuyItem) {
