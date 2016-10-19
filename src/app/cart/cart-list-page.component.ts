@@ -9,7 +9,6 @@ import { CartService, ICartItem, ProductService } from '../core';
   styleUrls: ['./cart-list-page.css'],
 })
 export class CartListPageComponent {
-  total: number = 0;
   selected: number = 0;
 
   private _items: ICartItem[];
@@ -27,7 +26,11 @@ export class CartListPageComponent {
     this.items.forEach((item: ICartItem) => {
       item.checked = !item.invalid && checked;
     });
-    this.computeTotal();
+    this.computeSelected();
+  }
+
+  get total() {
+    return this.items ? this.service.computeTotal(this.items) : 0;
   }
 
   get showEmpty(): boolean {
@@ -37,7 +40,7 @@ export class CartListPageComponent {
   get items() { return this._items; }
   set items(items: ICartItem[]) {
     this._items = items;
-    this.computeTotal();
+    this.computeSelected();
   }
 
   ngOnInit() {
@@ -54,7 +57,7 @@ export class CartListPageComponent {
 
   onItemCheckedChange(item: ICartItem, checked: boolean) {
     item.checked = checked;
-    this.computeTotal();
+    this.computeSelected();
   }
 
   onDeleted(item: ICartItem) {
@@ -67,8 +70,7 @@ export class CartListPageComponent {
     }
   }
 
-  computeTotal() {
-    this.total = this.service.computeTotal(this.items);
+  computeSelected() {
     this.selected = this.items ? this.items.filter(item => item.checked).length : 0;
   }
 }
