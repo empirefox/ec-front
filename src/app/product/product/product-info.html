@@ -50,7 +50,8 @@
       <div class="itme-name">运费</div>
       <div class="item-con">
         <dl class="goods-detail-freight">
-          <dt>店铺单笔订单不满199，收运费15元</dt>
+          <dt *ngIf="!sku.Freight">包邮</dt>
+          <dt *ngIf="sku.Freight">店铺单笔订单不满{{profile.FreeDeliverLine|money}}元，收运费{{sku.Freight|money}}元</dt>
         </dl>
       </div>
     </div>

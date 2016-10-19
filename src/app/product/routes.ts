@@ -34,6 +34,7 @@ export const routes: Routes = [
             path: 'info',
             component: ProductInfoComponent,
             resolve: {
+              profile: ProfileResolver,
               address: AddressResolver,
             },
           },

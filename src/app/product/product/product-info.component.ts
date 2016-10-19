@@ -2,6 +2,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {
+  IProfile,
+  ProfileService,
   IProduct,
   ISku,
   ProductService,
@@ -19,6 +21,7 @@ import { ProductPageComponent } from './product-page.component';
 })
 export class ProductInfoComponent {
 
+  profile: IProfile;
   product: IProduct;
   addr: IAddress;
   evals: IProductEval;
@@ -41,7 +44,8 @@ export class ProductInfoComponent {
   get img() { return this.product.Img || this.product.skus[0].Img; }
 
   ngOnInit() {
-    let data = <{ address: IAddress }>this.route.snapshot.data;
+    let data = <{ profile: IProfile, address: IAddress }>this.route.snapshot.data;
+    this.profile = data.profile;
     this.addr = data.address;
     this.parent.product$.subscribe(product => {
       this.product = product;
