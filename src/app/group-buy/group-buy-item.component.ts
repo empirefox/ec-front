@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IGroupBuyItem, OrderService } from '../core';
+import { Observable } from 'rxjs/Observable';
+import { IGroupBuyItem, OrderService, IProduct, ProductService } from '../core';
 
 @Component({
   selector: 'group-buy-item',
@@ -11,8 +12,11 @@ export class GroupBuyItemComponent {
 
   @Input() item: IGroupBuyItem;
 
+  product$: Observable<IProduct>;
+
   constructor(
     private router: Router,
+    private productService: ProductService,
     private orderService: OrderService) { }
 
   get img() { return this.item.Img || this.item.sku.Img; }
@@ -24,6 +28,25 @@ export class GroupBuyItemComponent {
   }
 
   onGroupBuy() {
+    if (this.item.sku.product) {
+      this._onGroupBuy();
+      return;
+    }
+
+    if (!this.product$) {
+      this.product$ = this.productService.getProduct(this.item.sku.ProductID).publishReplay(1).refCount();
+    }
+    this.product$.subscribe(product => {
+      if (product) {
+        this.item.sku = product.skus.find(item => item.ID === this.item.sku.ID);
+        if (this.item.sku) {
+          this._onGroupBuy();
+        }
+      }
+    });
+  }
+
+  _onGroupBuy() {
     this.orderService.setCheckoutItemCache({
       Sku: this.item.sku,
       Quantity: 1,
