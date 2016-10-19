@@ -9,8 +9,8 @@
       </ks-swiper-slide>
     </ks-swiper-container>
   </div>
-  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="2000" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
-    (scrolledUp)="onScroll(false)" infinite-scroll>
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="600" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
+    infinite-scroll>
     <ul class="newslist" *ngIf="items">
       <li *ngFor="let item of items; trackBy:trackByItems">
         <a (click)="gotoDetail(item)">

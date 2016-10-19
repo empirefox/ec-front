@@ -1,3 +1,7 @@
 .w33h li {
   width: 25%;
 }
+
+.search-results {
+  height: 100%;
+}

@@ -11,8 +11,8 @@
       <li [class.selected]="view==='returned'"><a (click)="view='returned'">退款/退货</a></li>
     </ul>
   </div>
-  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="2000" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
-    (scrolledUp)="onScroll(false)" infinite-scroll class="order-list">
+  <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="600" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
+     infinite-scroll class="order-list search-results">
     <ul>
       <li *ngFor="let order of current; trackBy:trackByItems" class="green-order-skin">
         <order-list-item [order]="order"></order-list-item>
