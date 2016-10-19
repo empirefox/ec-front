@@ -11,7 +11,7 @@
     <button (click)="onWithdraw()" type="submit" class="btn" [class.ok]="amount.valid&&!requesting">
     确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信
     </button>
-    <div *ngIf="error">失败</div>
+    <div *ngIf="error">失败(每天只能提现一次)</div>
     <pre *ngIf="showErr">error={{error|json}}</pre>
   </div>
 </div>

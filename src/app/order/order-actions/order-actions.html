@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <a (click)="onReturn()" class="btn">退款</a>
+    <a *ngIf="!order.PointsPaid" (click)="onReturn()" class="btn">退款</a>
   </template>
 
   <template [ngSwitchCase]="states.TOrderStateCompleted">

@@ -53,7 +53,7 @@ export class BalanceWithdrawComponent {
         err => {
           this.requesting = false;
           this.error = err;
-          setTimeout(_ => this.error = '', 2000);
+          setTimeout(_ => this.error = '', 3000);
         },
       );
     }
