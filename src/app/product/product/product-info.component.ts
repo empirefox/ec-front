@@ -10,7 +10,9 @@ import {
   IAddress,
   AddressService,
   IEvalItem,
-  IProductEval
+  IProductEval,
+  IGroupBuyItem,
+  GroupBuyService,
 } from '../../core';
 import { ProductPageComponent } from './product-page.component';
 
@@ -27,16 +29,22 @@ export class ProductInfoComponent {
   evals: IProductEval;
   evalItems: IEvalItem[];
 
+  private gbItem: IGroupBuyItem;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
     private productService: ProductService,
+    private groupBuyService: GroupBuyService,
     private parent: ProductPageComponent) { }
 
   get sku() { return this.product.sku; }
   set sku(sku: ISku) { this.product.sku = sku; }
 
+  get price() {
+    return this.gbItem && this.gbItem.sku.ID === this.sku.ID ? this.gbItem.Price : this.salePrice;
+  }
   get salePrice() {
     return this.sku ? this.sku.SalePrice : this.product.skus[0].SalePrice;
   }
@@ -53,6 +61,7 @@ export class ProductInfoComponent {
         this.evals = evals;
         this.evalItems = evals.items.slice(0, 5);
       });
+      this.findGroupBuyItem();
     });
   }
 
@@ -64,4 +73,7 @@ export class ProductInfoComponent {
 
   gotoEval() { this.router.navigate(['../eval'], { relativeTo: this.route }); };
 
+  private findGroupBuyItem() {
+    this.groupBuyService.getItem(this.sku.ID).subscribe(item => this.gbItem = item);
+  }
 }
