@@ -54,7 +54,8 @@ export class CheckoutContentComponent {
   }
 
   onChangePayMethod() {
-    this.checkout.IsDeliverPay = !this.checkout.IsDeliverPay;
+    // TODO we do not support yet
+    // this.checkout.IsDeliverPay = !this.checkout.IsDeliverPay;
   }
 
   onShowSelecteAddress() {
