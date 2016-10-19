@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IWallet, LocalWalletBase, MoneyService } from '../../core';
+import { config, IWallet, LocalWalletBase, MoneyService } from '../../core';
 
 // http://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
 export function createRangeValidator(wallet: IWallet, minValue: number) {
@@ -28,6 +28,7 @@ export class BalanceWithdrawComponent {
 
   requesting: boolean;
   error: any;
+  showErr = config.showErr;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,6 +53,7 @@ export class BalanceWithdrawComponent {
         err => {
           this.requesting = false;
           this.error = err;
+          setTimeout(_ => this.error = '', 2000);
         },
       );
     }

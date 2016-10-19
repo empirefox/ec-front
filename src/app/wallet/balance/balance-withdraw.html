@@ -7,16 +7,18 @@
       </div>
     </li>
   </ul>
-  <div class="form-btn"><button (click)="onWithdraw()" type="submit" class="btn" [class.ok]="amount.valid&&!requesting">
+  <div class="form-btn">
+    <button (click)="onWithdraw()" type="submit" class="btn" [class.ok]="amount.valid&&!requesting">
     确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信
-  </button>
-    <div *ngIf="error">{{error|json}}</div>
+    </button>
+    <div *ngIf="error">失败</div>
+    <pre *ngIf="showErr">error={{error|json}}</pre>
   </div>
 </div>
 <!--<input type="number" [formControl]="amount">单位(分)-->
 <!--<button (click)="onWithdraw()" type="submit" class="btn" [class.valid]="amount.valid&&!requesting">-->
-  <!--确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信-->
-  <!--</button>-->
+<!--确认提现<span *ngIf="amount.valid">￥{{amount.value|money}}</span>到微信-->
+<!--</button>-->
 <!--<div *ngIf="error">{{error|json}}</div>-->
 
 <!--<footer-bar></footer-bar>-->
