@@ -22,7 +22,7 @@ export class HomeGroupBuyComponent {
   onGotoGroupBuy() { this.router.navigateByUrl('/groupbuy'); }
 
   onGotoProduct(item: IGroupBuyItem) {
-    this.router.navigate(['./home/1', item.sku.ProductID]);
+    this.router.navigate(['./home/1', item.sku.ProductID], { queryParams: { SkuID: item.SkuID } });
   }
 
   img(item: IGroupBuyItem) { return item.Img || item.sku.Img; }
