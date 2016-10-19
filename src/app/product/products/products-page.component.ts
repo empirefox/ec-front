@@ -31,7 +31,7 @@ export class ProductsPageComponent {
   }
 
   get togglerClass() { return this.grid ? 'browse-grid' : 'browse-list'; }
-  get containerClass() { return 'search-results ' + this.grid ? 'grid' : 'list'; }
+  get containerClass() { return 'search-results ' + (this.grid ? 'grid' : 'list'); }
 
   get products() { return this._products; }
   set products(items: IProduct[]) {
