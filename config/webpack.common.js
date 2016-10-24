@@ -228,6 +228,15 @@ module.exports = function (options) {
         inject: 'head'
       }),
 
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        filename: 'errno-404',
+        title: METADATA.title,
+        chunksSortMode: 'dependency',
+        metadata: METADATA,
+        inject: 'head'
+      }),
+
       /*
        * Plugin: ScriptExtHtmlWebpackPlugin
        * Description: Enhances html-webpack-plugin functionality

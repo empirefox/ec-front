@@ -11,7 +11,6 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
  */
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
@@ -167,15 +166,6 @@ module.exports = function (env) {
           screw_ie8: true
         }, //prod
         comments: false //prod
-      }),
-
-      new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        filename: 'errno-404',
-        title: METADATA.title,
-        chunksSortMode: 'dependency',
-        metadata: METADATA,
-        inject: 'head'
       }),
 
       /**
