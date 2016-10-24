@@ -12,7 +12,7 @@
     </ul>
   </div>
   <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="600" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
-     infinite-scroll [immediateCheck]="true" class="order-list search-results">
+     infinite-scroll class="order-list search-results">
     <ul>
       <li *ngFor="let order of current; trackBy:trackByItems" class="green-order-skin">
         <order-list-item [order]="order"></order-list-item>

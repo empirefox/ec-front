@@ -51,9 +51,9 @@ export class NewsService {
     return (this._items || Observable.of([])).flatMap(items => {
       let item = items.find(i => i.ID === id);
       return item ? Observable.of(item) : this._queryOne(id);
-    }).publishReplay(1).refCount().catch((err, caught) => {
+    }).publishReplay(1).refCount().catch((err) => {
       this.router.navigateByUrl('/news');
-      return caught;
+      return Observable.throw('news item not found');
     });
   }
 
@@ -69,9 +69,9 @@ export class NewsService {
     return this.rawHttp.get(URLS.NEWS, { search: toURLSearchParams(query) }).map(res => {
       this._querying = false;
       return (<INewsItem[]>res.json() || []).sort(createdAtSortor);
-    }).catch((err, caught) => {
+    }).catch((err) => {
       this._querying = false;
-      return caught;
+      return Observable.throw('news list not found');
     });
   }
 }

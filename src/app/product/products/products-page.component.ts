@@ -27,7 +27,7 @@ export class ProductsPageComponent {
     private productService: ProductService) { }
 
   ngOnInit() {
-    // this.base.local.exist().subscribe(items => this.products = items);
+    this.base.local.exist().subscribe(items => this.products = items);
   }
 
   get togglerClass() { return this.grid ? 'browse-grid' : 'browse-list'; }
