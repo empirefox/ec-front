@@ -95,7 +95,10 @@ export class ProductPageComponent implements OnInit {
       }).publishReplay(1).refCount();
     }
 
-    this.product$.subscribe();
+    this.product$.subscribe(
+      _ => 0,
+      _ => this.product$ = null,
+    );
   }
 
   get sku() { return this.product.sku; }

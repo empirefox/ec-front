@@ -77,11 +77,11 @@ export class LocalProductService {
     return (this._items || Observable.of([])).flatMap((items) => {
       let item = items.find(i => i.ID === id);
       return item ? this.productService.current = Observable.of(item) : this.productService.getCurrent(id);
-    }).publishReplay(1).refCount().catch((err, caught) => {
-      return this.productService.getAttrs().flatMap(attrs => {
+    }).publishReplay(1).refCount().catch(err => {
+      this.productService.getAttrs().subscribe(attrs => {
         this.router.navigate(['/product/list'], { queryParams: { ft: attrs.specials['爆品'] } });
-        return caught;
-      })
+      });
+      return Observable.throw(new Error('product not found'));
     });
   }
 

@@ -1,4 +1,4 @@
-<header-bar class="posf">
+<header-bar class="posf" *ngIf="product">
   <ul class="header-nav">
     <li routerLinkActive="cur"><a [routerLink]="['./info']">商品</a></li>
     <li routerLinkActive="cur"><a [routerLink]="['./detail']">详情</a></li>
