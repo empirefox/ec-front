@@ -57,6 +57,7 @@ export class LocalProductService {
     if (this._querying) {
       return this._items;
     }
+    this._querying = true;
 
     this._items = this._items.flatMap(exist => {
       if (exist && exist.length) {
@@ -70,6 +71,7 @@ export class LocalProductService {
     });
 
     this._items = this._items.publishReplay(1).refCount();
+    this._querying = false;
     return this._items;
   }
 
@@ -86,13 +88,12 @@ export class LocalProductService {
   }
 
   private _query(start: number = 0): Observable<IProduct[]> {
-    this._querying = true;
     return this.productService.query(Object.assign({}, this.query, { st: start })).map(items => {
       this._querying = false;
       return items;
-    }).catch((err, caught) => {
+    }).catch((err) => {
       this._querying = false;
-      return caught;
+      return Observable.throw('products not found');
     });
   }
 

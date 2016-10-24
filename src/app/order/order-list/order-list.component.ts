@@ -43,7 +43,7 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit() {
     this.view = this.route.snapshot.queryParams['view'];
-    this.orderService.getOrders(false).take(1).subscribe(orders => this.setOrders(orders));
+    // this.orderService.getOrders(false).take(1).subscribe(orders => this.setOrders(orders));
   }
 
   get view() { return this._view; }

@@ -33,7 +33,7 @@ export class NewsComponent {
       autoplayDisableOnInteraction: false,
     };
 
-    this.newsService.getItems(false).subscribe(items => this.items = items);
+    // this.newsService.getItems(false).subscribe(items => this.items = items);
   }
 
   ngOnDestroy() {

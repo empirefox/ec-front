@@ -10,7 +10,7 @@
     </ks-swiper-container>
   </div>
   <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="600" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
-    infinite-scroll class="search-results">
+    infinite-scroll [immediateCheck]="true" class="search-results">
     <ul class="newslist" *ngIf="items">
       <li *ngFor="let item of items; trackBy:trackByItems">
         <a (click)="gotoDetail(item)">

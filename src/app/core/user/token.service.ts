@@ -13,6 +13,7 @@ const localUserKey = 'local_user_key';
 export class TokenService {
 
   _userinfo: Observable<IUserInfo>;
+  _redirecting: boolean;
 
   constructor(
     private router: Router,
@@ -123,16 +124,19 @@ export class TokenService {
       console.log(this.jwt.refreshToken);
       return profile;
     }).flatMap(profile => {
-      // clean url
-      let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
-      let query = (+user1) ? `?user1=${user1}` : '';
-      let state = nonce(8);
-      this.jwt.setOauth2State(state);
-      this.jwt.setCurrentUrl(u);
+      if (!this._redirecting) {
+        this._redirecting = true;
+        // clean url
+        let {url: u, value: user1} = removeURLParameter(this.router.url, 'u');
+        let query = (+user1) ? `?user1=${user1}` : '';
+        let state = nonce(8);
+        this.jwt.setOauth2State(state);
+        this.jwt.setCurrentUrl(u);
 
-      let {WxAppId: appId, WxScope: scope} = profile;
-      let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
-      location.href = `${config.wxCodeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
+        let {WxAppId: appId, WxScope: scope} = profile;
+        let redirectUri = encodeURIComponent(`${URLS.WX_OAUTH2_LOCAL}${query}`);
+        location.href = `${config.wxCodeEndpoint}?appid=${appId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
+      }
       return Observable.throw('LOGIN');
     });
   }
