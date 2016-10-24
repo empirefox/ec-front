@@ -81,7 +81,7 @@ export class LocalProductService {
       this.productService.getAttrs().subscribe(attrs => {
         this.router.navigate(['/product/list'], { queryParams: { ft: attrs.specials['爆品'] } });
       });
-      return Observable.throw(new Error('product not found'));
+      return Observable.throw('product not found');
     });
   }
 
