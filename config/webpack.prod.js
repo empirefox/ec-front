@@ -172,7 +172,10 @@ module.exports = function (env) {
       new HtmlWebpackPlugin({
         template: 'src/index.html',
         filename: 'errno-404',
-        chunksSortMode: 'dependency'
+        title: METADATA.title,
+        chunksSortMode: 'dependency',
+        metadata: METADATA,
+        inject: 'head'
       }),
 
       /**
