@@ -15,7 +15,7 @@ export class SetPaykeyComponent {
   captchaing: boolean;
   submitting: boolean;
   error: any;
-  
+
   showErr = config.showErr;
 
   private _secondsLeft = 0;
@@ -65,6 +65,7 @@ export class SetPaykeyComponent {
   }
 
   onSubmit() {
+    this.error = '';
     this.submitting = true;
     let data = <ISetPaykeyPayload>this.form.value;
     data.CaptchaID = this.captcha.ID;

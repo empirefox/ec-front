@@ -46,6 +46,7 @@
         <button type="submit" class="btn" [class.valid]="valid">下一步</button>
       </div>
     </form>
+    <div *ngIf="error">错误，请稍重试</div>
   </div>
 </div>
 
