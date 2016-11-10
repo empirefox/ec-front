@@ -5,3 +5,4 @@ a.active-show, a.hidden {
 a.active.active-show {
   display: inline-block;
 }
+.header-tab a.active{color: #FFF; background-color: #ED5564;}
