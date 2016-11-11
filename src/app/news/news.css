@@ -1,3 +1,6 @@
 .search-results {
   height: 100%;
 }
+.newslist{margin-bottom:0.5rem; background: #fff;}
+.newslist .pic{display: inline-block}
+.newslist .info{display: inline-block}
