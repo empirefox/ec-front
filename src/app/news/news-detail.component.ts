@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
+import unescape = require('lodash/unescape');
 
 import { INewsItem, NewsService } from '../core';
 
 @Component({
-  templateUrl: './news.html',
-  styleUrls: ['./news.css'],
+  templateUrl: './news-detail.html',
+  styleUrls: ['./news-detail.css'],
 })
 export class NewsDetailComponent {
   item: INewsItem;
-  html: SafeHtml = this.sanitizer.bypassSecurityTrustHtml('');
+  html: SafeHtml;
 
   sub: Subscription;
 
@@ -24,7 +25,7 @@ export class NewsDetailComponent {
     this.sub = this.newsService.getItem(+this.route.snapshot.params['id']).subscribe(item => {
       this.item = item;
       if (item) {
-        this.html = this.sanitizer.bypassSecurityTrustHtml(item.Detail);
+        this.html = this.sanitizer.bypassSecurityTrustHtml(unescape(item.Detail));
       }
     });
   }
