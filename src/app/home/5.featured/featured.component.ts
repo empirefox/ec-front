@@ -33,6 +33,6 @@ export class HomeFeaturedComponent {
     this.router.navigate(['./home/1', product.ID]); // SkuID
   }
 
-  getImg(product: IProduct) { return product.Img || product.skus[0].Img; }
+  getImg(product: IProduct) { return product.HomeImg || product.Img || product.skus[0].Img; }
 
 }

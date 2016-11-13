@@ -103,6 +103,7 @@ export interface IProductRawInfo {
 export interface IProduct {
   ID: number;
   Name: string;
+  HomeImg?: string;
   Img: string;
   Intro: string;
   Detail: string;
