@@ -19,12 +19,12 @@ export class HomeFeaturedComponent {
 
   ngOnInit() {
     this.productService.getAttrs().
-      flatMap(attrs => this.productService.query({ ft: attrs.specials['购特色'], sz: 2 + 4 })).
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['购特色'], sz: 2 + 4 * 2 })).
       take(1).subscribe(items => {
         items.forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
         this.first = items.slice(0, 2);
         items = items.slice(2);
-        this.items = items.slice(0, Math.floor(items.length / 4) * 4);
+        this.items = items.slice(0, Math.floor(items.length / 4) * 4 + 4);
       });
   }
 

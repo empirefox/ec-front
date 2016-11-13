@@ -51,7 +51,7 @@ declare var ENV: string;
 declare var HMR: boolean;
 declare var System: SystemJS;
 
-/// <reference path="./custom-typings-add.d,ts" />
+/// <reference path="./custom-typings-add.d.ts" />
 
 interface SystemJS {
   import: (path?: string) => Promise<any>;

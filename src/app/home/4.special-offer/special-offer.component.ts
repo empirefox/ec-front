@@ -19,9 +19,9 @@ export class HomeSpecialOfferComponent {
 
   ngOnInit() {
     this.productService.getAttrs().
-      flatMap(attrs => this.productService.query({ ft: attrs.specials['特供品'], sz: 4 })).
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['特供品'], sz: 3 })).
       take(1).subscribe(items => {
-        items.slice(0, 3).forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
+        items.forEach(item => this.prices[item.ID] = item.skus.map(sku => sku.SalePrice).sort().shift());
         this.item = items.shift();
         this.items = items;
       });
