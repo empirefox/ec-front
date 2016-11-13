@@ -7,7 +7,7 @@
       <a (click)="gotoProduct(item)">
         <div class="wz">
           <h2>{{item.Name}}</h2>
-          <h3>低至{{prices[item.ID]|price:item.Vpn}}元</h3>
+          <h3>低至{{prices[item.ID]|price:item.Vpn}}</h3>
         </div>
         <div class="pic">
           <img [src]="getImg(item)">
@@ -20,7 +20,7 @@
     <li *ngFor="let item of items">
       <a (click)="gotoProduct(item)">
         <h2>{{item.Name}}</h2>
-        <h3>低至{{prices[item.ID]|price:item.Vpn}}元</h3>
+        <h3>低至{{prices[item.ID]|price:item.Vpn}}</h3>
         <img [src]="getImg(item)">
       </a>
     </li>
