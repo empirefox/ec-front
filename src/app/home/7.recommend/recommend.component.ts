@@ -17,10 +17,8 @@ export class HomeRecommendComponent {
 
   ngOnInit() {
     this.productService.getAttrs().
-      flatMap(attrs => this.productService.query({ ft: attrs.specials['推荐'], sz: 3 * 2 })).
-      take(1).subscribe(items => {
-        this.items = items.slice(0, Math.floor(items.length / 2) * 2);
-      });
+      flatMap(attrs => this.productService.query({ ft: attrs.specials['推荐'], sz: 100 })).
+      take(1).subscribe(items => this.items = items);
   }
 
   gotoProducts() { this.router.navigateByUrl('/product/list'); }
