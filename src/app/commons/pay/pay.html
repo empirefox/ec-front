@@ -21,7 +21,7 @@
               <label [class.checked]="payType===PayType.cash">
                 余额支付<span (click)="payType=PayType.cash" class="power"><i></i></span>
               </label>
-              <p>可用余额 <em>{{wallet.cash|price:order.Items[0]}}</em></p>
+              <p>可用余额{{enoughCash?'':'(不足)'}}<em>{{wallet.cash|price:order.Items[0]}}</em></p>
             </div>
           </li>
         </template>
@@ -30,7 +30,7 @@
             <label [class.checked]="payType===PayType.points">
               积分支付<span (click)="payType=PayType.points" class="power"><i></i></span>
             </label>
-            <p>可用积分 <em>{{wallet.points|price:order.Items[0]}}</em></p>
+            <p>可用积分{{enoughPoints?'':'(不足)'}}<em>{{wallet.points|price:order.Items[0]}}</em></p>
           </div>
         </li>
         <li class="form-item" *ngIf="payType===PayType.cash||payType===PayType.points">
