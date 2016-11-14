@@ -38,14 +38,22 @@ export class OrderPayComponent {
     private userService: UserService,
     private orderService: OrderService) { }
 
+  get enoughCash(): boolean {
+    return !this.order.PayPoints && this.wallet.cash >= this.order.PayAmount;
+  }
+
+  get enoughPoints(): boolean {
+    return this.order.PayPoints && this.wallet.points >= this.order.PayPoints;
+  }
+
   get valid(): boolean {
     switch (this.payType) {
       case PayType.wx:
         return !this.order.PayPoints;
       case PayType.cash:
-        return !this.order.PayPoints && this.wallet.cash >= this.order.PayAmount && this.keyControl.valid;
+        return this.enoughCash && this.keyControl.valid;
       case PayType.points:
-        return this.order.PayPoints && this.wallet.points >= this.order.PayPoints && this.keyControl.valid;
+        return this.enoughPoints && this.keyControl.valid;
       default:
         return false;
     }
