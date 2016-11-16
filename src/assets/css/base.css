@@ -76,10 +76,12 @@ header.fixed { position: fixed; background: rgba(248,248,248,0.95); z-index: 9;}
 .header-inp.write .input-del { display: block;}
 /*标题切换*/
 .header-tab { display: inline-block; height: 1.4rem; margin: 0.275rem auto 0 auto; font-size: 0; border-radius: 0.2rem; }
-.header-tab a { display: inline-block; height: 1.3rem; padding: 0 0.5rem; text-align: center; font-size: 0.68rem; color: #333; line-height: 1.3rem; border: solid 0.05rem #ED5564; }
+.header-tab a { display: inline-block; height: 1.3rem; padding: 0 0.5rem; text-align: center; font-size: 0.68rem; color: #333; line-height: 1.3rem; border: solid 0.05rem #ED5564; border-left: none}
 .header-tab a:first-child { border-radius: 0.25rem 0 0 0.25rem; }
 .header-tab a:last-child { border-radius: 0 0.25rem 0.25rem 0; }
 .header-tab a.cur { color: #FFF; background-color: #ED5564; }
+.header-tab a:first-child{
+  border-left:solid 0.05rem #ED5564;}
 /*标题导航*/
 .header-h2{text-align: center; line-height: 1.95rem; font-size: 0.86rem}
 .header-nav { display: inline-block; margin: 0 auto; vertical-align: top; font-size: 0; white-space: nowrap; }
