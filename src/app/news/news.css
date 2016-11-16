@@ -3,4 +3,5 @@
 }
 .newslist{margin-bottom:0.5rem; background: #fff;}
 .newslist .pic{display: inline-block}
-.newslist .info{display: inline-block}
+.newslist .info{display: inline-block; font-size: 0.6rem}
+.newslist .info i{color: #666; font-size: 0.5rem;}

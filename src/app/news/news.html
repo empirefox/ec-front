@@ -15,7 +15,7 @@
       <li *ngFor="let item of items; trackBy:trackByItems">
         <a (click)="gotoDetail(item)">
           <p class="pic"><img [src]="item.Icon"> </p>
-          <p class="info">{{item.Title}} <br>发布时间:<span>{{item.CreatedAt | ago}}</span></p>
+          <p class="info">{{item.Title}} <br><i>发布时间:<span>{{item.CreatedAt | ago}}</span></i></p>
         </a>
       </li>
     </ul>
