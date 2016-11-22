@@ -1,33 +1,20 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription }   from 'rxjs/Subscription';
-import { MoneyService, IWallet } from '../core';
+import { IWallet } from '../core';
 import { WalletComponent } from '../wallet';
 
 @Component({
   selector: 'money-overview',
   templateUrl: './money-overview.html',
   styleUrls: ['./money-overview.css'],
-  inputs: ['wallet'],
 })
 export class MoneyOverviewComponent {
 
-  wallet: IWallet;
-
-  private sub: Subscription;
+  @Input() wallet: IWallet;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private moneyService: MoneyService) {
-  }
-
-  ngOnInit() {
-    this.sub = this.moneyService.getWallet().subscribe(wallet => this.wallet = wallet);
-  }
-
-  ngOnDestroy() {
-    if (this.sub) { this.sub.unsubscribe(); }
+    private router: Router) {
   }
 
   onGotoWallet() { this.router.navigateByUrl('/wallet'); }

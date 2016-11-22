@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'order-list-menu',
   styleUrls: ['./order-list-menu.css'],

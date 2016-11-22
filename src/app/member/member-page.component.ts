@@ -31,7 +31,7 @@ export class MemberPageComponent {
     private profileService: ProfileService,
     private historyService: HistoryService,
     private wishlistService: WishlistService,
-    private userService: UserService,
+    public userService: UserService,
     private moneyService: MoneyService) { }
 
   ngOnInit() {
