@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IWallet } from '../core';
-import { WalletComponent } from '../wallet';
 
 @Component({
   selector: 'money-overview',

@@ -8,8 +8,6 @@ import {
   IWishItem,
   WishlistService,
   IWallet,
-  MoneyService,
-  ProfileService,
   HistoryService,
 } from '../core';
 
@@ -28,11 +26,9 @@ export class MemberPageComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService,
     private historyService: HistoryService,
     private wishlistService: WishlistService,
-    public userService: UserService,
-    private moneyService: MoneyService) { }
+    public userService: UserService) { }
 
   ngOnInit() {
     let data = <{ profile: IProfile, user: IUserInfo, wallet: IWallet }>this.route.snapshot.data;

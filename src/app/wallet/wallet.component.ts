@@ -12,7 +12,7 @@ export class WalletComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private base: LocalWalletBase) { }
+    public base: LocalWalletBase) { }
 
   gotoBalance() { this.router.navigateByUrl('/wallet/balance'); }
   gotoPoints() { this.router.navigateByUrl('/wallet/points'); }
