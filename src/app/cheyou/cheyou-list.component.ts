@@ -16,7 +16,7 @@ export class CheyouListComponent {
   constructor(
     private router: Router,
     private profileService: ProfileService,
-    private userService: UserService,
+    public userService: UserService,
     private vipService: VipService) { }
 
   ngOnInit() {

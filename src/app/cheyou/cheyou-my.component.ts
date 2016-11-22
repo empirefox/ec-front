@@ -33,7 +33,7 @@ export class CheyouMyComponent {
     private fb: FormBuilder,
     private router: Router,
     private profileService: ProfileService,
-    private userService: UserService) { }
+    public userService: UserService) { }
 
   ngOnInit() {
     Observable.forkJoin(
