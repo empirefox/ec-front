@@ -72,6 +72,7 @@
         </ul>
       </div>
       <div class="goods-detail-store">
+        <div class="store-name" *ngIf="store" (click)="mapOpened=!mapOpened"><i class="icon-store"></i>{{store.Name}}</div>
         <div class="store-rate">
           <span class="equal">描述相符<em>{{evals.fit|number:'1.0-1'}}</em><i>平</i></span>
           <span class="equal">服务态度<em>{{evals.serve|number:'1.0-1'}}</em><i>平</i></span>
@@ -80,6 +81,7 @@
       </div>
     </div>
     <div class="goods-detail-bottom">
+      <div *ngIf="mapOpened&&map" [innerHTML]="map"></div>
       <a (click)="gotoProductDetail()">点击查看商品详情</a>
     </div>
   </div>

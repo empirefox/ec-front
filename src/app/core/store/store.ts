@@ -3,4 +3,5 @@ export interface IStore {
   CreatedAt: number;
   Name: string;
   User1: number;
+  Amap: string;
 }

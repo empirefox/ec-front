@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {
@@ -13,6 +14,7 @@ import {
   IProductEval,
   IGroupBuyItem,
   GroupBuyService,
+  IStore,
 } from '../../core';
 import { ProductPageComponent } from './product-page.component';
 
@@ -28,10 +30,14 @@ export class ProductInfoComponent {
   addr: IAddress;
   evals: IProductEval;
   evalItems: IEvalItem[];
+  store: IStore;
+  mapOpened: boolean;
+  map: SafeHtml;
 
   private gbItem: IGroupBuyItem;
 
   constructor(
+    private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
@@ -52,7 +58,7 @@ export class ProductInfoComponent {
   get img() { return this.product.Img || this.product.skus[0].Img; }
 
   ngOnInit() {
-    let data = <{ profile: IProfile, address: IAddress }>this.route.snapshot.data;
+    let data = <{ profile: IProfile, address: IAddress, stores: IStore[] }>this.route.snapshot.data;
     this.profile = data.profile;
     this.addr = data.address;
     this.parent.product$.subscribe(product => {
@@ -62,6 +68,13 @@ export class ProductInfoComponent {
         this.evalItems = evals.items.slice(0, 5);
       });
       this.findGroupBuyItem();
+      this.store = data.stores[product.StoreID];
+      if (this.store && this.store.Amap) {
+        this.map = this.sanitizer.bypassSecurityTrustHtml(this.store.Amap);
+      }
+      this.map = this.map || this.sanitizer.bypassSecurityTrustHtml(
+        `<iframe width='420' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://f.amap.com/5N1Zb_0F121W8'></iframe>`
+      );
     });
   }
 

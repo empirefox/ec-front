@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfileResolver, AddressResolver } from '../core';
+import { ProfileResolver, AddressResolver, StoreResolver } from '../core';
 
 import {
   ProductRouteComponent,
@@ -48,6 +48,7 @@ export const routes: Routes = [
             resolve: {
               profile: ProfileResolver,
               address: AddressResolver,
+              stores: StoreResolver,
             },
           },
           {

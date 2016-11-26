@@ -20,8 +20,8 @@ export class StoreService {
         this.profileService.getProfile(),
         this.http.get(URLS.STORE),
       ).map(([profile, res]: [IProfile, Response]) => {
-        let items = keyBy(res.json()) as Dict<IStore>;
-        items[0] = { ID: 0, Name: profile.OfficialStoreName, CreatedAt: 0, User1: 0 };
+        let items = keyBy(res.json(), (store: IStore) => store.ID) as Dict<IStore>;
+        items[0] = { ID: 0, Name: profile.OfficialStoreName, CreatedAt: 0, User1: 0, Amap: null };
         return items;
       }).publishReplay(1).refCount();
     }
