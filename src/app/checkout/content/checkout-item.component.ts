@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICheckout, ICheckoutItem } from '../../core';
+import { ICheckoutItem } from '../../core';
 
 @Component({
   selector: 'checkout-item',

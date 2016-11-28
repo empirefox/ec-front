@@ -1,8 +1,12 @@
-import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
+import { ModalModule } from 'angular2-modal';
+import { appRoutes } from './app.routes';
+import { CoreModule } from './core.module';
+
+import { AppComponent } from './app.component';
 import { AddressModule } from './address';
 import { CartModule } from './cart';
 import { CategoryModule } from './category';
@@ -26,36 +30,11 @@ import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
 
-/*
- * Platform and Environment providers/directives/pipes
- */
-import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
-// App is our top level component
-import { App } from './app';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InteralStateType } from './app.service';
-import { CoreModule } from './core.module';
+import { APP_CORE_PROVIDERS } from './core';
 
-// Application wide providers
-const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
-  AppState
-];
-
-type StoreType = {
-  state: InteralStateType,
-  restoreInputValues: () => void,
-  disposeOldHosts: () => void
-};
-
-/**
- * `AppModule` is the main entry point into Angular2's bootstraping process
- */
 @NgModule({
-  bootstrap: [App],
   declarations: [
-    App,
+    AppComponent,
     FansComponent,
     HistoryComponent,
     MemberQrComponent,
@@ -65,9 +44,10 @@ type StoreType = {
     WeixinOauthPageComponent,
     WishlistPageComponent,
   ],
-  imports: [ // import Angular's modules
+  imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(appRoutes),
+    ModalModule.forRoot(),
     CoreModule,
 
     AddressModule,
@@ -84,47 +64,9 @@ type StoreType = {
     SafeModule,
     WalletModule,
   ],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
-    ENV_PROVIDERS,
-    APP_PROVIDERS
-  ]
+  providers: [
+    ...APP_CORE_PROVIDERS,
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) { }
-
-  hmrOnInit(store: StoreType) {
-    if (!store || !store.state) return;
-    console.log('HMR store', JSON.stringify(store, null, 2));
-    // set state
-    this.appState._state = store.state;
-    // set input values
-    if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
-      setTimeout(restoreInputValues);
-    }
-
-    this.appRef.tick();
-    delete store.state;
-    delete store.restoreInputValues;
-  }
-
-  hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // save state
-    const state = this.appState._state;
-    store.state = state;
-    // recreate root elements
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    // save input values
-    store.restoreInputValues = createInputTransfer();
-    // remove styles
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy(store: StoreType) {
-    // display new elements
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
-  }
-
-}
+export class AppModule { }

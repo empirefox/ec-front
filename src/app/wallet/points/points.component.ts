@@ -1,6 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IPointsItem, LocalWalletBase } from '../../core';
+import { Component } from '@angular/core';
+import { LocalWalletBase } from '../../core';
 
 @Component({
   templateUrl: './points.html',
@@ -8,9 +7,6 @@ import { IPointsItem, LocalWalletBase } from '../../core';
 })
 export class PointsComponent {
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private base: LocalWalletBase) { }
+  constructor(public base: LocalWalletBase) { }
 
 }

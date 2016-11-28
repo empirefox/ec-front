@@ -1,11 +1,4 @@
-export interface ModeArgs {
-  publicOrigin: string;
-  apiOrigin: string;
-  wxCodeEndpoint: string;
-  cdnImgOrigin: string;
-  qrLogoUrl?: string;
-  vbuysSpecialName?: string;
-}
+import { ModeArgs } from '../../../environments/args';
 
 export interface JwtConfig {
   accessTokenKey: string;

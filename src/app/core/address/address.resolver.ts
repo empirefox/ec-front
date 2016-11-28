@@ -9,7 +9,7 @@ export class AddressResolver implements Resolve<IAddress> {
 
   constructor(private addressService: AddressService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IAddress> {
     return this.addressService.getDefault();
   }
 

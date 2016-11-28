@@ -13,7 +13,7 @@ import { TokenService } from '../core';
 export class PhoneRequiredGuard implements CanActivate {
   constructor(
     private router: Router,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     return this.tokenService.getUserinfo().map(info => {

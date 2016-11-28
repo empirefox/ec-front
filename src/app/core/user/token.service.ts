@@ -3,8 +3,8 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
-import { config, URLS, IProfile, ProfileService, WxCodeResult } from '../profile';
-import { Jwt } from '../jwt';
+import { config, URLS, ProfileService, WxCodeResult } from '../profile';
+import { JwtService } from '../jwt';
 import { nonce, removeURLParameter } from '../util';
 import { IUserInfo, IUserTokenResponse, IRefreshTokenResponse, ExchangePayload } from './user';
 
@@ -20,7 +20,7 @@ export class TokenService {
     private rawHttp: Http,
     private http: AuthHttp,
     private profileService: ProfileService,
-    private jwt: Jwt) { }
+    private jwt: JwtService) { }
 
   loadUserFromLocal(): IUserInfo {
     try {
@@ -104,7 +104,7 @@ export class TokenService {
     this.jwt.accessToken = token;
     let local = user || this.loadUserFromLocal();
     if (local) {
-      let claims = this.jwt.decodeToken(token);
+      let claims = this.jwt.helper.decodeToken(token);
       local.ID = +claims.uid;
       local.OpenId = claims.oid;
       local.Phone = claims.mob;

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { QrService } from '../core';
 
@@ -9,8 +8,6 @@ import { QrService } from '../core';
 })
 export class MemberQrComponent {
 
-  constructor(
-    private router: Router,
-    public qrService: QrService) { }
+  constructor(public qrService: QrService) { }
 
 }

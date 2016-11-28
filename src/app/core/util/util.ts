@@ -1,11 +1,14 @@
+import { forwardRef, Provider } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
-import { isPrimitive } from '@angular/core/src/facade/lang';
-import { Observable } from 'rxjs/Observable';
 
-interface IDer { ID: number; }
-interface Poser { Pos: number; }
-interface IdPos extends IDer, Poser { }
-interface CreateAter { CreatedAt: number; }
+export function provideParent(component: any, parentType?: any): Provider {
+  return { provide: parentType, useExisting: forwardRef(() => component) };
+};
+
+export interface IDer { ID: number; }
+export interface Poser { Pos: number; }
+export interface IdPos extends IDer, Poser { }
+export interface CreateAter { CreatedAt: number; }
 
 export function posSortor<T extends Poser>(b: T, a: T) { return a.Pos - b.Pos; }
 export function createdAtSortor<T extends CreateAter>(b: T, a: T) { return a.CreatedAt - b.CreatedAt; }

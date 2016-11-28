@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { IWallet } from '../core';
 
 @Component({
@@ -11,9 +11,7 @@ export class MoneyOverviewComponent {
 
   @Input() wallet: IWallet;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) {
+  constructor(private router: Router) {
   }
 
   onGotoWallet() { this.router.navigateByUrl('/wallet'); }

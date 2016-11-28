@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import keyBy = require('lodash/keyBy');
+import * as keyBy from 'lodash/keyBy';
 import { updateAfterSave, createdAtSortor } from '../util';
 import { constMap } from '../consts';
 import { URLS } from '../profile';

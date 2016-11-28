@@ -1,6 +1,5 @@
-import { Component, Optional, ChangeDetectionStrategy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IProduct, ProductService, IProductEval, IEvalItem } from '../../core';
+import { Component } from '@angular/core';
+import { ProductService, IProductEval, IEvalItem } from '../../core';
 import { ProductPageComponent } from './product-page.component';
 
 @Component({

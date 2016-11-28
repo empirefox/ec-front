@@ -1,6 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavMenuListComponent } from '../nav-menu-list';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'footer-bar',

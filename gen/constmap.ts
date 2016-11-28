@@ -55,7 +55,7 @@ let javaConstTyps = Object.keys(consts).map(typ => {
   public final static class ${typ} {
 		${fields}
 	}
-  `
+  `;
 });
 
 let javaTransTyps = transTargets.map(typ => {
@@ -65,7 +65,7 @@ let javaTransTyps = transTargets.map(typ => {
   public final static class ${typ} {
 		${fields}
 	}
-  `
+  `;
 });
 
 let javaTransArr = Object.keys(constsTransMap).map(typ => {

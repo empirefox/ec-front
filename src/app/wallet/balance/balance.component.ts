@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { LocalWalletBase } from '../../core';
 
 @Component({
@@ -8,9 +7,6 @@ import { LocalWalletBase } from '../../core';
 })
 export class BalanceComponent {
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private base: LocalWalletBase) { }
+  constructor(public base: LocalWalletBase) { }
 
 }

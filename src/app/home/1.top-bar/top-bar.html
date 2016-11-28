@@ -8,13 +8,16 @@
       </a>
     </div>
   </header>
-  <div class="adv_list myslides">
-    <ks-swiper-container [options]="swipeOptions" style="height: 8rem;">
-      <ks-swiper-slide *ngFor="let s of items">
-        <a (click)="gotoSlide(s)">
-          <img class="slide-img" [src]="s.Img">
-        </a>
-      </ks-swiper-slide>
-    </ks-swiper-container>
-  </div>
+  <swiper [config]="swipeOptions">
+    <div class="swiper-wrapper">
+      <img class="swiper-slide" *ngFor="let s of items" [src]="s.Img" (click)="gotoSlide(s)">
+    </div>
+    <!-- Add Pagination -->
+    <div *ngIf="swipeOptions.paging" class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <template [ngIf]="swipeOptions.arrows">
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </template>
+  </swiper>
 </div>

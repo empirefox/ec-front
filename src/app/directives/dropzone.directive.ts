@@ -1,10 +1,8 @@
 import { Directive, Input, Output, ElementRef, OnInit, OnDestroy, EventEmitter } from '@angular/core';
-import Dropzone = require('dropzone');
-import { CdnService, HeadUptoken } from '../core';
+import Dropzone from 'dropzone';
+import { CdnService } from '../core';
 
 Dropzone.autoDiscover = false;
-require('!!style!css!dropzone/dist/basic.css');
-require('!!style!css!dropzone/dist/dropzone.css');
 
 export interface DropzoneConfig {
   options?: DropzoneOptions;

@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input, OnChanges } from '@angular/core';
+import { Component, forwardRef, Input, OnChanges } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { IMyDate } from 'mydatepicker/src/my-date-picker/interfaces';
 

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { constMap, CartService, ICheckout, LocalCheckoutBase, OrderService } from '../../core';
+import { CartService, ICheckout, LocalCheckoutBase, OrderService } from '../../core';
 
 @Component({
   selector: 'checkout-content',

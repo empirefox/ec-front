@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { URLS } from '../profile';
 import { posSortor } from '../util';
 import { ICategory } from './category';
-import { Observable } from 'rxjs/Observable';
 
 const listToTree = require('list-to-tree-lite');
 const listToTreeOpts = { idKey: 'ID', parentKey: 'ParentID' };

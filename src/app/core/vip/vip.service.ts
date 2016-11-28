@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import keyBy = require('lodash/keyBy');
+import * as keyBy from 'lodash/keyBy';
 import { URLS } from '../profile';
 import { createdAtSortor } from '../util';
 import { RetryHttp } from '../user';

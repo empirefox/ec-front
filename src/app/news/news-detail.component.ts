@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import unescape = require('lodash/unescape');
+import * as unescape from 'lodash/unescape';
 
 import { INewsItem, NewsService } from '../core';
 

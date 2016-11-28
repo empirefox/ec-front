@@ -1,19 +1,14 @@
-import { Component, forwardRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
+  provideParent,
   CommonQuery,
-  IProduct, ProductService,
   LocalProductBase, LocalProductServiceFactory, LocalProductService,
 } from '../core';
 
-const provideParent = (component: any, parentType?: any) => {
-  return { provide: parentType || LocalProductBase, useExisting: forwardRef(() => component) };
-};
-
 @Component({
   template: `<router-outlet></router-outlet>`,
-  providers: [provideParent(ProductRouteComponent)],
+  providers: [provideParent(ProductRouteComponent, LocalProductBase)],
 })
 export class ProductRouteComponent implements LocalProductBase {
 

@@ -13,7 +13,7 @@ export class SearchPageComponent {
   history: string[];
 
   constructor(
-    private _location: Location,
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private searchService: SearchService) { }
@@ -27,7 +27,7 @@ export class SearchPageComponent {
     this.history = this.searchService.getHistory();
   }
 
-  onGoBack() { this._location.back(); }
+  onGoBack() { this.location.back(); }
 
   onSearch(item: string) {
     this.keyword = item || this.keyword;

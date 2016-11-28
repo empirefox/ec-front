@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import countdown = require('countdown');
+import * as countdown from 'countdown';
 
 @Injectable()
 export class CountdownService {

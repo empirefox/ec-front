@@ -1,14 +1,10 @@
-import { Component, forwardRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IWallet, MoneyService, LocalWalletBase } from '../core';
-
-const provideParent = (component: any, parentType?: any) => {
-  return { provide: parentType || LocalWalletBase, useExisting: forwardRef(() => component) };
-};
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { provideParent, IWallet, LocalWalletBase } from '../core';
 
 @Component({
   template: `<router-outlet></router-outlet>`,
-  providers: [provideParent(WalletRouteComponent)],
+  providers: [provideParent(WalletRouteComponent, LocalWalletBase)],
 })
 export class WalletRouteComponent implements LocalWalletBase {
   wallet: IWallet;

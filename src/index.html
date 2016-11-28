@@ -1,45 +1,14 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype html>
+<html lang="zh_CN">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>丝路汇</title>
+  <base href="/">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title><%= htmlWebpackPlugin.options.title %></title>
-
-  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
-
-  <% if (webpackConfig.htmlElements.headTags) { %>
-  <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
-
-  <!-- base url -->
-  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/common.css">
-  <link rel="stylesheet" href="assets/css/index.css">
-  <link rel="stylesheet" href="assets/css/cart.css">
-  <link rel="stylesheet" href="assets/css/category.css">
-  <link rel="stylesheet" href="assets/css/member.css">
-  <link rel="stylesheet" href="assets/css/products_detail.css">
-  <link rel="stylesheet" href="assets/css/products_list.css">
-  <link rel="stylesheet" href="assets/css/font-awesome.css">
-
-
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-
 <body>
-
-  <app>
-    Loading...
-  </app>
-
-  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
-
-
+  <app-root>Loading...</app-root>
 </body>
 </html>

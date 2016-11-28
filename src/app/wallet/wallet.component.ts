@@ -1,7 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractWalletComponent } from './abstract-wallet.component';
-import { IWallet, MoneyService, LocalWalletBase } from '../core';
+import { LocalWalletBase } from '../core';
 
 @Component({
   templateUrl: './wallet.html',

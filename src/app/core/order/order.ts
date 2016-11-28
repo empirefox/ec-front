@@ -1,5 +1,4 @@
 import { ISku, IEvalItem } from '../product';
-import { ICoupon } from '../coupon';
 import { IAddress } from '../address';
 import { IWxPayArgs } from '../money';
 

@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IDelivery, IDeliveryDay, DeliveryService, OrderService, IOrder } from '../../core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IDelivery, DeliveryService, IOrder } from '../../core';
 import { KuaidiItem, kuaidi100map } from './kuaidi100';
 
 @Component({

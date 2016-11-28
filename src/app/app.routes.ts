@@ -1,5 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
-import { HomePageComponent } from './home';
+import { Routes } from '@angular/router';
 import { NoContent } from './no-content';
 import { CartListPageComponent } from './cart';
 import { CategoryPageComponent } from './category';
@@ -14,7 +13,7 @@ import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
 import { URLS, ProfileResolver, UserResolver, WalletResolver, FansResolver } from './core';
 
-export const ROUTES: Routes = [
+export const appRoutes: Routes = [
 
   // make sure you match the component type string to the require in asyncRoutes
   { path: 'cart', component: CartListPageComponent },

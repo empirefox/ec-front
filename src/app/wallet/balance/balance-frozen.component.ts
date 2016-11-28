@@ -1,6 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IUserCashFrozen, MoneyService, LocalWalletBase } from '../../core';
+import { Component } from '@angular/core';
+import { IUserCashFrozen, LocalWalletBase } from '../../core';
 
 @Component({
   selector: 'balance-frozen',
@@ -10,10 +9,7 @@ import { IUserCashFrozen, MoneyService, LocalWalletBase } from '../../core';
 export class BalanceFrozenComponent {
   items: IUserCashFrozen[];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private base: LocalWalletBase) { }
+  constructor(public base: LocalWalletBase) { }
 
   ngOnInit() {
     this.items = this.base.wallet.Frozen;

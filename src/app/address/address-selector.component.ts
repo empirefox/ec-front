@@ -1,6 +1,5 @@
-import { Component, ChangeDetectionStrategy, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { IAddress, AddressService } from '../core';
 
 @Component({
@@ -12,8 +11,9 @@ export class AddressSelectorComponent implements OnInit {
 
   @Output() select = new EventEmitter<IAddress>();
 
+  selected: IAddress;
+
   private selectedPrev: IAddress;
-  private selected: IAddress;
   private _items: IAddress[];
 
   constructor(

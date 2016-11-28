@@ -1,4 +1,4 @@
-import { Component, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {
@@ -7,7 +7,6 @@ import {
   ModalService,
   ICartItem,
   CartService,
-  IWishItem,
   WishlistService,
   ICheckoutItem,
   OrderService,
@@ -21,14 +20,9 @@ import {
   HistoryService,
 } from '../../core';
 
-const provideParent = (component: any, parentType?: any) => {
-  return { provide: parentType || ProductPageComponent, useExisting: forwardRef(() => component) };
-};
-
 @Component({
   templateUrl: './product-page.html',
   styleUrls: ['./product-page.css'],
-  providers: [provideParent(ProductPageComponent)],
 })
 export class ProductPageComponent implements OnInit {
 

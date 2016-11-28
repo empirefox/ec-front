@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import unescape = require('lodash/unescape');
+import * as unescape from 'lodash/unescape';
 
 import {
   config, constMap,

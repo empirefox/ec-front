@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import * as qrcanvas from 'qrcanvas';
 
-import { config } from '../profile';
 import { UserService } from '../user';
 import { QrConfig } from './qr.config';
 
-const qrgen = require('jsqrgen');
 
 @Injectable()
 export class QrService {
@@ -48,7 +47,7 @@ export class QrService {
             margin: config.LogoMargin,
           };
         }
-        return <string>qrgen.canvas(options).toDataURL();
+        return qrcanvas(options).toDataURL();
       });
     }
     return this._qr;

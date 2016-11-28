@@ -12,7 +12,7 @@ export class CheckoutAddrCreatorComponent {
 
   constructor(
     private router: Router,
-    private base: LocalCheckoutBase) { }
+    public base: LocalCheckoutBase) { }
 
   ngOnInit() {
     this.checkout = this.base.checkout;

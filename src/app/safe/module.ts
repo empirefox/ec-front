@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from '../core.module';
 
 import { safeRouting } from './routes';
+import { PhoneRequiredGuard } from '../interfaces';
 
 import { SafeComponent } from './safe.component';
 import { SetHeadComponent } from './head.component';
@@ -27,6 +28,9 @@ import { SetPaykeyComponent } from './paykey.component';
     SetHeadComponent,
     BindPhoneComponent,
     SetPaykeyComponent,
+  ],
+  providers: [
+    PhoneRequiredGuard,
   ],
 })
 export class SafeModule { }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import groupBy = require('lodash/groupBy');
+import * as groupBy from 'lodash/groupBy';
 import { URLS } from '../profile';
 import { RetryHttp } from '../user';
-import { IDelivery, IDeliveryItem } from './delivery';
+import { IDelivery } from './delivery';
 
 @Injectable()
 export class DeliveryService {

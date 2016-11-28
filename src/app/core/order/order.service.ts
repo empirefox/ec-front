@@ -5,10 +5,10 @@ import { URLS, CommonQuery } from '../profile';
 import { toURLSearchParams, createdAtSortor, splitToParents } from '../util';
 import { RetryHttp } from '../user';
 import { IWxPayArgs, MoneyService } from '../money';
-import { ISku, IEvalItem } from '../product';
+import { IEvalItem } from '../product';
 import {
-  IOrder, IOrderItem,
-  ICheckoutPayload, IOrderPayPayload,
+  IOrder,
+  IOrderPayPayload,
   IOrderWxPayPayload,
   IOrderChangeStatePayload,
   IOrdersResponse,

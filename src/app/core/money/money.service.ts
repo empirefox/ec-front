@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import sumBy = require('lodash/sumBy');
+import * as sumBy from 'lodash/sumBy';
 import { URLS } from '../profile';
 import { RetryHttp } from '../user';
 import { one2manyRelate } from '../util';
@@ -8,8 +9,8 @@ import { IUserCash, IWallet, IWxPayArgs, WithdrawPayload, VipRebatePayload } fro
 
 declare var WeixinJSBridge;
 
-const sortor = (b: { CreatedAt: number }, a: { CreatedAt: number }) => a.CreatedAt - b.CreatedAt;
-const O2M_REBATE_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'rebate', manyInOne: 'items', oneIdInMany: 'RebateID' };
+export const sortor = (b: { CreatedAt: number }, a: { CreatedAt: number }) => a.CreatedAt - b.CreatedAt;
+export const O2M_REBATE_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'rebate', manyInOne: 'items', oneIdInMany: 'RebateID' };
 
 @Injectable()
 export class MoneyService {
@@ -49,7 +50,7 @@ export class MoneyService {
   }
 
   // WARNING! need clear cache of qualifications and wallet, then fetch again
-  rebate(payload: VipRebatePayload) {
+  rebate(payload: VipRebatePayload): Observable<Response> {
     return this.http.post(URLS.USER_REBATE, JSON.stringify(payload));
   }
 

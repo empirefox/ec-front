@@ -1,13 +1,9 @@
 // share between xstorage clients and hub
-import { Config, ModeArgs } from './config';
+import { Config } from './config';
 
-const {modeArgs} = require(`./${ENV}`);
+import { environment } from '../../../environments/environment';
 
-if (!modeArgs) {
-  console.error(`load ModeArgs from ${ENV} error`);
-}
-
-export const config = new Config(modeArgs);
+export const config = new Config(environment);
 
 export interface WxCodeResult {
   code: string;

@@ -1,19 +1,16 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   constMap,
-  IProfile, ProfileResolver,
+  provideParent,
+  IProfile,
   IAddress,
   ICheckout, OrderService, LocalCheckoutBase, ICheckoutItem,
 } from '../core';
 
-const provideParent = (component: any, parentType?: any) => {
-  return { provide: parentType || LocalCheckoutBase, useExisting: forwardRef(() => component) };
-};
-
 @Component({
   template: `<router-outlet></router-outlet>`,
-  providers: [provideParent(CheckoutRouteComponent)],
+  providers: [provideParent(CheckoutRouteComponent, LocalCheckoutBase)],
 })
 export class CheckoutRouteComponent implements LocalCheckoutBase {
 

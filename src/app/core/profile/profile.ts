@@ -27,7 +27,7 @@ export interface IProfile {
   HeadPrefix: string;
 }
 
-export const URLS = {
+const URLS = {
   PROFILE: `${config.apiOrigin}/profile`, // get
 
   FAKE_TOKEN: `${config.apiOrigin}/faketoken`, // get
@@ -98,6 +98,8 @@ export const URLS = {
   WX_OAUTH2_LOCAL: `${config.publicOrigin}/oauth/weixin`,
   WX_OAUTH2_LOCAL_PATH: `oauth/weixin`,
 };
+
+export { URLS }
 
 export interface CommonQuery {
   q?: string; // query

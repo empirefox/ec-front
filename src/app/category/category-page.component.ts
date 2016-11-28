@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { URLSearchParams } from '@angular/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { ICategory, CategoryService } from '../core';
 
 @Component({

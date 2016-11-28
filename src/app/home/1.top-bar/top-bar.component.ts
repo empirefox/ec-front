@@ -1,6 +1,5 @@
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { KSSwiperContainer, KSSwiperSlide } from 'angular2-swiper';
 import { constMap, ICarouselItem, CarouselService } from '../../core';
 
 @Component({
@@ -13,8 +12,6 @@ export class HomeTopBarComponent {
   items: ICarouselItem[];
   swipeOptions: any;
 
-  @ViewChild(KSSwiperContainer) swiperContainer: KSSwiperContainer;
-
   constructor(
     private router: Router,
     private carouselService: CarouselService) { }
@@ -26,17 +23,9 @@ export class HomeTopBarComponent {
       loop: false,
       autoplay: 3000,
       autoplayDisableOnInteraction: false,
+      paging: false,
+      arrows: false,
     };
-  }
-
-  ngOnDestroy() {
-    if (this.swiperContainer) {
-      this.swiperContainer.swiper.stopAutoplay();
-    }
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => this.swiperContainer.swiper.startAutoplay());
   }
 
   gotoSearch() { this.router.navigateByUrl('/search'); }

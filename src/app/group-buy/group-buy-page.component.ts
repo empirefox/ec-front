@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { IGroupBuyItem, GroupBuy, GroupBuyService } from '../core';
+import { IGroupBuyItem, GroupBuyService } from '../core';
 
 @Component({
   templateUrl: './group-buy-page.html',
@@ -13,7 +12,6 @@ export class GroupBuyPageComponent {
   current: IGroupBuyItem[];
 
   constructor(
-    private router: Router,
     private groupBuyService: GroupBuyService) { }
 
   ngOnInit() {

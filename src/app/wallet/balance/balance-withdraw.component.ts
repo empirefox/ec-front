@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { config, IWallet, LocalWalletBase, MoneyService } from '../../core';
 
 // http://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
@@ -31,9 +31,8 @@ export class BalanceWithdrawComponent {
   showErr = config.showErr;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private base: LocalWalletBase,
+    public base: LocalWalletBase,
     private moneyService: MoneyService) { }
 
   ngOnInit() {

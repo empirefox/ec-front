@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { constMap, ICarouselItem, CarouselService, TokenService } from '../core';
 
 @Component({
@@ -12,7 +11,6 @@ export class HomePageComponent {
   items: ICarouselItem[];
 
   constructor(
-    private route: ActivatedRoute,
     private tokenService: TokenService,
     private carouselService: CarouselService) { }
 

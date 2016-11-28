@@ -1,12 +1,10 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Location } from '@angular/common';
-import { NavMenuComponent } from './nav-menu.component';
 
 @Component({
   selector: 'header-bar-inner',
   templateUrl: './header-bar.html',
   styleUrls: ['./header-bar.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderBarInnerComponent {
 
@@ -21,7 +19,6 @@ export class HeaderBarInnerComponent {
 @Component({
   selector: 'header-bar',
   templateUrl: './header-bar.html',
-  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderBarComponent extends HeaderBarInnerComponent {
 

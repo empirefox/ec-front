@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { config, URLS, IProfile, ProfileService, WxCodeResult } from '../profile';
-import { Jwt } from '../jwt';
-import { nonce, removeURLParameter } from '../util';
+import { config, URLS, IProfile, ProfileService } from '../profile';
+import { JwtService } from '../jwt';
+import { nonce } from '../util';
 import {
   ISetUserInfoPayload,
   IUserInfo,
   ISetUserInfoResponse,
-  IUserTokenResponse,
   IPreBindPhonePayload,
   IBindPhonePayload,
-  IRefreshTokenResponse,
   ISetPaykeyPayload,
 } from './user';
 import { TokenService } from './token.service';
@@ -29,7 +27,7 @@ export class UserService {
     private rawHttp: Http,
     private http: RetryHttp,
     private profileService: ProfileService,
-    private jwt: Jwt,
+    private jwt: JwtService,
     private tokenService: TokenService) {
   }
 

@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import groupBy = require('lodash/groupBy');
-import keyBy = require('lodash/keyBy');
-import isEqual = require('lodash/isEqual');
-import uniq = require('lodash/uniq');
+import * as groupBy from 'lodash/groupBy';
+import * as keyBy from 'lodash/keyBy';
+import * as isEqual from 'lodash/isEqual';
+import * as uniq from 'lodash/uniq';
 import { URLS } from '../profile';
 import { constMap } from '../consts';
 import { toURLSearchParams, one2manyRelate, posSortor } from '../util';
 import {
-  IProductAttr, ProductAttr, ProductAttrs, IProductAttrsResponse,
+  ProductAttr, ProductAttrs, IProductAttrsResponse,
   ISku, ISkusResponse, ProductAttrGroup, IProduct, IProductsResponse,
   IProductQuery,
 } from './product';
 import { IProductEval, IEvalItem } from './eval';
-import { specialPresets, ISpecial } from './special';
+import { specialPresets } from './special';
 
 export const O2M_PRODUCT_SKUS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'product', manyInOne: 'skus', oneIdInMany: 'ProductID' };
 export const O2M_GROUP_ATTRS_OPTION = { oneId: 'ID', manyId: 'ID', oneInMany: 'group', manyInOne: 'attrs', oneIdInMany: 'GroupID' };

@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { isNumber } from '@angular/core/src/facade/lang';
+import { NumberWrapper } from '@angular/core/src/facade/lang';
 
 import { constMap } from '../consts';
 import { ISku, IProduct } from '../product';
 
-interface Pricer {
+export interface Pricer {
   SalePrice?: number;
   Price?: number;
   sku?: ISku;
@@ -18,10 +18,10 @@ export class PriceNoPipe implements PipeTransform {
   base = new DecimalPipe('zh-CN');
   // accept number, sku or any object which has Price
   transform(value: Pricer, product?: IProduct) {
-    let isVpn = isNumber(product);
+    let isVpn = NumberWrapper.isNumeric(product);
     let vpn = (isVpn && product as any as number);
     product = (!isVpn && product) || value.product || (value.sku && value.sku.product);
-    let price = (isNumber(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
+    let price = (NumberWrapper.isNumeric(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
       (product && product.skus && product.skus[0] && product.skus[0].SalePrice);
     price = price || 0;
     vpn = vpn || (product && product.Vpn);
@@ -35,10 +35,10 @@ export class PricePipe implements PipeTransform {
   base = new DecimalPipe('zh-CN');
   // accept number, sku or any object which has Price
   transform(value: Pricer, product?: IProduct) {
-    let isVpn = isNumber(product);
+    let isVpn = NumberWrapper.isNumeric(product);
     let vpn = (isVpn && product as any as number);
     product = (!isVpn && product) || value.product || (value.sku && value.sku.product);
-    let price = (isNumber(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
+    let price = (NumberWrapper.isNumeric(value) && <number>value) || value.Price || value.SalePrice || (value.sku && value.sku.SalePrice) ||
       (product && product.skus && product.skus[0] && product.skus[0].SalePrice);
     price = price || 0;
     vpn = vpn || (product && product.Vpn);

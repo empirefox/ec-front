@@ -1,3 +1,3 @@
-import { IProduct, ISku } from './product';
+import { IProduct } from './product';
 
 export abstract class ProductBase { product: IProduct; }

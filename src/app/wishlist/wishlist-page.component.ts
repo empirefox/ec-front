@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IWishItem, WishlistService, ProductService } from '../core';
 
@@ -28,7 +28,7 @@ export class WishlistPageComponent {
     this.wishlistService.delete([item.ProductID]).subscribe(_ => this.reset());
   }
 
-  private reset() {
+  reset() {
     this.wishlistService.getItems().subscribe(items => this.items = items);
   }
 

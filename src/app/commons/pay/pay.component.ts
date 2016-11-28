@@ -1,11 +1,11 @@
-import { Component, Optional, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { constMap, removeURLParameter, IUserInfo, UserService, IWallet, MoneyService, IOrder, OrderService } from '../../core';
+import { removeURLParameter, IUserInfo, UserService, IWallet, MoneyService, IOrder, OrderService } from '../../core';
 
-enum PayType { none, wx, cash, points }
+export enum PayType { none, wx, cash, points }
 
 @Component({
   selector: 'order-pay',

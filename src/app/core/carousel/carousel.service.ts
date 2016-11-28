@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import URL = require('url-parse');
-import groupBy = require('lodash/groupBy');
-import values = require('lodash/values');
+import URL from 'url-parse';
+import * as groupBy from 'lodash/groupBy';
+import * as values from 'lodash/values';
 import { URLS } from '../profile';
-import { constMap } from '../consts';
 import { posSortor } from '../util';
 import { ICarouselItem } from './carousel';
 

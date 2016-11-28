@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 import {
   IProfile,
   IUserInfo,
   UserService,
-  IWishItem,
   WishlistService,
   IWallet,
   HistoryService,

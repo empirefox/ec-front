@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { IProduct, ProductService, LocalProductBase } from '../../core';
 
 const SEARCH_COLS = ['Name', 'Intro', 'Detail'];

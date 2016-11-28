@@ -1,8 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { Subject } from 'rxjs/Subject';
-import { QuantityInputComponent } from '../quantity-input';
 import { CartService, ICartItem, ProductService } from '../core';
 
 @Component({

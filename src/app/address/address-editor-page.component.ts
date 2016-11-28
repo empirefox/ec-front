@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IAddress, AddressService } from '../core';
-import { Header1Component } from '../header-bar';
 
 @Component({
   templateUrl: './address-editor-page.html',

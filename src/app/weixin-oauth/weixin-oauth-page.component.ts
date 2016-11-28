@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { WxCodeResult, Jwt, TokenService } from '../core';
+import { WxCodeResult, JwtService, TokenService } from '../core';
 
-enum State { Init, Failed, Ok }
+export enum State { Init, Failed, Ok }
 
 @Component({
   templateUrl: './weixin-oauth-page.html',
@@ -18,7 +18,7 @@ export class WeixinOauthPageComponent {
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    private jwt: Jwt,
+    private jwt: JwtService,
     private tokenService: TokenService) { }
 
   ngOnInit() {

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IUserCashRebate, IWallet, MoneyService, LocalWalletBase } from '../../core';
+import { IUserCashRebate, MoneyService, LocalWalletBase } from '../../core';
 
 @Component({
   templateUrl: './reward.html',
@@ -12,10 +11,8 @@ export class RewardComponent {
   frozen: number;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private moneyService: MoneyService,
-    private base: LocalWalletBase) { }
+    public base: LocalWalletBase) { }
 
   ngOnInit() {
     this.rebates = this.base.wallet.Rebates;

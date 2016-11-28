@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { URLS, CommonQuery } from '../profile';
-import { IProduct, ISku, IProductQuery } from './product';
+import { CommonQuery } from '../profile';
+import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 export abstract class LocalProductBase {

@@ -1,9 +1,9 @@
-import { Injectable, Provider } from '@angular/core';
-import { Http, Headers, Request, RequestOptions, RequestOptionsArgs, RequestMethod, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Request, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp } from 'angular2-jwt';
 
-import { TokenService } from "./token.service";
+import { TokenService } from './token.service';
 
 @Injectable()
 export class RetryHttp {

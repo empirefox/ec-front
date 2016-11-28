@@ -1,14 +1,17 @@
 <header1>公益</header1>
 <div class="main-layout mb20">
-  <div class="adv_list myslides">
-    <ks-swiper-container [options]="swipeOptions" style="height: 8rem;">
-      <ks-swiper-slide *ngFor="let s of slides">
-        <a (click)="gotoSlide(s)">
-          <img class="slide-img" [src]="s.Img">
-        </a>
-      </ks-swiper-slide>
-    </ks-swiper-container>
-  </div>
+  <swiper [config]="swipeOptions" *ngIf="slides">
+    <div class="swiper-wrapper">
+      <img class="swiper-slide" *ngFor="let s of slides" [src]="s.Img" (click)="gotoSlide(s)">
+    </div>
+    <!-- Add Pagination -->
+    <div *ngIf="swipeOptions.paging" class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <template [ngIf]="swipeOptions.arrows">
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </template>
+  </swiper>
   <div [infiniteScrollDistance]="2" [infiniteScrollThrottle]="600" [infiniteScrollDisabled]="infiniteScrollDisabled" (scrolled)="onScroll(true)"
     infinite-scroll class="search-results">
     <ul class="newslist" *ngIf="items">

@@ -1,3 +1,5 @@
+import { Provider } from '@angular/core';
+
 import { ADDR_PROVIDERS } from './address';
 import { CAPTCHA_PROVIDERS } from './captcha';
 import { CAROUSEL_PROVIDERS } from './carousel';
@@ -5,7 +7,6 @@ import { CART_PROVIDERS } from './cart';
 import { CATEGORY_PROVIDERS } from './category';
 import { CDN_PROVIDERS } from './cdn';
 import { COUNTDOWN_PROVIDERS } from './countdown';
-// import { COUPON_PROVIDERS } from './coupon';
 import { DELIVERY_PROVIDERS } from './delivery';
 import { FANS_PROVIDERS } from './fans';
 import { GROUPBUY_PROVIDERS } from './groupbuy';
@@ -23,39 +24,53 @@ import { USER_PROVIDERS } from './user';
 import { VIP_PROVIDERS } from './vip';
 import { WISHLIST_PROVIDERS } from './wishlist';
 import { QR_PROVIDERS } from './qr';
-// import { XSTORAGE_PROVIDERS } from './xstorage';
 
-export * from './address';
-export * from './captcha';
-export * from './carousel';
-export * from './cart';
-export * from './category';
-export * from './cdn';
-export * from './countdown';
-// export * from './coupon';
-export * from './delivery';
-export * from './fans';
-export * from './groupbuy';
-export * from './history';
-export * from './jwt';
-export * from './modal';
-export * from './money';
-export * from './news';
-export * from './order';
-export * from './product';
-export * from './profile';
-export * from './qr';
-export * from './search';
-export * from './store';
-export * from './user';
-export * from './util';
-export * from './vip';
-export * from './wishlist';
-// export * from './xstorage';
+export { IAddress, AddressService, AddressResolver } from './address';
+export { ICaptcha, CaptchaService } from './captcha';
+export { ICarouselItem, CarouselService } from './carousel';
+export { ICartItem, ICartItemContent, CartService } from './cart';
+export { ICategory, CategoryService } from './category';
+export { CdnService, HeadUptoken, IQiniuItem } from './cdn';
+export { CountdownService } from './countdown';
+export { IDelivery, IDeliveryDay, IDeliveryItem, DeliveryService } from './delivery';
+export { IFan, FansService, FansResolver } from './fans';
+export { IGroupBuyItem, GroupBuy, GroupBuyService } from './groupbuy';
+export { HistoryItem, HistoryService } from './history';
+export { JwtService } from './jwt';
+export { ModalService } from './modal';
+export {
+  IPointsItem, IUserCashFrozen, IUserCash, IUserCashRebate, IUserCashRebateItem, IWallet, IWxPayArgs,
+  VipRebatePayload, WithdrawPayload, MoneyService, LocalWalletBase, WalletResolver,
+} from './money';
+export { INewsItem, INewsQuery, NewsService } from './news';
+export {
+  ICheckout, ICheckoutItem, ICheckoutOnePayload, ICheckoutPayload, ICheckoutPayloadItem, IOrderChangeStatePayload,
+  IInvoice, Invoice, IOrder, IOrderAddress, IOrderItem, IOrderPayPayload, IOrderWxPayPayload,
+  OrderService, OrderResolver, LocalCheckoutBase,
+} from './order';
+export {
+  IEvalItem, IProduct, IProductAttr, IProductAttrGroup, IProductAttrId, IProductEval, IProductQuery, IProductRawInfo,
+  ProductAttr, ProductAttrs, ProductAttrGroup, ProductBase, ProductService, ISku, ISpecial,
+  LocalProductBase, LocalProductService, LocalProductServiceFactory,
+} from './product';
+export { CommonQuery, JwtConfig, WxCodeResult, IProfile, config, URLS, ProfileResolver, ProfileService } from './profile';
+export { QrService } from './qr';
+export { SearchService } from './search';
+export { IStore, StoreService, StoreResolver, } from './store';
+export {
+  IUserInfo, ISetUserInfoPayload, UserService, UserResolver, userTrans, TokenService,
+  ExchangePayload, ISetPaykeyPayload, IBindPhonePayload, IPreBindPhonePayload, RetryHttp,
+} from './user';
+export {
+  provideParent, idSortor, posSortor, createdAtSortor, updateAfterSave, nonce,
+  toURLSearchParams, removeURLParameter, one2manyRelate, splitToParents,
+} from './util';
+export { IVipIntro, IVipName, IVipRebateOrigin, MyVips, VipService } from './vip';
+export { IWishItem, IWishlistSavePayload, WishlistService } from './wishlist';
 export { APP_CORE_PIPES } from './pipes';
-export * from './consts';
+export { consts, constMap, constTransMap } from './consts';
 
-export const APP_CORE_PROVIDERS = [
+export const APP_CORE_PROVIDERS: Provider[] = [
   ...ADDR_PROVIDERS,
   ...CAPTCHA_PROVIDERS,
   ...CAROUSEL_PROVIDERS,
@@ -63,7 +78,6 @@ export const APP_CORE_PROVIDERS = [
   ...CATEGORY_PROVIDERS,
   ...CDN_PROVIDERS,
   ...COUNTDOWN_PROVIDERS,
-  //  ...COUPON_PROVIDERS ,
   ...DELIVERY_PROVIDERS,
   ...FANS_PROVIDERS,
   ...GROUPBUY_PROVIDERS,
@@ -81,5 +95,4 @@ export const APP_CORE_PROVIDERS = [
   ...USER_PROVIDERS,
   ...VIP_PROVIDERS,
   ...WISHLIST_PROVIDERS,
-  //  ...XSTORAGE_PROVIDERS,
 ];

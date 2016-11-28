@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { config, IAddress, AddressService } from '../core';
@@ -23,7 +23,7 @@ export class AddressEditorComponent {
 
   showErr = config.showErr;
 
-  private provinces: RegionPair[];
+  provinces: RegionPair[];
   private _province: RegionPair;
   private _city: RegionPair;
   private _district: RegionPair;
