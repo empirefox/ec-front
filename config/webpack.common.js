@@ -102,13 +102,13 @@ module.exports = function (options) {
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
-        {
-          test: /\.js$/,
-          exclude:/src\/app/,
-          loaders:[
-            'babel?presets[]=es2015',
-          ]
-        },
+        // {
+        //   test: /\.js$/,
+        //   exclude:/src\/app/,
+        //   loaders:[
+        //     'babel?presets[]=es2015',
+        //   ]
+        // },
 
         /*
          * Json loader support for *.json files.

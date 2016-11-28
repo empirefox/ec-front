@@ -72,9 +72,6 @@ export class ProductInfoComponent {
       if (this.store && this.store.Amap) {
         this.map = this.sanitizer.bypassSecurityTrustHtml(this.store.Amap);
       }
-      this.map = this.map || this.sanitizer.bypassSecurityTrustHtml(
-        `<iframe width='420' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://f.amap.com/5N1Zb_0F121W8'></iframe>`
-      );
     });
   }
 
