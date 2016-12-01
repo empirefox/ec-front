@@ -13,7 +13,7 @@
         </dl>
       </div>
     </div>
-    <order-detail-item [item]="item" [stores]="stores" *ngFor="let item of order.Items"></order-detail-item>
+    <order-detail-item [item]="item" [store]="stores[item.StoreID]" *ngFor="let item of order.Items"></order-detail-item>
     <div class="order-item mt5">
       <div class="order-item-bottom">
         <span><a (click)="gotoChat()"><i class="im"></i>联系客服</a></span>

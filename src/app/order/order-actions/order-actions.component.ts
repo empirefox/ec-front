@@ -26,16 +26,14 @@ export class OrderActionsComponent {
     private router: Router,
     private orderService: OrderService) { }
 
-  ngOnInit() {
-    let showPay = this.route.snapshot.queryParams['pay'] === 'show';
-    let showCurrentPay = (+this.route.snapshot.params['id']) === this.order.ID;
-    this.showOrderPay = showPay && showCurrentPay;
-  }
+  ngOnInit() { }
 
   get showOrderPay() { return this._showOrderPay; }
   set showOrderPay(show: boolean) {
-    this._showOrderPay = show;
-    this.payChange.next(show);
+    if (this._showOrderPay !== show) {
+      this._showOrderPay = show;
+      this.payChange.next(show);
+    }
   }
 
   get state() {

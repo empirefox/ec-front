@@ -10,6 +10,7 @@ import { CheckoutContentComponent, CheckoutItemComponent } from './content';
 import { CheckoutAddrsComponent } from './address-selector';
 import { CheckoutAddrCreatorComponent } from './address-creator';
 import { InvoicePageComponent, InvoiceComponent } from './invoice';
+import { CheckoutItemsResolver } from './checkout.resolver';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,9 @@ import { InvoicePageComponent, InvoiceComponent } from './invoice';
     CheckoutAddrsComponent,
     CheckoutAddrCreatorComponent,
     InvoicePageComponent,
+  ],
+  providers: [
+    CheckoutItemsResolver,
   ],
 })
 export class CheckoutModule { }

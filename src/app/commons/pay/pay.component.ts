@@ -70,8 +70,8 @@ export class OrderPayComponent {
     this.vpn = this.order.Items[0].Vpn;
     let paying = +this.route.snapshot.queryParams['paying'];
     if (paying === this.order.ID) {
-      this.showChange.next(true);
       this.location.replaceState(removeURLParameter(this.router.url, 'paying').url);
+      setTimeout(_ => this.showChange.next(true), 0);
     }
   }
 

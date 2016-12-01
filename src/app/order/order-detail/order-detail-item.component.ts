@@ -10,7 +10,7 @@ import { IOrderItem, IStore } from '../../core';
 export class OrderDetailItemComponent {
 
   @Input() item: IOrderItem;
-  @Input() stores: IStore[];
+  @Input() store: IStore;
 
   constructor(private router: Router) { }
 

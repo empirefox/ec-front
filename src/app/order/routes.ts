@@ -33,7 +33,7 @@ export const routes: Routes = [
         resolve: {
           profile: ProfileResolver,
           order: OrderResolver,
-          sotres: StoreResolver,
+          stores: StoreResolver,
         },
       },
       {

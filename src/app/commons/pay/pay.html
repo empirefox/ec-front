@@ -35,7 +35,7 @@
         </li>
         <li class="form-item" *ngIf="payType===PayType.cash||payType===PayType.points">
           <div class="input-box"> <span class="txt">输入支付密码</span>
-            <input [formControl]="keyControl" [(ngModel)]="key" type="password" class="inp" autocomplete="off" [disabled]="!user.HasPayKey">
+            <input [formControl]="keyControl" [(ngModel)]="key" type="password" class="inp" autocomplete="off" [attr.disabled]="user.HasPayKey?null:true">
             <span class="input-del"></span>
           </div>
           <button (click)="gotoSetPayKey()" class="input-box-help" *ngIf="!user.HasPayKey"><i>i</i>尚未设置</button>
