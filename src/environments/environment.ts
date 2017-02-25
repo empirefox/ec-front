@@ -7,10 +7,10 @@ import { ModeArgs } from './args';
 
 export const environment: ModeArgs = {
   production: false,
-  publicOrigin: 'http://www.silu333.com',
-  apiOrigin: 'http://api.silu333.com:8080',
+  publicOrigin: '',
+  apiOrigin: 'http://115.159.221.108:8888',
   wxCodeEndpoint: 'https://open.weixin.qq.com/connect/oauth2/authorize',
-  cdnImgOrigin: 'https://head.silu333.com',
+  cdnImgOrigin: 'http://oegt06nh8.bkt.clouddn.com',
   qrLogoUrl: '',
   vbuysSpecialName: 'vbuys',
 };
