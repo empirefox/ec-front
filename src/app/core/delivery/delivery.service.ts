@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import * as groupBy from 'lodash/groupBy';
+import groupBy from 'lodash-es/groupBy';
 import { URLS } from '../profile';
 import { RetryHttp } from '../user';
 import { IDelivery } from './delivery';

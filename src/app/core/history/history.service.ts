@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as keyBy from 'lodash/keyBy';
+import keyBy from 'lodash-es/keyBy';
 import { IProduct } from '../product';
 import { HistoryItem } from './history';
 

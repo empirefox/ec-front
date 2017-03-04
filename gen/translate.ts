@@ -1,4 +1,4 @@
-import difference = require('lodash/difference');
+import difference from 'lodash-es/difference';
 const consts = require('./esecend_consts.json');
 import * as typsTrans from './trans-values';
 

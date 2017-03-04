@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import toPairs = require('lodash/toPairs');
+import toPairs from 'lodash-es/toPairs';
 import { format } from './format';
 import { translate } from './translate';
 import * as typsTrans from './trans-values';
