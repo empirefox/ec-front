@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import * as unescape from 'lodash/unescape';
+import unescape from 'lodash-es/unescape';
 import { ProductPageComponent } from './product-page.component';
 
 @Component({

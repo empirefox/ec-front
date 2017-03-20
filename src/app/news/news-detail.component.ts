@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import * as unescape from 'lodash/unescape';
+import unescape from 'lodash-es/unescape';
 
 import { INewsItem, NewsService } from '../core';
 

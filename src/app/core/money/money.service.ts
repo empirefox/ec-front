@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import * as sumBy from 'lodash/sumBy';
+import sumBy from 'lodash-es/sumBy';
 import { URLS } from '../profile';
 import { RetryHttp } from '../user';
 import { one2manyRelate } from '../util';

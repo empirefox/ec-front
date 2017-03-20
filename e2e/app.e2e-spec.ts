@@ -1,10 +1,10 @@
-import { Ng2AmapInputPage } from './app.po';
+import { EcFront2Page } from './app.po';
 
-describe('ec-front App', function() {
-  let page: Ng2AmapInputPage;
+describe('ec-front2 App', () => {
+  let page: EcFront2Page;
 
   beforeEach(() => {
-    page = new Ng2AmapInputPage();
+    page = new EcFront2Page();
   });
 
   it('should display message saying app works', () => {

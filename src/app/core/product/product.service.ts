@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import * as groupBy from 'lodash/groupBy';
-import * as keyBy from 'lodash/keyBy';
-import * as isEqual from 'lodash/isEqual';
-import * as uniq from 'lodash/uniq';
+import groupBy from 'lodash-es/groupBy';
+import keyBy from 'lodash-es/keyBy';
+import isEqual from 'lodash-es/isEqual';
+import uniq from 'lodash-es/uniq';
 import { URLS } from '../profile';
 import { constMap } from '../consts';
 import { toURLSearchParams, one2manyRelate, posSortor } from '../util';

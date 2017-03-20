@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import * as keyBy from 'lodash/keyBy';
+import keyBy from 'lodash-es/keyBy';
 import { URLS } from '../profile';
 import { RetryHttp } from '../user';
 import { IProduct } from '../product';
