@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, OnChanges } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
-import { IMyDate } from 'mydatepicker/src/my-date-picker/interfaces';
+import { IMyDate } from 'mydatepicker';
 
 const defaultMaxValue = Date.now() / 1000; // now
 const defaultMinValue = defaultMaxValue - 100 * 31536000; // 100 year ago

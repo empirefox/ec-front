@@ -7,7 +7,7 @@ import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
-import { MyDatePickerModule } from 'mydatepicker/src/my-date-picker/my-date-picker.module';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { RatingModule, NavMenuListComponent, COMMONS_COMPONENTS } from './commons';
 

@@ -78,7 +78,7 @@ export class OrderService {
 
   wxPay(order: IOrder): Observable<IOrder> {
     if (order.PayPoints) {
-      return Observable.throw<IOrder>('Points order');
+      return Observable.throw('Points order');
     }
     let pay: IOrderWxPayPayload = { OrderID: order.ID };
     return this.http.post(URLS.ORDER_WX_PAY, JSON.stringify(pay)).

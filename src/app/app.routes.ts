@@ -11,7 +11,7 @@ import { QualificationComponent } from './qualification';
 import { SearchPageComponent } from './search';
 import { WeixinOauthPageComponent } from './weixin-oauth';
 import { WishlistPageComponent } from './wishlist';
-import { URLS, ProfileResolver, UserResolver, WalletResolver, FansResolver } from './core';
+import { ProfileResolver, UserResolver, WalletResolver, FansResolver } from './core';
 
 export const appRoutes: Routes = [
 
@@ -50,7 +50,7 @@ export const appRoutes: Routes = [
     },
   },
 
-  { path: URLS.WX_OAUTH2_LOCAL_PATH, component: WeixinOauthPageComponent },
+  { path: 'oauth/weixin', component: WeixinOauthPageComponent },
   { path: 'wishlist', component: WishlistPageComponent },
   { path: '**', component: NoContent },
 ];

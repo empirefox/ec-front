@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class Ng2AmapInputPage {
+export class EcFront2Page {
   navigateTo() {
     return browser.get('/');
   }
